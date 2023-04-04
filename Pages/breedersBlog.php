@@ -4,7 +4,12 @@ session_start();
 include("../Model/db.php");
 $allpost = getAllPost('breedersblog');
 
-$sessionid = $_SESSION['id'];
+if(isset($_SESSION['id'])){
+    $sessionid = $_SESSION['id'];
+}else{
+    $session_id = null;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

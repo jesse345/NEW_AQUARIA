@@ -1,5 +1,13 @@
+<?php
+include '../Model/db.php';
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
   <?php
@@ -21,10 +29,6 @@
 
 
   <?php
-
-  include_once '../Model/db.php';
-  session_start();
-
   if (isset($_SESSION['id'])) {
     $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
   }
@@ -177,7 +181,7 @@
                   <!-- End .megamenu megamenu-sm -->
                 </li>
                 <li>
-                  <a href="Pages/breedersBlog.php?id=<?php echo $_SESSION['id'] ?>">Breeders Blog</a>
+                    <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
               </ul>
               <!-- End .menu -->

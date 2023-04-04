@@ -25,6 +25,8 @@ include("paymentModel.php");
 
 include("reportProductModel.php");
 
+include("breederModel.php");
+
 function disconnect()
 {
     global $conn;
