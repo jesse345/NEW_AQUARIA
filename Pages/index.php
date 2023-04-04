@@ -177,7 +177,7 @@
                   <!-- End .megamenu megamenu-sm -->
                 </li>
                 <li>
-                  <a href="blog.html">Breeders Blog</a>
+                  <a href="Pages/breedersBlog.php?id=<?php echo $_SESSION['id'] ?>">Breeders Blog</a>
                 </li>
               </ul>
               <!-- End .menu -->
