@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +7,11 @@
     <?php include("../Includes/head.inc.php") ?>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-
         .breadcrumb-nav{
             margin-bottom:0rem!important;
         }
     </style>
 </head>
-
 <body>
     <div class="page-wrapper">
      <?php include("../Includes/header.inc.php") ?>
@@ -36,7 +31,7 @@
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
             <<div class="clearfix" style="margin-right:55px;">
-                <a class="btn btn-primary mb-2 float-right" "data-bs-toggle="modal" data-bs-target="#modal-addpost"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
+                <a class="btn btn-primary mb-2 float-right" data-bs-toggle="modal" data-bs-target="#modal-addpost"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
             </div>
             <div class="page-content">
                 <div class="container">
@@ -45,14 +40,17 @@
                     $allpost = getAllPost('breedersblog');
                     while($post = mysqli_fetch_assoc($allpost)):
                         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $post['user_id']));
-                        $user1 = mysqli_fetch_assoc(getBreeders('breedersblog', $post['id']));
+                        $user1 = mysqli_fetch_assoc(getBreedersDate('breedersblog', $post['id']));
+                        $user2 = mysqli_fetch_assoc(getBreedersDesc('breedersblog', $post['id']));
+                        $user3 = mysqli_fetch_assoc(getCommentCount('comment', $post['user_id']));
+
                          ?>
                         <article class="entry entry-list">
                             <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <figure class="entry-media">
                                         <a href="single.html">
-                                            <img src="../img/batman.png" alt="image desc">
+                                            <img src="<?php echo $post['image']?>" alt="image desc">
                                         </a>
                                     </figure><!-- End .entry-media -->
                                 </div><!-- End .col-md-4 -->
@@ -67,15 +65,26 @@
                                             <a href="#">
                                                 <?php echo $user1['date']?></a>
                                             <span class="meta-separator">|</span>
-                                            <a href="#">2 Comments</a>
+                                           <?php
+                                           if ($user3['commentCount'] == 0):
+                                                ?>
+                                                <a href="#"><?php echo $user3['commentCount']?>comment</a>
+                                            <?php endif; ?>
+                                            <?php
+                                                if($user3['commentCount'] > 0):
+                                            ?>
+                                                <a href="#"><?php echo $user3['commentCount']?> comments</a>
+                                            <?php endif; ?>
+
                                         </div><!-- End .entry-meta -->
 
-                                        <h2 class="entry-title">
-                                            <a href="single.html">Cras ornare tristique elit.</a>
+                                        <h2 class="entry-title mb-2">
+                                            <a href="single.html"><?php echo $post['purpose']?></a>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
-                                            <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Suspendisse potenti. Sed egestas ... </p>
-                                            <a href="#" class="read-more">Continue Reading</a>
+                                            <p class="mb-3"><?php echo $user2['description']?> ... </p>
+                                            <a href="../Pages/comment.php?breedersblog_id=<?php echo $post['id']?>" class="read-more">View more details</a>
+                                            <a href="" class="read-more float-right" data-bs-toggle="modal" data-bs-target="#modal-addpost">Report</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->

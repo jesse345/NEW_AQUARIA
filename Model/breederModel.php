@@ -16,10 +16,24 @@ function getAllPost($table){
     disconnect();
     return $query;
 }
-function getBreeders($table,$value){
+function getBreedersDate($table,$value){
     global $conn;
     connect();
     $query = mysqli_query($conn, "SELECT id,user_id,description,image, DATE_FORMAT(date_created, '%M %e %Y') AS date  FROM $table  where id = $value");
+    disconnect();
+    return $query;
+}
+function getBreedersDesc($table,$value){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT SUBSTRING(description,1,200) as description from $table where id = $value");
+    disconnect();
+    return $query;
+}
+function getCommentCount($table,$value){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT COUNT(user_id) as commentCount from $table where user_id = $value");
     disconnect();
     return $query;
 }
