@@ -16,12 +16,13 @@ function getAllPost($table){
     disconnect();
     return $query;
 }
-function deleteComment($id){
+function getBreeders($table,$value){
     global $conn;
     connect();
-    $query = "DELETE FROM `comment` WHERE `comment_id` = '$id]' ";
-    $data = mysqli_query($conn, $query);
+    $query = mysqli_query($conn, "SELECT id,user_id,description,image, DATE_FORMAT(date_created, '%M %e %Y') AS date  FROM $table  where id = $value");
     disconnect();
+    return $query;
 }
+
 
 ?>
