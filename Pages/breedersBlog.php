@@ -6,6 +6,7 @@
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
     <style>
         .breadcrumb-nav{
             margin-bottom:0rem!important;
@@ -14,24 +15,25 @@
 </head>
 <body>
     <div class="page-wrapper">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
      <?php include("../Includes/header.inc.php") ?>
 
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
         		<div class="container">
-        			<h1 class="page-title">Breeders Blog<span>Find Co Breeders</span></h1>
+        			<h1 class="page-title" style="color:#fff;font-weight:700">Breeders Blog<span style="color:#fff;">Find Co Breeders</span></h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">BreedersBlog</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
             <<div class="clearfix" style="margin-right:55px;">
-                <a class="btn btn-primary mb-2 float-right" data-bs-toggle="modal" data-bs-target="#modal-addpost"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
+                <a class="btn btn-primary mb-2 float-right" data-toggle="modal" data-target="#modal-addpost"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
             </div>
             <div class="page-content">
                 <div class="container">
@@ -40,8 +42,8 @@
                     $allpost = getAllPost('breedersblog');
                     while($post = mysqli_fetch_assoc($allpost)):
                         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $post['user_id']));
-                        $user1 = mysqli_fetch_assoc(getBreedersDate('breedersblog', $post['id']));
-                        $user2 = mysqli_fetch_assoc(getBreedersDesc('breedersblog', $post['id']));
+                        $user1 = mysqli_fetch_assoc(getBreeders('breedersblog', $post['id']));
+                        
                         $user3 = mysqli_fetch_assoc(getCommentCount('comment', $post['user_id']));
 
                          ?>
@@ -82,9 +84,9 @@
                                             <a href="single.html"><?php echo $post['purpose']?></a>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
-                                            <p class="mb-3"><?php echo $user2['description']?> ... </p>
+                                            <p class="mb-3"><?php echo $user1['description']?> ... </p>
                                             <a href="../Pages/comment.php?breedersblog_id=<?php echo $post['id']?>" class="read-more">View more details</a>
-                                            <a href="" class="read-more float-right" data-bs-toggle="modal" data-bs-target="#modal-addpost">Report</a>
+                                            <a href="" data-toggle="modal" data-target="#modal-report"  class="read-more icon-font-awesome-flag text-danger float-right"> Report</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
@@ -96,7 +98,7 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 
-        <?php include("../Includes/footer.inc.php"); ?>
+        <?php include("../Includes/footer1.inc.php"); ?>
     </div><!-- End .page-wrapper -->
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
@@ -273,118 +275,67 @@
     </div><!-- End .mobile-menu-container -->
 
     <!-- Sign in / Register Modal -->
-    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="modal-report">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="icon-close"></i></span>
-                    </button>
-
-                    <div class="form-box">
-                        <div class="form-tab">
-                            <ul class="nav nav-pills nav-fill" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="tab-content-5">
-                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form action="#">
-                                        <div class="form-group">
-                                            <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-group">
-                                            <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>LOG IN</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </button>
-
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
-                                            </div><!-- End .custom-checkbox -->
-
-                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
-                                        </div><!-- End .form-footer -->
-                                    </form>
-                                    <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login btn-g">
-                                                    <i class="icon-google"></i>
-                                                    Login With Google
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login btn-f">
-                                                    <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .form-choice -->
-                                </div><!-- .End .tab-pane -->
-                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <form action="#">
-                                        <div class="form-group">
-                                            <label for="register-email">Your email address *</label>
-                                            <input type="email" class="form-control" id="register-email" name="register-email" required>
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-group">
-                                            <label for="register-password">Password *</label>
-                                            <input type="password" class="form-control" id="register-password" name="register-password" required>
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SIGN UP</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </button>
-
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .form-footer -->
-                                    </form>
-                                    <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login btn-g">
-                                                    <i class="icon-google"></i>
-                                                    Login With Google
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login  btn-f">
-                                                    <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .form-choice -->
-                                </div><!-- .End .tab-pane -->
-                            </div><!-- End .tab-content -->
-                        </div><!-- End .form-tab -->
-                    </div><!-- End .form-box -->
-                </div><!-- End .modal-body -->
-            </div><!-- End .modal-content -->
-        </div><!-- End .modal-dialog -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select a Reason</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <select name="report_type" style="width:100%; padding: 3%;">
+                                <option value="Reason1">Prohibited Items/Products</option>
+                                <option value="Reason2">Offensive or Potential Offensive Items </option>
+                                <option value="Reason3">Illegam Items/Products </option>
+                                <option value="Reason4">Critically Extinct Species </option>
+                                <option value="Reason5">Unrelated Items/Products </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="report" class="btn btn-danger">Send Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div><!-- End .modal -->
+
+    <!-- Modals Files -->
+    <!-- The Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" modal-dialog-centered" role="document >
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!--End of modal -->
+
+
+
+
+
+
 
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>

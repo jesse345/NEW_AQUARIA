@@ -1,5 +1,6 @@
 <?php
 $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
+
 // $session_id = $_SESSION['id'];
 // $breedersblog_id = $_GET['breedersblog_id'];
 
@@ -22,6 +23,11 @@ $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
         .page-content{
             padding-bottom:3rem!important;
         }
+        @media screen and (max-width: 992px) {
+            .page-content{
+                margin-left:0!important;
+            }
+        }
     </style>
 </head>
 
@@ -29,34 +35,35 @@ $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
     <div class="page-wrapper">
         <?php include("../Includes/header1.inc.php") ?>
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
         		<div class="container">
-        			<h1 class="page-title">Default With Sidebar<span>Single Post</span></h1>
+        			<h1 class="page-title" style="color:#fff;font-weight:700">Default With Sidebar<span style="color:#fff;">Single Post</span></h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Default With Sidebar</li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../Pages/breedersblog.php">BreedersBlog</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">View More Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">Essej Oredarap's Post</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
 
-            <div class="page-content">
+            <div class="page-content" style="margin-left:20%;">
                 <div class="container">
                 	<div class="row">
-                		<div class="col-lg-12">
+                		<div class="col-lg-8">
                             <article class="entry single-entry">
                                 <figure class="entry-media">
-                                    <img src="assets/images/blog/single/1.jpg" alt="image desc">
+                                    <img src="../img/isda4.jpg" alt="image desc" style="height:250px!important;">
                                 </figure><!-- End .entry-media -->
 
                                 <div class="entry-body">
                                     <div class="entry-meta">
                                         <span class="entry-author">
-                                            by <a href="#">John Doe</a>
+                                            <a href="#">John Doe</a>
                                         </span>
                                         <span class="meta-separator">|</span>
                                         <a href="#">Nov 22, 2018</a>
@@ -202,7 +209,7 @@ $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
                             </div><!-- End .related-posts -->
 
                             <div class="comments">
-                                <h3 class="title">3 Comments</h3><!-- End .title -->
+                                <h3 class="title">4 Comments</h3><!-- End .title -->
 
                                 <ul>
                                     <li>
@@ -272,30 +279,37 @@ $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
                                             </div><!-- End .comment-body -->
                                         </div><!-- End .comment -->
                                     </li>
+                                    <li>
+                                        <div class="comment">
+                                            <figure class="comment-media">
+                                                <a href="#">
+                                                    <img src="assets/images/blog/comments/3.jpg" alt="User name">
+                                                </a>
+                                            </figure>
+
+                                            <div class="comment-body">
+                                                <a href="#" class="comment-reply">Reply</a>
+                                                <div class="comment-user">
+                                                    <h4><a href="#">Johnathan Castillo</a></h4>
+                                                    <span class="comment-date">November 9, 2018 at 2:19 pm</span>
+                                                </div><!-- End .comment-user -->
+
+                                                <div class="comment-content">
+                                                    <p>Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+                                                </div><!-- End .comment-content -->
+                                            </div><!-- End .comment-body -->
+                                        </div><!-- End .comment -->
+                                    </li>
                                 </ul>
                             </div><!-- End .comments -->
                             <div class="reply">
                                 <div class="heading">
-                                    <h3 class="title">Leave A Message</h3><!-- End .title -->
-                                    <p class="title-desc">Your email address will not be published. Required fields are marked *</p>
-                                </div><!-- End .heading -->
+                                    <h3 class="title">Leave A Comment</h3><!-- End .title -->
+                                </div>
 
                                 <form action="#">
                                     <label for="reply-message" class="sr-only">Comment</label>
                                     <textarea name="reply-message" id="reply-message" cols="30" rows="4" class="form-control" required placeholder="Comment *"></textarea>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="reply-name" class="sr-only">Name</label>
-                                            <input type="text" class="form-control" id="reply-name" name="reply-name" required placeholder="Name *">
-                                        </div><!-- End .col-md-6 -->
-
-                                        <div class="col-md-6">
-                                            <label for="reply-email" class="sr-only">Email</label>
-                                            <input type="email" class="form-control" id="reply-email" name="reply-email" required placeholder="Email *">
-                                        </div><!-- End .col-md-6 -->
-                                    </div><!-- End .row -->
-
                                     <button type="submit" class="btn btn-outline-primary-2">
                                         <span>POST COMMENT</span>
                                         <i class="icon-long-arrow-right"></i>
@@ -313,7 +327,7 @@ $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+    <div class="mobile-menu-overlay"></div><
 
     <div class="mobile-menu-container">
         <div class="mobile-menu-wrapper">
