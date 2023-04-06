@@ -317,7 +317,7 @@ session_start();
                     rgba(0, 0, 0, 0.52),
                     rgba(0, 0, 0, 0.73)
                   ),
-                  url(../assets/images/fish1.jpg);
+                  url(../img/admiralproudmoore.jpg);
               ">
             <div class="container intro-content text-center">
               <h3 class="intro-subtitle text-white">Don’t Miss</h3>
