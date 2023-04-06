@@ -8,7 +8,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
-
+<?php include("../Pages/preloader.php");?>
 <head>
   <?php
   include("../Includes/head.inc.php");
