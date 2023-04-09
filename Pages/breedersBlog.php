@@ -11,6 +11,12 @@
         .breadcrumb-nav{
             margin-bottom:0rem!important;
         }
+        .form-group{
+            margin-top:2rem;
+            margin-left:5rem;
+            margin-right:5rem;
+
+        }
     </style>
 </head>
 <body>
@@ -33,7 +39,7 @@
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
             <<div class="clearfix" style="margin-right:55px;">
-                <a class="btn btn-primary mb-2 float-right" data-toggle="modal" data-target="#modal-addpost"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
+                <a href="#modal-addpost" class="btn btn-primary mb-2 float-right"  data-toggle="modal"><i class="fas fa-plus" style='font-size:15px'></i> Add Post</a>
             </div>
             <div class="page-content">
                 <div class="container">
@@ -280,7 +286,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Select a Reason</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
                 </div>
                 <form method="POST">
                     <div class="modal-body">
@@ -330,6 +338,38 @@
   </div>
 </div>
     <!--End of modal -->
+    <div class="modal fade" id="modal-addpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="../Controller/BreederController.php" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="purpose" class="form-control" placeholder="Enter your purpose" name="purpose" id="purpose">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="5" placeholder="Enter description" name="description" id="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                            <input class="form-control" type="file" name="img" id="img">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
 
 
