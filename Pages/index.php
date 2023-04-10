@@ -1,6 +1,14 @@
+<?php
+include '../Model/db.php';
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
+<?php include("../Pages/preloader.php");?>
 <head>
   <?php
   include("../Includes/head.inc.php");
@@ -10,10 +18,6 @@
   <script src="../assets/js/demos/demo-5.js"></script>
 
   <?php
-
-  include_once '../Model/db.php';
-  session_start();
-
   if (isset($_SESSION['id'])) {
     $isVerified = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
     if ($isVerified['isVerified'] == "Yes") {
@@ -175,7 +179,7 @@
                   <!-- End .megamenu megamenu-sm -->
                 </li>
                 <li>
-                  <a href="blog.html">Breeders Blog</a>
+                    <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
               </ul>
               <!-- End .menu -->
