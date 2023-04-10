@@ -13,20 +13,15 @@ function login($username, $password)
 }
 
 
-//Registration
-function insertUser($table_name, $fields, $values, $table_name1, $fields1, $values1)
+function registerUser($table, $fields, $values)
 {
     global $conn;
     connect();
-    //for user table
     $flds = implode("`,`", $fields);
     $vals = implode("','", $values);
-    //for user_details table
-    $flds1 = implode("`,`", $fields1);
-    $vals1 = implode("','", $values1);
+    $query = mysqli_query($conn, "INSERT INTO `$table` (`$flds`) VALUES ('$vals') ");
 
-    $query = mysqli_query($conn, "INSERT INTO `$table_name` (`$flds`) VALUES ('$vals') ");
-    $query2 = mysqli_query($conn, "INSERT INTO `$table_name1` (`$flds1`) VALUES((SELECT LAST_INSERT_ID()),'$vals1')");
+    return $query;
     disconnect();
 }
 
@@ -53,37 +48,6 @@ function editUser($table_name, $fields, $values)
     disconnect();
 }
 
-
-function getAddress()
-{
-    global $conn;
-    connect();
-    $address = mysqli_query($conn, "SELECT * FROM address");
-    disconnect();
-    return $address;
-}
-
-
-function getUserAddress($id)
-{
-    global $conn;
-    connect();
-    $address = mysqli_query($conn, "SELECT * FROM address WHERE id = $id");
-    disconnect();
-    return $address;
-}
-
-
-function insertShipping($table, $fields, $values)
-{
-    global $conn;
-    connect();
-    $flds = implode("`,`", $fields);
-    $vals = implode("','", $values);
-    $query = mysqli_query($conn, "INSERT INTO `$table` (`$flds`) VALUES ('$vals')");
-    disconnect();
-    // return $query;
-}
 
 function getUserProductReview($table, $fields, $values)
 {

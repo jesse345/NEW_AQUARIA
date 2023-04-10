@@ -25,6 +25,10 @@ include("paymentModel.php");
 
 include("reportProductModel.php");
 
+include("ShippingModel.php");
+
+include("VerificationCodeModel.php");
+
 function disconnect()
 {
     global $conn;

@@ -19,7 +19,9 @@
             </script>";
         }
 
+
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+        $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -81,28 +83,24 @@
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
 
-                                    <div class="tab-pane fade show active" id="tab-account" role="tabpanel"
-                                        aria-labelledby="tab-account-link">
+                                    <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
                                         <form action="#">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label>First Name *</label>
-                                                    <input type="text" class="form-control"
-                                                        value="<?php echo ucfirst($user['first_name']) ?>" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" required>
                                                 </div><!-- End .col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <label>Last Name *</label>
-                                                    <input type="text" class="form-control"
-                                                        value="<?php echo ucfirst($user['last_name']) ?>" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" required>
                                                 </div><!-- End .col-sm-6 -->
                                             </div><!-- End .row -->
 
 
 
                                             <label>Email address *</label>
-                                            <input type="email" class="form-control"
-                                                value="<?php echo ucfirst($user['email']) ?>" required>
+                                            <input type="email" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>" required>
 
                                             <button type="submit" class="btn btn-outline-primary-2">
                                                 <span>SAVE CHANGES</span>

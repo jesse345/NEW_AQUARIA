@@ -6,58 +6,8 @@ include_once '../Model/db.php';
 date_default_timezone_set('Asia/Manila');
 $date = date('y-m-d h:i:s');
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
-require '../vendor/autoload.php';
-
-// For login
-
-function sendemail($username, $email, $code)
-{
-    $mail = new PHPMailer(true);
-    try {
-        //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
-        $mail->isSMTP(); //Send using SMTP
-        $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
-        $mail->SMTPAuth = true; //Enable SMTP authentication
-        $mail->Username = 'eaquariaofficial@gmail.com'; //SMTP username
-        $mail->Password = 'fczbhjmbpmfcxdfm'; //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-        $mail->Port = 465;
-
-        $mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );
-
-        //Recipients
-        $mail->setFrom('eaquariaofficial@gmail.com', 'E-Aquaria Official');
-        $mail->addAddress("$email", "$username"); //Add a recipient
-
-        //Content
-        $mail->isHTML(true); //Set email format to HTML
-
-        $rand = rand();
-        $mail->Subject = 'Here is the subject';
-        $mail->Body = "This is the HTML message body <b>$code</b>";
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-        $mail->send();
-        echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-}
-
-
-
+include("sendEmailController.php");
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -67,7 +17,16 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows(login($username, $password)) > 0) {
         $auth = mysqli_fetch_assoc(login($username, $password));
         $_SESSION['id'] = $auth['id'];
-        echo "success";
+        if ($auth['isVerified'] == "Yes") {
+            $check = getUser('user_details', 'user_id', $_SESSION['id']);
+            if (mysqli_num_rows($check) > 0) {
+                echo "success";
+            } else {
+                echo "incomplete";
+            }
+        } else {
+            echo "notVerified";
+        }
         // header("location: ../");
     } else {
         echo "error";
@@ -159,105 +118,120 @@ if (isset($_POST['changePassword'])) {
 }
 
 
-if (isset($_POST['verify'])) {
-    $checkUserCode = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
-    $otp = $_POST['first'] . $_POST['second'] . $_POST['third'] . $_POST['fourth'] . $_POST['fifth'];
-    if ($checkUserCode['token'] == md5($otp)) {
-        editUser(
-            'users',
-            array('id', 'isVerified', 'date_verified'),
-            array($_SESSION['id'], 'Yes', $date)
-        );
-        header("Location: ../");
+
+
+
+
+
+
+//For register
+if (isset($_POST['register'])) {
+    $reg_username = $_POST['reg_username'];
+    $reg_password = $_POST['reg_password'];
+    $reg_confirm = $_POST['reg_confirm'];
+    $reg_email = $_POST['email_address'];
+    $checkUsername = getUser('users', 'username', $reg_username);
+    $checkEmail = getUser('users', 'email_address', $reg_email);
+    if (mysqli_num_rows($checkUsername) > 0) {
+        echo "duplicateUsername";
     } else {
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        if (mysqli_num_rows($checkEmail) > 0) {
+            echo "duplicateEmail";
+        } else {
+            if ($reg_password == $reg_confirm) {
+
+                $register = registerUser(
+                    'users',
+                    array('username', 'password', 'email_address', 'isVerified'),
+                    array($reg_username, $reg_password, $reg_email, "No")
+                );
+                $id = mysqli_insert_id($conn);
+
+                $_SESSION['id'] = $id;
+
+                $token = rand(10000, 99999);
+
+                sendemail($reg_username, $reg_email, $token);
+                $verification_code = verification_codes(
+                    'verification_codes',
+                    array('user_id', 'email_address', 'token', 'date_send'),
+                    array($id, $reg_email, $token, $date)
+                );
+                echo "success";
+            } else {
+                echo "InvalidPassword";
+            }
+        }
     }
+}
+
+if (isset($_POST['verify'])) {
+
+    $otp = $_POST['first'] . $_POST['second'] . $_POST['third'] . $_POST['fourth'] . $_POST['fifth'];
+    $checkCode = mysqli_fetch_assoc(checkCode($_SESSION['id']));
+    $checkExpire = strtotime($date) - strtotime($checkCode['date_send']);
+
+    if ($otp == $checkCode['token']) {
+
+        if ($checkExpire > 180) {
+            echo "expire";
+        } else {
+            echo "success";
+
+            $verified = editUser(
+                'users',
+                array('id', 'isVerified', 'date_verified'),
+                array($_SESSION['id'], 'Yes', $date)
+            );
+        }
+    } else {
+        echo "error";
+    }
+
+    // echo $checkExpire;
 }
 
 if (isset($_POST['resend'])) {
     //Generate another 5 digit code
     $code = rand(10000, 99999);
-    $user = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
-    $user_det = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
-    sendemail($user['username'], $user_det['email'], $code);
-    editUser(
-        'users',
-        array(
-            'id',
-            'token',
-        ),
-        array($_SESSION['id'], md5($code))
+    $reg_email = $_POST['reg_email'];
+    $verification_code = verification_codes(
+        'verification_codes',
+        array('user_id', 'email_address', 'token', 'date_send'),
+        array($_SESSION['id'], $reg_email, $code, $date)
     );
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
 
-//For register
-if (isset($_POST['register'])) {
+if (isset($_POST['submitAccountForm'])) {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $mi = $_POST['mi'];
-    $address = $_POST['address'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
     $contact_number = $_POST['contact_number'];
-    $cpassword = $_POST['cpassword'];
-    $email = $_POST['email'];
-
-    $name = $_POST['first_name'] . " " . $_POST['last_name'];
-
-    // $contact_number = $_POST['shipping_contact'];
-    // $current = $_POST['shipping_address'];
-    // $name = $_POST['shipping_name'];
-    //Generate 5 digit code
-    $code = rand(10000, 99999);
+    $address = $_POST['address'];
+    $gcash = $_POST['gcash_number'];
+    $gcash_name = $_POST['gcash_name'];
 
 
-    if ($password != $cpassword) {
-        echo "Invalid";
-    } else if (mysqli_num_rows(getUser('users', 'username', $username))) {
-        echo "Duplicate Username";
-    } else {
-        $user_flds = array('username', 'password', 'isVerified', 'isLoggedIn', 'token');
-        $user_vals = array($username, $password, 'No', 'Yes', md5($code));
-        $user_det_flds = array(
-            'user_id',
-            'first_name',
-            'last_name',
-            'mi',
-            'address_id',
-            'contact_number',
-            'email'
-        );
-        $user_det_val = array($first_name, $last_name, $mi, $address, $contact_number, $email);
-        $user = insertUser('users', $user_flds, $user_vals, 'user_details', $user_det_flds, $user_det_val);
-
-        $auth = mysqli_fetch_assoc(login($username, $password));
-        $_SESSION['id'] = $auth['id'];
-        sendemail($username, $email, $code);
 
 
-        $add = mysqli_fetch_assoc(getUserAddress($_SESSION['id']));
+    registerUser(
+        'user_details',
+        array('user_id', 'first_name', 'last_name', 'mi', 'address_id', 'contact_number', 'gcash_number', 'gcash_name'),
+        array($_SESSION['id'], $first_name, $last_name, $mi, $address, $contact_number, $gcash, $gcash_name)
+    );
 
-        $shipping = insertShipping(
-            'shipping_info',
-            array(
-                'user_id',
-                'shipping_name',
-                'shipping_address',
-                'shipping_contact'
-            ),
-            array(
-                $_SESSION['id'],
-                $name,
-                $add['address'],
-                $contact_number,
-            )
-        );
-        header("location: ../Pages/verifyAccount.php");
-    }
+    $addr = mysqli_fetch_assoc(getUserAddress($address));
+
+    insertShipping(
+        'shipping_info',
+        array('user_id', 'shipping_name', 'shipping_address', 'shipping_contact'),
+        array($_SESSION['id'], $first_name . " " . $last_name, $addr['address'], $contact_number)
+    );
+
+    header("Location: ../");
 }
-
 
 
 

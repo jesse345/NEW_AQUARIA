@@ -19,7 +19,7 @@
             </script>";
         }
 
-        $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+        $user = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -84,12 +84,10 @@
                                 <div class="tab-content">
 
 
-                                    <div class="tab-pane fade show active" id="tab-account-info" role="tabpanel"
-                                        aria-labelledby="tab-account-info-link">
+                                    <div class="tab-pane fade show active" id="tab-account-info" role="tabpanel" aria-labelledby="tab-account-info-link">
                                         <form action="#">
                                             <label>Username *</label>
-                                            <input type="email" class="form-control"
-                                                value="<?php echo ucfirst($user['email']) ?>" required>
+                                            <input type="email" class="form-control" value="<?php echo ucfirst($user['username']) ?>" required>
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label>Current Password *</label>

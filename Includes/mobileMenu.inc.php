@@ -8,8 +8,7 @@
 
         <form action="#" method="get" class="mobile-search">
             <label for="mobile-search" class="sr-only">Search</label>
-            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..."
-                required />
+            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required />
             <button class="btn btn-primary" type="submit">
                 <i class="icon-search"></i>
             </button>
@@ -29,8 +28,7 @@
                         <li><a href="product.html">Default</a></li>
                         <li><a href="product-centered.html">Centered</a></li>
                         <li>
-                            <a href="product-extended.html"><span>Extended Info<span
-                                        class="tip tip-new">New</span></span></a>
+                            <a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a>
                         </li>
                         <li><a href="product-gallery.html">Gallery</a></li>
                         <li><a href="product-sticky.html">Sticky Info</a></li>

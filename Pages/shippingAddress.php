@@ -84,20 +84,22 @@
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
 
-                                    <div class="tab-pane fade show active" id="tab-address" role="tabpanel"
-                                        aria-labelledby="tab-address-link">
+                                    <div class="tab-pane fade show active" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
                                         <p>The following info will be used on the checkout page by default.</p>
 
+                                        <?php
+                                        $shipping = mysqli_fetch_assoc(getUserShippingInfo($_SESSION['id']));
+                                        ?>
                                         <form action="#">
 
                                             <label>Full Name *</label>
-                                            <input type="email" class="form-control" value="" required>
+                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" required>
 
                                             <label>Contact Number *</label>
-                                            <input type="email" class="form-control" value="" required>
+                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_contact'] ?>" required>
 
                                             <label>Address *</label>
-                                            <input type="email" class="form-control" value="" required>
+                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
 
                                             <button type="submit" class="btn btn-outline-primary-2">
                                                 <span>SAVE CHANGES</span>

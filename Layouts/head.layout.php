@@ -25,3 +25,6 @@
 
 <link rel="stylesheet" href="../css/cart.css">
 <link rel="stylesheet" href="../assets/css/layout.css">
+
+
+<script src="../assets/js/jquery.min.js"></script>

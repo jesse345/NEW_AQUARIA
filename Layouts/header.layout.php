@@ -101,8 +101,7 @@ if (isset($_SESSION['id'])) {
                                                     <a href="product-centered.html">Centered</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-extended.html"><span>Extended Info<span
-                                                                class="tip tip-new">New</span></span></a>
+                                                    <a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a>
                                                 </li>
                                                 <li>
                                                     <a href="product-gallery.html">Gallery</a>
@@ -159,13 +158,11 @@ if (isset($_SESSION['id'])) {
 
             <div class="header-right-layout">
                 <div class="header-search-layout">
-                    <a href="#" class="search-toggle-layout" role="button" title="Search"><i
-                            class="icon-search"></i></a>
+                    <a href="#" class="search-toggle-layout" role="button" title="Search"><i class="icon-search"></i></a>
                     <form action="#" method="get">
                         <div class="header-search-wrapper-layout">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control-layout" name="q" id="q" placeholder="Search in..."
-                                required />
+                            <input type="search" class="form-control-layout" name="q" id="q" placeholder="Search in..." required />
                         </div>
                         <!-- End .header-search-wrapper -->
                     </form>
@@ -187,17 +184,17 @@ if (isset($_SESSION['id'])) {
 
                             $count = mysqli_num_rows($cart);
                             if ($count > 0) {
-                                ?>
+                        ?>
                                 <span class="cart-count-layout">
                                     <?php echo $count; ?>
                                 </span>
-                            <?php }
+                        <?php }
                         } ?>
                     </a>
 
                     <?php
                     if (isset($_SESSION['id'])) {
-                        ?>
+                    ?>
                         <div class="dropdown-menu dropdown-menu-layout dropdown-menu-right dropdown-menu-right-layout">
                             <div class="dropdown-cart-products-layout">
                                 <?php
@@ -213,7 +210,7 @@ if (isset($_SESSION['id'])) {
                                             break;
                                         }
                                         $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products['product_id']))
-                                            ?>
+                                ?>
                                         <div class="product-layout">
                                             <div class="product-cart-details-layout">
                                                 <h4 class="product-title-layout">
@@ -246,20 +243,20 @@ if (isset($_SESSION['id'])) {
                                         </div>
 
 
-                                        <?php $i++;
+                                    <?php $i++;
                                     } ?>
-                                </div>
-                                <div class="dropdown-cart-action-layout mt-1">
-                                    <a href="cart.php" class="btn btn-layout btn-primary-layout">View Cart</a>
+                            </div>
+                            <div class="dropdown-cart-action-layout mt-1">
+                                <a href="cart.php" class="btn btn-layout btn-primary-layout">View Cart</a>
 
-                                </div>
+                            </div>
 
 
-                            <?php } else { ?>
-                                <div class="dropdown dropdown-layout">
-                                    Empty Record...
-                                </div>
-                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="dropdown dropdown-layout">
+                                Empty Record...
+                            </div>
+                        <?php } ?>
                         </div>
                     <?php } ?>
                     <!-- End .dropdown-menu -->
