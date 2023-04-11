@@ -23,7 +23,7 @@ if(isset($_POST['postblog'])){
             array('user_id','description','purpose','image'),
             array($_SESSION['id'], $description, $purpose, $img));
             
-        // header("Location: ../Pages/BreedersBlog.php?id=".$_SESSION['id']);
+        header("Location: ../Pages/BreedersBlog.php");
     }else{
         echo "File is not an image.";
         $uploadOk = 0;

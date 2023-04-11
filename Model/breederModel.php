@@ -12,7 +12,7 @@ function insertPost($table, $fields, $values){
 function getAllPost($table){
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT * FROM `$table`");
+    $query = mysqli_query($conn, "SELECT * FROM `$table` LIMIT 5");
     disconnect();
     return $query;
 }
@@ -26,7 +26,14 @@ function getBreeders($table,$value){
 function getCommentCount($table,$value){
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT COUNT(user_id) as commentCount from $table where user_id = $value");
+    $query = mysqli_query($conn, "SELECT COUNT(breedersblog_id) as commentCount from $table where breedersblog_id = $value");
+    disconnect();
+    return $query;
+}
+function forEditnDelete($table,$value){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT user_id from $table where user_id = $value");
     disconnect();
     return $query;
 }
