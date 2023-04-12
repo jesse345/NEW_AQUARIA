@@ -33,7 +33,7 @@ function getCommentCount($table,$value){
 function forEditnDelete($table,$value){
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT user_id from $table where user_id = $value");
+    $query = mysqli_query($conn, "SELECT * from $table where user_id = $value");
     disconnect();
     return $query;
 }

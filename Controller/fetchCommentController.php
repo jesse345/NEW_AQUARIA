@@ -27,7 +27,7 @@
                         </figure>
 
                         <div class="comment-body">
-                            <a href="#" class="comment-reply" id="'.$row['comment_id'].'">Reply</a>
+                            <a class="comment-reply" id="'.$row['comment_id'].'">Reply</a>
                             <div class="comment-user">
                                 <h4><a href="#">'.$row['comment_sender_name'].'</a></h4>
                                 <span class="comment-date">'.$row['date'].'</span>
@@ -68,7 +68,7 @@
                             </figure>
 
                             <div class="comment-body">
-                                <a href="#" class="comment-reply" id="'.$row['comment_id'].'">Reply</a>
+                                <a class="comment-reply" id="'.$row['comment_id'].'">Reply</a>
                                 <div class="comment-user">
                                     <h4><a href="#">'.$row['comment_sender_name'].'</a></h4>
                                     <span class="comment-date">'.$row['date'].'</span>

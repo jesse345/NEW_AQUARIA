@@ -64,11 +64,7 @@
                         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $post['user_id']));
                         $user1 = mysqli_fetch_assoc(getBreeders('breedersblog', $post['id']));
                         $user3 = mysqli_fetch_assoc(getCommentCount('comment', $post['id']));
-                        $user2 = mysqli_fetch_assoc(forEditnDelete('breedersblog',$post['user_id']));
-                        $user4 = implode(" ",$user2);
 
-                       
-                        
                          ?>
                         <article class="entry entry-list">
                             <div class="row align-items-center">
@@ -83,13 +79,6 @@
                                 <div class="col-md-8">
                                     <div class="entry-body">
                                         <div class="entry-meta">
-                                            <?php
-                                            if($user4):
-                                                ?>
-                                                <a href="#" class="comment-reply;">Edit1</a>
-                                            <?php else: ?>
-                                                <a href="#" class="display:none;" id="'.$row['comment_id'].'">Edit2</a>
-                                            <?php endif; ?>  
                                             <span class="entry-author">
                                                 by <a href="#"><?php echo ucfirst($user['first_name']) . ' ' . ucfirst($user['last_name'])?></a>
                                             </span>
