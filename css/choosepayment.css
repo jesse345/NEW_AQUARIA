@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+.container {
+    margin: 30px auto;
+}
+.container .card {
+    width: 85%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+    border-radius: 0px;
+}
+
+body {
+    background: #eee
+}
+.container .card .img-box {
+    width: 80px;
+    height: 80px;
+}
+
+.container .card img {
+    width: 100%;
+    object-fit: fill;
+}
+
+.container .card .number {
+    font-size: 24px;
+}
+.card:hover{
+    box-shadow:inset 0 0 0 1px #2F58CD;
+}
+.form-group{
+    margin-bottom:10px;
+}
+.fw-bold{
+    color:#2D2727;
+    font-family:ui-monospace;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-label{
+    color:#000;
+}
+input[type="file"]{
+    min-width:100%;
+    min-height:100%;
+    text-align:right;
+    outline:none;
+    background:#fff;
+    cursor:inherit;
+}
+.input-group .btn{
+    background:#3A98B9;
+    color:#000;
+}
+.input-group .btn:hover{
+    background:#3A98B9;
+    color:#fff;
+}
+.mb-lg-0{
+    margin-top:30px!important;  
+}
+a{
+    text-decoration:none!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
