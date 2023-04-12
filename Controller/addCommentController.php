@@ -1,7 +1,4 @@
 <?php
-
-//add_comment.php
-
 $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
 
 $error = '';

@@ -3,8 +3,9 @@ include '../Model/db.php';
 session_start();
 
 
-if(isset($_POST['post'])){
+if(isset($_POST['postblog'])){
     $description = $_POST['description'];
+    $purpose = $_POST['purpose'];
     $img = $_FILES['img']['name'];
 
     $targetDir = "../img/"; // Set target directory
@@ -18,9 +19,9 @@ if(isset($_POST['post'])){
     if ($check) {
         move_uploaded_file($_FILES['img']['tmp_name'], $targetPath);
         insertPost('breedersblog',
-            array('user_id','description','image'),
-            array($_SESSION['id'],$description, $img));
-        header("Location: ../Pages/BreedersBlog.php?id=".$_SESSION['id']);
+            array('user_id','description','purpose','image'),
+            array($_SESSION['id'],$description,$purpose, $img));
+        header("Location: ../Pages/BreedersBlog.php");
     }else{
         echo "File is not an image.";
         $uploadOk = 0;

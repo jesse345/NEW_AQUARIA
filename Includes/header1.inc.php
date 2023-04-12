@@ -1,8 +1,12 @@
 <?php
+$connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
 session_start();
+$session_id = $_SESSION['id'];
 
 if (isset($_SESSION['id'])) {
-    $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+    $users2 =$connect->query("SELECT * FROM user_details WHERE user_id = $session_id");
+    $user2 = $users2->fetch(PDO::FETCH_ASSOC);
+
 }
 ?>
 <header class="header">
@@ -40,7 +44,7 @@ if (isset($_SESSION['id'])) {
                 <?php if (isset($_SESSION['id'])) { ?>
                     <div class="header-dropdown">
                         <a href="#"><i class="icon-user"></i>
-                            <?php echo $user['first_name'] . " " . $user['last_name'] ?>
+                            <?php echo $user2['first_name'] . " " . $user2['last_name'] ?>
                         </a>
                         <div class="header-menu">
                             <ul>
@@ -180,37 +184,39 @@ if (isset($_SESSION['id'])) {
                         <i class="icon-shopping-cart"></i>
                         <?php
                         if (isset($_SESSION['id'])) {
-                            $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
+                            $carts =$connect->query("SELECT * FROM `carts` WHERE `user_id` = '$session_id' AND `isOrdered` = 'No'");
+                            // $cart = $cart->fetch(PDO::FETCH_ASSOC);     
+                            $rows = $carts->fetchAll();
 
-                            $count = mysqli_num_rows($cart);
-                            if ($count > 0) {
+                            $carts_count = count($rows);
+                            if ($carts_count > 0) {
                                 ?>
                                 <span class="cart-count">
-                                    <?php echo $count; ?>
+                                    <?php echo $carts_count; ?>
                                 </span>
                             <?php }
                         } ?>
                     </a>
 
                     <?php
-                    if (isset($_SESSION['id'])) {
+                    if (isset($_SESSION['id'])):
                         ?>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-cart-products">
                                 <?php
-                                $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
+                                
 
-                                $count = mysqli_num_rows($cart);
-
-                                if ($count > 0) {
+                                if ($carts_count > 0){
                                     $i = 0;
-                                    while ($products = mysqli_fetch_assoc($cart)) {
-
-                                        if ($i == 2) {
+                                    while ($products = $carts->fetch(PDO::FETCH_ASSOC)){
+                                        $productID = $products['product_id'];
+                                        if ($i == 2){
                                             break;
                                         }
-                                        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products['product_id']))
-                                            ?>
+
+                                        $product2 =$connect->query("SELECT * FROM product_details WHERE product_id = $productID");
+                                        $product = $product2->fetch(PDO::FETCH_ASSOC);                      
+                                        ?>
                                         <div class="product">
                                             <div class="product-cart-details">
                                                 <h4 class="product-title">
@@ -243,7 +249,7 @@ if (isset($_SESSION['id'])) {
                                         </div>
 
 
-                                        <?php $i++;
+                                    <?php $i++;
                                     } ?>
                                 </div>
                                 <div class="dropdown-cart-action mt-1">
@@ -257,11 +263,10 @@ if (isset($_SESSION['id'])) {
                                     Empty Record...
                                 </div>
                             <?php } ?>
-                        </div>
-                    <?php } ?>
-                    <!-- End .dropdown-menu -->
-                </div>
-                <!-- End .cart-dropdown -->
+                        </div><!-- End .dropdown-menu -->
+                    <?php endif; ?>
+                    
+                </div><!-- End .cart-dropdown -->
             </div>
             <!-- End .header-right -->
         </div>
