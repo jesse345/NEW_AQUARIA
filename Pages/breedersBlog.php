@@ -208,26 +208,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <form method="POST" action="../Controller/BreederController.php" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>Purpose</label>
-                                <input type="purpose" class="form-control" name="purpose" id="purpose" placeholder="Enter your purpose">
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" name="description" id="description" placeholder="Enter description" rows="5"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Image</label>
-                                <input class="form-control" type="file" name="img" id="img">
-                            </div>
-                    
-
+                    <form method="POST" action="../Controller/BreederController.php" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="purpose" class="form-control" name="purpose" id="purpose" placeholder="Enter your purpose">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" id="description" placeholder="Enter description" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                            <input class="form-control" type="file" name="img" id="img">
+                        </div>
                 </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
-                            </div>
-                        </form>                                  
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
+                    </div>
+                </form>                                  
             </div>
         </div>
     </div>

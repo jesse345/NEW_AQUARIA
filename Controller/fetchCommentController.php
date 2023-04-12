@@ -48,7 +48,7 @@
         $query = "SELECT * FROM comment WHERE parent_comment_id = '".$parent_id."' ";
         $output = '';
         $statement = $connect->prepare($query);
-        $statement->execute();
+
         $result = $statement->fetchAll();
         $count = $statement->rowCount();
         if($parent_id == 0){
