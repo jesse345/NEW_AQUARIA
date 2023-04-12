@@ -54,7 +54,10 @@ if (!empty($_SESSION['id'])) {
                 $user_det_val
             );
 
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo "<script>
+            alert('$product_name Added successfully!');
+            window.location.href = '../Pages/manageProducts.php';
+        </script>";
         } else if ($category == "Fishes") {
             $fish = $_POST['fish_type'];
             $class = $_POST['fish_class'];
@@ -72,7 +75,10 @@ if (!empty($_SESSION['id'])) {
                 $user_det_fld,
                 $user_det_val
             );
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo "<script>
+                alert('$product_name Added successfully!');
+                window.location.href = '../Pages/manageProducts.php';
+            </script>";
         } else if ($category == "Equipment & Accessories") {
             $spec = $_POST['specification'];
 
@@ -87,7 +93,10 @@ if (!empty($_SESSION['id'])) {
                 $user_det_fld,
                 $user_det_val
             );
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo "<script>
+                alert('$product_name Added successfully!');
+                window.location.href = '../Pages/manageProducts.php';
+            </script>";
         } else if (
             $category == "Probiotics" || $category == "Vitamins" || $category == "Color Enhancer" || $category == "Medications"
         ) {
@@ -105,7 +114,10 @@ if (!empty($_SESSION['id'])) {
                 $user_det_fld,
                 $user_det_val
             );
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo "<script>
+                alert('$product_name Added successfully!');
+                window.location.href = '../Pages/manageProducts.php';
+            </script>";
         }
 
 
