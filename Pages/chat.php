@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <title>SHH</title>
+    <title>CHAT</title>
     <style>
         .row>*{
             padding-right:0!important;
@@ -107,18 +107,16 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card" style="height:598px;">
-                        <div class="card-header d-flex justify-content-between align-items-center p-3"
-                          style="border-top: 4px solid #0d6efd;">
-                          <h5 class="mb-0">Chat messages</h5>
-                          <div class="d-flex flex-row align-items-center">
-                            <span class="badge bg-primary me-3">20</span>
-                            <i class="fas fa-minus me-3 text-muted fa-xs"></i>
-                            <i class="fas fa-comments me-3 text-muted fa-xs"></i>
-                            <i class="fas fa-times text-muted fa-xs"></i>
-                          </div>
+                        <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #0d6efd;">
+                            <h5 class="mb-0">Chat messages</h5>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="badge bg-primary me-3">20</span>
+                                <i class="fas fa-minus me-3 text-muted fa-xs"></i>
+                                <i class="fas fa-comments me-3 text-muted fa-xs"></i>
+                                <i class="fas fa-times text-muted fa-xs"></i>
+                            </div>
                         </div>
-                        <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
-              
+                        <div class="card-body" data-mdb-perfect-scrollbar="true">
                           <div class="d-flex justify-content-between">
                             <p class="small mb-1">Timona Siera</p>
                             <p class="small mb-1 text-muted">23 Jan 2:00 pm</p>
