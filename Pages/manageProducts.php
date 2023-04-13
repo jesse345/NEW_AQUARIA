@@ -24,6 +24,7 @@
         }
 
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+        $sub = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -94,17 +95,21 @@
 
 
                                                     <?php
-                                                    $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
-                                                    if ($total == 0) {
+                                                    if ($sub['isSubscribe'] == "Yes") {
                                                     ?>
-                                                        <a href="#" class="btn btn-primary mb-2" disabled>Subscribe</a>
-                                                    <?php } else { ?>
                                                         <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
+                                                        <p class="text-success"> Subscribed User!</p>
+
+                                                        <?php } else {
+                                                        $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
+                                                        if ($total == 0) {
+                                                        ?>
+                                                            <a href="subscription.php" class="btn btn-primary mb-2" disabled>Subscribe</a>
+                                                        <?php } else { ?>
+                                                            <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
+                                                        <?php } ?>
+                                                        <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="#">Subcribe to unli post!</a></p>
                                                     <?php } ?>
-
-
-                                                    <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="#">Subcribe to unli post!</a></p>
-
 
                                                     <div class="table-responsive">
 

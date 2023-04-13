@@ -31,6 +31,8 @@ include("ShippingModel.php");
 
 include("VerificationCodeModel.php");
 
+include("SubscriptionModel.php");
+
 function disconnect()
 {
     global $conn;
