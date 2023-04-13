@@ -182,7 +182,14 @@ if (isset($_SESSION['id'])) {
                         if (isset($_SESSION['id'])) {
                             $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
-                            $count = mysqli_num_rows($cart);
+                            $count = 0;
+
+                            while ($carts = mysqli_fetch_assoc($cart)) {
+                                $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
+                                if ($products['isDelete'] == "No") {
+                                    $count++;
+                                }
+                            }
                             if ($count > 0) {
                         ?>
                                 <span class="cart-count-layout">
@@ -200,7 +207,14 @@ if (isset($_SESSION['id'])) {
                                 <?php
                                 $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
-                                $count = mysqli_num_rows($cart);
+                                $count = 0;
+
+                                while ($carts = mysqli_fetch_assoc($cart)) {
+                                    $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
+                                    if ($products['isDelete'] == "No") {
+                                        $count++;
+                                    }
+                                }
 
                                 if ($count > 0) {
                                     $i = 0;

@@ -18,12 +18,15 @@ function insertProduct($table_name, $fields, $values, $table_name1, $fields1, $v
     disconnect();
 }
 
+
+
 //To get all the product
+//Not deleted
 function getAllProduct($table_name)
 {
     global $conn;
     connect();
-    $query = "SELECT * FROM `$table_name`";
+    $query = "SELECT * FROM `$table_name` WHERE `isDelete` = 'No'";
     $data = mysqli_query($conn, $query);
 
     disconnect();
@@ -31,11 +34,25 @@ function getAllProduct($table_name)
 }
 
 
+//To get all the product
+function getAllUsersProduct($table_name, $fld, $val)
+{
+    global $conn;
+    connect();
+    $query = "SELECT * FROM `$table_name` WHERE `isDelete` = 'No' AND `$fld` = $val";
+    $data = mysqli_query($conn, $query);
+
+    disconnect();
+    return $data;
+}
+
+
+
 function getProductByCategory($category)
 {
     global $conn;
     connect();
-    $query = "SELECT * FROM `product_details` WHERE `category` = '$category'";
+    $query = "SELECT * FROM `product_details` WHERE `category` = '$category' ";
     $data = mysqli_query($conn, $query);
 
     disconnect();
@@ -55,6 +72,9 @@ function getAllProductLimit($table_name, $page, $result)
     return $data;
 }
 
+
+
+
 //Get single product
 //Get own products
 function getProduct($table_name, $fields, $values)
@@ -65,7 +85,6 @@ function getProduct($table_name, $fields, $values)
     $data = mysqli_query($conn, $query);
     disconnect();
     return $data;
-
 }
 
 
@@ -92,11 +111,11 @@ function countSearchProduct($table_name, $fields, $values)
 }
 
 
-function deleteProduct($table_name, $fields, $values)
+function deleteProduct($product_id)
 {
     global $conn;
     connect();
-    $query = "DELETE FROM `$table_name` WHERE `$fields[0]` = '$values[0]' AND `$fields[1]` = '$values[1]'";
+    $query = "UPDATE `products` SET `isDelete` = 'Yes' WHERE `id` = $product_id";
     $data = mysqli_query($conn, $query);
     disconnect();
 }

@@ -135,7 +135,7 @@
                                             <select name="shipping_type" id="" required>
                                                 <option value="" disabled selected hidden>Select Shipping Type</option>
                                                 <option value="Pickup">Pickup</option>
-                                                <option value="Nanno Tank">Long rides</option>
+                                                <option value="Long Rides">Long rides</option>
                                             </select>
                                         </div>
 

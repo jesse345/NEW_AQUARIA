@@ -108,18 +108,18 @@
                 <?php
 
                 $products = getAllProduct('products');
+
                 while ($product = mysqli_fetch_assoc($products)) {
                   $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $product['id']));
                   $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);
-                  ?>
+                ?>
                   <div class="product product-list">
                     <div class="row">
                       <div class="col-6 col-lg-3">
                         <figure class="product-media">
 
                           <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
-                            <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image"
-                              style="height: 184px" />
+                            <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
                           </a>
                         </figure>
                         <!-- End .product-media -->
@@ -149,15 +149,15 @@
                               <?php if ($total == 0) { ?>
                                 <div class="ratings-val" style="width: 0%;"></div>
                               <?php } else if ($total == 1) { ?>
-                                  <div class="ratings-val" style="width: 20%;"></div>
+                                <div class="ratings-val" style="width: 20%;"></div>
                               <?php } else if ($total == 2) { ?>
-                                    <div class="ratings-val" style="width: 40%;"></div>
+                                <div class="ratings-val" style="width: 40%;"></div>
                               <?php } else if ($total == 3) { ?>
-                                      <div class="ratings-val" style="width: 60%;"></div>
+                                <div class="ratings-val" style="width: 60%;"></div>
                               <?php } else if ($total == 4) { ?>
-                                        <div class="ratings-val" style="width: 80%;"></div>
+                                <div class="ratings-val" style="width: 80%;"></div>
                               <?php } else if ($total == 5) { ?>
-                                          <div class="ratings-val" style="width: 100%;"></div>
+                                <div class="ratings-val" style="width: 100%;"></div>
                               <?php } ?>
 
                             </div>
@@ -193,8 +193,7 @@
                                 </button>
                               <?php } ?>
                             <?php } else { ?>
-                              <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart"
-                                id="addToCart">
+                              <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
                                 <span>Add To Cart</span>
                               </button>
                             <?php } ?>
@@ -208,9 +207,7 @@
 
                       <div class="col-lg-6">
                         <div class="product-body product-action-inner">
-                          <form
-                            action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>"
-                            method="POST">
+                          <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
                             <?php if (isset($_SESSION['id'])) {
                               $check = usersWishlist(
                                 'wishlists',
@@ -219,19 +216,16 @@
                               ); ?>
                               <?php if (mysqli_num_rows($check) > 0) { ?>
 
-                                <button type="submit" class="btn-product btn-wishlist border-0 text-danger" title="Wishlist"
-                                  name="removeWishlist">
+                                <button type="submit" class="btn-product btn-wishlist border-0 text-danger" title="Wishlist" name="removeWishlist">
 
                                 </button>
                               <?php } else { ?>
-                                <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2"
-                                  title="Wishlist" name="addToWishlist">
+                                <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="addToWishlist">
 
                                 </button>
                               <?php } ?>
                             <?php } else { ?>
-                              <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2"
-                                title="Add to wishlist" name="addToWishlist">
+                              <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Add to wishlist" name="addToWishlist">
 
                               </button>
                             <?php } ?>
@@ -275,8 +269,7 @@
               <nav aria-label="Page navigation">
                 <ul class="pagination">
                   <li class="page-item disabled">
-                    <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                      aria-disabled="true">
+                    <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
                       <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
                     </a>
                   </li>
@@ -311,8 +304,7 @@
 
                 <div class="widget widget-collapsible">
                   <h3 class="widget-title">
-                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
-                      aria-controls="widget-1">
+                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
                       Category
                     </a>
                   </h3>

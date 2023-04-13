@@ -101,8 +101,7 @@ if (isset($_SESSION['id'])) {
                                                     <a href="product-centered.html">Centered</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-extended.html"><span>Extended Info<span
-                                                                class="tip tip-new">New</span></span></a>
+                                                    <a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a>
                                                 </li>
                                                 <li>
                                                     <a href="product-gallery.html">Gallery</a>
@@ -163,8 +162,7 @@ if (isset($_SESSION['id'])) {
                     <form action="#" method="get">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..."
-                                required />
+                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required />
                         </div>
                         <!-- End .header-search-wrapper -->
                     </form>
@@ -184,25 +182,40 @@ if (isset($_SESSION['id'])) {
                         if (isset($_SESSION['id'])) {
                             $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
-                            $count = mysqli_num_rows($cart);
+                            $count = 0;
+
+                            while ($carts = mysqli_fetch_assoc($cart)) {
+                                $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
+                                if ($products['isDelete'] == "No") {
+                                    $count++;
+                                }
+                            }
+
                             if ($count > 0) {
-                                ?>
+                        ?>
                                 <span class="cart-count">
                                     <?php echo $count; ?>
                                 </span>
-                            <?php }
+                        <?php }
                         } ?>
                     </a>
 
                     <?php
                     if (isset($_SESSION['id'])) {
-                        ?>
+                    ?>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-cart-products">
                                 <?php
                                 $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
-                                $count = mysqli_num_rows($cart);
+                                $count = 0;
+
+                                while ($carts = mysqli_fetch_assoc($cart)) {
+                                    $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
+                                    if ($products['isDelete'] == "No") {
+                                        $count++;
+                                    }
+                                }
 
                                 if ($count > 0) {
                                     $i = 0;
@@ -212,7 +225,7 @@ if (isset($_SESSION['id'])) {
                                             break;
                                         }
                                         $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products['product_id']))
-                                            ?>
+                                ?>
                                         <div class="product">
                                             <div class="product-cart-details">
                                                 <h4 class="product-title">
@@ -245,20 +258,20 @@ if (isset($_SESSION['id'])) {
                                         </div>
 
 
-                                        <?php $i++;
+                                    <?php $i++;
                                     } ?>
-                                </div>
-                                <div class="dropdown-cart-action mt-1">
-                                    <a href="cart.php" class="btn btn-primary">View Cart</a>
+                            </div>
+                            <div class="dropdown-cart-action mt-1">
+                                <a href="cart.php" class="btn btn-primary">View Cart</a>
 
-                                </div>
+                            </div>
 
 
-                            <?php } else { ?>
-                                <div class="dropdown">
-                                    Empty Record...
-                                </div>
-                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="dropdown">
+                                Empty Record...
+                            </div>
+                        <?php } ?>
                         </div>
                     <?php } ?>
                     <!-- End .dropdown-menu -->

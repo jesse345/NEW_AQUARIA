@@ -35,6 +35,10 @@ $(document).ready(function () {
           window.location.href = "../Pages/accountDetailsForm.php";
         }
 
+        if (response == "error") {
+          alert("Invalid username or Password");
+        }
+
         console.log(response);
       },
       error: function () {

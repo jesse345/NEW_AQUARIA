@@ -91,8 +91,19 @@
 
                                             <div class="card border-0">
                                                 <div class="card-body">
-                                                    <a href="addProduct.php" class="btn btn-primary mb-2">Add
-                                                        Product</a>
+
+
+                                                    <?php
+                                                    $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
+                                                    if ($total == 0) {
+                                                    ?>
+                                                        <a href="#" class="btn btn-primary mb-2" disabled>Subscribe</a>
+                                                    <?php } else { ?>
+                                                        <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
+                                                    <?php } ?>
+
+
+                                                    <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="#">Subcribe to unli post!</a></p>
 
 
                                                     <div class="table-responsive">
@@ -112,8 +123,9 @@
                                                             </thead>
                                                             <tbody>
                                                                 <?php
-                                                                $products = getProduct('products', 'user_id', $_SESSION['id']);
+                                                                $products =  getAllUsersProduct('products', 'user_id', $_SESSION['id']);
                                                                 if (mysqli_num_rows($products) > 0) {
+
                                                                     while ($product = mysqli_fetch_assoc($products)) {
                                                                         $prod_det = mysqli_fetch_assoc(
                                                                             getProduct('product_details', 'product_id', $product['id'])
