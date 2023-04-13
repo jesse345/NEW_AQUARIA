@@ -27,8 +27,7 @@
                                 <li class="p-2 border-bottom" style="background-color: #eee;">
                                     <a href="#!" class="d-flex justify-content-between">
                                         <div class="d-flex flex-row">
-                                            <img src="..img/batman.png" alt="avatar"
-                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                            <img src="../img/batman.png" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
                                             <div class="pt-1">
                                                 <p class="fw-bold mb-0">John Doe</p>
                                                 <p class="small text-muted">Hello, Are you there?</p>
@@ -122,8 +121,7 @@
                             <p class="small mb-1 text-muted">23 Jan 2:00 pm</p>
                           </div>
                           <div class="d-flex flex-row justify-content-start">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                              alt="avatar 1" style="width: 45px; height: 100%;">
+                            <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                             <div>
                               <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">For what reason
                                 would it
