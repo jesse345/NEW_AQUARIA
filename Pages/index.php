@@ -182,7 +182,7 @@ session_start();
                     <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
                 <li>
-                    <a href="../Pages/chat.php">CHAT</a>
+                    <a href="../Pages/ch4t.php">CHAT</a>
                 </li>
               </ul>
               <!-- End .menu -->
