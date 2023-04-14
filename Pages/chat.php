@@ -38,73 +38,42 @@
                         <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #0d6efd;">
                             <h5 class="mb-0">Chat messages</h5>
                         </div>
+
+                        <!--END END END-->
                         <div class="card-body" data-mdb-perfect-scrollbar="true">
-                          <div class="d-flex justify-content-between">
-                            <p class="small mb-1">Timona Siera</p>
-                            <p class="small mb-1 text-muted">23 Jan 2:00 pm</p>
-                          </div>
-                          <div class="d-flex flex-row justify-content-start">
-                            <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
-                            <div>
-                              <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">For what reason
-                                would it
-                                be advisable for me to think about business content?</p>
+                            <div class="d-flex justify-content-start">
+                                <p class="small mb-1">Timona Siera</p>
                             </div>
-                          </div>
-              
-                          <div class="d-flex justify-content-between">
-                            <p class="small mb-1 text-muted">23 Jan 2:05 pm</p>
-                            <p class="small mb-1">Johny Bullock</p>
-                          </div>
-                          <div class="d-flex flex-row justify-content-end mb-4 pt-1">
-                            <div>
-                              <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">Thank you for your believe in
-                                our
-                                supports</p>
+                            <div class="d-flex flex-row justify-content-start">
+                                <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+                                <div>
+                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">For what reason
+                                    would it
+                                    be advisable for me to think about business content?</p>
+                                </div>
                             </div>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
-                              alt="avatar 1" style="width: 45px; height: 100%;">
-                          </div>
-              
-                          <div class="d-flex justify-content-between">
-                            <p class="small mb-1">Timona Siera</p>
-                            <p class="small mb-1 text-muted">23 Jan 5:37 pm</p>
-                          </div>
-                          <div class="d-flex flex-row justify-content-start">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                              alt="avatar 1" style="width: 45px; height: 100%;">
-                            <div>
-                              <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">Lorem ipsum dolor
-                                sit amet
-                                consectetur adipisicing elit similique quae consequatur</p>
+                            <!--END END END-->
+
+                            <div class="d-flex justify-content-end">
+                                <p class="small float-right">Johny Bullock</p>
                             </div>
-                          </div>
-              
-                          <div class="d-flex justify-content-between">
-                            <p class="small mb-1 text-muted">23 Jan 6:10 pm</p>
-                            <p class="small mb-1">Johny Bullock</p>
-                          </div>
-                          <div class="d-flex flex-row justify-content-end mb-4 pt-1">
-                            <div>
-                              <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">Dolorum quasi voluptates quas
-                                amet in
-                                repellendus perspiciatis fugiat</p>
+                            <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                                <div>
+                                    <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">Thank you for your believe in our supports</p>
+                                </div>
+                                <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                             </div>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
-                              alt="avatar 1" style="width: 45px; height: 100%;">
-                          </div>
-              
+
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                          <div class="input-group mb-0">
-                            <input type="text" class="form-control" placeholder="Type message"
-                              aria-label="Recipient's username" aria-describedby="button-addon2" />
-                            <button class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">
-                              Button
-                            </button>
-                          </div>
+                            <form action="">
+                                <div class="input-group mb-0">
+                                    <input type="text" class="form-control" placeholder="Type message" style="width:638px;"/>
+                                    <button class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">Button</button>
+                                </div>
+                            </form>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
