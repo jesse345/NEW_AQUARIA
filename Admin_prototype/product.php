@@ -33,10 +33,6 @@
 
 		<div class="menu-bar">
 			<div class="menu">
-				<!--<li class="search-box">
-					<i class='bx bx-search icon'></i>
-					<input type="seach" placeholder="search...">
-				</li>-->
 				<ul class="menu-links">
 					<li class="nav-link">
 						<a href="index.php">
@@ -44,12 +40,6 @@
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
-					<!-- <li class="nav-link">
-						<a href="#">
-							<i class='bx bx-bell icon'></i>
-							<span class="text nav-text">Notification</span>
-						</a>
-					</li> -->
 					<li class="nav-link">
 						<a href="post.php">
 							<i class='bx bx-bar-chart-alt-2 icon'></i>
@@ -77,7 +67,19 @@
 					<li class="nav-link">
 						<a href="shipping_info.php">
 							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users Shipping Info</span>
+							<span class="text nav-text">Manage Shipping Info</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="subscription.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Subscription</span>
 						</a>
 					</li>
 				</ul>
@@ -106,18 +108,6 @@
 		</div>
 	</nav>
 	
-	<!-- <form method="GET" action="product.php">
-		<div class="search">
-			<span class="text nav-text">SEARCH BY:</span>
-			<select name=option>
-				<option value="product_name" >Product Name</option>
-				<option value="price">PRICE</option>
-			</select>
-			<input type="search" name="field" value="<?php if(!empty($field)){echo $field;} ?>"/>
-			<button type="submit" name="SEARCH">SEARCH</button>
-		</div>
-	</form> -->
-	
 	<table>
 		<tr>
 			<th>PRODUCT ID</th>
@@ -138,14 +128,6 @@
 				$gp = mysqli_fetch_assoc(getproducts($row['product_id']));
 				
 		?>
-		<!-- <?php
-			// while($row=mysqli_fetch_assoc($rec) &&
-			// 	$rows=mysqli_fetch_assoc($record)	
-			// 	){
-			// 		$gp = mysqli_fetch_assoc(getproducts($row['product_id']));
-			// 		$jp = mysqli_fetch_assoc(getproducts($rows['user_id']));
-			// 	}
-		?> -->
 
 		<tr>
 			<td><?php echo $row['product_id'];?></td>
@@ -158,27 +140,7 @@
 			<td><?php echo $row['price'];?></td>
 			<td><?php echo $row['category'];?></td>
 			<td><?php echo $row['expiration_date'];?></td>
-			<!-- <td>
-				<?php
-					if($gp['isApproved'] == 'Approved' ){
-				?>
-					Approved
-				<?php
-					}elseif($gp['isApproved'] == 'Disapproved' ){
-				?>
-					Disapproved
-				<?php
-					}else{
-				?>	
-					<form action="product.php?id=<?php echo $row['product_id']; ?>"  method="POST">
-						<input type="submit" name="APPROVE" value="APPROVE"/>
-						<input type="submit" name="DISAPPROVE" value="DISAPPROVE"/>
-					</form>	
-				<?php
-					}
-				?>
-					
-			</td> -->
+			
 		</tr>
 		<?php
 		}

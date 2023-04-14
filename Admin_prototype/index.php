@@ -73,8 +73,12 @@
 							<span class="text nav-text">Manage Users Shipping Info</span>
 						</a>
 					</li>
-
-
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
 					<li class="nav-link">
 						<a href="subscription.php">
 							<i class='bx bx-user icon'></i>

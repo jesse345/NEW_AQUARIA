@@ -34,12 +34,6 @@
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
-					<!-- <li class="nav-link">
-						<a href="#">
-							<i class='bx bx-bell icon'></i>
-							<span class="text nav-text">Notification</span>
-						</a>
-					</li> -->
 					<li class="nav-link">
 						<a href="post.php">
 							<i class='bx bx-bar-chart-alt-2 icon'></i>
@@ -67,7 +61,19 @@
 					<li class="nav-link">
 						<a href="shipping_info.php">
 							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users Shipping Info</span>
+							<span class="text nav-text">Manage Shipping Info</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="subscription.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Subscription</span>
 						</a>
 					</li>
 				</ul>

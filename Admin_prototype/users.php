@@ -31,11 +31,7 @@
 		</header>
 
 		<div class="menu-bar">
-			<div class="menu">
-				<!--<li class="search-box">
-					<i class='bx bx-search icon'></i>
-					<input type="seach" placeholder="search...">
-				</li>-->
+			<div class="menu"> 
 				<ul class="menu-links">
 					<li class="nav-link">
 						<a href="index.php">
@@ -43,12 +39,6 @@
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
-					<!-- <li class="nav-link">
-						<a href="#">
-							<i class='bx bx-bell icon'></i>
-							<span class="text nav-text">Notification</span>
-						</a>
-					</li> -->
 					<li class="nav-link">
 						<a href="post.php">
 							<i class='bx bx-bar-chart-alt-2 icon'></i>
@@ -76,7 +66,19 @@
                     <li class="nav-link">
 						<a href="shipping_info.php">
 							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users Shipping Info</span>
+							<span class="text nav-text">Manage Shipping Info</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="subscription.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Subscription</span>
 						</a>
 					</li>
 				</ul>
@@ -104,18 +106,6 @@
 			</div>
 		</div>
 	</nav>
-	
-	<!-- <form method="GET" action="users.php">
-		<div class="search">
-			<span class="text nav-text">SEARCH BY:</span>
-			<select name=option>
-				<option value="first_name" >firstname</option>
-				<option value="last_name">lastname</option>
-			</select>
-			<input type="search" name="field" value="<?php if(!empty($field)){echo $field;} ?>" placeholder="search..."/>
-			<button type="submit" name="SEARCH">SEARCH</button>
-		</div>
-	</form> -->
 	
 	<table>
 		<tr>
