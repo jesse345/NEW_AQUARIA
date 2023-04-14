@@ -125,5 +125,20 @@
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function(){
+            function fetch_user(){
+                $.ajax({
+                    url:"fetchUserController.php",
+                    method:"POST",
+                    success:function(data){
+                        $('#user_details').html(data);
+                    }
+                })
+            }    
+        })
+        
+    </script>
 </body>
 </html>
