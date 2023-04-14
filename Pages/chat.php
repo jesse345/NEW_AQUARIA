@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
     <title>CHAT</title>
     <style>
         .row>*{
@@ -20,39 +24,19 @@
     <section>
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-3 mb-4">
+                <div class="col-md-4 mb-4">
                     <div class="card" style="height:600px;">
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <span id="user_details"></span>
-                                <!-- <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
-                                    <a href="#!" class="d-flex justify-content-between">
-                                        <div class="d-flex flex-row">
-                                            <img src="../img/batman.png" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                                            <div class="pt-1">
-                                                <p class="fw-bold mb-0">John Doe</p>
-                                                <p class="small text-muted">Lorem ipsum dolor sit amet ...</p>
-                                            </div>
-                                        </div>
-                                        <div class="pt-1">
-                                            <span class="badge bg-danger float-end">Offline</span>
-                                        </div>
-                                    </a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="card" style="height:598px;">
                         <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #0d6efd;">
                             <h5 class="mb-0">Chat messages</h5>
-                            <div class="d-flex flex-row align-items-center">
-                                <span class="badge bg-primary me-3">20</span>
-                                <i class="fas fa-minus me-3 text-muted fa-xs"></i>
-                                <i class="fas fa-comments me-3 text-muted fa-xs"></i>
-                                <i class="fas fa-times text-muted fa-xs"></i>
-                            </div>
                         </div>
                         <div class="card-body" data-mdb-perfect-scrollbar="true">
                           <div class="d-flex justify-content-between">
@@ -126,29 +110,24 @@
         </div>
     </section>
 
-    <script>
-        $(document).ready(function(){
-            fetch_user();
+<script>  
+    $(document).ready(function(){
 
-            setInterval(function(){
-                // update_last_activity();
-                fetch_user();
-                // update_chat_history_data();
-                // fetch_group_chat_history();
-            }, 5000);
+      fetch_user();
 
-
-            function fetch_user(){
-                $.ajax({
-                    url:"fetchUserController.php",
-                    method:"POST",
-                    success:function(data){
-                        $('#user_details').html(data);
-                    }
-                })
-            }    
+      function fetch_user(){
+        $.ajax({
+          url:"../Controller/fetchUserController.php",
+          method:"POST",
+          success:function(data){
+            $('#user_details').html(data);
+          }
         })
-        
-    </script>
+      }
+
+      
+      
+    });  
+</script>
 </body>
 </html>
