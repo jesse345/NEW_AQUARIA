@@ -107,7 +107,7 @@
                                         <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                     *</span></label>
-                                            <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                            <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>
                                         </div>
                                         <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>

@@ -47,9 +47,9 @@ if (isset($_SESSION['id'])) {
                         <div class="header-menu">
                             <ul>
                                 <li><a href="myAccount.php">My Account</a></li>
-                                <li><a href="#">Manage My Products</a></li>
-                                <li><a href="#">Manage Orders</a></li>
-                                <li><a href="#">Manage My Purchase</a></li>
+                                <li><a href="manageProducts.php">Manage My Products</a></li>
+                                <li><a href="manageOrders.php">Manage Orders</a></li>
+                                <li><a href="myPurchase.php">Manage My Purchase</a></li>
                                 <li>
                                     <a href="../Includes/logout.php">Logout</a>
                                 </li>

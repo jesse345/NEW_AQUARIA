@@ -21,6 +21,7 @@
     <div class="page-wrapper">
         <?php
         include("../Includes/header.inc.php");
+        $prod = mysqli_fetch_assoc(getProduct('products', 'id', $_GET['product_id']));
         $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $_GET['product_id']));
         ?>
         <main class="main">
@@ -46,9 +47,7 @@
                                 <div class="product-gallery product-gallery-vertical">
                                     <div class="row">
                                         <figure class="product-main-image">
-                                            <img id="product-zoom" src="<?php echo $prod_det['product_img'] ?>"
-                                                data-zoom-image="<?php echo $prod_det['product_img'] ?>"
-                                                alt="product image" style="height:350px">
+                                            <img id="product-zoom" src="<?php echo $prod_det['product_img'] ?>" data-zoom-image="<?php echo $prod_det['product_img'] ?>" alt="product image" style="height:350px">
 
                                             <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
@@ -59,12 +58,9 @@
                                             <?php
                                             $images = getProduct('product_images', 'product_id', $_GET['product_id']);
                                             while ($img = mysqli_fetch_assoc($images)) {
-                                                ?>
-                                                <a class="product-gallery-item active" href="#"
-                                                    data-image="<?php echo $img['img'] ?>"
-                                                    data-zoom-image="<?php echo $img['img'] ?>">
-                                                    <img src="<?php echo $img['img'] ?>" alt="product side"
-                                                        style="height:100px">
+                                            ?>
+                                                <a class="product-gallery-item active" href="#" data-image="<?php echo $img['img'] ?>" data-zoom-image="<?php echo $img['img'] ?>">
+                                                    <img src="<?php echo $img['img'] ?>" alt="product side" style="height:100px">
                                                 </a>
                                             <?php } ?>
                                         </div>
@@ -95,15 +91,15 @@
                                             <?php if ($total == 0) { ?>
                                                 <div class="ratings-val" style="width: 0%;"></div>
                                             <?php } else if ($total == 1) { ?>
-                                                    <div class="ratings-val" style="width: 20%;"></div>
+                                                <div class="ratings-val" style="width: 20%;"></div>
                                             <?php } else if ($total == 2) { ?>
-                                                        <div class="ratings-val" style="width: 40%;"></div>
+                                                <div class="ratings-val" style="width: 40%;"></div>
                                             <?php } else if ($total == 3) { ?>
-                                                            <div class="ratings-val" style="width: 60%;"></div>
+                                                <div class="ratings-val" style="width: 60%;"></div>
                                             <?php } else if ($total == 4) { ?>
-                                                                <div class="ratings-val" style="width: 80%;"></div>
+                                                <div class="ratings-val" style="width: 80%;"></div>
                                             <?php } else if ($total == 5) { ?>
-                                                                    <div class="ratings-val" style="width: 100%;"></div>
+                                                <div class="ratings-val" style="width: 100%;"></div>
                                             <?php } ?>
 
                                         </div><!-- End .ratings -->
@@ -130,9 +126,14 @@
                                             <div class="details-action-col">
 
                                                 <div class="product-details-quantity">
-                                                    <input type="number" id="qty" class="form-control" value="1" min="1"
-                                                        max="10" step="1" data-decimals="0" name="quantity" required>
-                                                </div><!-- End .product-details-quantity -->
+                                                    <?php
+                                                    if ($prod['user_id'] != $_SESSION['id']) {
+                                                    ?>
+                                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" name="quantity" required>
+                                                    <?php } else { ?>
+                                                        <p>Qty: <?php echo $prod_det['quantity'] ?></p>
+                                                    <?php } ?>
+                                                </div>
 
                                                 <?php if (isset($_SESSION['id'])) {
                                                     $check = usersCart(
@@ -140,29 +141,31 @@
                                                         array('user_id', 'product_id'),
                                                         array($_SESSION['id'], $prod_det['product_id'])
                                                     ); ?>
-                                                    <input type="hidden" name="product_id"
-                                                        value="<?php echo $prod_det['product_id'] ?>">
+                                                    <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
 
-                                                    <input type="hidden" name="user_id"
-                                                        value="<?php echo $_SESSION['id'] ?>">
+                                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
 
-                                                    <input type="hidden" name="price"
-                                                        value="<?php echo $prod_det['price'] ?>">
+                                                    <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
 
                                                     <?php if (mysqli_num_rows($check) > 0) { ?>
-                                                        <button type="submit" class="btn-product btn-cart border-0"
-                                                            name="removeCart" id="removeCart">
+                                                        <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                                             <span>Remove From Cart</span>
                                                         </button>
                                                     <?php } else { ?>
-                                                        <button type="submit" class="btn-product btn-cart " name="addToCart"
-                                                            id="addToCart">
-                                                            <span class="">Add To Cart</span>
-                                                        </button>
-                                                    <?php } ?>
-                                                <?php } else { ?>
-                                                    <button type="submit" class="btn-product btn-cart border-0"
-                                                        name="addToCart" id="addToCart">
+                                                        <?php
+                                                        if ($prod['user_id'] != $_SESSION['id']) {
+                                                        ?>
+                                                            <button type="submit" class="btn-product btn-cart " name="addToCart" id="addToCart">
+                                                                <span class="">Add To Cart</span>
+                                                            </button>
+                                                        <?php } else { ?>
+                                                            <button type="submit" class="btn-product btn-cart bg-success text-white btn-outline-success border-0" name="addToCart" id="addToCart">
+                                                                <span class="">Manage Product</span>
+                                                            </button>
+                                                    <?php }
+                                                    }
+                                                } else { ?>
+                                                    <button type="submit" class="btn-product btn-cart border-0" name="addToCart" id="addToCart">
                                                         <span>Add To Cart</span>
                                                     </button>
                                                 <?php } ?>
@@ -171,9 +174,7 @@
                                     </div>
 
                                     <div class="details-action-wrapper">
-                                        <form
-                                            action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>"
-                                            method="POST">
+                                        <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
                                             <?php if (isset($_SESSION['id'])) {
                                                 $check = usersWishlist(
                                                     'wishlists',
@@ -182,30 +183,30 @@
                                                 ); ?>
                                                 <?php if (mysqli_num_rows($check) > 0) { ?>
 
-                                                    <button type="submit"
-                                                        class="btn-product btn-wishlist border-0 bg-transparent mr-2"
-                                                        title="Wishlist" name="removeWishlist">
+                                                    <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="removeWishlist">
                                                         <span>Remove From Wishlist</span>
                                                     </button>
-                                                <?php } else { ?>
-                                                    <button type="submit"
-                                                        class="btn-product btn-wishlist border-0 bg-transparent mr-2"
-                                                        title="Wishlist" name="addToWishlist">
-                                                        <span>Add To Wishlist</span>
-                                                    </button>
-                                                <?php } ?>
+                                                    <?php } else {
+                                                    if ($prod['user_id'] != $_SESSION['id']) { ?>
+
+                                                        <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="addToWishlist">
+                                                            <span>Add To Wishlist</span>
+                                                        </button>
+                                                <?php }
+                                                } ?>
                                             <?php } else { ?>
-                                                <button type="submit"
-                                                    class="btn-product btn-wishlist border-0 bg-transparent mr-2"
-                                                    title="Add to wishlist" name="addToWishlist">
+                                                <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Add to wishlist" name="addToWishlist">
                                                     <span>Add To Wishlist</span>
                                                 </button>
                                             <?php } ?>
                                         </form>
 
-                                        <a href="#" class="btn-product icon-font-awesome-flag text-danger">
-                                            <span class="text-danger">Report Product</span></a>
-                                        </a>
+                                        <?php if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                            <a href="#" class="btn-product icon-font-awesome-flag text-danger">
+
+                                                <span class="text-danger">Report Product</span></a>
+                                            </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
 
@@ -217,14 +218,10 @@
 
                                     <div class="social-icons social-icons-sm">
                                         <span class="social-label">Share:</span>
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i
-                                                class="icon-pinterest"></i></a>
+                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                     </div>
                                 </div><!-- End .product-details-footer -->
                             </div><!-- End .product-details -->
@@ -235,18 +232,15 @@
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab"
-                                role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+                            <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab"
-                                role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
+                            <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
-                            aria-labelledby="product-desc-link">
+                        <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
                             <div class="product-desc-content">
                                 <h3>Product Description</h3>
                                 <p>
@@ -268,32 +262,32 @@
                                             <?php echo $prod_det['thickness']; ?>
                                         </li>
                                     <?php } else if ($prod_det['category'] == "Fishes") { ?>
-                                            <li> <strong>Fish Type: </strong>
+                                        <li> <strong>Fish Type: </strong>
                                             <?php echo $prod_det['fish_type']; ?>
-                                            </li>
-                                            <li> <strong>Fish Classification: </strong>
+                                        </li>
+                                        <li> <strong>Fish Classification: </strong>
                                             <?php echo $prod_det['fish_class']; ?>
-                                            </li>
-                                            <li> <strong>Size: </strong>
+                                        </li>
+                                        <li> <strong>Size: </strong>
                                             <?php echo $prod_det['size']; ?>
-                                            </li>
-                                            <li> <strong>Gender: </strong>
+                                        </li>
+                                        <li> <strong>Gender: </strong>
                                             <?php echo $prod_det['gender']; ?>
-                                            </li>
-                                            <li> <strong>Age: </strong>
+                                        </li>
+                                        <li> <strong>Age: </strong>
                                             <?php echo $prod_det['age']; ?>
-                                            </li>
+                                        </li>
                                     <?php } else if ($prod_det['category'] == "Equipment & Accessories") { ?>
-                                                <li> <strong>Product Specification: </strong>
+                                        <li> <strong>Product Specification: </strong>
                                             <?php echo $prod_det['specification']; ?>
-                                                </li>
+                                        </li>
                                     <?php } else { ?>
-                                                <li> <strong>Expiration Date: </strong>
+                                        <li> <strong>Expiration Date: </strong>
                                             <?php echo $prod_det['expiration_date']; ?>
-                                                </li>
-                                                <li> <strong>Benefits: </strong>
+                                        </li>
+                                        <li> <strong>Benefits: </strong>
                                             <?php echo $prod_det['benefits']; ?>
-                                                </li>
+                                        </li>
                                     <?php } ?>
                                     <li> <strong>Shipping Type: </strong>
                                         <?php echo $prod_det['shipping_type'] ?>
@@ -304,8 +298,7 @@
                         </div><!-- .End .tab-pane -->
 
 
-                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
-                            aria-labelledby="product-review-link">
+                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
                             <div class="reviews">
                                 <h3>Reviews (
                                     <?php
@@ -317,7 +310,7 @@
                                 if (mysqli_num_rows($review) > 0) {
                                     while ($rev = mysqli_fetch_assoc($review)) {
                                         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $rev['user_id']));
-                                        ?>
+                                ?>
                                         <div class="review">
                                             <div class="row no-gutters">
                                                 <div class="col-auto">
@@ -338,13 +331,13 @@
                                                         <?php if ($total == 1) { ?>
                                                             Very Bad
                                                         <?php } else if ($total == 2) { ?>
-                                                                Bad
+                                                            Bad
                                                         <?php } else if ($total == 3) { ?>
-                                                                    Not So Bad but Not So Good
+                                                            Not So Bad but Not So Good
                                                         <?php } else if ($total == 4) { ?>
-                                                                        Good
+                                                            Good
                                                         <?php } else if ($total == 5) { ?>
-                                                                            Very Good
+                                                            Very Good
                                                         <?php } ?>
                                                     </h4>
 
@@ -358,7 +351,7 @@
                                                 </div><!-- End .col-auto -->
                                             </div><!-- End .row -->
                                         </div><!-- End .review -->
-                                    <?php }
+                                <?php }
                                 } else {
                                     echo "No reviews...";
                                 } ?>
@@ -368,8 +361,7 @@
                 </div>
 
                 <h2 class="title text-center mb-4">You May Also Like</h2>
-                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                    data-owl-options='{
+                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
                             "nav": false, 
                             "dots": true,
                             "margin": 20,
@@ -403,18 +395,21 @@
                             break;
                         } else {
                             $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $product['id']));
-                            ?>
+                    ?>
                             <div class="product product-7 text-center">
                                 <figure class="product-media">
+
+                                    <?php
+                                    if (isset($_SESSION['id']) && $prod["user_id"] == $_SESSION['id']) {
+                                    ?>
+                                        <span class="product-label label-new">Owned</span>
+                                    <?php } ?>
                                     <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
-                                        <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image"
-                                            class="product-image" style="height: 300px">
+                                        <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px">
                                     </a>
 
                                     <div class="product-action-vertical">
-                                        <form
-                                            action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>"
-                                            method="POST">
+                                        <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
                                             <?php if (isset($_SESSION['id'])) {
                                                 $check = usersWishlist(
                                                     'wishlists',
@@ -423,19 +418,19 @@
                                                 ); ?>
                                                 <?php if (mysqli_num_rows($check) > 0) { ?>
 
-                                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0"
-                                                        title="Add to wishlist" name="removeWishlist">
+                                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                                         <span>Remove From Wishlist</span>
                                                     </button>
-                                                <?php } else { ?>
-                                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0"
-                                                        title="Add to wishlist" name="addToWishlist">
-                                                        <span>Add To Wishlist</span>
-                                                    </button>
-                                                <?php } ?>
+                                                    <?php } else {
+                                                    if ($prod['user_id'] != $_SESSION['id']) { ?>
+
+                                                        <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                                            <span>Add To Wishlist</span>
+                                                        </button>
+                                                <?php }
+                                                } ?>
                                             <?php } else { ?>
-                                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0"
-                                                    title="Add to wishlist" name="addToWishlist">
+                                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                                                     <span>Add To Wishlist</span>
                                                 </button>
                                             <?php } ?>
@@ -452,25 +447,27 @@
                                                         array('user_id', 'product_id'),
                                                         array($_SESSION['id'], $prod_det['product_id'])
                                                     ); ?>
-                                                    <input type="hidden" name="product_id"
-                                                        value="<?php echo $prod_det['product_id'] ?>">
+                                                    <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
                                                     <input type="hidden" name="quantity" value="1">
                                                     <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
                                                     <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
                                                     <?php if (mysqli_num_rows($check) > 0) { ?>
-                                                        <button type="submit" class="btn-product btn-cart border-0" name="removeCart"
-                                                            id="removeCart">
+                                                        <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                                             <span>Remove From Cart</span>
                                                         </button>
-                                                    <?php } else { ?>
-                                                        <button type="submit" class="btn-product btn-cart border-0" name="addToCart"
-                                                            id="addToCart">
-                                                            <span>Add To Cart</span>
-                                                        </button>
-                                                    <?php } ?>
-                                                <?php } else { ?>
-                                                    <button type="submit" class="btn-product btn-cart border-0" name="addToCart"
-                                                        id="addToCart">
+                                                        <?php } else {
+                                                        if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                                            <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                                                <span>Add To Cart</span>
+                                                            </button>
+                                                        <?php } else { ?>
+                                                            <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                                                <span>Manage Product</span>
+                                                            </button>
+                                                    <?php }
+                                                    }
+                                                } else { ?>
+                                                    <button type="submit" class="btn-product btn-cart border-0" name="addToCart" id="addToCart">
                                                         <span>Add To Cart</span>
                                                     </button>
                                                 <?php } ?>
@@ -510,15 +507,15 @@
                                             <?php if ($total == 0) { ?>
                                                 <div class="ratings-val" style="width: 0%;"></div>
                                             <?php } else if ($total == 1) { ?>
-                                                    <div class="ratings-val" style="width: 20%;"></div>
+                                                <div class="ratings-val" style="width: 20%;"></div>
                                             <?php } else if ($total == 2) { ?>
-                                                        <div class="ratings-val" style="width: 40%;"></div>
+                                                <div class="ratings-val" style="width: 40%;"></div>
                                             <?php } else if ($total == 3) { ?>
-                                                            <div class="ratings-val" style="width: 60%;"></div>
+                                                <div class="ratings-val" style="width: 60%;"></div>
                                             <?php } else if ($total == 4) { ?>
-                                                                <div class="ratings-val" style="width: 80%;"></div>
+                                                <div class="ratings-val" style="width: 80%;"></div>
                                             <?php } else if ($total == 5) { ?>
-                                                                    <div class="ratings-val" style="width: 100%;"></div>
+                                                <div class="ratings-val" style="width: 100%;"></div>
                                             <?php } ?>
 
                                         </div><!-- End .ratings -->
@@ -529,10 +526,9 @@
                                 </div><!-- End .product-body -->
                             </div><!-- End .product -->
 
-                        <?php }
+                    <?php }
 
                         $i++;
-
                     } ?>
                 </div><!-- End .owl-carousel -->
             </div><!-- End .container -->

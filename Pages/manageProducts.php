@@ -108,7 +108,7 @@
                                                         <?php } else { ?>
                                                             <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
                                                         <?php } ?>
-                                                        <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="#">Subcribe to unli post!</a></p>
+                                                        <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="subscription.php">Subcribe to unli post!</a></p>
                                                     <?php } ?>
 
                                                     <div class="table-responsive">
