@@ -24,8 +24,8 @@
                     <div class="card" style="height:600px;">
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
-                                
-                                <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
+                                <span id="user_details"></span>
+                                <!-- <li class="p-2 border-bottom mb-1" style="background-color: #eee;">
                                     <a href="#!" class="d-flex justify-content-between">
                                         <div class="d-flex flex-row">
                                             <img src="../img/batman.png" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
@@ -38,7 +38,7 @@
                                             <span class="badge bg-danger float-end">Offline</span>
                                         </div>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -128,6 +128,16 @@
 
     <script>
         $(document).ready(function(){
+            fetch_user();
+
+            setInterval(function(){
+                // update_last_activity();
+                fetch_user();
+                // update_chat_history_data();
+                // fetch_group_chat_history();
+            }, 5000);
+
+
             function fetch_user(){
                 $.ajax({
                     url:"fetchUserController.php",
