@@ -62,6 +62,20 @@ function searchProduct($field, $option)
 	return $query;
 }
 
+function getAllManual(){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `fish_manual`");
+	disconnect();
+	return $query;
+}
+
+function addFishManual($manual_id, $admin_id, $manual_title, $manual_description){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` VALUES('$manual_id', '$admin_id', '$manual_title', '$manual_description')");
+	disconnect();
+}
 // function isApproved(){
 // 	global $conn;
 // 	connect();

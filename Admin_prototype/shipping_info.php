@@ -2,24 +2,6 @@
 <?php
 	include("db.php");
 	$rec = getUserShippingInfo();
-	// $flag = false;
-	// $field;
-	// $option;
-	// $getrec;
-	
-	// if(isset($_GET['SEARCH'])){
-	// 	$field = $_GET['field'];
-	// 	$option = $_GET['option'];
-	// 	if(empty(trim($field))){
-	// 		header("location:users.php");
-	// 	}else{
-	// 		$getrec = searchUser($field, $option);
-	// 		$flag = true;
-    //     }
-    // }
-    // else{
-    //     $flag = false;
-	// }
 ?>
 <html>
 <head>
@@ -49,10 +31,6 @@
 
 		<div class="menu-bar">
 			<div class="menu">
-				<!--<li class="search-box">
-					<i class='bx bx-search icon'></i>
-					<input type="seach" placeholder="search...">
-				</li>-->
 				<ul class="menu-links">
 					<li class="nav-link">
 						<a href="index.php">
@@ -60,12 +38,6 @@
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
-					<!-- <li class="nav-link">
-						<a href="#">
-							<i class='bx bx-bell icon'></i>
-							<span class="text nav-text">Notification</span>
-						</a>
-					</li> -->
 					<li class="nav-link">
 						<a href="post.php">
 							<i class='bx bx-bar-chart-alt-2 icon'></i>
@@ -93,7 +65,19 @@
                     <li class="nav-link">
 						<a href="shipping_info.php">
 							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users Shipping Info</span>
+							<span class="text nav-text">Manage Shipping Info</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="subscription.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Subscription</span>
 						</a>
 					</li>
 				</ul>
