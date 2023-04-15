@@ -11,7 +11,6 @@ if (isset($_SESSION['id'])) {
         verifyOrder('orders', array('id', 'status', 'isAccept'), array($order_id, 'Approved', 'Yes'));
 
         header("Location: " . $_SERVER['HTTP_REFERER']);
-
     } else if (isset($_POST['shipProduct'])) {
         $order_id = $_GET['order_id'];
         verifyOrder('orders', array('id', 'status'), array($order_id, 'deliver'));
@@ -22,7 +21,6 @@ if (isset($_SESSION['id'])) {
         verifyOrder('orders', array('id', 'status'), array($order_id, 'received'));
 
         header("Location: " . $_SERVER['HTTP_REFERER']);
-
     } else if (isset($_POST['declineOrder'])) {
         $order_id = $_GET['order_id'];
         verifyOrder('orders', array('id', 'status', 'isAccept'), array($order_id, 'Decline', 'Declined'));
@@ -38,7 +36,6 @@ if (isset($_SESSION['id'])) {
             array($order_id, $_SESSION['id'], 'Cancelled', 'Cancelled')
         );
         header("Location: " . $_SERVER['HTTP_REFERER']);
-
     } else if (isset($_POST['order'])) {
         $user_id = $_SESSION['id'];
 
@@ -87,8 +84,7 @@ if (isset($_SESSION['id'])) {
         // header("Location: ../Pages/choosePayment.php?id=" . $_SESSION['id'] . "");
 
 
-        header("Location: ../Pages/managePurchase.php");
-
+        header("Location: ../Pages/myPurchase.php");
     } else {
         header("Location: ../");
     }
