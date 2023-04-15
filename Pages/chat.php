@@ -17,8 +17,14 @@ if(isset($_SESSION['id'])){
   	    }
         $chats = getChats($_SESSION['user_id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
-
     }
+
+
+
+
+
+    
+    
 }
 ?>
 <!DOCTYPE html>
