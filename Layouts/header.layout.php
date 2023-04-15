@@ -86,36 +86,36 @@ if (isset($_SESSION['id'])) {
                         </li>
 
                         <li>
-                            <a href="product.html" class="sf-with-ul-layout">Categories</a>
+                            <a href="#" class="sf-with-ul">Categories</a>
 
                             <div class="megamenu megamenu-sm">
-                                <div class="row no-gutters-layout">
+                                <div class="row no-gutters">
                                     <div class="col-md-6-layout">
                                         <div class="menu-col-layout">
-                                            <div class="menu-title-layout">Product Details</div>
-                                            <!-- End .menu-title -->
+
                                             <ul>
-                                                <li><a href="product.html">Default</a></li>
+
                                                 <li>
-                                                    <a href="product-centered.html">Centered</a>
+                                                    <a href="product-centered.html">Aquarium</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="product-gallery.html">Fishes</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a>
+                                                    <a href="product-sticky.html">Equipment & Accessories</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-gallery.html">Gallery</a>
+                                                    <a href="product-sidebar.html">Probiotics</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-sticky.html">Sticky Info</a>
+                                                    <a href="product-fullwidth.html">Vitamins</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-sidebar.html">Boxed With Sidebar</a>
+                                                    <a href="product-masonry.html">Color Enhancer</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-fullwidth.html">Full Width</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-masonry.html">Masonry Sticky Info</a>
+                                                    <a href="product-masonry.html">Medications</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -123,18 +123,10 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                     <!-- End .col-md-6 -->
 
-                                    <div class="col-md-6-layout">
-                                        <div class="banner-layout banner-overlay-layout">
+                                    <div class="col-md-6">
+                                        <div class="banner banner-overlay">
                                             <a href="category.html">
-                                                <img src="../assets/images/menu/banner-2.jpg" alt="Banner" />
-
-                                                <div class="banner-content-layout banner-content-bottom-layout">
-                                                    <div class="banner-title-layout text-white">
-                                                        New Trends<br /><span><strong>spring 2019</strong></span>
-                                                    </div>
-                                                    <!-- End .banner-title -->
-                                                </div>
-                                                <!-- End .banner-content -->
+                                                <img src="../img/cat.jpg" alt="Banner" />
                                             </a>
                                         </div>
                                         <!-- End .banner -->
@@ -145,9 +137,15 @@ if (isset($_SESSION['id'])) {
                             </div>
                             <!-- End .megamenu megamenu-sm -->
                         </li>
+
+
                         <li>
-                            <a href="blog.html">Breeders Blog</a>
+
+                            <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                         </li>
+
+
+
                     </ul>
                     <!-- End .menu -->
                 </nav>

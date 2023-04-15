@@ -1422,6 +1422,18 @@ label {
   position: static;
 }
 
+.menu-layout .sf-arrows-layout .sf-with-ul-layout::after {
+  font-family: "molla";
+  content: "\f110";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  margin-top: -0.5rem;
+}
+
 .menu-layout ul {
   position: absolute;
   display: none;
@@ -1557,7 +1569,7 @@ label {
   padding-right: 4rem;
 }
 
-.menu-layout.sf-arrows-layout ul .sf-with-ul-layout:after {
+.menu-layout .sf-arrows-layout ul .sf-with-ul-layout:after {
   content: "\f112";
   right: 3rem;
 }
