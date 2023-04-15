@@ -36,16 +36,7 @@ function getUser($table_name, $field, $value)
     disconnect();
     return $data;
 }
-function getUser1($table_name, $value)
-{
-    global $conn;
-    connect();
-    $query = "SELECT * FROM `$table_name` WHERE `firstname` = '%$value%' OR `lastname` = %$value%'";
-    $data = mysqli_query($conn, $query);
 
-    disconnect();
-    return $data;
-}
 
 function editUser($table_name, $fields, $values)
 {
@@ -68,6 +59,7 @@ function getUserProductReview($table, $fields, $values)
     disconnect();
     return $data;
 }
-getUser1('user_details','j');
+
+
 
 ?>

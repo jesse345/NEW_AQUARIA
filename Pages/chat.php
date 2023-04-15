@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+if(isset($_SESSION['id'])){
+    include("../Model/dbPDO.php");
+
+
+    $user = getUser($_SESSION['id'], $conn);
+
+    $conversations = getConversation($user['user_id'], $conn);
+
+    if(isset($_POST['view_messages'])){
+         $chatWith = getUser($_GET['user'], $conn);
+        if (empty($chatWith)) {
+            header("Location: index.php");
+            exit;
+  	    }
+        $chats = getChats($_SESSION['user_id'], $chatWith['user_id'], $conn);
+        opened($chatWith['user_id'], $conn, $chats);
+
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +34,9 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+    
     <title>CHAT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .row>*{
             padding-right:0!important;
@@ -27,8 +51,43 @@
                 <div class="col-md-4 mb-4">
                     <div class="card" style="height:600px;">
                         <div class="card-body">
-                            <ul class="list-unstyled mb-0">
-                                <span id="user_details"></span>
+                            <div class="input-group mb-3">
+                                <input type="text" placeholder="Search..." id="searchText" class="form-control">
+                                <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"></i></button>       
+                            </div>
+                            <ul class="list-unstyled mb-0 overflow-auto" id="chatList">
+                                <?php if (!empty($conversations)) { ?>
+                                    <?php 
+
+                                    foreach ($conversations as $conversation){ ?>
+                                    <li class="list-group-item">
+                                        <a href="chat.php?user=<?=$conversation['username']?>" class="d-flex justify-content-between align-items-center p-2">
+                                            <div class="d-flex align-items-center">
+                                                <img src="uploads/<?=$conversation['p_p']?>" class="w-10 rounded-circle">
+                                                <h3 class="fs-xs m-2">
+                                                    <?=$conversation['name']?><br>
+                                    <small>
+                                        <?php 
+                                        echo lastChat($_SESSION['user_id'], $conversation['user_id'], $conn);
+                                        ?>
+                                    </small>
+                                                </h3>            	
+                                            </div>
+                                            <?php if (last_seen($conversation['last_seen']) == "Active") { ?>
+                                                <div title="online">
+                                                    <div class="online"></div>
+                                                </div>
+                                            <?php } ?>
+                                        </a>
+                                    </li>
+                                    <?php } ?>
+                                <?php }else{ ?>
+                                    <div class="alert alert-info text-center">
+                                    <i class="fa fa-comments d-block fs-big"></i>
+                                    No messages yet, Start the conversation
+                                    </div>
+                                <?php } ?>
+                                   
                             </ul>
                         </div>
                     </div>
@@ -38,7 +97,6 @@
                         <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #0d6efd;">
                             <h5 class="mb-0">Chat messages</h5>
                         </div>
-
                         <!--END END END-->
                         <div class="card-body" data-mdb-perfect-scrollbar="true">
                             <div class="d-flex justify-content-start">
@@ -79,24 +137,51 @@
         </div>
     </section>
 
-<script>  
-    $(document).ready(function(){
+<script>
+	$(document).ready(function(){
+      
+      // Search
+       $("#searchText").on("input", function(){
+       	 var searchText = $(this).val();
+         if(searchText == "") return;
+         $.post('../Controller/searchController.php', 
+         	     {
+         	     	key: searchText
+         	     },
+         	   function(data, status){
+                  $("#chatList").html(data);
+         	   });
+       });
 
-      fetch_user();
+       // Search using the button
+       $("#searchBtn").on("click", function(){
+       	 var searchText = $("#searchText").val();
+         if(searchText == "") return;
+         $.post('../Controller/searchController.php', 
+         	     {
+         	     	key: searchText
+         	     },
+         	   function(data, status){
+                  $("#chatList").html(data);
+         	   });
+       });
 
-      function fetch_user(){
-        $.ajax({
-          url:"../Controller/fetchUserController.php",
-          method:"POST",
-          success:function(data){
-            $('#user_details').html(data);
-          }
-        })
+
+      /** 
+      auto update last seen 
+      for logged in user
+      **/
+      let lastSeenUpdate = function(){
+      	$.get("../Controller/updateLastSeen.php");
       }
+      lastSeenUpdate();
+      /** 
+      auto update last seen 
+      every 10 sec
+      **/
+      setInterval(lastSeenUpdate, 10000);
 
-      
-      
-    });  
+    });
 </script>
 </body>
 </html>
