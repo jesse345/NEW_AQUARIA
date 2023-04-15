@@ -127,7 +127,7 @@
 
                                                 <div class="product-details-quantity">
                                                     <?php
-                                                    if ($prod['user_id'] != $_SESSION['id']) {
+                                                    if (isset($_SESSION['id']) && $prod['user_id'] != $_SESSION['id']) {
                                                     ?>
                                                         <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" name="quantity" required>
                                                     <?php } else { ?>
@@ -201,9 +201,8 @@
                                             <?php } ?>
                                         </form>
 
-                                        <?php if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                        <?php if (isset($_SESSION['id'])  && $prod['user_id'] != $_SESSION['id']) { ?>
                                             <a href="#" class="btn-product icon-font-awesome-flag text-danger">
-
                                                 <span class="text-danger">Report Product</span></a>
                                             </a>
                                         <?php } ?>
