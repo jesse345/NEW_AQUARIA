@@ -5,26 +5,18 @@ if(isset($_SESSION['id'])){
     include("../Model/dbPDO.php");
 
 
-    $user = getUser($_SESSION['id'], $conn);
-
-    $conversations = getConversation($user['user_id'], $conn);
-
-    if(isset($_POST['view_messages'])){
-         $chatWith = getUser($_GET['user'], $conn);
+    if(empty($_GET['user'])){
+        $user = getUser($_SESSION['id'], $conn);
+        $conversations = getConversation($user['user_id'], $conn);
+    }else{
+        $chatWith = getUser($_GET['user'], $conn);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
   	    }
         $chats = getChats($_SESSION['user_id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
-    }
-
-
-
-
-
-    
-    
+    } 
 }
 ?>
 <!DOCTYPE html>
@@ -100,8 +92,30 @@ if(isset($_SESSION['id'])){
                 </div>
                 <div class="col-md-8">
                     <div class="card" style="height:598px;">
-                        <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #0d6efd;">
-                            <h5 class="mb-0">Chat messages</h5>
+                        <div class="card-header" style="border-top: 4px solid #0d6efd;">
+                            <div class="d-flex align-items-center">
+                                <img src="../img/batman.png"
+                                    class="w-15 rounded-circle">
+
+                                <h3 class="display-4 fs-sm m-2">
+                                    <?php echo $chatWith['first_name'].' '.$chatWith['last_name'] ?> <br>
+                                    <div class="d-flex
+                                                align-items-center"
+                                            title="online">
+                                        <?php
+                                            if (last_seen($chatWith['last_seen']) == "Active") {
+                                        ?>
+                                            <div class="online"></div>
+                                            <small class="d-block p-1">Online</small>
+                                        <?php }else{ ?>
+                                            <small class="d-block p-1">
+                                                Last seen:
+                                                <?=last_seen($chatWith['last_seen'])?>
+                                            </small>
+                                        <?php } ?>
+                                    </div>
+                                </h3>
+                            </div>
                         </div>
                         <!--END END END-->
                         <div class="card-body" data-mdb-perfect-scrollbar="true">
