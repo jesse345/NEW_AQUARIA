@@ -594,7 +594,12 @@ session_start();
                   </p>
                 </div>
                 <!-- End .cta-text -->
-                <a href="#" class="btn btn-primary btn-round"><span>Subscribe Now! - $429.99</span><i class="icon-long-arrow-right"></i></a>
+
+                <?php if (isset($_SESSION['id']) && $isVerified['isSubscribe'] == "Yes") { ?>
+                  <a href="manageSubscription.php" class="btn btn-primary btn-round"><span>Manage Subscription</span><i class="icon-long-arrow-right"></i></a>
+                <?php } else { ?>
+                  <a href="subscription.php" class="btn btn-primary btn-round"><span>Subscribe Now!</span><i class="icon-long-arrow-right"></i></a>
+                <?php } ?>
               </div>
               <!-- End .cta-content -->
             </div>

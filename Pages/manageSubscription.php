@@ -160,7 +160,9 @@
                                                 </div>
 
                                             </div>
-                                        <?php } else { ?>
+                                        <?php } else {
+                                            expireSubscription($_SESSION['id']);
+                                        ?>
 
                                             <p class="text-danger">
                                                 You are not a subscribed user.
@@ -292,6 +294,8 @@
             secWord: " secs",
         });
     </script>
+
+
 
     <?php
     include("../Includes/loginModal.inc.php");
