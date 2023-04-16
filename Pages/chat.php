@@ -17,6 +17,8 @@ if(isset($_SESSION['id'])){
         $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
     } 
+}else{
+    header("Location: index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -40,6 +42,10 @@ if(isset($_SESSION['id'])){
             padding-right:0!important;
             padding-left:0!important;
         }
+        .alert-primary{
+            background-color:#0d6efd!important;
+            color:#fff!important
+        }
     </style>
 </head>
 <body>
@@ -56,7 +62,6 @@ if(isset($_SESSION['id'])){
                             <ul class="list-unstyled mb-0 overflow-auto" id="chatList">
                                 <?php if (!empty($conversations)) { ?>
                                     <?php 
-
                                     foreach ($conversations as $conversation){ ?>
                                     <li class="list-group-item">
                                         <a href="chat.php?user=<?=$conversation['username']?>" class="d-flex justify-content-between align-items-center p-2">
@@ -123,36 +128,47 @@ if(isset($_SESSION['id'])){
                         </div>
                         <!--END END END-->
                         
-                        <div class="card-body" data-mdb-perfect-scrollbar="true">
-                            <div class="d-flex justify-content-start">
-                                <p class="small mb-1">Timona Siera</p>
+                        <div class="card-body" data-mdb-perfect-scrollbar="true" id="chatBox">
+                            <?php
+                            if(!empty($chats)){
+                                foreach($chats as $chat){  
+                                    if($chat['from_id'] == $_SESSION['id']){ 
+                                        ?>  
+                                        <div class="d-flex justify-content-end">
+                                            <p class="small float-right"><?php echo $user['first_name'].' '.$user['last_name']?></p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                                            <div>
+                                                <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><? echo $chat['message']?> </p>
+                                            </div>
+                                            <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+                                        </div>
+                                    <?php }else{ ?>
+                                        <div class="d-flex justify-content-start">
+                                            <p class="small mb-1"><?php echo $chatWith['first_name'].' '.$chatWith['last_name']?></p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <div>
+                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;"><? echo $chat['message']?>
+                                            </div>
+                                        </div>
+                                    <?php }
+                                }
+                            }else{?>
+                            <div class="alert alert-primary text-center">
+                                <i class="fa fa-comments d-block fs-big"></i>
+                                No messages yet, Start the conversation
                             </div>
-                            <div class="d-flex flex-row justify-content-start">
-                                <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
-                                <div>
-                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">For what reason
-                                    would it
-                                    be advisable for me to think about business content?</p>
-                                </div>
-                            </div>
-                            <!--END END END-->
-
-                            <div class="d-flex justify-content-end">
-                                <p class="small float-right">Johny Bullock</p>
-                            </div>
-                            <div class="d-flex flex-row justify-content-end mb-4 pt-1">
-                                <div>
-                                    <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">Thank you for your believe in our supports</p>
-                                </div>
-                                <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
-                            </div>
-
+                        <?php } ?>
                         </div>
+                        <!--END END END-->
+
                         <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                            <form action="">
+                            <form method="POST" id="comment_form">
                                 <div class="input-group mb-0">
-                                    <input type="text" class="form-control" placeholder="Type message" style="width:638px;"/>
-                                    <button class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">Button</button>
+                                    <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
+                                    <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Button</button>
                                 </div>
                             </form>
                         </div>
@@ -163,48 +179,76 @@ if(isset($_SESSION['id'])){
     </section>
 
 <script>
+    var scrollDown = function(){
+        let chatBox = document.getElementById('chatBox');
+        chatBox.scrollTop = chatBox.scrollHeight;
+	}
+    scrollDown();
+
 	$(document).ready(function(){
-      
-      // Search
-       $("#searchText").on("input", function(){
-       	 var searchText = $(this).val();
-         if(searchText == "") return;
-         $.post('../Controller/searchController.php', 
-         	     {
-         	     	key: searchText
-         	     },
-         	   function(data, status){
-                  $("#chatList").html(data);
-         	   });
-       });
+        var to_id = <?php echo $_GET['user']?>
+        $("#comment_form").on('submit', function(){
+            message = $("#message").val();
+            if (message == "") return;
 
-       // Search using the button
-       $("#searchBtn").on("click", function(){
-       	 var searchText = $("#searchText").val();
-         if(searchText == "") return;
-         $.post('../Controller/searchController.php', 
-         	     {
-         	     	key: searchText
-         	     },
-         	   function(data, status){
-                  $("#chatList").html(data);
-         	   });
-       });
+            $.post("../Controller/insertController.php",
+                {
+                    message: message,
+                    to_id: to_id
+                },
+                function(data, status){
+                    $("#message").val("");
+                    $("#chatBox").append(data);
+                    scrollDown();
+                });
+        });
 
 
-      /** 
-      auto update last seen 
-      for logged in user
-      **/
-      let lastSeenUpdate = function(){
-      	$.get("../Controller/updateLastSeen.php");
-      }
-      lastSeenUpdate();
-      /** 
-      auto update last seen 
-      every 10 sec
-      **/
-      setInterval(lastSeenUpdate, 10000);
+
+
+
+        // Search
+        $("#searchText").on("input", function(){
+            var searchText = $(this).val();
+            if(searchText == "") return;
+            $.post('../Controller/searchController.php', 
+                    {
+                        key: searchText
+                    },
+                function(data, status){
+                    $("#chatList").html(data);
+                });
+            
+        });
+
+        // Search using the button
+        $("#searchBtn").on("click", function(){
+            var searchText = $("#searchText").val();
+            if(searchText == "") return;
+            $.post('../Controller/searchController.php', 
+                    {
+                        key: searchText
+                    },
+                function(data, status){
+                    $("#chatList").html(data);
+                });
+            
+        });
+
+
+        /** 
+         auto update last seen 
+        for logged in user
+        **/
+        let lastSeenUpdate = function(){
+            $.get("../Controller/updateLastSeen.php");
+        }
+        lastSeenUpdate();
+        /** 
+         auto update last seen 
+        every 10 sec
+        **/
+        setInterval(lastSeenUpdate, 10000);
 
     });
 </script>
