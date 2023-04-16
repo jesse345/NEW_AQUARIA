@@ -106,8 +106,8 @@
 			</div>
 
 			<div class="bottom-content">
-				<li class="">
-					<a href="#">
+				<<li class="">
+					<a href="logout.php">
 						<i class='bx bx-log-out icon'></i>
 						<span class="text nav-text">Logout</span>
 					</a>
@@ -129,15 +129,34 @@
 	</nav>
 
 	<table>
-		<h1 style="text-align:center;">POST</h1>
+		<h1 style="text-align:center;">BREEDER'S BLOG</h1>
 		<tr>
 			<th>ID</th>
-			<th>USERNAME</th>
+			<th>USER ID</th>
+			<th>DESCRIPTION</th>
+			<th>PURPOSE</th>
 			<th>IMAGE</th>
-			<th>POST</th>
-			<th>DATE POSTED</th>
-			<th>STATUS</th>
+			<th>DATE_CREATED</th>
 		</tr>
+		<?php
+		include("db.php");
+		$rec=getAllPost();
+			while($row = mysqli_fetch_assoc($rec)){
+				
+		?>
+
+		<tr>
+			<td><?php echo $row['id'];?></td>
+			<td><?php echo $row['user_id'];?></td>
+			<td><?php echo $row['description'];?></td>
+			<td><?php echo $row['purpose'];?></td>
+			<td><img src = "<?php echo $row['image'];?>" style="width: 190px;" ></td>
+			<td><?php echo $row['date_created'];?></td>
+			
+		</tr>
+		<?php
+		}
+	?>
 	</table>
 
 	<script src="script.js"></script>

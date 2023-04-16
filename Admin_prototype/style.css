@@ -274,20 +274,6 @@ body.dark .switch::before {
   }
 }
 
-table {
-  border-collapse: collapse;
-  width: 80%;
-  text-align: center;
-  margin-top: 2rem;
-  margin-left: 16rem;
-}
-
-tr,
-th,
-td {
-  border: 1px solid #c0c0c0;
-  padding: 10px;
-}
 
 /* .search {
   width: 100%;

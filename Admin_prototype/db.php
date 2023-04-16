@@ -97,6 +97,14 @@ function getrec($admin_id){
 		return false;
 }
 
+function getAllPost()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `breedersblog`");
+	disconnect();
+	return $query;
+}
 // function isApproved(){
 // 	global $conn;
 // 	connect();
