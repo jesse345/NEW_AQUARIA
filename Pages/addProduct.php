@@ -130,12 +130,13 @@
 
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
-                                            <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
                                             <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Select Shipping Type</option>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
                                                 <option value="Pickup">Pickup</option>
-                                                <option value="Long Rides">Long rides</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
                                             </select>
                                         </div>
 
@@ -252,6 +253,20 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Description<span class="text-danger">
@@ -319,6 +334,19 @@
                                             <input type="file" name="image[]" accept="image/*" required>
 
                                         </div>
+                                    </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
+
                                     </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
@@ -399,7 +427,19 @@
 
                                         </div>
                                     </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
 
+                                    </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Description<span class="text-danger">
@@ -480,7 +520,19 @@
 
                                         </div>
                                     </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
 
+                                    </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Description<span class="text-danger">
@@ -562,6 +614,19 @@
                                     </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Description<span class="text-danger">
                                                     *</span></label>
 
@@ -639,6 +704,19 @@
                                             <input type="file" name="image[]" accept="image/*" required>
 
                                         </div>
+                                    </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-12 flex-column d-flex">
+                                            <label class="form-control-label px-3">Transaction Type<span class="text-danger">
+                                                    *</span></label>
+                                            <select name="shipping_type" id="" required>
+                                                <option value="" disabled selected hidden>Select Transaction Type</option>
+                                                <option value="Pickup">Pickup</option>
+                                                <option value="Meet Up">Meet up</option>
+                                                <option value="Online Transaction">Online Transaction</option>
+                                            </select>
+                                        </div>
+
                                     </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">

@@ -318,7 +318,7 @@
                                             <?php echo $prod_det['benefits']; ?>
                                         </li>
                                     <?php } ?>
-                                    <li> <strong>Shipping Type: </strong>
+                                    <li> <strong>Transaction Type: </strong>
                                         <?php echo $prod_det['shipping_type'] ?>
                                     </li>
                                 </ul>
