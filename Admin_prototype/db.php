@@ -1,14 +1,14 @@
 <?php
 $hostname = "localhost";
-$username = "root";
-$password = "";
+$user = "root";
+$pass = "";
 $database = "eaquaria";
 $conn;
 
 function connect()
 {
-	global $hostname, $username, $password, $database, $conn;
-	$conn = mysqli_connect($hostname, $username, $password, $database) or die("Connection Error");
+	global $hostname, $user, $pass, $database, $conn;
+	$conn = mysqli_connect($hostname, $user, $pass, $database) or die("Connection Error");
 }
 
 function disconnect()
@@ -70,12 +70,33 @@ function getAllManual(){
 	return $query;
 }
 
-function addFishManual($manual_id, $admin_id, $manual_title, $manual_description){
+function addFishManual($manual_id, $admin_id, $title, $description){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "INSERT INTO `fish_manual` VALUES('$manual_id', '$admin_id', '$manual_title', '$manual_description')");
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` VALUES('$manual_id', '$admin_id', '$title', '$description')");
 	disconnect();
 }
+
+function userlogin($username, $password){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, " SELECT * FROM `admin` WHERE `username` = '$username' AND `password` = '$password'");
+	disconnect();
+	return $query;
+}
+
+function getrec($admin_id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `admin` WHERE `admin_id` = $admin_id");
+	//$rows = mysqli_fetch_all($query);
+	disconnect();
+	if (mysqli_num_rows($query) > 0)
+		return $query;
+	else 
+		return false;
+}
+
 // function isApproved(){
 // 	global $conn;
 // 	connect();

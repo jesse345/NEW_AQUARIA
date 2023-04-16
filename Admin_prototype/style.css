@@ -68,7 +68,7 @@ body.dark {
   top: 0;
   left: 0;
   height: 100%;
-  width: 250px;
+  width: 269px;
   padding: 10px 14px;
   background: var(--sidebar-color);
   transition: var(--tran-05);
@@ -153,19 +153,6 @@ header .image-text .header-text {
   border-radius: 50%;
   color: var(--sidebar-color);
   font-size: 22px;
-}
-.sidebar search-box {
-  background: var(--primary-color-light);
-}
-
-.search-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  background: var(--primary-color-light);
-  border-radius: 6px;
 }
 
 .sidebar .menu-bar {
@@ -294,6 +281,7 @@ table {
   margin-top: 2rem;
   margin-left: 16rem;
 }
+
 tr,
 th,
 td {
@@ -301,9 +289,12 @@ td {
   padding: 10px;
 }
 
-.search {
+/* .search {
   width: 100%;
   text-align: center;
   margin-top: 2rem;
   margin-left: 16rem;
-}
+} */
+
+
+

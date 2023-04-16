@@ -45,7 +45,8 @@
 					</li> -->
 					<li class="nav-link">
 						<a href="post.php">
-							<i class='bx bx-bar-chart-alt-2 icon'></i>
+						<!-- bar-chart-alt-2 -->
+							<i class='bx bx-repost icon'></i>
 							<span class="text nav-text">Manage Post</span>
 						</a>
 					</li>
@@ -57,7 +58,7 @@
 					</li>
 					<li class="nav-link">
 						<a href="report.php">
-							<i class='bx bxl-product-hunt icon'></i>
+							<i class='bx bxs-report icon'></i>
 							<span class="text nav-text">Manage Reports</span>
 						</a>
 					</li>
@@ -69,19 +70,19 @@
 					</li>
 					<li class="nav-link">
 						<a href="shipping_info.php">
-							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users Shipping Info</span>
+							<i class='bx bx-info-square icon'></i>
+							<span class="text nav-text">Manage Shipping Info</span>
 						</a>
 					</li>
 					<li class="nav-link">
 						<a href="fish_manual.php">
-							<i class='bx bx-user icon'></i>
+							<i class='bx bx-book-content icon'></i>
 							<span class="text nav-text">Fish Manual</span>
 						</a>
 					</li>
 					<li class="nav-link">
 						<a href="subscription.php">
-							<i class='bx bx-user icon'></i>
+							<i class='bx bx-wallet icon'></i>
 							<span class="text nav-text">Subscription</span>
 						</a>
 					</li>
@@ -90,7 +91,7 @@
 
 			<div class="bottom-content">
 				<li class="">
-					<a href="#">
+					<a href="logout.php">
 						<i class='bx bx-log-out icon'></i>
 						<span class="text nav-text">Logout</span>
 					</a>
@@ -140,10 +141,10 @@
 
 		</div>
 	</section>
-	<section class="book" id="book">
+	<!-- <section class="book" id="book">
 		<div class="book-content">
 			<div class="box">
-				<!-- <img src="user.png"> -->
+
 				<i class='bx bx-user icon'></i>
 				<h3>Successful<br>Transaction</h3>
 				<a href="" class="btn">More Info</a>
@@ -151,7 +152,7 @@
 			</div>
 
 			<div class="box">
-				<!-- <img src="user.png"> -->
+
 				<i class='bx bx-user icon'></i>
 				<h3>REVENUES</h3>
 				<a href="" class="btn">More Info</a>
@@ -159,7 +160,7 @@
 			</div>
 
 		</div>
-	</section>
+	</section> -->
 
 	<script src="script.js"></script>
 </body>

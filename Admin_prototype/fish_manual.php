@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <?php
 	include("db.php");
+	session_start();
+	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
+		header("location: admin_login.php");
+	}
 	$rec = getAllManual();
+
 ?>
-<html lang="en">
+
+<?php
+	$manual_id;
+	$admin_id;
+	$title;    
+	$description;
+
+	if(isset($_POST['add']))
+	{	 
+		$admin_id  = $_POST['admin_id'];
+		if(!getrec($admin_id)){
+			$manual_id  = $_POST['manual_id'];
+			$title = $_POST['title'];
+			$description = $_POST['description'];
+			
+			$admin_id = $_SESSION["admin_id"];
+			addFishManual($manual_id, $admin_id, $title, $description);
+			echo "<p>ADDED SUCCESSFULLY</p>";
+			
+		}else{
+			echo "<p>DATA EXISTED</p>";
+		}
+	}
+?>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ADMIN OF E-AQUARIA</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<title> E AQUARIA</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
 
-body {
-        color: #566787;
-		background: #f5f5f5;
-		font-family: 'Varela Round', sans-serif;
-		font-size: 13px;
+<style>
+	body{
+		background-color:#e4e9f7;
 	}
 	.table-wrapper {
         background: #fff;
@@ -30,6 +55,7 @@ body {
 		border-radius:1px;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.247);
     }
+	
 	.table-title {        
 		padding-bottom: 15px;
 	    background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
@@ -39,6 +65,7 @@ body {
 		border-radius: 1px 1px 0 0;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.247);
     }
+	
     .table-title h2 {
 		margin: 5px 0 0;
 		font-size: 24px;
@@ -71,6 +98,7 @@ body {
         border-color: #e9e9e9;
 		padding: 12px 15px;
 		vertical-align: middle;
+		
     }
 	table.table tr th:first-child {
 		width: 60px;
@@ -150,10 +178,107 @@ body {
 	}	
 	.modal form label {
 		font-weight: normal;
-	}	
-</style>
+	}
+
+	</style>
+	
+
 </head>
 <body>
+	
+	<nav class="sidebar close">
+		<header>
+			<div class="image-text">
+				<span class="image">
+					<img src="batman.png" alt="batman">
+				</span>
+
+				<div class="text header-text">
+					<span class="name">E-AQUARIA</span>
+					<span class="profession">Ornamental Fish
+				</div>
+			</div>
+
+			<i class='bx bx-chevron-right toggle'></i>
+		</header>
+
+		<div class="menu-bar">
+		<div class="menu">
+				<ul class="menu-links">
+					<li class="nav-link">
+						<a href="index.php">
+							<i class='bx bx-home-alt icon'></i>
+							<span class="text nav-text">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="post.php">
+						<!-- bar-chart-alt-2 -->
+							<i class='bx bx-repost icon'></i>
+							<span class="text nav-text">Manage Post</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="product.php">
+							<i class='bx bxl-product-hunt icon'></i>
+							<span class="text nav-text">Manage Products</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="report.php">
+							<i class='bx bxs-report icon'></i>
+							<span class="text nav-text">Manage Reports</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="users.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Manage Users</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="shipping_info.php">
+							<i class='bx bx-info-square icon'></i>
+							<span class="text nav-text">Manage Shipping Info</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-book-content icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="subscription.php">
+							<i class='bx bx-wallet icon'></i>
+							<span class="text nav-text">Subscription</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="bottom-content">
+				<li class="">
+					<a href="#">
+						<i class='bx bx-log-out icon'></i>
+						<span class="text nav-text">Logout</span>
+					</a>
+				</li>
+
+				<li class="mode">
+					<div class="moon-sun">
+						<i class='bx bx-moon icon moon'></i>
+						<i class='bx bx-sun icon sun'></i>
+					</div>
+					<span class="mode-text text">Dark Mode</span>
+
+					<div class="toggle-switch">
+							<span class="switch"></span>
+					</div>
+				</li>
+			</div>
+		</div>
+	</nav>
 	<br>
 	<br>
 	<!-- <h3 class="text-center text-success" id="message"><?php echo  $success; ?></h3> -->
@@ -172,14 +297,14 @@ body {
                 </div>
 			</div>
 
-            <table class="table table-striped table-hover">
+            <!-- <table class="table table-striped table-hover"> -->
+			<table class="table table-striped table-hover">
                 <thead>
                     <tr>
+						<th>Manual ID</th>
                         <th>Admin ID</th>
-                        <th>Manual ID</th>
 						<th>Title</th>
                         <th>Description</th>
-                        <!-- <th>Image</th> -->
 						<th>Actions</th>
                     </tr>
                 </thead>
@@ -190,22 +315,22 @@ body {
 					<tr>
 						<td><?php echo $row['manual_id'];?></td>
 						<td><?php echo $row['admin_id'];?></td>
-						<td><?php echo $row['manual_title'];?></td>
-						<td><?php echo $row['manual_description'];?></td>
+						<td><?php echo $row['title'];?></td>
+						<td><?php echo $row['description'];?></td>
 						<td>
 							<a href="#editEManualModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
                         <?php
-					}
-				?>
+							}
+						?>
 					</tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-	<!-- Add Modal HTML -->
+		<!-- Add Modal HTML -->
 
 	<div id="addManualModal" class="modal fade">
 		<div class="modal-dialog">
@@ -216,27 +341,23 @@ body {
 						<h4 class="modal-title">Add Fish Manual</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">	
+						<div class="form-group">
+							<label>Fish Manual ID</label>
+							<input type="text" class="form-control" name="manual_id" placeholder="Enter Manual ID" required>
+						</div>				
 						<div class="form-group">
 							<label>Admin ID</label>
 							<input type="text" class="form-control" name="admin_id" placeholder="Enter Admin ID" required>
 						</div>
 						<div class="form-group">
-							<label>Fish Manual ID</label>
-							<input type="text" class="form-control" name="manual_id" placeholder="Enter Manual ID" required>
-						</div>
-						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" name="manual_title" placeholder="Enter Title" required>
+							<input type="text" class="form-control" name="title" placeholder="Enter Title" required>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea class="form-control" name="manual_description" placeholder="Enter Description" required></textarea>
+							<textarea class="form-control" name="description" placeholder="Enter Description" required></textarea>
 						</div>
-						<!-- <div class="form-group">
-							<label>Image</label>
-							<input class="form-control" type="file" name="img" id="img" required>
-						</div>					 -->
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -246,67 +367,9 @@ body {
 
 			</div>
 		</div>
+		
 	</div>
-
-    <?php
-        $manual_id;
-        $admin_id;
-        $manual_title;    
-        $manual_description;
-
-        if(isset($_POST['add']))
-        {	 
-            $manual_id  = $_POST['manual_id'];
-            $admin_id = $_POST['admin_id'];
-            $manual_title   = $_POST['manual_title'];
-            $manual_description     = $_POST['manual_description'];
-            // $manual_img     = $_POST['manual_img'];
-            
-            addFishManual($manual_id, $admin_id, $manual_title, $manual_description);
-        }
-    ?>
-	<!-- Edit Modal HTML -->
-	<div id="editManualModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Fish Manual</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-                        <div class="form-group">
-							<label>Admin ID</label>
-							<input type="text" class="form-control" name="admin_id" disabled>
-						</div>
-						<div class="form-group">
-							<label>Fish Manual ID</label>
-							<input type="email" class="form-control" name="manual_id" disabled>
-						</div>					
-						<div class="form-group">
-							<label>Title</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Description</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<!-- <div class="form-group">
-							<label>Image</label>
-							<input class="form-control" type="file" name="img" id="img" required>
-						</div>					 -->
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-
-    <script src="javascript.js"></script>
-
+	<script src="script.js"></script>
+	<script src="javascript.js"></script>
 </body>
-</html>                                		                            
+</html>
