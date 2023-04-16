@@ -8,6 +8,14 @@
 
 <body>
 
+    <?php session_start();
+    if (!isset($_SESSION['id'])) {
+        echo "<script>
+        alert('Invalid Request. You need to login first');
+        window.location.href = '../'
+    </script>";
+    }
+    ?>
     <div class="demo">
         <div class="container">
             <div class="text-center">

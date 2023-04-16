@@ -75,6 +75,10 @@
                                     </li>
 
                                     <li class="nav-item">
+                                        <a class="nav-link" href="manageSubscription.php">Manage Subscription</a>
+                                    </li>
+
+                                    <li class="nav-item">
                                         <a class="nav-link" href="#">Sign Out</a>
                                     </li>
                                 </ul>

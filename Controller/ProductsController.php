@@ -157,11 +157,6 @@ if (!empty($_SESSION['id'])) {
         } else {
             header("Location: ../Pages/products.php?search=$search");
         }
-    } else if (isset($_POST['review'])) {
-        $fld = array('user_id', 'product_id', 'rate', 'feedback', 'date_created');
-        $val = array($_SESSION['id'], $_GET['id'], $_POST['rating'], $_POST['feedback'], $date);
-        insertProductReviews('feedbacks', $fld, $val);
-        header("Location: " . $_SERVER['HTTP_REFERER']);
     } else {
         header("Location: ../");
     }

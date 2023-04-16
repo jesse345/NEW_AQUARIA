@@ -80,9 +80,9 @@ session_start();
                 <div class="header-menu">
                   <ul>
                     <li><a href="myAccount.php">My Account</a></li>
-                    <li><a href="#">Manage My Products</a></li>
-                    <li><a href="#">Manage Orders</a></li>
-                    <li><a href="#">Manage My Purchase</a></li>
+                    <li><a href="manageProducts.php">Manage My Products</a></li>
+                    <li><a href="manageOrders.php">Manage Orders</a></li>
+                    <li><a href="myPurchase.php">Manage My Purchase</a></li>
                     <li>
                       <a href="../Includes/logout.php">Logout</a>
                     </li>
@@ -126,30 +126,30 @@ session_start();
                     <div class="row no-gutters">
                       <div class="col-md-6">
                         <div class="menu-col">
-                          <div class="menu-title">Product Details</div>
-                          <!-- End .menu-title -->
+
                           <ul>
-                            <li><a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">Default</a></li>
+
                             <li>
-                              <a href="product-centered.html">Centered</a>
+                              <a href="product-centered.html">Aquarium</a>
+                            </li>
+
+                            <li>
+                              <a href="product-gallery.html">Fishes</a>
                             </li>
                             <li>
-                              <a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a>
+                              <a href="product-sticky.html">Equipment & Accessories</a>
                             </li>
                             <li>
-                              <a href="product-gallery.html">Gallery</a>
+                              <a href="product-sidebar.html">Probiotics</a>
                             </li>
                             <li>
-                              <a href="product-sticky.html">Sticky Info</a>
+                              <a href="product-fullwidth.html">Vitamins</a>
                             </li>
                             <li>
-                              <a href="product-sidebar.html">Boxed With Sidebar</a>
+                              <a href="product-masonry.html">Color Enhancer</a>
                             </li>
                             <li>
-                              <a href="product-fullwidth.html">Full Width</a>
-                            </li>
-                            <li>
-                              <a href="product-masonry.html">Masonry Sticky Info</a>
+                              <a href="product-masonry.html">Medications</a>
                             </li>
                           </ul>
                         </div>
@@ -160,15 +160,7 @@ session_start();
                       <div class="col-md-6">
                         <div class="banner banner-overlay">
                           <a href="category.html">
-                            <img src="../assets/images/menu/banner-2.jpg" alt="Banner" />
-
-                            <div class="banner-content banner-content-bottom">
-                              <div class="banner-title text-white">
-                                New Trends<br /><span><strong>spring 2019</strong></span>
-                              </div>
-                              <!-- End .banner-title -->
-                            </div>
-                            <!-- End .banner-content -->
+                            <img src="../img/cat.jpg" alt="Banner" />
                           </a>
                         </div>
                         <!-- End .banner -->
@@ -179,9 +171,14 @@ session_start();
                   </div>
                   <!-- End .megamenu megamenu-sm -->
                 </li>
+
+
                 <li>
+
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
+
+
               </ul>
               <!-- End .menu -->
             </nav>
@@ -231,83 +228,14 @@ session_start();
                 } ?>
               </a>
 
-              <?php
-              if (isset($_SESSION['id'])) {
-              ?>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <div class="dropdown-cart-products">
-                    <?php
-                    $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
-
-                    while ($carts = mysqli_fetch_assoc($cart)) {
-                      $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
-                      if ($products['isDelete'] == "No") {
-                        $count++;
-                      }
-                    }
-
-
-                    if ($count > 0) {
-                      $i = 0;
-                      while ($products = mysqli_fetch_assoc($cart)) {
-
-                        if ($i == 2) {
-                          break;
-                        }
-                        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products['product_id']))
-                    ?>
-                        <div class="product">
-                          <div class="product-cart-details">
-                            <h4 class="product-title">
-                              <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
-                                <?php echo $product['product_name'] ?>
-                                (
-                                <?php echo $product['quantity'] ?>
-                                )
-                              </a>
-                            </h4>
-
-                            <span class="cart-product-info">
-                              Total: ₱
-                              <?php echo $products['total'] ?>
-                            </span>
-                          </div>
-                          <!-- End .product-cart-details -->
-
-                          <figure class="product-image-container">
-                            <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="product-image">
-                              <img src="<?php echo $product['product_img'] ?>" alt="product" />
-                            </a>
-                          </figure>
-                          <form action="../Controller/CartsController.php" method="POST">
-                            <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>">
-                            <button class="btn-remove" title="Remove Product" name="removeCart">
-                              <i class="icon-close"></i>
-                            </button>
-                          </form>
-                        </div>
-
-
-                      <?php $i++;
-                      } ?>
-                  </div>
-                  <div class="dropdown-cart-action mt-1">
-                    <a href="cart.php" class="btn btn-primary">View Cart</a>
-
-                  </div>
-
-
-                <?php } else { ?>
-                  <div class="dropdown">
-                    Empty Record...
-                  </div>
-                <?php } ?>
-                </div>
-              <?php } ?>
-              <!-- End .dropdown-menu -->
-
             </div>
+
+
+
+
             <!-- End .cart-dropdown -->
+
+
           </div>
           <!-- End .header-right -->
         </div>
@@ -417,6 +345,12 @@ session_start();
 
                   <div class="product product-7 text-center">
                     <figure class="product-media">
+
+                      <?php
+                      if (isset($_SESSION['id']) && $product["user_id"] == $_SESSION['id']) {
+                      ?>
+                        <span class="product-label label-new">Owned</span>
+                      <?php } ?>
                       <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                         <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px">
                       </a>
@@ -434,11 +368,14 @@ session_start();
                               <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                 <span>Remove From Wishlist</span>
                               </button>
-                            <?php } else { ?>
-                              <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
-                                <span>Add To Wishlist</span>
-                              </button>
-                            <?php } ?>
+                              <?php } else {
+                              if ($product["user_id"] != $_SESSION['id']) { ?>
+
+                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                  <span>Add To Wishlist</span>
+                                </button>
+                            <?php }
+                            } ?>
                           <?php } else { ?>
                             <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                               <span>Add To Wishlist</span>
@@ -465,11 +402,18 @@ session_start();
                                 <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                   <span>Remove From Cart</span>
                                 </button>
-                              <?php } else { ?>
-                                <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
-                                  <span>Add To Cart</span>
-                                </button>
-                              <?php } ?>
+                                <?php } else {
+                                if ($product["user_id"] == $_SESSION['id']) {
+                                ?>
+                                  <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                    <span>Manage Product</span>
+                                  </a>
+                                <?php } else { ?>
+                                  <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                    <span>Add to Cart</span>
+                                  </button>
+                              <?php  }
+                              } ?>
                             <?php } else { ?>
                               <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
                                 <span>Add To Cart</span>
@@ -650,7 +594,12 @@ session_start();
                   </p>
                 </div>
                 <!-- End .cta-text -->
-                <a href="#" class="btn btn-primary btn-round"><span>Subscribe Now! - $429.99</span><i class="icon-long-arrow-right"></i></a>
+
+                <?php if (isset($_SESSION['id']) && $isVerified['isSubscribe'] == "Yes") { ?>
+                  <a href="manageSubscription.php" class="btn btn-primary btn-round"><span>Manage Subscription</span><i class="icon-long-arrow-right"></i></a>
+                <?php } else { ?>
+                  <a href="subscription.php" class="btn btn-primary btn-round"><span>Subscribe Now!</span><i class="icon-long-arrow-right"></i></a>
+                <?php } ?>
               </div>
               <!-- End .cta-content -->
             </div>
@@ -704,6 +653,13 @@ session_start();
                     <div class="col-6 col-md-4 col-lg-3">
                       <div class="product product-7 text-center">
                         <figure class="product-media">
+
+                          <?php
+                          if (isset($_SESSION['id']) && $prod["user_id"] == $_SESSION['id']) {
+                          ?>
+                            <span class="product-label label-new">Owned</span>
+                          <?php } ?>
+
                           <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                             <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px;" />
 
@@ -723,11 +679,15 @@ session_start();
                                   <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                     <span>Remove From Wishlist</span>
                                   </button>
-                                <?php } else { ?>
-                                  <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
-                                    <span>Add To Wishlist</span>
-                                  </button>
-                                <?php } ?>
+                                  <?php } else {
+
+                                  if ($prod["user_id"] != $_SESSION['id']) { ?>
+
+                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                      <span>Add To Wishlist</span>
+                                    </button>
+                                <?php }
+                                } ?>
                               <?php } else { ?>
                                 <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                                   <span>Add To Wishlist</span>
@@ -756,12 +716,20 @@ session_start();
                                     <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                       <span>Remove From Cart</span>
                                     </button>
-                                  <?php } else { ?>
-                                    <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
-                                      <span>Add To Cart</span>
-                                    </button>
-                                  <?php } ?>
-                                <?php } else { ?>
+                                    <?php } else {
+                                    if ($prod["user_id"] != $_SESSION['id']) { ?>
+
+
+                                      <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                        <span>Add To Cart</span>
+                                      </button>
+                                    <?php } else { ?>
+                                      <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                        <span>Manage Product</span>
+                                      </a>
+                                  <?php }
+                                  }
+                                } else { ?>
                                   <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
                                     <span>Add To Cart</span>
                                   </button>
@@ -861,6 +829,11 @@ session_start();
                       <div class="col-6 col-md-4 col-lg-3">
                         <div class="product product-7 text-center">
                           <figure class="product-media">
+                            <?php
+                            if (isset($_SESSION['id']) && $prod["user_id"] == $_SESSION['id']) {
+                            ?>
+                              <span class="product-label label-new">Owned</span>
+                            <?php } ?>
                             <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                               <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px;" />
 
@@ -880,11 +853,13 @@ session_start();
                                     <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                       <span>Remove From Wishlist</span>
                                     </button>
-                                  <?php } else { ?>
-                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
-                                      <span>Add To Wishlist</span>
-                                    </button>
-                                  <?php } ?>
+                                    <?php } else {
+                                    if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                      <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                        <span>Add To Wishlist</span>
+                                      </button>
+                                  <?php }
+                                  } ?>
                                 <?php } else { ?>
                                   <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                                     <span>Add To Wishlist</span>
@@ -913,12 +888,18 @@ session_start();
                                       <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                         <span>Remove From Cart</span>
                                       </button>
-                                    <?php } else { ?>
-                                      <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
-                                        <span>Add To Cart</span>
-                                      </button>
-                                    <?php } ?>
-                                  <?php } else { ?>
+                                      <?php } else {
+                                      if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                        <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Add To Cart</span>
+                                        </button>
+                                      <?php } else { ?>
+                                        <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Manage Product</span>
+                                        </a>
+                                    <?php }
+                                    }
+                                  } else { ?>
                                     <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
                                       <span>Add To Cart</span>
                                     </button>
@@ -1016,6 +997,11 @@ session_start();
                       <div class="col-6 col-md-4 col-lg-3">
                         <div class="product product-7 text-center">
                           <figure class="product-media">
+                            <?php
+                            if (isset($_SESSION['id']) && $prod["user_id"] == $_SESSION['id']) {
+                            ?>
+                              <span class="product-label label-new">Owned</span>
+                            <?php } ?>
                             <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                               <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px;" />
 
@@ -1035,11 +1021,14 @@ session_start();
                                     <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                       <span>Remove From Wishlist</span>
                                     </button>
-                                  <?php } else { ?>
-                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
-                                      <span>Add To Wishlist</span>
-                                    </button>
-                                  <?php } ?>
+                                    <?php } else {
+                                    if ($prod['user_id'] != $_SESSION['id']) { ?>
+
+                                      <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                        <span>Add To Wishlist</span>
+                                      </button>
+                                  <?php }
+                                  } ?>
                                 <?php } else { ?>
                                   <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                                     <span>Add To Wishlist</span>
@@ -1068,12 +1057,18 @@ session_start();
                                       <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                         <span>Remove From Cart</span>
                                       </button>
-                                    <?php } else { ?>
-                                      <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
-                                        <span>Add To Cart</span>
-                                      </button>
-                                    <?php } ?>
-                                  <?php } else { ?>
+                                      <?php } else {
+                                      if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                        <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Add To Cart</span>
+                                        </button>
+                                      <?php } else { ?>
+                                        <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Manage Product</span>
+                                        </a>
+                                    <?php }
+                                    }
+                                  } else { ?>
                                     <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
                                       <span>Add To Cart</span>
                                     </button>
@@ -1170,6 +1165,11 @@ session_start();
                       <div class="col-6 col-md-4 col-lg-3">
                         <div class="product product-7 text-center">
                           <figure class="product-media">
+                            <?php
+                            if (isset($_SESSION['id']) && $prod["user_id"] == $_SESSION['id']) {
+                            ?>
+                              <span class="product-label label-new">Owned</span>
+                            <?php } ?>
                             <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                               <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 300px;" />
 
@@ -1189,11 +1189,14 @@ session_start();
                                     <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="removeWishlist">
                                       <span>Remove From Wishlist</span>
                                     </button>
-                                  <?php } else { ?>
-                                    <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
-                                      <span>Add To Wishlist</span>
-                                    </button>
-                                  <?php } ?>
+                                    <?php } else {
+                                    if ($prod['user_id'] != $_SESSION['id']) { ?>
+
+                                      <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
+                                        <span>Add To Wishlist</span>
+                                      </button>
+                                  <?php }
+                                  } ?>
                                 <?php } else { ?>
                                   <button type="submit" class="btn-product-icon btn-wishlist btn-expandable border-0" title="Add to wishlist" name="addToWishlist">
                                     <span>Add To Wishlist</span>
@@ -1222,12 +1225,18 @@ session_start();
                                       <button type="submit" class="btn-product btn-cart border-0" name="removeCart" id="removeCart">
                                         <span>Remove From Cart</span>
                                       </button>
-                                    <?php } else { ?>
-                                      <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
-                                        <span>Add To Cart</span>
-                                      </button>
-                                    <?php } ?>
-                                  <?php } else { ?>
+                                      <?php } else {
+                                      if ($prod['user_id'] != $_SESSION['id']) { ?>
+                                        <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Add To Cart</span>
+                                        </button>
+                                      <?php } else { ?>
+                                        <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                          <span>Manage Product</span>
+                                        </a>
+                                    <?php }
+                                    }
+                                  } else { ?>
                                     <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
                                       <span>Add To Cart</span>
                                     </button>

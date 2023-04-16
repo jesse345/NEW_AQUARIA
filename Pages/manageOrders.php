@@ -117,9 +117,10 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+
                                                                 <?php
                                                                 $orders = viewOrderedProduct('orders', 'seller', $_SESSION['id']);
-                                                                if (mysqli_fetch_assoc($orders) > 0) {
+                                                                if (mysqli_num_rows($orders) > 0) {
                                                                     while ($order = mysqli_fetch_assoc($orders)) {
 
                                                                         $buyer = mysqli_fetch_assoc(getUser('user_details', 'user_id', $order['user_id']));

@@ -24,8 +24,8 @@ if (isset($_POST['subscribe'])) {
 
     createSubscription(
         'subscription',
-        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img'),
-        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $receipt_img)
+        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number'),
+        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref)
     );
 } else if (isset($_POST['subscription_approve'])) {
 

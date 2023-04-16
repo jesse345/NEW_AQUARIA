@@ -22,6 +22,17 @@ function getAllSubscription($table_name)
 }
 
 
+
+function getUserSubscription($user_id)
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM `subscription` WHERE `user_id` = $user_id");
+    disconnect();
+    return $query;
+}
+
+
 function approveSubscription($subsciption_id, $date_started, $date_end, $user_id)
 {
     global $conn;
@@ -38,5 +49,14 @@ function approveSubscription($subsciption_id, $date_started, $date_end, $user_id
     );
 
 
+    disconnect();
+}
+
+
+function expireSubscription($user_id)
+{
+    global $conn;
+    connect();
+    $sql = mysqli_query($conn, "UPDATE `users` SET `isSubscribe` = 'No' WHERE `id` == $user_id");
     disconnect();
 }

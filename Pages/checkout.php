@@ -34,76 +34,77 @@
             <div class="page-content">
                 <div class="checkout">
                     <div class="container">
+                        <form action="../Controller/OrdersController.php" method="POST">
+                            <div class="row">
+                                <aside class="col-lg-7">
+                                    <div class="summary">
+                                        <h3 class="summary-title">Shipping Info</h3>
 
-                        <div class="row">
-                            <aside class="col-lg-7">
-                                <div class="summary">
-                                    <h3 class="summary-title">Shipping Info</h3>
+                                        <label>Full Name *</label>
+                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_name'] ?>" required disabled>
 
-                                    <label>Full Name *</label>
-                                    <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_name'] ?>" required disabled>
+                                        <label>Contact Number *</label>
+                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_contact'] ?>" required disabled>
 
-                                    <label>Contact Number *</label>
-                                    <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_contact'] ?>" required disabled>
+                                        <label>Shipping Address *</label>
+                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_address'] ?>" required disabled>
 
-                                    <label>Shipping Address *</label>
-                                    <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_address'] ?>" required disabled>
-
-                                    <button class="btn btn-outline-primary-2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                        <span>Edit Shipping Info</span>
-                                        <i class="icon-long-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </aside>
+                                        <button class="btn btn-outline-primary-2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <span>Edit Shipping Info</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </aside>
 
 
-                            <aside class="col-lg-5">
-                                <div class="summary">
-                                    <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+                                <aside class="col-lg-5">
+                                    <div class="summary">
+                                        <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
 
-                                    <table class="table table-summary">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Qty</th>
-                                                <th>Total</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <?php
-                                            $carts = getCart('carts', 'user_id', $_SESSION['id'], "No");
-                                            $total = 0;
-                                            while ($cart = mysqli_fetch_assoc($carts)) {
-                                                $prod_det = mysqli_fetch_assoc(
-                                                    getProduct('product_details', 'product_id', $cart['product_id'])
-                                                );
-                                                $total += $cart['total'];
-                                            ?>
+                                        <table class="table table-summary">
+                                            <thead>
                                                 <tr>
-                                                    <td><a href="#"><?php echo $prod_det['product_name'] ?></a></td>
-
-                                                    <td><?php echo number_format($cart['quantity']) ?></td>
-                                                    <td>₱ <?php echo number_format($cart['total'], 2) ?></td>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Total</th>
                                                 </tr>
-                                            <?php } ?>
+                                            </thead>
 
-                                            <tr class="summary-total">
-                                                <td>Total:</td>
-                                                <td></td>
-                                                <td>₱ <?php echo number_format($total, 2) ?></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                            <tbody>
+                                                <?php
+                                                $carts = getCart('carts', 'user_id', $_SESSION['id'], "No");
+                                                $total = 0;
+                                                while ($cart = mysqli_fetch_assoc($carts)) {
+                                                    $prod_det = mysqli_fetch_assoc(
+                                                        getProduct('product_details', 'product_id', $cart['product_id'])
+                                                    );
+                                                    $total += $cart['total'];
+                                                ?>
+                                                    <tr>
+                                                        <td><a href="#"><?php echo $prod_det['product_name'] ?></a></td>
+
+                                                        <td><?php echo number_format($cart['quantity']) ?></td>
+                                                        <td>₱ <?php echo number_format($cart['total'], 2) ?></td>
+                                                    </tr>
+                                                <?php } ?>
+
+                                                <tr class="summary-total">
+                                                    <td>Total:</td>
+                                                    <td></td>
+                                                    <td>₱ <?php echo number_format($total, 2) ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
 
-                                    <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Place Order</span>
-                                        <span class="btn-hover-text">Place Order</span>
-                                    </button>
-                                </div>
-                            </aside>
-                        </div>
+                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block" name="order">
+                                            <span class="btn-text">Place Order</span>
+                                            <span class="btn-hover-text">Place Order</span>
+                                        </button>
+                                    </div>
+                                </aside>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

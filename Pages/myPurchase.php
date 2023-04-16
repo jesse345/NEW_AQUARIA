@@ -7,6 +7,8 @@
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <link rel="stylesheet" href="../css/manage.css">
+    <link rel="stylesheet" href="../css/feedback.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,6 +77,10 @@
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="shippingAddress.php">Shipping Info</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="manageSubscription.php">Manage Subscription</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -197,24 +203,128 @@
                                                                                     <button class="btn-success">
                                                                                         <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
                                                                                             View Receipt</a>
+
+
                                                                                     </button>
+
                                                                                 </form>
                                                                             <?php } else if ($order['status'] == 'received') { ?>
                                                                                 <button class="btn-success">
                                                                                     <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
                                                                                         View Receipt</a>
                                                                                 </button>
+                                                                                <br><br>
+
+
+                                                                                <a href="#review" data-toggle="modal" data-target="#exampleModal<?php echo $order['id'] ?>">
+                                                                                    <?php
+                                                                                    $check = mysqli_fetch_assoc(userProductReviews($_SESSION['id'], $order['product_id']));
+
+                                                                                    echo $check > 0 ? "View your review" : " Leave Review";
+                                                                                    ?>
+                                                                                </a>
+
+
+
                                                                             <?php } else if ($order['status'] == 'paid') { ?>
                                                                                 <button class="btn-success">
                                                                                     <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
                                                                                         View Receipt</a>
                                                                                 </button>
+
+
+
+
                                                                             <?php } else if ($order['status'] == 'Cancelled') {
                                                                                 echo "<p class='bg-danger rounded text-white'>Cancelled</p>";
                                                                             }
                                                                             ?>
                                                                         </td>
                                                                     </tr>
+
+                                                                    <div class="modal fade" id="exampleModal<?php echo $order['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                                            <div class="modal-content p-5">
+                                                                                <div class="modal-header">
+                                                                                    <?php
+                                                                                    $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $order['product_id']));
+                                                                                    ?>
+                                                                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $prod_det['product_name'] . " Product Review" ?></h5>
+
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form action="../Controller/FeedbackController.php?product_id=<?php echo $order['product_id'] ?>" method="POST">
+                                                                                        <style>
+                                                                                            .disabled {
+                                                                                                pointer-events: none;
+                                                                                            }
+                                                                                        </style>
+                                                                                        <div class="form-group">
+                                                                                            <label for="rating">Rate the product *</label>
+                                                                                            <div class="d-flex">
+                                                                                                <div class="text-primary rating">
+
+
+                                                                                                    <?php
+                                                                                                    if ($check > 0) {
+                                                                                                        for ($j = 0; $j < 5 - $check['rate']; $j++) {
+                                                                                                    ?>
+                                                                                                            <i class="far fa-star" style="font-size: 2rem;"></i>
+                                                                                                        <?php }
+                                                                                                        for ($i = 0; $i < $check['rate']; $i++) {
+                                                                                                        ?>
+                                                                                                            <i class="fas fa-star" style="font-size: 2rem;"></i>
+                                                                                                        <?php }
+                                                                                                    } else {
+                                                                                                        ?>
+
+                                                                                                        <input type="radio" name="rating" value="5" id="5" required>
+                                                                                                        <label for="5">☆</label>
+                                                                                                        <input type="radio" name="rating" value="4" id="4" required>
+                                                                                                        <label for="4">☆</label>
+                                                                                                        <input type="radio" name="rating" value="3" id="3" required>
+                                                                                                        <label for="3">☆</label>
+                                                                                                        <input type="radio" name="rating" value="2" id="2" required>
+                                                                                                        <label for="2">☆</label>
+                                                                                                        <input type="radio" name="rating" value="1" id="1" required>
+                                                                                                        <label for="1">☆</label>
+                                                                                                    <?php } ?>
+
+
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                        <div class="form-group">
+                                                                                            <label for="message">Your Review *</label>
+                                                                                            <?php
+                                                                                            if ($check > 0) {
+                                                                                            ?>
+                                                                                                <textarea id="message" cols="30" rows="5" class="form-control" name="feedback" required disabled><?php echo $check['feedback'] ?></textarea>
+                                                                                            <?php } else { ?>
+                                                                                                <textarea id="message" cols="30" rows="5" class="form-control" name="feedback" required></textarea>
+
+                                                                                            <?php } ?>
+                                                                                        </div>
+                                                                                        <div class="form-group mb-0">
+                                                                                            <?php
+                                                                                            if ($check <= 0) {
+                                                                                            ?>
+                                                                                                <input type="submit" name="review" value="Leave Your Review" class="btn btn-primary px-3">
+                                                                                            <?php } ?>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
                                                             <?php }
                                                             } else {
                                                                 echo "<td colspan=6>No purchase..</td>";
@@ -223,14 +333,11 @@
                                                     </table>
                                                 </div>
                                                 <!-- / Shopping cart table -->
-
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
+
+
 
 
 
@@ -250,6 +357,64 @@
                 </div>
             </div>
         </main><!-- End .main -->
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content p-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../Controller/FeedbackController.php" method="POST">
+                            <style>
+                                .disabled {
+                                    pointer-events: none;
+                                }
+                            </style>
+                            <div class="form-group">
+                                <label for="rating">Rate the product *</label>
+                                <div class="d-flex">
+                                    <div class="text-primary rating">
+
+                                        <input type="radio" name="rating" value="5" id="5" required>
+                                        <label for="5">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4" required>
+                                        <label for="4">☆</label>
+                                        <input type="radio" name="rating" value="3" id="3" required>
+                                        <label for="3">☆</label>
+                                        <input type="radio" name="rating" value="2" id="2" required>
+                                        <label for="2">☆</label>
+                                        <input type="radio" name="rating" value="1" id="1" required>
+                                        <label for="1">☆</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="message">Your Review *</label>
+                                <textarea id="message" cols="30" rows="5" class="form-control" name="feedback" required></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="submit" name="review" value="Leave Your Review" class="btn btn-primary px-3">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+
         <?php
 
 
