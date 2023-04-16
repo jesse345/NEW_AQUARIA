@@ -5,7 +5,7 @@ if(isset($_SESSION['id'])){
     include("../Model/dbPDO.php");
 
     if(!empty($_GET['user'])){
-         $chatWith = getUser($_GET['user'], $conn);
+        $chatWith = getUser($_GET['user'], $conn);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
@@ -14,9 +14,11 @@ if(isset($_SESSION['id'])){
         opened($chatWith['user_id'], $conn, $chats);
 
     }
-    $user = getUser($_SESSION['id'], $conn);
-    
-    
+    # Getting User data data
+  	$user = getUser($_SESSION['id'], $conn);
+  	# Getting User conversations
+  	$conversations = getConversation($user['user_id'], $conn);
+    echo json_encode($conversations);
 }
 ?>
 <!DOCTYPE html>
@@ -67,14 +69,14 @@ if(isset($_SESSION['id'])){
                                     <?php 
                                     foreach ($conversations as $conversation){ ?>
                                     <li class="list-group-item">
-                                        <a href="chat.php?user=<?=$conversation['username']?>" class="d-flex justify-content-between align-items-center p-2">
+                                        <a href="chat.php?user=<? echo $conversation['username']?>" class="d-flex justify-content-between align-items-center p-2">
                                             <div class="d-flex align-items-center">
-                                                <img src="uploads/<?=$conversation['p_p']?>" class="w-10 rounded-circle">
+                                                <img src="../img/batman.png" class="w-10 rounded-circle" style="height:70px;">
                                                 <h3 class="fs-xs m-2">
-                                                    <?=$conversation['name']?><br>
+                                                    <? echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
                                         <?php 
-                                        echo lastChat($_SESSION['user_id'], $conversation['user_id'], $conn);
+                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $conn);
                                         ?>
                                     </small>
                                                 </h3>            	
