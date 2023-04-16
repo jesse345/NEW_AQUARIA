@@ -33,7 +33,7 @@ if(isset($_SESSION['id'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+    
     
     <title>CHAT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -168,7 +168,7 @@ if(isset($_SESSION['id'])){
                             <form method="POST" id="comment_form">
                                 <div class="input-group mb-0">
                                     <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
-                                    <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Button</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" id="submit" style="padding-top: .55rem;">Button</button>
                                 </div>
                             </form>
                         </div>
@@ -178,6 +178,9 @@ if(isset($_SESSION['id'])){
         </div>
     </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <script>
     var scrollDown = function(){
         let chatBox = document.getElementById('chatBox');
@@ -186,27 +189,6 @@ if(isset($_SESSION['id'])){
     scrollDown();
 
 	$(document).ready(function(){
-        var to_id = <?php echo $_GET['user']?>
-        $("#comment_form").on('submit', function(){
-            message = $("#message").val();
-            if (message == "") return;
-
-            $.post("../Controller/insertController.php",
-                {
-                    message: message,
-                    to_id: to_id
-                },
-                function(data, status){
-                    $("#message").val("");
-                    $("#chatBox").append(data);
-                    scrollDown();
-                });
-        });
-
-
-
-
-
         // Search
         $("#searchText").on("input", function(){
             var searchText = $(this).val();
@@ -220,7 +202,6 @@ if(isset($_SESSION['id'])){
                 });
             
         });
-
         // Search using the button
         $("#searchBtn").on("click", function(){
             var searchText = $("#searchText").val();
@@ -234,8 +215,8 @@ if(isset($_SESSION['id'])){
                 });
             
         });
-
-
+        
+      
         /** 
          auto update last seen 
         for logged in user

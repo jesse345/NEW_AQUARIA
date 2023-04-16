@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
 	# get the logged in user's username from SESSION
 	$id = $_SESSION['id'];
 
-	$sql = "UPDATE users
+	$sql = "UPDATE user_details
 	        SET last_seen = NOW() 
 	        WHERE user_id = ?";
 	$stmt = $conn->prepare($sql);
