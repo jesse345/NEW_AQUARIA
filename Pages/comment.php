@@ -306,7 +306,8 @@ $comment_count = count($rowsComment);
         $('#comment_id').val(comment_id);
         $('#comment_content').focus();
         });
-    
+
+        setInterval(load_comment, 1000);
     });
 </script>
 </body>

@@ -18,6 +18,7 @@ function getUser($id, $conn){
    $sql = "SELECT * FROM user_details WHERE user_id=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
+   
 
     if ($stmt->rowCount() === 1){
         $user = $stmt->fetch();
@@ -51,11 +52,11 @@ function getConversation($user_id, $conn){
             array_push($user_data, $allConversations[0]);
         }
 
-        return $user_data;
+        return $user_data ?? 'default value';
 
     }else {
     	$conversations = [];
-    	return $conversations;
+    	return $conversations ?? 'default value';
     }  
 
 }

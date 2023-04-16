@@ -4,21 +4,19 @@ session_start();
 if(isset($_SESSION['id'])){
     include("../Model/dbPDO.php");
 
-
-    if(empty($_GET['user'])){
-        $user = getUser($_SESSION['id'], $conn);
-        $conversations = getConversation($user['user_id'], $conn);
-    }else{
-        $chatWith = getUser($_GET['user'], $conn);
+    if(!empty($_GET['user'])){
+         $chatWith = getUser($_GET['user'], $conn);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
   	    }
         $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
-    } 
-}else{
-    header("Location: index.php");
+
+    }
+    $user = getUser($_SESSION['id'], $conn);
+    
+    
 }
 ?>
 <!DOCTYPE html>
@@ -53,12 +51,17 @@ if(isset($_SESSION['id'])){
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card" style="height:600px;">
+                    <div class="card" style="height:581px;">
                         <div class="card-body">
-                            <div class="input-group mb-3">
-                                <input type="text" placeholder="Search..." id="searchText" class="form-control">
-                                <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"></i></button>       
-                            </div>
+                            <?php
+                            if(isset($_SESSION['id'])){                      
+                                ?>
+                                <div class="input-group mb-3">
+                                    <input type="text" placeholder="Search..." id="searchText" class="form-control">
+                                    <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"></i></button>       
+                                </div>
+                            <?php } ?>
+
                             <ul class="list-unstyled mb-0 overflow-auto" id="chatList">
                                 <?php if (!empty($conversations)) { ?>
                                     <?php 
@@ -96,7 +99,7 @@ if(isset($_SESSION['id'])){
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card" style="height:598px;">
+                    <div class="card" style="height:580px;">
                         <div class="card-header" style="border-top: 4px solid #0d6efd;">
                             <div class="d-flex">
                                 <?php
@@ -129,7 +132,8 @@ if(isset($_SESSION['id'])){
                         <!--END END END-->
                         
                         <div class="card-body" data-mdb-perfect-scrollbar="true" id="chatBox">
-                            <?php
+                            <?php 
+
                             if(!empty($chats)){
                                 foreach($chats as $chat){  
                                     if($chat['from_id'] == $_SESSION['id']){ 
@@ -158,25 +162,31 @@ if(isset($_SESSION['id'])){
                             }else{?>
                             <div class="alert alert-primary text-center">
                                 <i class="fa fa-comments d-block fs-big"></i>
-                                No messages yet, Start the conversation
+                                No messages yet, Search Contacts
                             </div>
                         <?php } ?>
                         </div>
                         <!--END END END-->
-
-                        <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                            <form method="POST" id="comment_form">
-                                <div class="input-group mb-0">
-                                    <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
-                                    <button type="submit" class="btn btn-primary" name="submit" id="submit" style="padding-top: .55rem;">Button</button>
-                                </div>
-                            </form>
-                        </div>
+                        <?php
+                        if(isset($_SESSION['id'])){                        
+                            ?>
+                            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                                <form method="POST" id="comment_form">
+                                    <div class="input-group mb-0">
+                                        <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
+                                        <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Button</button>
+                                    </div>
+                                </form>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+<?php
+
+?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -215,6 +225,8 @@ if(isset($_SESSION['id'])){
                 });
             
         });
+
+        
         
       
         /** 
@@ -229,8 +241,73 @@ if(isset($_SESSION['id'])){
          auto update last seen 
         every 10 sec
         **/
-        setInterval(lastSeenUpdate, 10000);
+        // setInterval(lastSeenUpdate, 10000);
 
+        
+
+    });
+</script>
+<script>
+	var scrollDown = function(){
+        let chatBox = document.getElementById('chatBox');
+        chatBox.scrollTop = chatBox.scrollHeight;
+	}
+
+	scrollDown();
+
+	$(document).ready(function(){
+      
+      $("#sendBtn").on('click', function(){
+      	message = $("#message").val();
+      	if (message == "") return;
+
+      	$.post("../Controller/insertController.php",
+      		   {
+      		   	message: message,
+      		   	to_id: <?=$chatWith['user_id']?>
+      		   },
+      		   function(data, status){
+                  $("#message").val("");
+                  $("#chatBox").append(data);
+                  scrollDown();
+      		   });
+      });
+
+      /** 
+      auto update last seen 
+      for logged in user
+      **/
+      let lastSeenUpdate = function(){
+      	$.get("../Controller/updateLastSeen.php");
+      }
+        lastSeenUpdate();
+      /** 
+      auto update last seen 
+      every 10 sec
+      **/
+    //   setInterval(lastSeenUpdate, 10000);
+
+
+
+      // auto refresh / reload
+      let fechData = function(){
+      	$.post("../Controller/getMessageController.php", 
+      		   {
+      		   	id_2: <?=$chatWith['user_id']?>
+      		   },
+      		   function(data, status){
+                  $("#chatBox").append(data);
+                  if (data != "") scrollDown();
+      		    });
+      }
+
+        fechData();
+      /** 
+      auto update last seen 
+      every 0.5 sec
+      **/
+    //   setInterval(fechData, 500);
+    
     });
 </script>
 </body>
