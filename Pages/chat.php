@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
             header("Location: index.php");
             exit;
   	    }
-        $chats = getChats($_SESSION['user_id'], $chatWith['user_id'], $conn);
+        $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
     } 
 }
@@ -93,31 +93,36 @@ if(isset($_SESSION['id'])){
                 <div class="col-md-8">
                     <div class="card" style="height:598px;">
                         <div class="card-header" style="border-top: 4px solid #0d6efd;">
-                            <div class="d-flex align-items-center">
-                                <img src="../img/batman.png"
-                                    class="w-15 rounded-circle">
-
-                                <h3 class="display-4 fs-sm m-2">
-                                    <?php echo $chatWith['first_name'].' '.$chatWith['last_name'] ?> <br>
-                                    <div class="d-flex
-                                                align-items-center"
-                                            title="online">
-                                        <?php
-                                            if (last_seen($chatWith['last_seen']) == "Active") {
-                                        ?>
-                                            <div class="online"></div>
-                                            <small class="d-block p-1">Online</small>
-                                        <?php }else{ ?>
-                                            <small class="d-block p-1">
-                                                Last seen:
-                                                <?=last_seen($chatWith['last_seen'])?>
-                                            </small>
-                                        <?php } ?>
-                                    </div>
-                                </h3>
+                            <div class="d-flex">
+                                <?php
+                                if(!empty($_GET['user'])){
+                                     ?>
+                                    <img src="../img/batman.png" class="rounded-circle" style="height:70px;">
+                                    <h3 class="display-4 fs-sm m-2" style="font-size:18px;">
+                                        <?php echo $chatWith['first_name'].' '.$chatWith['last_name'] ?> <br>
+                                        <div class="d-flex
+                                                    align-items-center"
+                                                title="online">
+                                            <?php
+                                                if (last_seen($chatWith['last_seen']) == "Active") {
+                                            ?>
+                                                <div class="online"></div>
+                                                <small class="d-block p-1">Online</small>
+                                            <?php }else{ ?>
+                                                <small class="d-block p-1">
+                                                    Last seen:
+                                                    <?=last_seen($chatWith['last_seen'])?>
+                                                </small>
+                                            <?php } ?>
+                                        </div>
+                                    </h3>
+                                <?php }else{?>
+                                   <h3>Chat Messages</h3>
+                                <?php }?>
                             </div>
                         </div>
                         <!--END END END-->
+                        
                         <div class="card-body" data-mdb-perfect-scrollbar="true">
                             <div class="d-flex justify-content-start">
                                 <p class="small mb-1">Timona Siera</p>
