@@ -202,10 +202,40 @@
                                         </form>
 
                                         <?php if (isset($_SESSION['id'])  && $prod['user_id'] != $_SESSION['id']) { ?>
-                                            <a href="#" class="btn-product icon-font-awesome-flag text-danger">
+                                            <a href="#" class="btn-product icon-font-awesome-flag text-danger" data-toggle="modal" data-target="#report">
                                                 <span class="text-danger">Report Product</span></a>
                                             </a>
                                         <?php } ?>
+                                    </div>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content p-5">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Select a Reason</h5>
+                                            </div>
+                                            <form action="../Controller/ReportController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST">
+
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <select name="report_type" style="width:100%; padding: 3%;">
+                                                            <option value="Reason1">Prohibited Items/Products</option>
+                                                            <option value="Reason2">Offensive or Potential Offensive Items </option>
+                                                            <option value="Reason3">Illegam Items/Products </option>
+                                                            <option value="Reason4">Critically Extinct Species </option>
+                                                            <option value="Reason5">Unrelated Items/Products </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="report" class="btn btn-danger">Send Report</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
 
