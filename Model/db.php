@@ -33,6 +33,8 @@ include("VerificationCodeModel.php");
 
 include("SubscriptionModel.php");
 
+include("FeedbackModel.php");
+
 function disconnect()
 {
     global $conn;

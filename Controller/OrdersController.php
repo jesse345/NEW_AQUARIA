@@ -48,7 +48,9 @@ if (isset($_SESSION['id'])) {
         $randomString = '';
 
         $ref_order = "";
-        $order_product = viewOrderedProduct('carts', 'user_id', $user_id);
+        // $order_product = viewOrderedProduct('carts', 'user_id', $user_id);
+
+        $order_product  = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
         do {
 
