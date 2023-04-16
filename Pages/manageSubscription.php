@@ -47,9 +47,9 @@
                             <aside class="col-md-4 col-lg-2">
                                 <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
 
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
 
-                                        <a class="nav-link active" href="myAccount.php">
+                                        <a class="nav-link" href="myAccount.php">
                                             Account Details
                                         </a>
                                     </li>
@@ -75,6 +75,10 @@
                                         <a class="nav-link" href="shippingAddress.php">Shipping Info</a>
                                     </li>
 
+                                    <li class="nav-item active">
+                                        <a class="nav-link active" href="manageSubscription.php">Manage Subscription</a>
+                                    </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Sign Out</a>
                                     </li>
@@ -88,7 +92,7 @@
 
                                         <?php
                                         $subscription = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
-                                        if ($users['isSubscribe'] == "Yes") {
+                                        if ($users['isSubscribe'] == "Yes" && strtotime($subscription['date_end']) > time()) {
                                         ?>
 
 
@@ -111,22 +115,62 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <p>
-                                                            <strong> Subscritption Type</strong>: Standard
-                                                        </p>
 
-                                                        <p>
-                                                            <strong>Benefits</strong>:
-                                                            <i>3 months duration</i>,
-                                                            <i>Unlimited Product Post</i>,
-                                                            <i>Browse Fish Manual</i>
-                                                        </p>
+                                                        <?php
+                                                        if ($subscription['subscription_type'] == 1) {
+                                                        ?>
+                                                            <p>
+                                                                <strong> Subscritption Type</strong>: Standard
+                                                            </p>
+
+                                                            <p>
+                                                                <strong>Benefits</strong>:
+                                                                <i>3 months duration</i>,
+                                                                <i>Unlimited Product Post</i>,
+                                                                <i>Browse Fish Manual</i>
+                                                            </p>
+                                                        <?php } else  if ($subscription['subscription_type'] == 2) { ?>
+
+                                                            <p>
+                                                                <strong> Subscritption Type</strong>: Advanced
+                                                            </p>
+
+                                                            <p>
+                                                                <strong>Benefits</strong>:
+                                                                <i>3 months duration</i>,
+                                                                <i>Unlimited Product Post</i>,
+                                                                <i>Browse Fish Manual</i>
+                                                            </p>
+                                                        <?php } else  if ($subscription['subscription_type'] == 3) { ?>
+
+                                                            <p>
+                                                                <strong> Subscritption Type</strong>: Premium
+                                                            </p>
+
+                                                            <p>
+                                                                <strong>Benefits</strong>:
+                                                                <i>3 months duration</i>,
+                                                                <i>Unlimited Product Post</i>,
+                                                                <i>Browse Fish Manual</i>
+                                                            </p>
+                                                        <?php } ?>
 
 
                                                     </div>
                                                 </div>
 
                                             </div>
+                                        <?php } else { ?>
+
+                                            <p class="text-danger">
+                                                You are not a subscribed user.
+                                            </p>
+                                            <a href="subscription.php" class="btn btn-outline-primary-2">
+                                                <span>Subscribe Now</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </a>
+
+
                                         <?php } ?>
 
                                     </div><!-- .End .tab-pane -->
@@ -231,7 +275,7 @@
 
                 // If the count down is over, write some text
                 if (distance < 0) {
-                    $(".countdown").innerHTML = "EXPIRED";
+                    window.location.reload();
                 }
             };
 
