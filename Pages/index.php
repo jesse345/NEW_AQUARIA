@@ -105,8 +105,8 @@ session_start();
               <i class="icon-bars"></i>
             </button>
 
-            <a href="index.html" class="logo">
-              <img src="../assets/images/demos/demo-5/logo.png" alt="Molla Logo" width="105" height="25" />
+            <a href="index.php" class="logo">
+              <img src="../img/logo.png" alt="Molla Logo" width="105" height="25" />
             </a>
 
             <nav class="main-nav">
