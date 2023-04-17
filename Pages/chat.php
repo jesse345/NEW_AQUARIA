@@ -5,20 +5,20 @@ if(isset($_SESSION['id'])){
     include '../Model/dbPDO.php';
 
     if(!empty($_GET['user'])){
-        $chatWith = getUser($_GET['user'], $conn);
+        $chatWith = getUser($_GET['user'], $connection);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
   	    }
-        $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
-        opened($chatWith['user_id'], $conn, $chats);
+        $chats = getChats($_SESSION['id'], $chatWith['user_id'], $connection);
+        opened($chatWith['user_id'], $connection, $chats);
         $last = last_seen($chatWith['last_seen']);
 
     }
     # Getting User data data
-  	$user = getUser($_SESSION['id'], $conn);
+  	$user = getUser($_SESSION['id'], $connection);
   	# Getting User conversations
-  	$conversations = getConversation($user['user_id'], $conn);
+  	$conversations = getConversation($user['user_id'], $connection);
     // echo json_encode($conversations);
     
 }
@@ -89,7 +89,7 @@ if(isset($_SESSION['id'])){
                                                     <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
                                         <?php 
-                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $conn);
+                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $connectionn);
                                         ?>
                                     </small>
                                                 </h3>            	
