@@ -37,6 +37,13 @@ function forEditnDelete($table,$value){
     disconnect();
     return $query;
 }
+function forDelete($table,$value){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "DELETE FROM $table where `id` = $value");
+    disconnect();
+    return $query;
+}
 
 
 ?>
