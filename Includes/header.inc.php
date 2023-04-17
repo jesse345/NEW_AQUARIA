@@ -26,9 +26,6 @@ if (isset($_SESSION['id'])) {
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li>
-                                <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
-                            </li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li>

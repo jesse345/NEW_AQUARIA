@@ -70,10 +70,10 @@ function getAllManual(){
 	return $query;
 }
 
-function addFishManual($manual_id, $admin_id, $title, $description){
+function addFishManual($admin_id, $title, $description){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "INSERT INTO `fish_manual` VALUES('$manual_id', '$admin_id', '$title', '$description')");
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`) VALUES($admin_id, '$title', '$description')");
 	disconnect();
 }
 

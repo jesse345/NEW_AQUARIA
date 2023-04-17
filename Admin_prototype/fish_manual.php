@@ -9,29 +9,7 @@
 
 ?>
 
-<?php
-	$manual_id;
-	$admin_id;
-	$title;    
-	$description;
 
-	if(isset($_POST['add']))
-	{	 
-		$admin_id  = $_POST['admin_id'];
-		if(!getrec($admin_id)){
-			$manual_id  = $_POST['manual_id'];
-			$title = $_POST['title'];
-			$description = $_POST['description'];
-			
-			$admin_id = $_SESSION["admin_id"];
-			addFishManual($manual_id, $admin_id, $title, $description);
-			echo "<p>ADDED SUCCESSFULLY</p>";
-			
-		}else{
-			echo "<p>DATA EXISTED</p>";
-		}
-	}
-?>
 <html>
 <head>
 	<title> E AQUARIA</title>
@@ -336,19 +314,19 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 
-				<form method="POST" action="fish_manual.php">
+				<form method="POST" action="controller.php">
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Fish Manual</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">	
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label>Fish Manual ID</label>
 							<input type="text" class="form-control" name="manual_id" placeholder="Enter Manual ID" required>
-						</div>				
+						</div>				 -->
 						<div class="form-group">
-							<label>Admin ID</label>
-							<input type="text" class="form-control" name="admin_id" placeholder="Enter Admin ID" required>
+							<!-- <label>Admin ID</label> -->
+							<input type="hidden" class="form-control" name="admin_id" placeholder="Enter Admin ID" value="1"  required>
 						</div>
 						<div class="form-group">
 							<label>Title</label>
