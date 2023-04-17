@@ -12,6 +12,7 @@ if(isset($_SESSION['id'])){
   	    }
         $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
         opened($chatWith['user_id'], $conn, $chats);
+        $last = last_seen($chatWith['last_seen']);
 
     }
     # Getting User data data
@@ -19,7 +20,7 @@ if(isset($_SESSION['id'])){
   	# Getting User conversations
   	$conversations = getConversation($user['user_id'], $conn);
     // echo json_encode($conversations);
-    $last = last_seen($chatWith['last_seen']);
+    
 }
 ?>
 <!DOCTYPE html>
