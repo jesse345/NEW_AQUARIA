@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
         $key = "%{$_POST['key']}%";
         
         $sql = "SELECT * FROM user_details WHERE first_name LIKE ? OR last_name LIKE ?";
-        $stmt = $conn->prepare($sql);
+        $stmt = $connection->prepare($sql);
         $stmt->execute([$key, $key]);
 
         if($stmt->rowCount() > 0){ 

@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
 		
 	# database connection file
 	include("../Model/dbPDO.php");
-	$user = getUser($_POST['id_2'], $conn);
+	$user = getUser($_POST['id_2'], $connection);
 	$id_1  = $_SESSION['id'];
 	$id_2  = $_POST['id_2'];
 	$opend = 0;
@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
 	        WHERE to_id=?
 	        AND   from_id= ?
 	        ORDER BY chat_id ASC";
-	$stmt = $conn->prepare($sql);
+	$stmt = $connection->prepare($sql);
 	$stmt->execute([$id_1, $id_2]);
 
 	if ($stmt->rowCount() > 0) {
@@ -35,7 +35,7 @@ if (isset($_SESSION['id'])) {
 	    		$sql2 = "UPDATE chats
 	    		         SET opened = ?
 	    		         WHERE chat_id = ?";
-	    		$stmt2 = $conn->prepare($sql2);
+	    		$stmt2 = $connection->prepare($sql2);
 	            $stmt2->execute([$opened, $chat_id]); 
 
 	            ?>

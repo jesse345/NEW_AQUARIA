@@ -7,16 +7,16 @@ $db_name = "eaquaria";
 date_default_timezone_set("Asia/Bangkok");
 
 try {
-    $conn = new PDO("mysql:host=$serverName;dbname=$db_name", $userName, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $connection = new PDO("mysql:host=$serverName;dbname=$db_name", $userName, $password);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(PDOException $e){
   echo "Connection failed : ". $e->getMessage();
 }
 
 
-function getUser($id, $conn){
+function getUser($id, $connection){
    $sql = "SELECT * FROM user_details WHERE user_id=?";
-   $stmt = $conn->prepare($sql);
+   $stmt = $connection->prepare($sql);
    $stmt->execute([$id]);
 
     if ($stmt->rowCount() == 1){
@@ -27,7 +27,7 @@ function getUser($id, $conn){
         return $user;
     }
 }
-function getConversation($user_id, $conn){
+function getConversation($user_id, $connection){
     /**
       Getting all the conversations 
       for current (logged in) user
@@ -36,7 +36,7 @@ function getConversation($user_id, $conn){
             WHERE user_1=? OR user_2=?
             ORDER BY conversation_id DESC";
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->execute([$user_id, $user_id]);
 
     if($stmt->rowCount() > 0){
@@ -54,12 +54,12 @@ function getConversation($user_id, $conn){
             if ($conversation['user_1'] == $user_id) {
             	$sql2  = "SELECT *
             	          FROM user_details WHERE user_id=?";
-            	$stmt2 = $conn->prepare($sql2);
+            	$stmt2 = $connection->prepare($sql2);
             	$stmt2->execute([$conversation['user_2']]);
             }else {
             	$sql2  = "SELECT *
             	          FROM user_details WHERE user_id=?";
-            	$stmt2 = $conn->prepare($sql2);
+            	$stmt2 = $connection->prepare($sql2);
             	$stmt2->execute([$conversation['user_1']]);
             }
 
@@ -97,9 +97,9 @@ function last_seen($date_time){
 		}
    }
 }
-function lastChat($id_1, $id_2, $conn){
+function lastChat($id_1, $id_2, $connection){
    $sql = "SELECT * FROM chats WHERE (from_id=? AND to_id=?) OR (to_id=? AND from_id=?) ORDER BY chat_id DESC LIMIT 1";
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->execute([$id_1, $id_2, $id_1, $id_2]);
 
     if ($stmt->rowCount() > 0) {
@@ -111,10 +111,10 @@ function lastChat($id_1, $id_2, $conn){
     }
 
 }
-function getChats($id_one, $id_two, $conn){
+function getChats($id_one, $id_two, $connection){
    
    $sql = "SELECT * FROM chats WHERE (from_id=? AND to_id=?) OR (to_id=? AND from_id=?) ORDER BY chat_id ASC";
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->execute([$id_one, $id_two, $id_one, $id_two]);
 
     if ($stmt->rowCount() > 0) {
@@ -126,14 +126,14 @@ function getChats($id_one, $id_two, $conn){
     }
 
 }
-function opened($id_1, $conn, $chats){
+function opened($id_1, $connection, $chats){
     foreach ($chats as $chat) {
     	if ($chat['opened'] == 0) {
     		$opened = 1;
     		$chat_id = $chat['chat_id'];
 
     		$sql = "UPDATE chats SET   opened = ? WHERE from_id=? AND   chat_id = ?";
-            $stmt = $conn->prepare($sql);
+            $stmt = $connection->prepare($sql);
             $stmt->execute([$opened, $id_1, $chat_id]);
 
     	}
