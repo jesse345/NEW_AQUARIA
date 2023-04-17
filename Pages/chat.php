@@ -64,6 +64,14 @@ if(isset($_SESSION['id'])){
 <body>
     <section>
         <div class="container py-4">
+             <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Chat</li>
+                    </ol>
+                </div>
+            </nav>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card" style="height:581px;">
@@ -89,7 +97,7 @@ if(isset($_SESSION['id'])){
                                                     <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
                                         <?php 
-                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $connectionn);
+                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $connection);
                                         ?>
                                     </small>
                                                 </h3>            	
@@ -169,7 +177,7 @@ if(isset($_SESSION['id'])){
                                         <div class="d-flex flex-row justify-content-start">
                                             <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
-                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;"><?php echo $chat['message']?>
+                                                <p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?>
                                             </div>
                                         </div>
                                     <?php }

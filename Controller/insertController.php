@@ -6,7 +6,7 @@ if (isset($_SESSION['id'])) {
 	if (isset($_POST['message']) && isset($_POST['to_id'])) {
 	# database connection file
 	include '../Model/dbPDO.php';
-	$user = getUser($_SESSION['id'], $conn);
+	$user = getUser($_SESSION['id'], $connection);
 	
 	# get data from XHR request and store them in var
 	$message = $_POST['message'];
@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
 	$sql = "INSERT INTO 
 	       chats (from_id, to_id, message) 
 	       VALUES (?, ?, ?)";
-	$stmt = $conn->prepare($sql);
+	$stmt = $connection->prepare($sql);
 	$res  = $stmt->execute([$from_id, $to_id, $message]);
     
     # if the message inserted
@@ -31,7 +31,7 @@ if (isset($_SESSION['id'])) {
        $sql2 = "SELECT * FROM conversations
                WHERE (user_1=? AND user_2=?)
                OR    (user_2=? AND user_1=?)";
-       $stmt2 = $conn->prepare($sql2);
+       $stmt2 = $connection->prepare($sql2);
 	   $stmt2->execute([$from_id, $to_id, $from_id, $to_id]);
 
 	    // setting up the time Zone
@@ -46,7 +46,7 @@ if (isset($_SESSION['id'])) {
 			$sql3 = "INSERT INTO 
 			         conversations(user_1, user_2)
 			         VALUES (?,?)";
-			$stmt3 = $conn->prepare($sql3); 
+			$stmt3 = $connection->prepare($sql3); 
 			$stmt3->execute([$from_id, $to_id]);
 		}
 		?>
@@ -55,7 +55,7 @@ if (isset($_SESSION['id'])) {
 		</div>
 		<div class="d-flex flex-row justify-content-end mb-4 pt-1">
 			<div>
-				<p class="small p-2 me-3 mb-3 text-white rounded-3" style="background-color:#f5f6f7!important;"><?php echo $message?> </p>
+				<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $message?> </p>
 			</div>
 			<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
 		</div>

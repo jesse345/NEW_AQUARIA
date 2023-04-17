@@ -14,7 +14,7 @@ if (isset($_SESSION['id'])) {
 	$sql = "UPDATE user_details
 	        SET last_seen = NOW() 
 	        WHERE user_id = ?";
-	$stmt = $conn->prepare($sql);
+	$stmt = $connection->prepare($sql);
 	$stmt->execute([$id]);
 
 }else {
