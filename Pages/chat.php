@@ -173,7 +173,12 @@ if(isset($_SESSION['id'])){
                                         </div>
                                     <?php }
                                 }
-                            }?>
+                            }else{?>
+                            <div class="alert alert-primary text-center">
+                                <i class="fa fa-comments d-block fs-big"></i>
+                                No messages yet, Start the conversation
+                            </div>
+                        <?php } ?>
                         </div>
                         <!--END END END-->
                         <?php
