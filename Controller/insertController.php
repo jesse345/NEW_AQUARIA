@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['id'])) {
 	if (isset($_POST['message']) && isset($_POST['to_id'])) {
 	# database connection file
-	include("../Model/dbPDO.php");
+	include '../Model/dbPDO.php';
 	$user = getUser($_SESSION['id'], $conn);
 	
 	# get data from XHR request and store them in var
@@ -55,7 +55,7 @@ if (isset($_SESSION['id'])) {
 		</div>
 		<div class="d-flex flex-row justify-content-end mb-4 pt-1">
 			<div>
-				<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $message?> </p>
+				<p class="small p-2 me-3 mb-3 text-white rounded-3" style="background-color:#f5f6f7!important;"><?php echo $message?> </p>
 			</div>
 			<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
 		</div>

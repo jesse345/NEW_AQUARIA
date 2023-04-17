@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    include("../Model/dbPDO.php");
+    include '../Model/dbPDO.php';
 
     if(!empty($_GET['user'])){
         $chatWith = getUser($_GET['user'], $conn);
