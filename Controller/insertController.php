@@ -6,9 +6,12 @@ if (isset($_SESSION['id'])) {
 	if (isset($_POST['message']) && isset($_POST['to_id'])) {
 	# database connection file
 	include("../Model/dbPDO.php");
+	$user = getUser($_SESSION['id'], $conn);
+	
 	# get data from XHR request and store them in var
 	$message = $_POST['message'];
 	$to_id = $_POST['to_id'];
+
 
 	# get the logged in user's username from the SESSION
 	$from_id = $_SESSION['id'];
@@ -47,12 +50,15 @@ if (isset($_SESSION['id'])) {
 			$stmt3->execute([$from_id, $to_id]);
 		}
 		?>
-
-		<p class="rtext align-self-end border rounded p-2 mb-1">
-		    <? echo $message?>  
-		    <small class="d-block"><? echo $time?></small>      	
-		</p>
-
+		<div class="d-flex justify-content-end">
+			<p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
+		</div>
+		<div class="d-flex flex-row justify-content-end mb-4 pt-1">
+			<div>
+				<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $message?> </p>
+			</div>
+			<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+		</div>
     <?php 
      }
 }

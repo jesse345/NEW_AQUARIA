@@ -6,10 +6,10 @@ session_start();
 if (isset($_SESSION['id'])) {
 
 	if (isset($_POST['id_2'])) {
-	
+		
 	# database connection file
 	include("../Model/dbPDO.php");
-
+	$user = getUser($_POST['id_2'], $conn);
 	$id_1  = $_SESSION['id'];
 	$id_2  = $_POST['id_2'];
 	$opend = 0;
@@ -39,13 +39,15 @@ if (isset($_SESSION['id'])) {
 	            $stmt2->execute([$opened, $chat_id]); 
 
 	            ?>
-                  <p class="ltext border 
-					        rounded p-2 mb-1">
-					    <?=$chat['message']?> 
-					    <small class="d-block">
-					    	<?=$chat['created_at']?>
-					    </small>      	
-				  </p>        
+					<div class="d-flex justify-content-start">
+						<p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
+					</div>
+					<div class="d-flex flex-row justify-content-start mb-4 pt-1">
+						<div>
+							<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
+						</div>
+						<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+					</div>
 	            <?php
 	    	}
 	    }

@@ -18,7 +18,8 @@ if(isset($_SESSION['id'])){
   	$user = getUser($_SESSION['id'], $conn);
   	# Getting User conversations
   	$conversations = getConversation($user['user_id'], $conn);
-    echo json_encode($conversations);
+    // echo json_encode($conversations);
+    $last = last_seen($chatWith['last_seen']);
 }
 ?>
 <!DOCTYPE html>
@@ -46,6 +47,17 @@ if(isset($_SESSION['id'])){
             background-color:#0d6efd!important;
             color:#fff!important
         }
+        a{
+            text-decoration:none;
+        }
+        .fs-xs{
+            font-size:1rem;
+        }
+        small{
+            color:#bbb;
+            font-size:0.7rem;
+            text-align:right;
+        }
     </style>
 </head>
 <body>
@@ -69,11 +81,11 @@ if(isset($_SESSION['id'])){
                                     <?php 
                                     foreach ($conversations as $conversation){ ?>
                                     <li class="list-group-item">
-                                        <a href="chat.php?user=<? echo $conversation['username']?>" class="d-flex justify-content-between align-items-center p-2">
+                                        <a href="chat.php?user=<?php echo $conversation['user_id']?>" class="d-flex justify-content-between align-items-center p-2">
                                             <div class="d-flex align-items-center">
                                                 <img src="../img/batman.png" class="w-10 rounded-circle" style="height:70px;">
                                                 <h3 class="fs-xs m-2">
-                                                    <? echo $conversation['first_name'].''.$conversation['last_name']?><br>
+                                                    <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
                                         <?php 
                                         echo lastChat($_SESSION['id'], $conversation['user_id'], $conn);
@@ -109,7 +121,7 @@ if(isset($_SESSION['id'])){
                                      ?>
                                     <img src="../img/batman.png" class="rounded-circle" style="height:70px;">
                                     <h3 class="display-4 fs-sm m-2" style="font-size:18px;">
-                                        <?php echo $chatWith['first_name'].' '.$chatWith['last_name'] ?> <br>
+                                        <?php echo ucfirst($chatWith['first_name']). '  ' . ucfirst($chatWith['last_name']) ?> <br>
                                         <div class="d-flex
                                                     align-items-center"
                                                 title="online">
@@ -121,7 +133,7 @@ if(isset($_SESSION['id'])){
                                             <?php }else{ ?>
                                                 <small class="d-block p-1">
                                                     Last seen:
-                                                    <?=last_seen($chatWith['last_seen'])?>
+                                                    <?php echo last_seen($chatWith['last_seen'])?>
                                                 </small>
                                             <?php } ?>
                                         </div>
@@ -141,22 +153,22 @@ if(isset($_SESSION['id'])){
                                     if($chat['from_id'] == $_SESSION['id']){ 
                                         ?>  
                                         <div class="d-flex justify-content-end">
-                                            <p class="small float-right"><?php echo $user['first_name'].' '.$user['last_name']?></p>
+                                            <p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
                                         </div>
                                         <div class="d-flex flex-row justify-content-end mb-4 pt-1">
                                             <div>
-                                                <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><? echo $chat['message']?> </p>
+                                                <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
                                             </div>
                                             <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                                         </div>
                                     <?php }else{ ?>
                                         <div class="d-flex justify-content-start">
-                                            <p class="small mb-1"><?php echo $chatWith['first_name'].' '.$chatWith['last_name']?></p>
+                                            <p class="small mb-1"><?php echo ucfirst($chatWith['first_name']).' '.ucfirst($chatWith['last_name'])?></p>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
                                             <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
-                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;"><? echo $chat['message']?>
+                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;"><?php echo $chat['message']?>
                                             </div>
                                         </div>
                                     <?php }
@@ -164,23 +176,23 @@ if(isset($_SESSION['id'])){
                             }else{?>
                             <div class="alert alert-primary text-center">
                                 <i class="fa fa-comments d-block fs-big"></i>
-                                No messages yet, Search Contacts
+                                No messages yet, Start the conversation
                             </div>
                         <?php } ?>
                         </div>
                         <!--END END END-->
                         <?php
-                        if(isset($_SESSION['id'])){                        
+                        if(isset($_SESSION['id'])){  
+                            if(!empty($_GET['user'])){                      
                             ?>
                             <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                                <form method="POST" id="comment_form">
                                     <div class="input-group mb-0">
+                                        <input type="hidden" id="to_id" value="<?php echo $chatWith['user_id']?>">
                                         <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
                                         <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Button</button>
                                     </div>
-                                </form>
                             </div>
-                        <?php } ?>
+                        <?php  } } ?>
                     </div>
                 </div>
             </div>
@@ -243,7 +255,7 @@ if(isset($_SESSION['id'])){
          auto update last seen 
         every 10 sec
         **/
-        // setInterval(lastSeenUpdate, 10000);
+        setInterval(lastSeenUpdate, 10000);
 
         
 
@@ -258,15 +270,17 @@ if(isset($_SESSION['id'])){
 	scrollDown();
 
 	$(document).ready(function(){
+        to_id =  $("#to_id").val();
       
       $("#sendBtn").on('click', function(){
       	message = $("#message").val();
+       
       	if (message == "") return;
 
       	$.post("../Controller/insertController.php",
       		   {
       		   	message: message,
-      		   	to_id: <?=$chatWith['user_id']?>
+      		   	to_id: to_id
       		   },
       		   function(data, status){
                   $("#message").val("");
@@ -287,7 +301,7 @@ if(isset($_SESSION['id'])){
       auto update last seen 
       every 10 sec
       **/
-    //   setInterval(lastSeenUpdate, 10000);
+        setInterval(lastSeenUpdate, 10000);
 
 
 
@@ -295,7 +309,7 @@ if(isset($_SESSION['id'])){
       let fechData = function(){
       	$.post("../Controller/getMessageController.php", 
       		   {
-      		   	id_2: <?=$chatWith['user_id']?>
+      		   	id_2: to_id
       		   },
       		   function(data, status){
                   $("#chatBox").append(data);
@@ -303,12 +317,12 @@ if(isset($_SESSION['id'])){
       		    });
       }
 
-        fechData();
+    fechData();
       /** 
       auto update last seen 
       every 0.5 sec
       **/
-    //   setInterval(fechData, 500);
+    setInterval(fechData, 1000);
     
     });
 </script>
