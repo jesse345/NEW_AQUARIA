@@ -37,6 +37,19 @@ function forEditnDelete($table,$value){
     disconnect();
     return $query;
 }
+function forDelete($table,$value){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "DELETE FROM $table where `id` = $value");
+    disconnect();
+    return $query;
+}
+function updatePost($table,$value1,$value2,$value3,$value4){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "UPDATE `$table` SET `user_id`= '$value1',`description`='$value2',`purpose`='$value3',`image`='$value4'");
+	disconnect();
+}
 
 
 ?>

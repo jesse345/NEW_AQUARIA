@@ -32,9 +32,14 @@ $comment_count = count($rowsComment);
 
 <body>
     <div class="page-wrapper">
-        <?php include("../Includes/header1.inc.php") ?>
+        <?php include("../Includes/header1.inc.php");?>
+        
         <main class="main">
-        	
+        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
+        		<div class="container">
+        			<h1 class="page-title" style="color:#fff;font-weight:700">View More Details<span style="color:#fff;">Single Post</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -49,13 +54,14 @@ $comment_count = count($rowsComment);
                 <div class="container">
                 	<div class="row">
                     <?php
+                    
                     $allpost=$connect->query("SELECT * FROM `breedersblog` WHERE id = $breedersblog_id");
                     while($posts = $allpost->fetch(PDO::FETCH_ASSOC)):   
                         $users1 =$connect->query("SELECT * FROM user_details WHERE user_id = $session_id");
                         $user1 = $users1->fetch(PDO::FETCH_ASSOC);     
                         $dates = $connect->query("SELECT DATE_FORMAT(date_created, '%M %e %Y') AS date from breedersblog where id = $breedersblog_id");
                         $date = $dates->fetch(PDO::FETCH_ASSOC);  
-                        $users5 =$connect->query("SELECT user_details.first_name, user_details.last_name,id description,image,date_created FROM user_details INNER JOIN breedersblog ON user_details.user_id = breedersblog.user_id WHERE breedersblog.user_id = $session_id");
+                        $users5 =$connect->query("SELECT user_details.first_name as fname, user_details.last_name as lname FROM user_details where user_id = $session_id");
                         $user5 = $users5->fetch(PDO::FETCH_ASSOC);    
                         ?>
                 		<div class="col-lg-8">
@@ -116,7 +122,7 @@ $comment_count = count($rowsComment);
                                     <label for="reply-message" class="sr-only">Comment</label>
                                     <textarea name="comment_content" id="comment_content" class="form-control" required placeholder="Comment *"></textarea>
                                     <input type="hidden" name="breedersblog_id" id="breedersblog_id" class="form-control" value="<?php echo $breedersblog_id ?>"/>
-                                    <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="<?php echo ucfirst($user5['first_name']) .' '. ucfirst($user5['last_name'])?>"/>
+                                    <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="<?php echo ucfirst($user5['fname']) .' '. ucfirst($user5['lname'])?>"/>
                                     <input type="hidden" name="comment_id" id="comment_id" value="0" />
                                     <button type="submit" class="btn btn-outline-primary-2" name="submit" id="submit">
                                         <span>POST COMMENT</span>
@@ -250,12 +256,12 @@ $comment_count = count($rowsComment);
     </div><!-- End .modal -->
 
     <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/superfish.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/superfish.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
          
@@ -300,7 +306,8 @@ $comment_count = count($rowsComment);
         $('#comment_id').val(comment_id);
         $('#comment_content').focus();
         });
-    
+
+        setInterval(load_comment, 1000);
     });
 </script>
 </body>

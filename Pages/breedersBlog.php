@@ -35,7 +35,7 @@
         ?>
 
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
+        	<div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
         		<div class="container">
         			<h1 class="page-title" style="color:#fff;font-weight:700">Breeders Blog<span style="color:#fff;">Find Co Breeders</span></h1>
         		</div><!-- End .container -->
@@ -93,7 +93,22 @@
                                             <?php else: ?>
                                                 <a href="#"><?php echo $user3['commentCount']?> Comments</a>
                                             <?php endif; ?>
-
+                                            <?php
+                                            if($id == $user["user_id"]):
+                                                ?>
+                                                <div class="dropdown">
+                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:360px;">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a href="#modal-editpost<?php echo $post['id']?>" class="dropdown-item" data-toggle="modal">Edit</a>
+                                                        <a type="submit" name="deleteBlog" class="dropdown-item" href="../Pages/deleteBlog.php?id=<?php echo $post['id']?>">DELETE</a>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            
                                         </div><!-- End .entry-meta -->
 
                                         <h2 class="entry-title mb-2">
@@ -102,12 +117,53 @@
                                         <div class="entry-content">
                                             <p class="mb-3"><?php echo $user1['description']?> ... </p>
                                             <a href="../Pages/comment.php?breedersblog_id=<?php echo $post['id']?>" class="read-more">View more details</a>
+                                        <?php
+                                        if($id != $user["user_id"]):
+                                            ?>
                                             <a href="" data-toggle="modal" data-target="#modal-report"  class="read-more icon-font-awesome-flag text-danger float-right"> Report</a>
+                                        <?php endif; ?>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
                             </div><!-- End .row -->
                         </article><!-- End .entry -->
+                        <!-- EDIT POST Modals -->
+                        <div class="modal fade" id="modal-editpost<?php echo $post['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="../Controller/updateBreederController.php" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Purpose</label>
+                                                <input type="purpose" class="form-control" name="purpose1" id="purpose" value="<?php echo $post['purpose']?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <input class="form-control" name="description1" id="description" value="<?php echo $user1['description']?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Uploaded Image</label>
+                                                <input class="form-control" type="input" name="img" value="<?php echo $post['image']?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Upload Image</label>
+                                                <input class="form-control" type="file" name="img1">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" name="editblog" id="postblog">EDIT POST</button>
+                                        </div>
+                                    </form>                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF EDIT POST -->
                     <?php endwhile;?>
                 	<hr class="mb-5">
                 </div><!-- End .container -->
@@ -171,33 +227,7 @@
     </div><!-- End .modal -->
 
     <!-- Modals Files -->
-    <!-- The Modal -->
-<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog" modal-dialog-centered" role="document >
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-    <!--End of modal -->
+    <!-- ADD POST Modals -->
     <div class="modal fade" id="modal-addpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -207,37 +237,30 @@
                         <span aria-hidden="true"><i class="icon-close"></i></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                        <form method="POST" action="../Controller/BreederController.php" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>Purpose</label>
-                                <input type="purpose" class="form-control" name="purpose" id="purpose" placeholder="Enter your purpose">
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" name="description" id="description" placeholder="Enter description" rows="5"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Image</label>
-                                <input class="form-control" type="file" name="img" id="img">
-                            </div>
-                    
-
-                </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
-                            </div>
-                        </form>                                  
+                <form method="POST" action="../Controller/BreederController.php" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="purpose" class="form-control" name="purpose" id="purpose" placeholder="Enter your purpose">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" id="description" placeholder="Enter description" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                            <input class="form-control" type="file" name="img" id="img">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
+                    </div>
+                </form>                                  
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
+    
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
