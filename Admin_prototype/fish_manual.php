@@ -10,12 +10,10 @@
 	$manual_id;
 	if(isset($_GET["delete"])){
 		$manual_id = $_GET["manual_id"];
-		// for($i = 0; $i < count($product_id) ; $i++){
 			
 			deletemanual($manual_id);
 			echo '<script>alert("Are you sure you want to delete?")</script>';
-			//header("location:homepage.php");
-		// }	
+
 	}
 
 ?>
