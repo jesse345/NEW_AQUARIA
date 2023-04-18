@@ -47,7 +47,7 @@ function forDelete($table,$value){
 function updatePost($table,$value1,$value2,$value3,$value4){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "UPDATE `$table` SET `user_id`= '$value1',`description`='$value2',`purpose`='$value3',`image`='$value4'");
+	$query = mysqli_query($conn, "UPDATE `$table` SET `description`='$value2',`purpose`='$value3',`image`='$value4' WHERE `id` = $value1");
 	disconnect();
 }
 

@@ -137,7 +137,7 @@
                                             <span aria-hidden="true"><i class="icon-close"></i></span>
                                         </button>
                                     </div>
-                                    <form method="POST" action="../Controller/updateBreederController.php" enctype="multipart/form-data">
+                                    <form method="POST" action="../Controller/updateBreederController.php?blog_id=<?php echo $post['id']?>" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label>Purpose</label>
