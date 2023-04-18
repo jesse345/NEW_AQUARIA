@@ -130,6 +130,13 @@ function deleterecord($product_id){
 	$query = mysqli_query($conn, "DELETE FROM `product_details` WHERE `product_id` = '$product_id'");
 	disconnect();
 }
+
+function deletemanual($manual_id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "DELETE FROM `product_details` WHERE `manual_id` = '$manual_id'");
+	disconnect();
+}
 // function isApproved(){
 // 	global $conn;
 // 	connect();

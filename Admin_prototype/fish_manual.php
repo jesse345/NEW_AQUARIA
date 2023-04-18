@@ -7,6 +7,17 @@
 	}
 	$rec = getAllManual();
 
+	$manual_id;
+	if(isset($_GET["delete"])){
+		$manual_id = $_GET["manual_id"];
+		// for($i = 0; $i < count($product_id) ; $i++){
+			
+			deletemanual($manual_id);
+			echo '<script>alert("Are you sure you want to delete?")</script>';
+			//header("location:homepage.php");
+		// }	
+	}
+
 ?>
 
 
@@ -330,8 +341,8 @@
 						<td><?php echo $row['title'];?></td>
 						<td><?php echo $row['description'];?></td>
 						<td>
-							<a href="#editManualModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#editManualModal" class="edit"  name="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal" class="delete" name="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					<?php
@@ -410,7 +421,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
+						<input type="submit" class="btn btn-info" value="Save" name="edit">
 					</div>
 				</form>
 			</div>
@@ -421,7 +432,8 @@
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+
+				<form method="GET" action="fish_manual.php">
 					<div class="modal-header">						
 						<h4 class="modal-title">Delete Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -432,9 +444,10 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="submit" class="btn btn-danger" value="Delete" name="delete" >
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
