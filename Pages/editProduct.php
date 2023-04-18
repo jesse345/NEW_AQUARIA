@@ -42,7 +42,7 @@
                                 ?>
 
                                 <?php if ($prod_det['category'] == "Aquarium") { ?>
-                                    <form id="form1" class="form-card" action="#" method="POST" enctype="multipart/form-data">
+                                    <form id="form1" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -101,15 +101,49 @@
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
 
-                                                <?php $images = getProduct('product_images', 'product_id', $_GET['product_id']);
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                while ($image = mysqli_fetch_assoc($images)) {
-                                                    $img =  substr($image['img'], 7);
                                                 ?>
-                                                    <input type="file" name="image[]" accept="image/*" value="<?php echo $img ?>" required>
+
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
-                                                <?php } ?>
+
+
                                             </div>
                                         </div>
 
@@ -138,7 +172,7 @@
 
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
                                                     Edit Product
                                                 </button>
                                             </div>
@@ -668,16 +702,15 @@
 
     <?php
     include("../Layouts/mobileMenu.layout.php");
-    include("../Layouts/scripts.layout.php")
-    ?>
+    include("../Layouts/scripts.layout.php");
 
-    </script>
+    ?>
+    <script src="../JS/editProduct.js"> </script>
+
+
 
 
 
 </body>
-
-
-<!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 
 </html>

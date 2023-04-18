@@ -150,13 +150,89 @@ if (!empty($_SESSION['id'])) {
     }
 
     // For Search Product
-    else if (isset($_POST['searchProduct'])) {
-        $search = $_POST['search'];
-        if ($search == null) {
-            // header("location: ../");
-        } else {
-            header("Location: ../Pages/products.php?search=$search");
+    else if (isset($_GET['searchProduct'])) {
+        $search = $_GET['search'];
+
+        header("Location: ../Pages/product-lists.php?search=$search");
+        // if ($search == null) {
+        //     // header("location: ../");
+        // } else {
+        //     header("Location: ../Pages/products.php?search=$search");
+        // }
+    } else if (isset($_POST['editProduct'])) {
+
+        // Temporary only
+        $targetDir = "../img/"; // Set target directory
+        $fileType = pathinfo($_FILES['image']['name'][0], PATHINFO_EXTENSION);
+        $img = $targetDir . basename($_FILES['image']['name'][0]);
+        $product_name = $_POST['product_name'];
+        // $typeofpayment = $_POST['product_name'];
+        $quantity = $_POST['quantity'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+        $category = $_POST['category'];
+        $ship = $_POST['shipping_type'];
+
+        $user_fld = array('user_id', 'date_created', 'isDelete');
+        $user_val = array($_SESSION['id'], $date, "No");
+        $user_det_fld = array(
+            "product_id",
+            "product_name",
+            "quantity",
+            "description",
+            "price",
+            "product_img",
+            "category",
+            "shipping_type"
+        );
+        $user_det_val = array(
+            $_GET['product_id'],
+            $product_name,
+            $quantity,
+            $description,
+            $price,
+            $img,
+            $category,
+            $ship
+        );
+        if ($category == "Aquarium") {
+            $tank = $_POST['tank_type'];
+            $dimension = $_POST['dimension'];
+            $thick = $_POST['thickness'];
+
+
+            array_push($user_det_fld, 'tank_type', 'dimension', 'thickness');
+            array_push($user_det_val, $tank, $dimension, $thick);
+            editProduct('product_details', $user_det_fld, $user_det_val);
+            echo "<script>
+            alert('$product_name Added successfully!');
+            window.location.href = '../Pages/manageProducts.php';
+        </script>";
         }
+
+
+
+        $targetDir = "../img/"; // Set target directory
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+        $img_id = $_POST['img_id'];
+        $i = 0;
+        foreach ($_FILES['image']['name'] as $key => $name) {
+            $fileType = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
+            $targetPath = $targetDir . basename($name);
+
+            // Check if file type is allowed
+            if (in_array($fileType, $allowedTypes)) {
+                // Move uploaded file to target directory
+                move_uploaded_file($_FILES['image']['tmp_name'][$key], $targetPath);
+
+                editProduct('product_images', array('id', 'img'), array($img_id[$i], $targetPath));
+                $i++;
+            } else {
+                echo "Invalid file type: $name<br>";
+            }
+        }
+        $i = 0;
     } else {
         header("Location: ../");
     }

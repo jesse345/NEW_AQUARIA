@@ -88,27 +88,16 @@ function getProduct($table_name, $fields, $values)
 }
 
 
-function searchProduct($table_name, $fields, $values, $page, $result)
+function searchProduct($search)
 {
     global $conn;
     connect();
-    $query = "SELECT * FROM `$table_name` WHERE `$fields` LIKE '%$values%' LIMIT $page,$result";
-    $data = mysqli_query($conn, $query);
-
-    disconnect();
-    return $data;
-}
-
-
-function countSearchProduct($table_name, $fields, $values)
-{
-    global $conn;
-    connect();
-    $query = "SELECT * FROM `$table_name` WHERE `$fields` LIKE '%$values%'";
+    $query = "SELECT * FROM `product_details` WHERE `product_name` LIKE '%$search%'";
     $data = mysqli_query($conn, $query);
     disconnect();
     return $data;
 }
+
 
 
 function deleteProduct($product_id)

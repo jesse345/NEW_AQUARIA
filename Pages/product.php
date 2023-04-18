@@ -136,10 +136,10 @@
                                                 </div>
 
                                                 <?php if (isset($_SESSION['id'])) {
-                                                    $check = usersCart(
-                                                        'carts',
-                                                        array('user_id', 'product_id'),
-                                                        array($_SESSION['id'], $prod_det['product_id'])
+                                                    $check = usersCarts(
+                                                        $_SESSION['id'],
+                                                        $prod_det['product_id'],
+                                                        "No"
                                                     ); ?>
                                                     <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
 
@@ -221,11 +221,11 @@
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <select name="report_type" style="width:100%; padding: 3%;">
-                                                            <option value="Reason1">Prohibited Items/Products</option>
-                                                            <option value="Reason2">Offensive or Potential Offensive Items </option>
-                                                            <option value="Reason3">Illegam Items/Products </option>
-                                                            <option value="Reason4">Critically Extinct Species </option>
-                                                            <option value="Reason5">Unrelated Items/Products </option>
+                                                            <option value="Prohibited Items/Products">Prohibited Items/Products</option>
+                                                            <option value="Offensive or Potential Offensive Items">Offensive or Potential Offensive Items </option>
+                                                            <option value="Illegam Items/Products ">Illegam Items/Products </option>
+                                                            <option value="Critically Extinct Species">Critically Extinct Species </option>
+                                                            <option value="Unrelated Items/Products">Unrelated Items/Products </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -471,11 +471,11 @@
                                             <div class="product-action product-action-transparent">
 
                                                 <?php if (isset($_SESSION['id'])) {
-                                                    $check = usersCart(
-                                                        'carts',
-                                                        array('user_id', 'product_id'),
-                                                        array($_SESSION['id'], $prod_det['product_id'])
-                                                    ); ?>
+                                                    $check = usersCarts(
+                                                        $_SESSION['id'],
+                                                        $prod_det['product_id'],
+                                                        "No"
+                                                    );  ?>
                                                     <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
                                                     <input type="hidden" name="quantity" value="1">
                                                     <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">

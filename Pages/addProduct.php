@@ -121,9 +121,38 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-1" name="image[]" accept="image/*" required>
+                                                        <label for="file-1" id="file-1-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-2" name="image[]" accept="image/*" required>
+                                                        <label for="file-2" id="file-2-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-3" name="image[]" accept="image/*" required>
+                                                        <label for="file-3" id="file-3-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                     </div>
@@ -247,9 +276,39 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-4" name="image[]" accept="image/*" required>
+                                                        <label for="file-4" id="file-4-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-5" name="image[]" accept="image/*" required>
+                                                        <label for="file-5" id="file-5-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-6" name="image[]" accept="image/*" required>
+                                                        <label for="file-6" id="file-6-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -329,9 +388,39 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-7" name="image[]" accept="image/*" required>
+                                                        <label for="file-7" id="file-7-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-8" name="image[]" accept="image/*" required>
+                                                        <label for="file-8" id="file-8-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-9" name="image[]" accept="image/*" required>
+                                                        <label for="file-9" id="file-9-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -421,9 +510,39 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-10" name="image[]" accept="image/*" required>
+                                                        <label for="file-10" id="file-10-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-11" name="image[]" accept="image/*" required>
+                                                        <label for="file-11" id="file-11-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-12" name="image[]" accept="image/*" required>
+                                                        <label for="file-12" id="file-12-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -514,9 +633,39 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-13" name="image[]" accept="image/*" required>
+                                                        <label for="file-13" id="file-13-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-14" name="image[]" accept="image/*" required>
+                                                        <label for="file-14" id="file-14-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-15" name="image[]" accept="image/*" required>
+                                                        <label for="file-15" id="file-15-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -606,9 +755,39 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-16" name="image[]" accept="image/*" required>
+                                                        <label for="file-16" id="file-16-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-17" name="image[]" accept="image/*" required>
+                                                        <label for="file-17" id="file-17-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-18" name="image[]" accept="image/*" required>
+                                                        <label for="file-18" id="file-18-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -699,9 +878,38 @@
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
 
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
-                                            <input type="file" name="image[]" accept="image/*" required>
+                                            <div class="form">
+                                                <div class="grid">
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-19" name="image[]" accept="image/*" required>
+                                                        <label for="file-19" id="file-19-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-20" name="image[]" accept="image/*" required>
+                                                        <label for="file-20" id="file-20-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-element">
+                                                        <input type="file" id="file-21" name="image[]" accept="image/*" required>
+                                                        <label for="file-21" id="file-21-preview">
+                                                            <img src="https://bit.ly/3ubuq5o" alt="">
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                     </div>

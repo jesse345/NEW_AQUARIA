@@ -178,7 +178,7 @@ session_start();
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
                 <li>
-                    <a href="../Pages/chat.php">CHAT</a>
+                  <a href="../Pages/chat.php">CHAT</a>
                 </li>
 
 
@@ -192,11 +192,11 @@ session_start();
           <div class="header-right">
             <div class="header-search header-search-extended header-search-visible">
               <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-              <form action="#" method="get">
+              <form action="../Controller/ProductsController.php" method="GET">
                 <div class="header-search-wrapper">
                   <label for="q" class="sr-only">Search</label>
-                  <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required />
-                  <button class="btn btn-primary" type="submit">
+                  <input type="search" class="form-control" name="search" id="q" placeholder="Search product ..." required />
+                  <button class="btn btn-primary" type="submit" name="searchProduct">
                     <i class="icon-search"></i>
                   </button>
                 </div>

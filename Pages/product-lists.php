@@ -10,18 +10,14 @@
   <div class="page-wrapper">
     <?php include("../Includes/header.inc.php") ?>
     <main class="main">
-      <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        <div class="container">
-          <h1 class="page-title">Products</h1>
-        </div>
-        <!-- End .container -->
-      </div>
-      <!-- End .page-header -->
-      <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+      <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2 mt-2">
         <div class="container">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Products</li>
+            <?php if (isset($_GET['search'])) { ?>
+              <li class="breadcrumb-item active" aria-current="page"><?php echo $_GET['search'] ?></li>
+            <?php } ?>
           </ol>
         </div>
         <!-- End .container -->
@@ -104,195 +100,328 @@
               </div>
               <!-- End .toolbox -->
 
-              <div class="products mb-3">
-                <?php
 
-                $products = getAllProduct('products');
+              <?php if (!isset($_GET['search'])) { ?>
+                <div class="products mb-3">
+                  <?php
+                  $products = getAllProduct('products');
+                  while ($product = mysqli_fetch_assoc($products)) {
+                    $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $product['id']));
+                    $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);
+                  ?>
+                    <div class="product product-list">
+                      <div class="row">
+                        <div class="col-6 col-lg-3">
+                          <figure class="product-media">
 
-                while ($product = mysqli_fetch_assoc($products)) {
-                  $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $product['id']));
-                  $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);
-                ?>
-                  <div class="product product-list">
-                    <div class="row">
-                      <div class="col-6 col-lg-3">
-                        <figure class="product-media">
+                            <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
+                              <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
+                            </a>
+                          </figure>
 
-                          <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
-                            <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
-                          </a>
-                        </figure>
-                        <!-- End .product-media -->
-                      </div>
-                      <!-- End .col-sm-6 col-lg-3 -->
+                        </div>
 
-                      <div class="col-6 col-lg-3 order-lg-last">
-                        <div class="product-list-action">
-                          <div class="product-price">₱
-                            <?php echo number_format($prod_det['price'], 2) ?>
-                          </div>
-                          <!-- End .product-price -->
-                          <div class="ratings-container">
-                            <div class="ratings">
-                              <?php
-                              $rate = 0;
-                              while ($star = mysqli_fetch_assoc($review)) {
-                                $rate += $star['rate'];
-                              }
-                              if ($rate == 0) {
-                                $total = 0;
-                              } else {
-                                $total = round($rate / mysqli_num_rows($review), PHP_ROUND_HALF_DOWN);
-                              }
-                              ?>
 
-                              <?php if ($total == 0) { ?>
-                                <div class="ratings-val" style="width: 0%;"></div>
-                              <?php } else if ($total == 1) { ?>
-                                <div class="ratings-val" style="width: 20%;"></div>
-                              <?php } else if ($total == 2) { ?>
-                                <div class="ratings-val" style="width: 40%;"></div>
-                              <?php } else if ($total == 3) { ?>
-                                <div class="ratings-val" style="width: 60%;"></div>
-                              <?php } else if ($total == 4) { ?>
-                                <div class="ratings-val" style="width: 80%;"></div>
-                              <?php } else if ($total == 5) { ?>
-                                <div class="ratings-val" style="width: 100%;"></div>
+                        <div class="col-6 col-lg-3 order-lg-last">
+                          <div class="product-list-action">
+                            <div class="product-price">₱
+                              <?php echo number_format($prod_det['price'], 2) ?>
+                            </div>
+
+                            <div class="ratings-container">
+                              <div class="ratings">
+                                <?php
+                                $rate = 0;
+                                while ($star = mysqli_fetch_assoc($review)) {
+                                  $rate += $star['rate'];
+                                }
+                                if ($rate == 0) {
+                                  $total = 0;
+                                } else {
+                                  $total = round($rate / mysqli_num_rows($review), PHP_ROUND_HALF_DOWN);
+                                }
+                                ?>
+
+                                <?php if ($total == 0) { ?>
+                                  <div class="ratings-val" style="width: 0%;"></div>
+                                <?php } else if ($total == 1) { ?>
+                                  <div class="ratings-val" style="width: 20%;"></div>
+                                <?php } else if ($total == 2) { ?>
+                                  <div class="ratings-val" style="width: 40%;"></div>
+                                <?php } else if ($total == 3) { ?>
+                                  <div class="ratings-val" style="width: 60%;"></div>
+                                <?php } else if ($total == 4) { ?>
+                                  <div class="ratings-val" style="width: 80%;"></div>
+                                <?php } else if ($total == 5) { ?>
+                                  <div class="ratings-val" style="width: 100%;"></div>
+                                <?php } ?>
+
+                              </div>
+
+                              <span class="ratings-text">(
+                                <?php echo mysqli_num_rows($review) ?> )
+                              </span>
+                            </div>
+
+
+
+
+                            <form action="../Controller/CartsController.php" method="POST">
+                              <?php if (isset($_SESSION['id'])) {
+                                $check = usersCart(
+                                  'carts',
+                                  array('user_id', 'product_id'),
+                                  array($_SESSION['id'], $prod_det['product_id'])
+                                ); ?>
+                                <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
+
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
+
+                                <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
+
+                                <?php if (mysqli_num_rows($check) > 0) { ?>
+                                  <button type="submit" class="btn-product btn-cart w-100" name="removeCart" id="removeCart">
+                                    <span>Remove From Cart</span>
+                                  </button>
+                                <?php } else { ?>
+                                  <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
+                                    <span class="">Add To Cart</span>
+                                  </button>
+                                <?php } ?>
+                              <?php } else { ?>
+                                <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
+                                  <span>Add To Cart</span>
+                                </button>
                               <?php } ?>
+
+                            </form>
+
+                          </div>
+
+                        </div>
+
+
+                        <div class="col-lg-6">
+                          <div class="product-body product-action-inner">
+                            <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
+                              <?php if (isset($_SESSION['id'])) {
+                                $check = usersWishlist(
+                                  'wishlists',
+                                  array('user_id', 'product_id'),
+                                  array($_SESSION['id'], $prod_det['product_id'])
+                                ); ?>
+                                <?php if (mysqli_num_rows($check) > 0) { ?>
+
+                                  <button type="submit" class="btn-product btn-wishlist border-0 text-danger" title="Wishlist" name="removeWishlist">
+
+                                  </button>
+                                <?php } else { ?>
+                                  <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="addToWishlist">
+
+                                  </button>
+                                <?php } ?>
+                              <?php } else { ?>
+                                <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Add to wishlist" name="addToWishlist">
+
+                                </button>
+                              <?php } ?>
+                            </form>
+                            <div class="product-cat">
+                              <a href="#">
+                                <?php echo $prod_det['category'] ?>
+                              </a>
+                            </div>
+                            <h3 class="product-title">
+                              <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>"><?php echo ucfirst($prod_det['product_name']) ?></a>
+                            </h3>
+                            <div class="product-content">
+                              <p>
+                                <?php echo ucfirst($prod_det['description']) ?>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <?php } ?>
+                </div>
+                <nav aria-label="Page navigation">
+                  <ul class="pagination">
+                    <li class="page-item disabled">
+                      <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                      </a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item-total">of 6</li>
+                    <li class="page-item">
+                      <a class="page-link page-link-next" href="#" aria-label="Next">
+                        Next
+                        <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              <?php } else { ?>
+                <div class="products mb-3">
+                  <?php
+                  $products = searchProduct($_GET['search']);
+                  if (mysqli_num_rows($products) > 0) {
+                    while ($prod_det = mysqli_fetch_assoc($products)) {
+                      $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);
+                  ?>
+                      <div class="product product-list">
+                        <div class="row">
+                          <div class="col-6 col-lg-3">
+                            <figure class="product-media">
+
+                              <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
+                                <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
+                              </a>
+                            </figure>
+
+                          </div>
+
+
+                          <div class="col-6 col-lg-3 order-lg-last">
+                            <div class="product-list-action">
+                              <div class="product-price">₱
+                                <?php echo number_format($prod_det['price'], 2) ?>
+                              </div>
+
+                              <div class="ratings-container">
+                                <div class="ratings">
+                                  <?php
+                                  $rate = 0;
+                                  while ($star = mysqli_fetch_assoc($review)) {
+                                    $rate += $star['rate'];
+                                  }
+                                  if ($rate == 0) {
+                                    $total = 0;
+                                  } else {
+                                    $total = round($rate / mysqli_num_rows($review), PHP_ROUND_HALF_DOWN);
+                                  }
+                                  ?>
+
+                                  <?php if ($total == 0) { ?>
+                                    <div class="ratings-val" style="width: 0%;"></div>
+                                  <?php } else if ($total == 1) { ?>
+                                    <div class="ratings-val" style="width: 20%;"></div>
+                                  <?php } else if ($total == 2) { ?>
+                                    <div class="ratings-val" style="width: 40%;"></div>
+                                  <?php } else if ($total == 3) { ?>
+                                    <div class="ratings-val" style="width: 60%;"></div>
+                                  <?php } else if ($total == 4) { ?>
+                                    <div class="ratings-val" style="width: 80%;"></div>
+                                  <?php } else if ($total == 5) { ?>
+                                    <div class="ratings-val" style="width: 100%;"></div>
+                                  <?php } ?>
+
+                                </div>
+
+                                <span class="ratings-text">(
+                                  <?php echo mysqli_num_rows($review) ?> )
+                                </span>
+                              </div>
+
+
+
+
+                              <form action="../Controller/CartsController.php" method="POST">
+                                <?php if (isset($_SESSION['id'])) {
+                                  $check = usersCart(
+                                    'carts',
+                                    array('user_id', 'product_id'),
+                                    array($_SESSION['id'], $prod_det['product_id'])
+                                  ); ?>
+                                  <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
+
+                                  <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
+
+                                  <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
+
+                                  <?php if (mysqli_num_rows($check) > 0) { ?>
+                                    <button type="submit" class="btn-product btn-cart w-100" name="removeCart" id="removeCart">
+                                      <span>Remove From Cart</span>
+                                    </button>
+                                  <?php } else { ?>
+                                    <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
+                                      <span class="">Add To Cart</span>
+                                    </button>
+                                  <?php } ?>
+                                <?php } else { ?>
+                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
+                                    <span>Add To Cart</span>
+                                  </button>
+                                <?php } ?>
+
+                              </form>
 
                             </div>
 
-                            <span class="ratings-text">(
-                              <?php echo mysqli_num_rows($review) ?> )
-                            </span>
                           </div>
 
 
+                          <div class="col-lg-6">
+                            <div class="product-body product-action-inner">
+                              <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
+                                <?php if (isset($_SESSION['id'])) {
+                                  $check = usersWishlist(
+                                    'wishlists',
+                                    array('user_id', 'product_id'),
+                                    array($_SESSION['id'], $prod_det['product_id'])
+                                  ); ?>
+                                  <?php if (mysqli_num_rows($check) > 0) { ?>
 
+                                    <button type="submit" class="btn-product btn-wishlist border-0 text-danger" title="Wishlist" name="removeWishlist">
 
-                          <form action="../Controller/CartsController.php" method="POST">
-                            <?php if (isset($_SESSION['id'])) {
-                              $check = usersCart(
-                                'carts',
-                                array('user_id', 'product_id'),
-                                array($_SESSION['id'], $prod_det['product_id'])
-                              ); ?>
-                              <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
+                                    </button>
+                                  <?php } else { ?>
+                                    <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="addToWishlist">
 
-                              <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
+                                    </button>
+                                  <?php } ?>
+                                <?php } else { ?>
+                                  <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Add to wishlist" name="addToWishlist">
 
-                              <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
-
-                              <?php if (mysqli_num_rows($check) > 0) { ?>
-                                <button type="submit" class="btn-product btn-cart w-100" name="removeCart" id="removeCart">
-                                  <span>Remove From Cart</span>
-                                </button>
-                              <?php } else { ?>
-                                <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
-                                  <span class="">Add To Cart</span>
-                                </button>
-                              <?php } ?>
-                            <?php } else { ?>
-                              <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
-                                <span>Add To Cart</span>
-                              </button>
-                            <?php } ?>
-
-                          </form>
-
+                                  </button>
+                                <?php } ?>
+                              </form>
+                              <div class="product-cat">
+                                <a href="#">
+                                  <?php echo $prod_det['category'] ?>
+                                </a>
+                              </div>
+                              <h3 class="product-title">
+                                <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>"><?php echo ucfirst($prod_det['product_name']) ?></a>
+                              </h3>
+                              <div class="product-content">
+                                <p>
+                                  <?php echo ucfirst($prod_det['description']) ?>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-
                       </div>
+                    <?php }
+                  } else { ?>
+                    <p style="font-size: 3rem"> Product <strong style="color:black"> <?php echo $_GET['search'] ?> </strong> not found! </p>
+                  <?php } ?>
+                </div>
 
 
-                      <div class="col-lg-6">
-                        <div class="product-body product-action-inner">
-                          <form action="../Controller/WishlistsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
-                            <?php if (isset($_SESSION['id'])) {
-                              $check = usersWishlist(
-                                'wishlists',
-                                array('user_id', 'product_id'),
-                                array($_SESSION['id'], $prod_det['product_id'])
-                              ); ?>
-                              <?php if (mysqli_num_rows($check) > 0) { ?>
+              <?php } ?>
 
-                                <button type="submit" class="btn-product btn-wishlist border-0 text-danger" title="Wishlist" name="removeWishlist">
-
-                                </button>
-                              <?php } else { ?>
-                                <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Wishlist" name="addToWishlist">
-
-                                </button>
-                              <?php } ?>
-                            <?php } else { ?>
-                              <button type="submit" class="btn-product btn-wishlist border-0 bg-transparent mr-2" title="Add to wishlist" name="addToWishlist">
-
-                              </button>
-                            <?php } ?>
-                          </form>
-                          <div class="product-cat">
-                            <a href="#">
-                              <?php echo $prod_det['category'] ?>
-                            </a>
-                          </div>
-                          <!-- End .product-cat -->
-                          <h3 class="product-title">
-                            <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>"><?php echo ucfirst($prod_det['product_name']) ?></a>
-                          </h3>
-                          <!-- End .product-title -->
-
-                          <div class="product-content">
-                            <p>
-                              <?php echo ucfirst($prod_det['description']) ?>
-                            </p>
-                          </div>
-                          <!-- End .product-content -->
-                        </div>
-                        <!-- End .product-body -->
-                      </div>
-                      <!-- End .col-lg-6 -->
-
-
-                    </div>
-                    <!-- End .row -->
-                  </div>
-
-                <?php } ?>
-
-
-
-
-                <!-- End .product -->
-              </div>
-              <!-- End .products -->
-
-              <nav aria-label="Page navigation">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                      <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                    </a>
-                  </li>
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                  </li>
-                  <li class="page-item-total">of 6</li>
-                  <li class="page-item">
-                    <a class="page-link page-link-next" href="#" aria-label="Next">
-                      Next
-                      <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
-            <!-- End .col-lg-9 -->
 
             <aside class="col-lg-3 order-lg-first">
               <div class="sidebar sidebar-shop">

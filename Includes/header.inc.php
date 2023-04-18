@@ -156,10 +156,13 @@ if (isset($_SESSION['id'])) {
             <div class="header-right">
                 <div class="header-search">
                     <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-                    <form action="#" method="get">
+                    <form action="../Controller/ProductsController.php" method="GET">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required />
+                            <input type="search" class="form-control" name="search" id="q" placeholder="Search product ..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>" required />
+                            <button class="btn btn-primary" type="submit" name="searchProduct">
+                                <i class="icon-search"></i>
+                            </button>
                         </div>
                         <!-- End .header-search-wrapper -->
                     </form>
