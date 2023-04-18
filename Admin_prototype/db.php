@@ -26,6 +26,15 @@ function getallproduct()
 	return $query;
 }
 
+function getallreport()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `reports`");
+	disconnect();
+	return $query;
+}
+
 function getAllUser()
 {
 	global $conn;
@@ -104,6 +113,22 @@ function getAllPost()
 	$query = mysqli_query($conn, "SELECT * FROM `breedersblog`");
 	disconnect();
 	return $query;
+}
+
+function getallpayment()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `payment`");
+	disconnect();
+	return $query;
+}
+
+function deleterecord($product_id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "DELETE FROM `product_details` WHERE `product_id` = '$product_id'");
+	disconnect();
 }
 // function isApproved(){
 // 	global $conn;

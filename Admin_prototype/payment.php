@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	include("db.php");
-	$rec = getallproduct();
+	$rec = getallpayment();
 	// $record = getAllUser();
 	
 	// $product_id = array();
@@ -18,10 +18,9 @@
 		
 
 ?>
-
-<html>
+<html lang="en">
 <head>
-	<title> E AQUARIA</title>
+    <title> E AQUARIA</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<style>
@@ -40,8 +39,6 @@
 			padding: 10px;
 		}
 </style>
-	
-
 </head>
 <body>
 	<nav class="sidebar close">
@@ -144,57 +141,35 @@
 	</nav>
 
 	<table>
-	<h1 style="text-align:center;">PRODUCTS</h1>
+	<h1 style="text-align:center;">PAYMENT</h1>
 		<tr>
-			<th>PRODUCT ID</th>
-			<th>PRODUCT NAME</th>
-			<th>QUANTITY</th>
-			<th>DESCRIPTION</th>
-			<th>PRICE</th>
-			<th>PRODUCT IMAGE</th>
-			<th>CATEGORY</th>
-			<th>TANK TYPE</th>
-			<th>DIMENSION</th>
-			<th>THICKNESS</th>
-			<th>FISH TYPE</th>
-			<th>FISH CLASS</th>
-			<th>SIZE</th>
-			<th>GENDER</th>
-			<th>AGE</th>
-			<th>SPECIFICATION</th>
-			<th>EXPIRATION DATE</th>
-			<th>BENEFITS</th>
-			<th>SHIPPING TYPE</th>
-			<th>ACTIONS</th>
+			<th>PAYMENT ID</th>
+			<th>USER ID</th>
+			<th>TYPE OF PAYMENT</th>
+			<th>RECEIPT IMAGE</th>
+			<th>DATE CREATED</th>
+			<th>AMOUNT</th>
+			<th>REFERENCE NUMBER</th>
+			<th>ORDER ID</th>
+            <th>ACTIONS</th>
 		</tr>
 		
 		<?php
 			while($row = mysqli_fetch_assoc($rec)){
-				$gp = mysqli_fetch_assoc(getproducts($row['product_id']));
+				$gp = mysqli_fetch_assoc(getproducts($row['payment_id']));
 				
 		?>
 
 		<tr>
-			<td><?php echo $row['product_id'];?></td>
-			<td><?php echo $row['product_name'];?></td>
-			<td><?php echo $row['quantity'];?></td>
-			<td><?php echo $row['description'];?></td>
-			<td><?php echo $row['price'];?></td>
-			<td><img src = "<?php echo $row['product_img'];?>" style="width: 190px;" ></td>
-			<td><?php echo $row['category'];?></td>
-			<td><?php echo $row['tank_type'];?></td>
-			<td><?php echo $row['dimension'];?></td>
-			<td><?php echo $row['thickness'];?></td>
-			<td><?php echo $row['fish_type'];?></td>
-			<td><?php echo $row['fish_class'];?></td>
-			<td><?php echo $row['size'];?></td>
-			<td><?php echo $row['gender'];?></td>
-			<td><?php echo $row['age'];?></td>
-			<td><?php echo $row['specification'];?></td>
-			<td><?php echo $row['expiration_date'];?></td>
-			<td><?php echo $row['benefits'];?></td>
-			<td><?php echo $row['shipping_type'];?></td>
-			<form action="product.php?product_id=<?php echo $row['product_id'] ?>" METHOD="POST">
+			<td><?php echo $row['payment_id'];?></td>
+			<td><?php echo $row['user_id'];?></td>
+			<td><?php echo $row['typeofpayment'];?></td>
+			<td><img src = "<?php echo $row['receipt_img'];?>" style="width: 190px;" ></td>
+			<td><?php echo $row['date_created'];?></td>
+			<td><?php echo $row['amount'];?></td>
+			<td><?php echo $row['reference_no'];?></td>
+			<td><?php echo $row['order_id'];?></td>
+			<form action="payment.php?payment_id=<?php echo $row['payment_id'] ?>" METHOD="POST">
 				<td><button type="submit" name="delete">DELETE</button></td>
 			</form>
 		</tr>

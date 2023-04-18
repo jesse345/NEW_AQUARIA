@@ -44,6 +44,18 @@
 						</a>
 					</li> -->
 					<li class="nav-link">
+						<a href="fish_manual.php">
+							<i class='bx bx-book-content icon'></i>
+							<span class="text nav-text">Fish Manual</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="payment.php">
+							<i class='bx bx-money icon'></i>
+							<span class="text nav-text">Manage Payment</span>
+						</a>
+					</li>
+					<li class="nav-link">
 						<a href="post.php">
 						<!-- bar-chart-alt-2 -->
 							<i class='bx bx-repost icon'></i>
@@ -63,21 +75,15 @@
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="users.php">
-							<i class='bx bx-user icon'></i>
-							<span class="text nav-text">Manage Users</span>
-						</a>
-					</li>
-					<li class="nav-link">
 						<a href="shipping_info.php">
 							<i class='bx bx-info-square icon'></i>
 							<span class="text nav-text">Manage Shipping Info</span>
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="fish_manual.php">
-							<i class='bx bx-book-content icon'></i>
-							<span class="text nav-text">Fish Manual</span>
+						<a href="users.php">
+							<i class='bx bx-user icon'></i>
+							<span class="text nav-text">Manage Users</span>
 						</a>
 					</li>
 					<li class="nav-link">
