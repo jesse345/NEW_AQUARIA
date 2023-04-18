@@ -4,7 +4,7 @@ session_start();
 
 
 if(isset($_POST['editblog'])){
-        
+        $blog_id = $_GET['blog_id'];
         $description = $_POST['description1'];
         $purpose = $_POST['purpose1'];
         $img = $_FILES['img1']['name'];
@@ -19,7 +19,7 @@ if(isset($_POST['editblog'])){
         
             if ($check) {
                 move_uploaded_file($_FILES['img1']['tmp_name'], $targetPath);
-                updatePost('breedersblog', $_SESSION['id'], $description, $purpose, $img);
+                updatePost('breedersblog', $blog_id, $description, $purpose, $img);
                 header("Location: ../Pages/BreedersBlog.php");
             }else{
                 echo "File is not an image.";
@@ -27,7 +27,7 @@ if(isset($_POST['editblog'])){
                 echo '<script>alert("Failed!!!")</script>';
             }
     }else{
-                updatePost('breedersblog', $_SESSION['id'], $description, $purpose, $img1);
+                updatePost('breedersblog', $blog_id, $description, $purpose, $img1);
                 header("Location: ../Pages/BreedersBlog.php");
     }
     
