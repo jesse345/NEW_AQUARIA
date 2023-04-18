@@ -4,6 +4,10 @@
 	<title> E AQUARIA</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 	<style>
 		table {
 			border-collapse: collapse;
@@ -19,6 +23,31 @@
 			border: 1px solid #c0c0c0;
 			padding: 10px;
 		}
+		.search-container {
+  		/* float: right; */
+		text-align:center;
+		margin-top: 50px;
+	}
+
+
+	.search-container button {
+	/* float: right; */
+	padding: 6px 13px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+	}
+
+	.search-container button:hover {
+		background: #ccc;
+	}
+
+	.search-container input {
+		padding: 6px;
+		color: black;
+		width: 320px;
+	}
 </style>
 	
 
@@ -125,6 +154,12 @@
 
 	<table>
 		<h1 style="text-align:center;">BREEDER'S BLOG</h1>
+		<div class="search-container">
+			<form action="/action_page.php">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</div>
 		<tr>
 			<th>ID</th>
 			<th>USER ID</th>
