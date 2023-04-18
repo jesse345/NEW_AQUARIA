@@ -75,7 +75,7 @@ if (isset($_SESSION['id'])) {
                     <i class="icon-bars"></i>
                 </button>
                 <a href="../" class="logo">
-                    <img src="../assets/images/logo.png" alt="Molla Logo" width="105" height="25" />
+                    <img src="../img/logo.png" alt="Molla Logo" width="105" height="25" />
                 </a>
 
                 <nav class="main-nav">

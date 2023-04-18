@@ -5,20 +5,20 @@ if(isset($_SESSION['id'])){
     include '../Model/dbPDO.php';
 
     if(!empty($_GET['user'])){
-        $chatWith = getUser($_GET['user'], $conn);
+        $chatWith = getUser($_GET['user'], $connection);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
   	    }
-        $chats = getChats($_SESSION['id'], $chatWith['user_id'], $conn);
-        opened($chatWith['user_id'], $conn, $chats);
+        $chats = getChats($_SESSION['id'], $chatWith['user_id'], $connection);
+        opened($chatWith['user_id'], $connection, $chats);
         $last = last_seen($chatWith['last_seen']);
 
     }
     # Getting User data data
-  	$user = getUser($_SESSION['id'], $conn);
+  	$user = getUser($_SESSION['id'], $connection);
   	# Getting User conversations
-  	$conversations = getConversation($user['user_id'], $conn);
+  	$conversations = getConversation($user['user_id'], $connection);
     // echo json_encode($conversations);
     
 }
@@ -64,6 +64,14 @@ if(isset($_SESSION['id'])){
 <body>
     <section>
         <div class="container py-4">
+             <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Chat</li>
+                    </ol>
+                </div>
+            </nav>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card" style="height:581px;">
@@ -89,7 +97,7 @@ if(isset($_SESSION['id'])){
                                                     <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
                                         <?php 
-                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $conn);
+                                        echo lastChat($_SESSION['id'], $conversation['user_id'], $connection);
                                         ?>
                                     </small>
                                                 </h3>            	
@@ -169,7 +177,7 @@ if(isset($_SESSION['id'])){
                                         <div class="d-flex flex-row justify-content-start">
                                             <img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
-                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;"><?php echo $chat['message']?>
+                                                <p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?>
                                             </div>
                                         </div>
                                     <?php }

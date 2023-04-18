@@ -35,7 +35,7 @@
         ?>
 
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
+        	<div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
         		<div class="container">
         			<h1 class="page-title" style="color:#fff;font-weight:700">Breeders Blog<span style="color:#fff;">Find Co Breeders</span></h1>
         		</div><!-- End .container -->
@@ -127,6 +127,43 @@
                                 </div><!-- End .col-md-8 -->
                             </div><!-- End .row -->
                         </article><!-- End .entry -->
+                        <!-- EDIT POST Modals -->
+                        <div class="modal fade" id="modal-editpost<?php echo $post['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="../Controller/updateBreederController.php" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Purpose</label>
+                                                <input type="purpose" class="form-control" name="purpose1" id="purpose" value="<?php echo $post['purpose']?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <input class="form-control" name="description1" id="description" value="<?php echo $user1['description']?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Uploaded Image</label>
+                                                <input class="form-control" type="input" name="img" value="<?php echo $post['image']?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Upload Image</label>
+                                                <input class="form-control" type="file" name="img1">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" name="editblog" id="postblog">EDIT POST</button>
+                                        </div>
+                                    </form>                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END OF EDIT POST -->
                     <?php endwhile;?>
                 	<hr class="mb-5">
                 </div><!-- End .container -->
@@ -223,37 +260,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-editpost<?php echo $post['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="icon-close"></i></span>
-                    </button>
-                </div>
-                <form method="POST" action="../Controller/updateBreedersController.php" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Purpose</label>
-                            <input type="purpose" class="form-control" name="purpose" id="purpose" placeholder="Enter your purpose">
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" name="description" id="description" placeholder="Enter description" rows="5"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Upload Image</label>
-                            <input class="form-control" type="file" name="img" id="img">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="postblog" id="postblog">POST</button>
-                    </div>
-                </form>                                  
-            </div>
-        </div>
-    </div>
+    
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

@@ -6,7 +6,7 @@
 
     <?php include("../Layouts/head.layout.php") ?>
     <link href="../css/verify.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Verify Account</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                             <i class="icon-bars"></i>
                         </button>
                         <a href="../" class="logo-layout">
-                            <img src="../assets/images/logo.png" alt="Molla Logo" width="105" height="25" />
+                            <img src="../img/logo.png" alt="Molla Logo" width="105" height="25" />
                         </a>
                     </div>
                     <!-- End .header-left -->

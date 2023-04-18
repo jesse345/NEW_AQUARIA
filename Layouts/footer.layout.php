@@ -4,21 +4,14 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <div class="widget-layout widget-about-layout">
-                        <img src="../assets/images/demos/demo-5/logo-footer.png" class="footer-logo-layout"
+                        <img src="../img/logo.png" class="footer-logo-layout"
                             alt="Footer Logo" width="105" height="25" />
                         <p>
-                            Praesent dapibus, neque id cursus ucibus, tortor neque
-                            egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-                            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-                            facilisis luctus, metus.
+                        E-Aquaria is an e-commerce platform that was created by a team of aspiring developers from the University of Cebu - Main Campus. The platform was designed to serve the needs of those who are interested in ornamental fish and fish care products. With its user-friendly interface and wide selection of products, E-Aquaria has become a popular online destination for fish enthusiasts in the Philippines and beyond.
                         </p>
 
                         <div class="widget-about-info-layout">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <span class="widget-about-title-layout">Got Question? Call us 24/7</span>
-                                    <a href="tel:123456789">+0123 456 789</a>
-                                </div>
                                 <!-- End .col-sm-6 -->
                                 <div class="col-sm-6 col-md-8">
                                     <span class="widget-about-title-layout">Payment Method</span>
@@ -44,8 +37,7 @@
                         <!-- End .widget-title -->
 
                         <ul class="widget-list-layout">
-                            <li><a href="about.html">About Molla</a></li>
-                            <li><a href="#">How to shop on Molla</a></li>
+                            <li><a href="about.html">About E-Aquaria</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="contact.html">Contact us</a></li>
                             <li><a href="login.html">Log in</a></li>

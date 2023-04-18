@@ -14,7 +14,7 @@
     <main class="main">
       <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-          <h1 class="page-title">About us 2<span>Pages</span></h1>
+          <h1 class="page-title">About us</h1>
         </div>
         <!-- End .container -->
       </div>
@@ -25,7 +25,7 @@
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Pages</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-              About us 2
+              About us
             </li>
           </ol>
         </div>
@@ -41,17 +41,18 @@
                 <h2 class="title text-center mb-2">Who We Are</h2>
                 <!-- End .title text-center mb-2 -->
                 <p>
-                  Sed pretium, ligula sollicitudin laoreet viverra, tortor
-                  libero sodales leo, eget blandit nunc tortor eu nibh.
-                  Suspendisse potenti. Sed egestas, ante et vulputate
-                  volutpat, uctus metus libero eu augue. Morbi purus libero,
-                  faucibus adipiscing, commodo quis, gravida id, est. Sed
-                  lectus. Praesent elementum hendrerit tortor. Sed semper
-                  lorem at felis.
+                We are a group of passionate and motivated student developers from the University of Cebu - Main Campus, who share a common goal and vision. Our mission is to leverage the power of technology to create innovative and practical solutions that can enhance and improve the lives of people in our community.
+                <br />
+                <br />
+                As aspiring developers, we believe that technology has the potential to transform the world we live in, and we are committed to using our skills and knowledge to make a positive impact. Our team is comprised of individuals with diverse backgrounds, experiences, and perspectives, who bring unique insights and ideas to every project we undertake.
+                <br />
+                <br />
+                At the heart of our mission is a deep sense of responsibility and dedication to serving our community. We believe that everyone deserves access to the benefits of technology, and we strive to make our solutions accessible, user-friendly, and effective. Whether we are developing an app, creating a website, or designing a new system, we always prioritize the needs of our users and the impact of our work.
+                <br />
+                <br />
+                Through our collaborative and innovative approach, we hope to inspire and empower others to join us in our mission. We believe that together, we can build a brighter future for our community and beyond, one tech-enabled solution at a time.
                 </p>
-                <img src="assets/images/about/about-2/signature.png" alt="signature" class="mx-auto mb-5" />
-
-                <img src="assets/images/about/about-2/img-1.jpg" alt="image" class="mx-auto mb-6" />
+                <br />
               </div>
               <!-- End .about-text -->
             </div>
@@ -68,8 +69,7 @@
                   <h3 class="icon-box-title">Design Quality</h3>
                   <!-- End .icon-box-title -->
                   <p>
-                    Sed egestas, ante et vulputate volutpat, eros pede semper
-                    est, vitae luctus metus libero <br />eu augue.
+                  Our user-centered approach prioritizes the needs and preferences of our users, resulting in designs that resonate with our target audience and drive engagement.
                   </p>
                 </div>
                 <!-- End .icon-box-content -->
@@ -87,9 +87,7 @@
                   <h3 class="icon-box-title">Professional Support</h3>
                   <!-- End .icon-box-title -->
                   <p>
-                    Praesent dapibus, neque id cursus faucibus, <br />tortor
-                    neque egestas augue, eu vulputate <br />magna eros eu
-                    erat.
+                  We are committed to delivering high-quality support that helps our clients overcome challenges, seize opportunities, and achieve their full potential.
                   </p>
                 </div>
                 <!-- End .icon-box-content -->
@@ -107,9 +105,7 @@
                   <h3 class="icon-box-title">Made With Love</h3>
                   <!-- End .icon-box-title -->
                   <p>
-                    Pellentesque a diam sit amet mi ullamcorper
-                    <br />vehicula. Nullam quis massa sit amet <br />nibh
-                    viverra malesuada.
+                  At our startup, we believe that creating products and services with love is essential to our success. We pour our heart and soul into everything we do, from developing innovative solutions to crafting our brand image.
                   </p>
                 </div>
                 <!-- End .icon-box-content -->
@@ -125,66 +121,6 @@
         <div class="mb-2"></div>
         <!-- End .mb-2 -->
 
-        <div class="bg-image pt-7 pb-5 pt-md-12 pb-md-9" style="background-image: url(assets/images/backgrounds/bg-4.jpg)">
-          <div class="container">
-            <div class="row">
-              <div class="col-6 col-md-3">
-                <div class="count-container text-center">
-                  <div class="count-wrapper text-white">
-                    <span class="count" data-from="0" data-to="40" data-speed="3000" data-refresh-interval="50">0</span>k+
-                  </div>
-                  <!-- End .count-wrapper -->
-                  <h3 class="count-title text-white">Happy Customer</h3>
-                  <!-- End .count-title -->
-                </div>
-                <!-- End .count-container -->
-              </div>
-              <!-- End .col-6 col-md-3 -->
-
-              <div class="col-6 col-md-3">
-                <div class="count-container text-center">
-                  <div class="count-wrapper text-white">
-                    <span class="count" data-from="0" data-to="20" data-speed="3000" data-refresh-interval="50">0</span>+
-                  </div>
-                  <!-- End .count-wrapper -->
-                  <h3 class="count-title text-white">Years in Business</h3>
-                  <!-- End .count-title -->
-                </div>
-                <!-- End .count-container -->
-              </div>
-              <!-- End .col-6 col-md-3 -->
-
-              <div class="col-6 col-md-3">
-                <div class="count-container text-center">
-                  <div class="count-wrapper text-white">
-                    <span class="count" data-from="0" data-to="95" data-speed="3000" data-refresh-interval="50">0</span>%
-                  </div>
-                  <!-- End .count-wrapper -->
-                  <h3 class="count-title text-white">Return Clients</h3>
-                  <!-- End .count-title -->
-                </div>
-                <!-- End .count-container -->
-              </div>
-              <!-- End .col-6 col-md-3 -->
-
-              <div class="col-6 col-md-3">
-                <div class="count-container text-center">
-                  <div class="count-wrapper text-white">
-                    <span class="count" data-from="0" data-to="15" data-speed="3000" data-refresh-interval="50">0</span>
-                  </div>
-                  <!-- End .count-wrapper -->
-                  <h3 class="count-title text-white">Awards Won</h3>
-                  <!-- End .count-title -->
-                </div>
-                <!-- End .count-container -->
-              </div>
-              <!-- End .col-6 col-md-3 -->
-            </div>
-            <!-- End .row -->
-          </div>
-          <!-- End .container -->
-        </div>
-        <!-- End .bg-image pt-8 pb-8 -->
 
         <div class="bg-light-2 pt-6 pb-7 mb-6">
           <div class="container">
@@ -192,25 +128,37 @@
             <!-- End .title text-center mb-2 -->
 
             <div class="row">
-              <div class="col-sm-6 col-lg-3">
+              <div class="col-sm-6 col-lg-12">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-1.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
+                    <img src="assets/images/team/about-2/klient.jpg" alt="member photo" />
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
                   <div class="member-content">
                     <h3 class="member-title">
-                      Samanta Grey<span>Founder & CEO</span>
+                      Joniever Enot<span>Director of Engineering / Development</span>
+                    </h3>
+                    <!-- End .member-title -->
+                  </div>
+                  <!-- End .member-content -->
+                </div>
+                <!-- End .member -->
+              </div>
+              <!-- End .col-lg-3 -->
+
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-3">
+                <div class="member member-2 text-center">
+                  <figure class="member-media">
+                    <img src="assets/images/team/about-2/klient.jpg" alt="member photo" />
+                    <!-- End .member-overlay -->
+                  </figure>
+                  <!-- End .member-media -->
+                  <div class="member-content">
+                    <h3 class="member-title">
+                      Lourence Klient Manlangit<span>Founder & CEO</span>
                     </h3>
                     <!-- End .member-title -->
                   </div>
@@ -224,21 +172,12 @@
                 <div class="member member-2 text-center">
                   <figure class="member-media">
                     <img src="assets/images/team/about-2/member-2.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
                   <div class="member-content">
                     <h3 class="member-title">
-                      Bruce Sutton<span>Sales & Marketing Manager</span>
+                      Kurt Laurence Capili<span>Chief Operating Officer</span>
                     </h3>
                     <!-- End .member-title -->
                   </div>
@@ -253,20 +192,12 @@
                   <figure class="member-media">
                     <img src="assets/images/team/about-2/member-3.jpg" alt="member photo" />
 
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
                   <div class="member-content">
                     <h3 class="member-title">
-                      Janet Joy<span>Product Manager</span>
+                      Ares Ann Inoc<span>Chief Technology Officer</span>
                     </h3>
                     <!-- End .member-title -->
                   </div>
@@ -280,21 +211,12 @@
                 <div class="member member-2 text-center">
                   <figure class="member-media">
                     <img src="assets/images/team/about-2/member-4.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
                   <div class="member-content">
                     <h3 class="member-title">
-                      Mark Pocket<span>Product Manager</span>
+                      Jesse Paradero<span>IT Manager</span>
                     </h3>
                     <!-- End .member-title -->
                   </div>
@@ -303,218 +225,6 @@
                 <!-- End .member -->
               </div>
               <!-- End .col-lg-3 -->
-
-              <div class="col-sm-6 col-lg-3">
-                <div class="member member-2 text-center">
-                  <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-5.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
-                    <!-- End .member-overlay -->
-                  </figure>
-                  <!-- End .member-media -->
-                  <div class="member-content">
-                    <h3 class="member-title">
-                      Damion Blue<span>Sales & Marketing Manager</span>
-                    </h3>
-                    <!-- End .member-title -->
-                  </div>
-                  <!-- End .member-content -->
-                </div>
-                <!-- End .member -->
-              </div>
-              <!-- End .col-lg-3 -->
-
-              <div class="col-sm-6 col-lg-3">
-                <div class="member member-2 text-center">
-                  <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-6.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
-                    <!-- End .member-overlay -->
-                  </figure>
-                  <!-- End .member-media -->
-                  <div class="member-content">
-                    <h3 class="member-title">
-                      Lenard Smith<span>Product Manager</span>
-                    </h3>
-                    <!-- End .member-title -->
-                  </div>
-                  <!-- End .member-content -->
-                </div>
-                <!-- End .member -->
-              </div>
-              <!-- End .col-lg-3 -->
-
-              <div class="col-sm-6 col-lg-3">
-                <div class="member member-2 text-center">
-                  <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-7.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
-                    <!-- End .member-overlay -->
-                  </figure>
-                  <!-- End .member-media -->
-                  <div class="member-content">
-                    <h3 class="member-title">
-                      Rachel Green<span>Product Manager</span>
-                    </h3>
-                    <!-- End .member-title -->
-                  </div>
-                  <!-- End .member-content -->
-                </div>
-                <!-- End .member -->
-              </div>
-              <!-- End .col-lg-3 -->
-
-              <div class="col-sm-6 col-lg-3">
-                <div class="member member-2 text-center">
-                  <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-8.jpg" alt="member photo" />
-
-                    <figcaption class="member-overlay">
-                      <div class="social-icons social-icons-simple">
-                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                      </div>
-                      <!-- End .soial-icons -->
-                    </figcaption>
-                    <!-- End .member-overlay -->
-                  </figure>
-                  <!-- End .member-media -->
-                  <div class="member-content">
-                    <h3 class="member-title">
-                      David Doe<span>Product Manager</span>
-                    </h3>
-                    <!-- End .member-title -->
-                  </div>
-                  <!-- End .member-content -->
-                </div>
-                <!-- End .member -->
-              </div>
-              <!-- End .col-lg-3 -->
-            </div>
-            <!-- End .row -->
-
-            <div class="text-center mt-3">
-              <a href="blog.html" class="btn btn-sm btn-minwidth-lg btn-outline-primary-2">
-                <span>LETS START WORK</span>
-                <i class="icon-long-arrow-right"></i>
-              </a>
-            </div>
-            <!-- End .text-center -->
-          </div>
-          <!-- End .container -->
-        </div>
-        <!-- End .bg-light-2 pt-6 pb-6 -->
-
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-              <div class="brands-text text-center mx-auto mb-6">
-                <h2 class="title">
-                  The world's premium design brands in one destination.
-                </h2>
-                <!-- End .title -->
-                <p>
-                  Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In
-                  nisi neque, aliquet vel, dapibus id, mattis vel, nis
-                </p>
-              </div>
-              <!-- End .brands-text -->
-              <div class="brands-display">
-                <div class="row justify-content-center">
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/1.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/2.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/3.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/7.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/4.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/5.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/6.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-
-                  <div class="col-6 col-sm-4 col-md-3">
-                    <a href="#" class="brand">
-                      <img src="assets/images/brands/9.png" alt="Brand Name" />
-                    </a>
-                  </div>
-                  <!-- End .col-md-3 -->
-                </div>
-                <!-- End .row -->
-              </div>
-              <!-- End .brands-display -->
-            </div>
-            <!-- End .col-lg-10 offset-lg-1 -->
-          </div>
-          <!-- End .row -->
-        </div>
-        <!-- End .container -->
-      </div>
-      <!-- End .page-content -->
-    </main>
-    <!-- End .main -->
 
     <?php include("../Includes/footer.inc.php"); ?>
   </div>
