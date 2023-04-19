@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row justify-content-between text-left">
+                                        <!-- <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
@@ -145,9 +145,10 @@
 
 
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row justify-content-between text-left">
+                                        
+                                        <!-- <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Shipping Type<span class="text-danger">
                                                         *</span></label>
@@ -158,7 +159,7 @@
                                                 </select>
                                             </div>
 
-                                        </div>
+                                        </div> -->
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">

@@ -18,7 +18,7 @@ if (!empty($_SESSION['id'])) {
         $price = $_POST['price'];
         $description = $_POST['description'];
         $category = $_POST['category'];
-        $ship = $_POST['shipping_type'];
+        // $ship = $_POST['shipping_type'];
 
 
 
@@ -34,10 +34,10 @@ if (!empty($_SESSION['id'])) {
             "price",
             "product_img",
             "category",
-            "shipping_type"
+            // "shipping_type"
         );
 
-        $user_det_val = array($product_name, $quantity, $description, $price, $img, $category, $ship);
+        $user_det_val = array($product_name, $quantity, $description, $price, $img, $category);
 
 
         if ($category == "Aquarium") {
@@ -162,16 +162,16 @@ if (!empty($_SESSION['id'])) {
     } else if (isset($_POST['editProduct'])) {
 
         // Temporary only
-        $targetDir = "../img/"; // Set target directory
-        $fileType = pathinfo($_FILES['image']['name'][0], PATHINFO_EXTENSION);
-        $img = $targetDir . basename($_FILES['image']['name'][0]);
+        // $targetDir = "../img/"; // Set target directory
+        // $fileType = pathinfo($_FILES['image']['name'][0], PATHINFO_EXTENSION);
+        // $img = $targetDir . basename($_FILES['image']['name'][0]);
         $product_name = $_POST['product_name'];
         // $typeofpayment = $_POST['product_name'];
         $quantity = $_POST['quantity'];
         $price = $_POST['price'];
         $description = $_POST['description'];
         $category = $_POST['category'];
-        $ship = $_POST['shipping_type'];
+        // $ship = $_POST['shipping_type'];
 
         $user_fld = array('user_id', 'date_created', 'isDelete');
         $user_val = array($_SESSION['id'], $date, "No");
@@ -181,9 +181,9 @@ if (!empty($_SESSION['id'])) {
             "quantity",
             "description",
             "price",
-            "product_img",
+            // "product_img",
             "category",
-            "shipping_type"
+            // "shipping_type"
         );
         $user_det_val = array(
             $_GET['product_id'],
@@ -191,9 +191,9 @@ if (!empty($_SESSION['id'])) {
             $quantity,
             $description,
             $price,
-            $img,
+            // $img,
             $category,
-            $ship
+            // $ship
         );
         if ($category == "Aquarium") {
             $tank = $_POST['tank_type'];
@@ -212,27 +212,27 @@ if (!empty($_SESSION['id'])) {
 
 
 
-        $targetDir = "../img/"; // Set target directory
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+        // $targetDir = "../img/"; // Set target directory
+        // $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
-        $img_id = $_POST['img_id'];
-        $i = 0;
-        foreach ($_FILES['image']['name'] as $key => $name) {
-            $fileType = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
-            $targetPath = $targetDir . basename($name);
+        // $img_id = $_POST['img_id'];
+        // $i = 0;
+        // foreach ($_FILES['image']['name'] as $key => $name) {
+        //     $fileType = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
+        //     $targetPath = $targetDir . basename($name);
 
-            // Check if file type is allowed
-            if (in_array($fileType, $allowedTypes)) {
-                // Move uploaded file to target directory
-                move_uploaded_file($_FILES['image']['tmp_name'][$key], $targetPath);
+        //     // Check if file type is allowed
+        //     if (in_array($fileType, $allowedTypes)) {
+        //         // Move uploaded file to target directory
+        //         move_uploaded_file($_FILES['image']['tmp_name'][$key], $targetPath);
 
-                editProduct('product_images', array('id', 'img'), array($img_id[$i], $targetPath));
-                $i++;
-            } else {
-                echo "Invalid file type: $name<br>";
-            }
-        }
-        $i = 0;
+        //         editProduct('product_images', array('id', 'img'), array($img_id[$i], $targetPath));
+        //         $i++;
+        //     } else {
+        //         echo "Invalid file type: $name<br>";
+        //     }
+        // }
+        // $i = 0;
     } else {
         header("Location: ../");
     }

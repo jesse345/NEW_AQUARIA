@@ -21,5 +21,24 @@ $rec = getAllManual();
 				alert('added successfully');
 				window.location.href='fish_manual.php';
 			</script>";
+	}else if(isset($_POST['edit'])){
+
+		$title = $_POST['title'];
+		$description = $_POST['description'];
+		editRecord($_GET['manual_id'], $title,$description);
+		echo "<script>
+				alert('Edited successfully');
+				window.location.href='fish_manual.php';
+			</script>";
+
+
+	}else if(isset($_POST['deleteManual'])){
+		deleteManual($_POST['manual_id']);
+		echo "<script>
+				alert('Deleted successfully');
+				window.location.href='fish_manual.php';
+			</script>";
+	}else if(isset($_GET['search'])){
+		search
 	}
 ?>

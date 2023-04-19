@@ -159,9 +159,9 @@
                                                                 <span class="">Add To Cart</span>
                                                             </button>
                                                         <?php } else { ?>
-                                                            <button type="submit" class="btn-product btn-cart bg-success text-white btn-outline-success border-0" name="addToCart" id="addToCart">
-                                                                <span class="">Manage Product</span>
-                                                            </button>
+                                                            <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
+                                                                <span>Manage Product</span>
+                                                            </a>
                                                     <?php }
                                                     }
                                                 } else { ?>
@@ -490,9 +490,9 @@
                                                                 <span>Add To Cart</span>
                                                             </button>
                                                         <?php } else { ?>
-                                                            <button type="submit" class="btn-product btn-cart border-0" name="addToCart">
+                                                            <a href="manageProducts.php" class="btn-product btn-cart border-0" name="addToCart">
                                                                 <span>Manage Product</span>
-                                                            </button>
+                                                            </a>
                                                     <?php }
                                                     }
                                                 } else { ?>
