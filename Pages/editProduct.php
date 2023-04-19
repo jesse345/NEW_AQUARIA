@@ -285,7 +285,7 @@
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
                                                 <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                    Update Product
                                                 </button>
                                             </div>
                                         </div>
