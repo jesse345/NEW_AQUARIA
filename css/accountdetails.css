@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +7,7 @@
 
 html {
   height: 100%;
+  font: normal 300 1.4rem/1.86 "Poppins", sans-serif;
 }
 
 p {
@@ -13,7 +16,7 @@ p {
 
 #heading {
   text-transform: uppercase;
-  color: #673ab7;
+  color: #0081c9;
   font-weight: normal;
 }
 
@@ -64,13 +67,13 @@ p {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #673ab7;
+  border: 1px solid #0081c9;
   outline-width: 0;
 }
 
 #msform .action-button {
   width: 100px;
-  background: #673ab7;
+  background: #0081c9;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -83,7 +86,7 @@ p {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-  background-color: #311b92;
+  background-color: #5bc0f8;
 }
 
 #msform .action-button-previous {
@@ -112,14 +115,14 @@ p {
 
 .fs-title {
   font-size: 25px;
-  color: #673ab7;
+  color: #0081c9;
   margin-bottom: 15px;
   font-weight: normal;
   text-align: left;
 }
 
 .purple-text {
-  color: #673ab7;
+  color: #0081c9;
   font-weight: normal;
 }
 
@@ -143,7 +146,7 @@ p {
 }
 
 #progressbar .active {
-  color: #673ab7;
+  color: #0081c9;
 }
 
 #progressbar li {
@@ -201,7 +204,7 @@ p {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #673ab7;
+  background: #0081c9;
 }
 
 .progress {
@@ -209,7 +212,7 @@ p {
 }
 
 .progress-bar {
-  background-color: #673ab7;
+  background-color: #0081c9;
 }
 
 .fit-image {
