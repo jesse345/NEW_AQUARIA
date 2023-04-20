@@ -92,12 +92,12 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label>First Name *</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)" required>
                                                 </div><!-- End .col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <label>Last Name *</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)" required>
                                                 </div><!-- End .col-sm-6 -->
                                             </div><!-- End .row -->
 
@@ -136,6 +136,19 @@
     include("../Includes/mobileMenu.inc.php");
     include("../Includes/scripts.inc.php");
     ?>
+
+    <script>
+        function isNotNumber(event) {
+            // get the code of the pressed key
+            var charCode = (event.which) ? event.which : event.keyCode;
+            // if the pressed key is a number, prevent it from being entered
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 

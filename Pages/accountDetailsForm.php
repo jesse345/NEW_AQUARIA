@@ -43,13 +43,13 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                 </div>
                                 <label class="fieldlabels">First Name: *</label>
-                                <input type="text" name="first_name" placeholder="First Name" required />
+                                <input type="text" name="first_name" placeholder="First Name" onkeypress="return isNotNumber(event)" required />
 
                                 <label class="fieldlabels">Last Name: *</label>
-                                <input type="text" name="last_name" placeholder="Last Name" required />
+                                <input type="text" name="last_name" placeholder="Last Name" onkeypress="return isNotNumber(event)" required />
 
                                 <label class="fieldlabels">Middle Initial: </label>
-                                <input type="text" name="mi" placeholder="Middle Initial (leave blank if none)" />
+                                <input type="text" name="mi" placeholder="Middle Initial (leave blank if none)" onkeypress="return isNotNumber(event)" maxlength="1" />
 
                             </div> <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
@@ -88,7 +88,7 @@ if (isset($_SESSION['id'])) {
                                 <label class="fieldlabels">Gcash Number.: *</label>
                                 <input type="text" name="gcash_number" placeholder="Gcash Number" required />
                                 <label class="fieldlabels">Gcash Name: *</label>
-                                <input type="text" name="gcash_name" placeholder="Gcash Name" required />
+                                <input type="text" name="gcash_name" placeholder="Gcash Name" onkeypress="return isNotNumber(event)" required />
                             </div> <input type="submit" name="submitAccountForm" class="next action-button" value="Submit" />
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
@@ -98,6 +98,18 @@ if (isset($_SESSION['id'])) {
         </div>
     </div>
     <script src="../JS/accountDetails.js"></script>
+    <script>
+        function isNotNumber(event) {
+            // get the code of the pressed key
+            var charCode = (event.which) ? event.which : event.keyCode;
+            // if the pressed key is a number, prevent it from being entered
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         #msform input.invalid {
             border: solid red 1px;

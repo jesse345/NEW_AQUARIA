@@ -97,10 +97,14 @@
                                         <form action="#">
 
                                             <label>Full Name *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" required>
+                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" onkeypress="return isNotNumber(event)" required>
 
                                             <label>Contact Number *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_contact'] ?>" required>
+                                            <div class="input-group" style="margin-bottom: 1.3rem">
+                                                <span class="input-group-text" id="basic-addon1" style="font-size: 1.4rem;line-height:1.5;padding:0.85rem 2rem; font-weight:300">+63</span>
+                                                <input type="text" class="form-control" style="margin-bottom: 0" placeholder="Username" aria-label="Username" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" required>
+                                            </div>
+
 
                                             <label>Address *</label>
                                             <input type="email" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
@@ -132,6 +136,19 @@
     include("../Includes/mobileMenu.inc.php");
     include("../Includes/scripts.inc.php");
     ?>
+
+    <script>
+        function isNotNumber(event) {
+            // get the code of the pressed key
+            var charCode = (event.which) ? event.which : event.keyCode;
+            // if the pressed key is a number, prevent it from being entered
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 
