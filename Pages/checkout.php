@@ -96,8 +96,19 @@
                                             </tbody>
                                         </table>
 
-
-                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block" name="order">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label pl-2" for="flexRadioDefault1">
+                                                Cash On Delivery
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                            <label class="form-check-label pl-2" for="flexRadioDefault2">
+                                                Online Payment
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block mt-2" name="order">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Place Order</span>
                                         </button>
