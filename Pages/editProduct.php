@@ -87,7 +87,7 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" required>
+                                                <input type="number" id="price" name="price" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" step="0.01" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- <div class="row justify-content-between text-left">
+                                        <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
@@ -145,9 +145,9 @@
 
 
                                             </div>
-                                        </div> -->
+                                        </div>
 
-                                        
+
                                         <!-- <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Shipping Type<span class="text-danger">
@@ -181,7 +181,7 @@
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Fishes") { ?>
 
-                                    <form id="form2" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form2" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -196,17 +196,16 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">
                                                     Fish Type<span class="text-danger"> *</span>
                                                 </label>
                                                 <select name="fish_type" id="" required>
-                                                    <option value="" disabled selected hidden>Select Fish Type</option>
-                                                    <option value="Live Bearer">Live Bearer</option>
-                                                    <option value="Egg Layer">Egg Layer</option>
 
+                                                    <option value="Live Bearer" <?php if ($prod_det['fish_type'] == "Live Bearer") { ?> selected <?php } ?>>Live Bearer</option>
+                                                    <option value="Egg Layer" <?php if ($prod_det['fish_type'] == "Egg Layer") { ?> selected <?php } ?>>Egg Layer</option>
                                                 </select>
                                             </div>
 
@@ -218,16 +217,16 @@
                                                     Fish Classification<span class="text-danger"> *</span>
                                                 </label>
                                                 <select name="fish_class" id="" required>
-                                                    <option value="" disabled selected hidden>Select Fish Classification</option>
-                                                    <option value="Live Bearer">Algae Eater</option>
-                                                    <option value="Monster Fish">Monster Fish</option>
-                                                    <option value="Community Fish">Community Fish</option>
+
+                                                    <option value="Algae Eater" <?php if ($prod_det['fish_class'] == "Live Bearer") { ?> selected <?php } ?>>Algae Eater</option>
+                                                    <option value="Monster Fish" <?php if ($prod_det['fish_class'] == "Monster Fish") { ?> selected <?php } ?>>Monster Fish</option>
+                                                    <option value="Community Fish" <?php if ($prod_det['fish_class'] == "Community Fish") { ?> selected <?php } ?>>Community Fish</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Size<span class="text-danger">
                                                         *</span></label>
-                                                <input type="text" id="size" name="size" placeholder="Enter Size" required>
+                                                <input type="text" id="size" name="size" placeholder="Enter Size" value="<?php echo $prod_det['size'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
@@ -235,16 +234,16 @@
                                                 <label class="form-control-label px-3">Gender<span class="text-danger"> *</span>
                                                 </label>
                                                 <select name="gender" id="" required>
-                                                    <option value="" disabled selected hidden>Select Fish Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
+
+                                                    <option value="Male" <?php if ($prod_det['gender'] == "Male") { ?> selected <?php } ?>>Male</option>
+                                                    <option value="Female" <?php if ($prod_det['gender'] == "Female") { ?> selected <?php } ?>>Female</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Months or Yrs old
                                                 </label>
-                                                <input type="text" id="age" name="age" placeholder="Enter Age">
+                                                <input type="text" id="age" name="age" placeholder="Enter Age" value="<?php echo $prod_det['age'] ?>">
                                             </div>
 
 
@@ -253,45 +252,81 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" step="0.01" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['description'] ?></textarea>
 
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Update Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Equipment & Accessories") { ?>
-                                    <form id="form3" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form3" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -308,57 +343,94 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Specification<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="text" id="specification" name="specification" placeholder="Enter product specification" required>
+                                                <input type="text" id="specification" name="specification" placeholder="Enter product specification" value="<?php echo $prod_det['specification'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" placeholder="Enter Price" step="0.01" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['description'] ?></textarea>
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Probiotics") { ?>
-                                    <form id="form4" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form4" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -375,14 +447,14 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Expiration Date<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="date" id="expire" name="expire" required>
+                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expire'] ?>" required>
                                             </div>
 
 
@@ -392,7 +464,7 @@
                                                 <label class="form-control-label px-3">Product Benfits<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" required></textarea>
+                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" required><?php echo $prod_det['benefits'] ?></textarea>
 
                                             </div>
                                         </div>
@@ -400,45 +472,81 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" step="0.01" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['price'] ?></textarea>
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Vitamins") { ?>
-                                    <form id="form5" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form5" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -455,14 +563,14 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Expiration Date<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="date" id="expire" name="expire" required>
+                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expire'] ?>" required>
                                             </div>
 
 
@@ -472,7 +580,7 @@
                                                 <label class="form-control-label px-3">Product Benfits<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="benefits" id="description" placeholder="Enter Product Benefits" required></textarea>
+                                                <textarea name="benefits" id="description" placeholder="Enter Product Benefits" required><?php echo $prod_det['benefits'] ?></textarea>
 
                                             </div>
                                         </div>
@@ -480,12 +588,12 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                         </div>
 
@@ -493,33 +601,68 @@
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['price'] ?></textarea>
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Color Enhancer") { ?>
-                                    <form id="form6" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form6" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -536,14 +679,14 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Expiration Date<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="date" id="expire" name="expire" required>
+                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expire'] ?>" required>
                                             </div>
 
 
@@ -553,7 +696,7 @@
                                                 <label class="form-control-label px-3">Product Benfits<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" required></textarea>
+                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" value="<?php echo $prod_det['benefits'] ?>" required></textarea>
 
                                             </div>
                                         </div>
@@ -561,44 +704,81 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" placeholder="Enter Price" step="0.01" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['price'] ?></textarea>
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 <?php } else if ($prod_det['category'] == "Medications") { ?>
-                                    <form id="form7" class="form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
+                                    <form id="form7" class="form-card" action="../Controller/ProductsController.php?product_id=<?php echo $_GET['product_id'] ?>" method="POST" enctype="multipart/form-data">
                                         <h5 class="text-center mb-4">Fill-up all Fields</h5>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-12 flex-column d-flex">
@@ -615,14 +795,14 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product name<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+                                                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $prod_det['product_name'] ?>" required>
                                             </div>
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Expiration Date<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="date" id="expire" name="expire" required>
+                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expire'] ?>" required>
                                             </div>
 
 
@@ -632,7 +812,7 @@
                                                 <label class="form-control-label px-3">Product Benfits<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" required></textarea>
+                                                <textarea name="benefits" id="benefits" placeholder="Enter Product Benefits" required><?php echo $prod_det['price'] ?></textarea>
 
                                             </div>
                                         </div>
@@ -640,39 +820,74 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Product Price<span class="text-danger">
                                                         *</span></label>
-                                                <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                                                <input type="number" id="price" name="price" placeholder="Enter Price" value="<?php echo $prod_det['price'] ?>" required>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-3">Quantity<span class="text-danger"> *</span>
                                                 </label>
-                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                                                <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $prod_det['quantity'] ?>" required>
                                             </div>
                                         </div>
+
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                         *</span></label>
+                                                <?php $images = mysqli_fetch_all(getProduct('product_images', 'product_id', $_GET['product_id']));
 
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
-                                                <input type="file" name="image[]" accept="image/*" required>
+                                                ?>
+                                                <div class="form">
+                                                    <div class="grid">
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-1" name="image[]" accept="image/*" value="<?php echo $images[0][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[0][0]; ?>">
+                                                            <label for="file-1" id="file-1-preview">
+                                                                <img src="<?php echo $images[0][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-2" name="image[]" accept="image/*" value="<?php echo $images[1][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[1][0]; ?>">
+                                                            <label for="file-2" id="file-2-preview">
+                                                                <img src="<?php echo $images[1][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
 
+                                                        <div class="form-element">
+                                                            <input type="file" id="file-3" name="image[]" accept="image/*" value="<?php echo $images[2][2]; ?>">
+                                                            <input type="hidden" name="img_id[]" value="<?php echo $images[2][0]; ?>">
+                                                            <label for="file-3" id="file-3-preview">
+                                                                <img src="<?php echo $images[2][2]; ?>" alt="">
+                                                                <div>
+                                                                    <span>+</span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['price'] ?></textarea>
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="form-group col-sm-4">
-                                                <button type="submit" name="addProduct" class="btn-block btn-primary">
-                                                    Add Product
+                                                <button type="submit" name="editProduct" class="btn-block btn-primary">
+                                                    Edit Product
                                                 </button>
                                             </div>
                                         </div>
@@ -691,10 +906,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
 
         </main>

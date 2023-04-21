@@ -102,7 +102,7 @@
                                             <label>Contact Number *</label>
                                             <div class="input-group" style="margin-bottom: 1.3rem">
                                                 <span class="input-group-text" id="basic-addon1" style="font-size: 1.4rem;line-height:1.5;padding:0.85rem 2rem; font-weight:300">+63</span>
-                                                <input type="text" class="form-control" style="margin-bottom: 0" placeholder="Username" aria-label="Username" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" required>
+                                                <input type="text" class="form-control" style="margin-bottom: 0" placeholder="Contact Number" aria-label="contact" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" required>
                                             </div>
 
 

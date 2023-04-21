@@ -204,35 +204,39 @@ if (!empty($_SESSION['id'])) {
             array_push($user_det_fld, 'tank_type', 'dimension', 'thickness');
             array_push($user_det_val, $tank, $dimension, $thick);
             editProduct('product_details', $user_det_fld, $user_det_val);
-            echo "<script>
-            alert('$product_name Added successfully!');
-            window.location.href = '../Pages/manageProducts.php';
-        </script>";
+        }
+        $targetDir = "../img/"; // Set target directory
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+        $img_id = $_POST['img_id'];
+        $i = 0;
+        $img = $targetDir . basename($_FILES['image']['name'][0]);
+        if ($img != "../img/") {
+            editProduct('product_details', array('product_id', 'product_img'), array($_GET['product_id'], $img));
+        }
+        foreach ($_FILES['image']['name'] as $key => $name) {
+            $fileType = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
+            $targetPath = $targetDir . basename($name);
+
+            if ($targetPath != "../img/") {
+
+                // Check if file type is allowed
+                if (in_array($fileType, $allowedTypes)) {
+                    // Move uploaded file to target directory
+                    move_uploaded_file($_FILES['image']['tmp_name'][$key], $targetPath);
+
+
+                    editProduct('product_images', array('id', 'img'), array($img_id[$i], $targetPath));
+                } else {
+                    echo "Invalid file type: $name<br>";
+                }
+            }
+            $i++;
         }
 
-
-
-        // $targetDir = "../img/"; // Set target directory
-        // $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-
-        // $img_id = $_POST['img_id'];
-        // $i = 0;
-        // foreach ($_FILES['image']['name'] as $key => $name) {
-        //     $fileType = pathinfo($_FILES['image']['name'][$key], PATHINFO_EXTENSION);
-        //     $targetPath = $targetDir . basename($name);
-
-        //     // Check if file type is allowed
-        //     if (in_array($fileType, $allowedTypes)) {
-        //         // Move uploaded file to target directory
-        //         move_uploaded_file($_FILES['image']['tmp_name'][$key], $targetPath);
-
-        //         editProduct('product_images', array('id', 'img'), array($img_id[$i], $targetPath));
-        //         $i++;
-        //     } else {
-        //         echo "Invalid file type: $name<br>";
-        //     }
-        // }
-        // $i = 0;
+        echo "<script>
+                alert('$product_name Added successfully!');
+                window.location.href = '../Pages/manageProducts.php';
+            </script>";
     } else {
         header("Location: ../");
     }
