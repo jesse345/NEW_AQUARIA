@@ -7,7 +7,7 @@
 
 html {
   height: 100%;
-  font: normal 300 1.4rem/1.86 "Poppins", sans-serif;
+  font: normal 700 1.4rem/1.86 "Poppins", sans-serif;
 }
 
 p {
@@ -55,7 +55,7 @@ p {
   margin-top: 2px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
+
   color: #2c3e50;
   background-color: #eceff1;
   font-size: 16px;
@@ -156,26 +156,6 @@ p {
   float: left;
   position: relative;
   font-weight: 400;
-}
-
-#progressbar #account:before {
-  font-family: FontAwesome;
-  content: "\f13e";
-}
-
-#progressbar #personal:before {
-  font-family: FontAwesome;
-  content: "\f007";
-}
-
-#progressbar #payment:before {
-  font-family: FontAwesome;
-  content: "\f030";
-}
-
-#progressbar #confirm:before {
-  font-family: FontAwesome;
-  content: "\f00c";
 }
 
 #progressbar li:before {

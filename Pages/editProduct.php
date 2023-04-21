@@ -148,18 +148,19 @@
                                         </div>
 
 
-                                        <!-- <div class="row justify-content-between text-left">
+                                        <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Shipping Type<span class="text-danger">
                                                         *</span></label>
                                                 <select name="shipping_type" id="" required>
-                                                    <option value="" disabled selected hidden>Select Shipping Type</option>
-                                                    <option value="Pickup">Pickup</option>
-                                                    <option value="Nanno Tank">Long rides</option>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
                                                 </select>
                                             </div>
 
-                                        </div> -->
+                                        </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
@@ -309,6 +310,23 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
@@ -408,6 +426,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
                                         </div>
 
 
@@ -527,6 +559,19 @@
                                         </div>
 
 
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
@@ -646,6 +691,20 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
@@ -759,6 +818,19 @@
                                         </div>
 
 
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">
@@ -874,6 +946,21 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-12 flex-column d-flex">
+                                                <label class="form-control-label px-3">Shipping Type<span class="text-danger">
+                                                        *</span></label>
+                                                <select name="shipping_type" id="" required>
+                                                    <option value="" disabled selected hidden>Shipping Mode</option>
+                                                    <option value="Pickup" <?php if ($prod_det['shipping_type'] == "Pickup") { ?> selected <?php } ?>>For Pickup</option>
+                                                    <option value="Delivery" <?php if ($prod_det['shipping_type'] == "Delivery") { ?> selected <?php } ?>>For Delivery</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-12 flex-column d-flex">

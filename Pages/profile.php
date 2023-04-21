@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- molla/dashboard.html  22 Nov 2019 10:03:13 GMT -->
-
 <head>
     <?php include("../Includes/head.inc.php") ?>
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
@@ -19,20 +17,21 @@
             </script>";
         }
 
+
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+        $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                 <div class="container">
-                    <h1 class="page-title">Shipping Info</h1>
+                    <h1 class="page-title">My Account</h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item"><a href="index.php">My Account</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shipping Info</li>
+                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -40,22 +39,20 @@
             <div class="page-content">
                 <div class="dashboard">
                     <div class="container">
+
                         <div class="row">
                             <aside class="col-md-4 col-lg-2">
                                 <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
 
-                                    <li class="nav-item ">
+                                    <li class="nav-item active">
 
-                                        <a class="nav-link " href="myAccount.php">Account
-                                            Details
+                                        <a class="nav-link active" href="myAccount.php">
+                                            Account Details
                                         </a>
-
                                     </li>
 
-                                    <li class="nav-item ">
-
+                                    <li class="nav-item">
                                         <a class="nav-link " href="accountInfo.php">Account Info
-
                                         </a>
                                     </li>
 
@@ -71,8 +68,8 @@
                                         <a class="nav-link" href="myPurchase.php">My Purchase</a>
                                     </li>
 
-                                    <li class="nav-item active">
-                                        <a class="nav-link active" href="shippingAddress.php">Shipping Info</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="shippingAddress.php">Shipping Info</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -88,38 +85,28 @@
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
 
-                                    <div class="tab-pane fade show active" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
-                                        <p>The following info will be used on the checkout page by default.</p>
-
-                                        <?php
-                                        $shipping = mysqli_fetch_assoc(getUserShippingInfo($_SESSION['id']));
-                                        ?>
+                                    <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
                                         <form action="#">
-
-                                            <label>Full Name *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" onkeypress="return isNotNumber(event)" required>
-
-                                            <label>Contact Number *</label>
-
-
-                                            <input type="text" class="form-control" placeholder="Contact Number" aria-label="contact" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" maxlength="11" required>
-
-
-
-                                            <label>Address *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
-
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SAVE CHANGES</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </button>
+                                            <div class="form-element">
+                                                <input type="file" id="file-2" name="image[]" accept="image/*">
+                                                <input type="hidden" name="img_id[]" v>
+                                                <label for="file-2" id="file-2-preview">
+                                                    <img src="" alt="">
+                                                    <div>
+                                                        <span>+</span>
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </form>
-
-
                                     </div><!-- .End .tab-pane -->
+
+
+
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

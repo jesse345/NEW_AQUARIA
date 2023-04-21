@@ -65,7 +65,7 @@ if (isset($_SESSION['id'])) {
                                 </div>
 
                                 <label class="fieldlabels">Contact No.: *</label>
-                                <input type="text" name="contact_number" placeholder="Contact No." required />
+                                <input type="text" name="contact_number" placeholder="Contact No." maxlength="11" required />
                                 <label class="fieldlabels">Address: *</label>
                                 <select name="address">
                                     <?php while ($row = mysqli_fetch_assoc($address)) { ?>
@@ -86,7 +86,7 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                 </div>
                                 <label class="fieldlabels">Gcash Number.: *</label>
-                                <input type="text" name="gcash_number" placeholder="Gcash Number" required />
+                                <input type="text" name="gcash_number" placeholder="Gcash Number" maxlength="11" required />
                                 <label class="fieldlabels">Gcash Name: *</label>
                                 <input type="text" name="gcash_name" placeholder="Gcash Name" onkeypress="return isNotNumber(event)" required />
                             </div> <input type="submit" name="submitAccountForm" class="next action-button" value="Submit" />
