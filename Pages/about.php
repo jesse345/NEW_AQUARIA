@@ -5,6 +5,7 @@
 <head>
 
   <?php include("../Includes/head.inc.php") ?>
+  <link rel="stylesheet" href="../css/about.css">
 </head>
 
 <body>
@@ -131,7 +132,7 @@
               <div class="col-sm-6 col-lg-12">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/klient.jpg" alt="member photo" />
+                    <img src="../assets/images/team/about-2/juni.png" alt="member photo" class="juni"/>
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
@@ -152,7 +153,7 @@
               <div class="col-sm-6 col-lg-3">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/klient.jpg" alt="member photo" />
+                    <img src="../assets/images/team/about-2/klient.png" alt="member photo"  class="team" />
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
@@ -171,7 +172,7 @@
               <div class="col-sm-6 col-lg-3">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-2.jpg" alt="member photo" />
+                    <img src="../assets/images/team/about-2/kurt.png" alt="member photo" class="team" />
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
@@ -190,7 +191,7 @@
               <div class="col-sm-6 col-lg-3">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-3.jpg" alt="member photo" />
+                    <img src="../assets/images/team/about-2/ares.jpg" alt="member photo" class="team" />
 
                     <!-- End .member-overlay -->
                   </figure>
@@ -210,7 +211,7 @@
               <div class="col-sm-6 col-lg-3">
                 <div class="member member-2 text-center">
                   <figure class="member-media">
-                    <img src="assets/images/team/about-2/member-4.jpg" alt="member photo" />
+                    <img src="../assets/images/team/about-2/esse.png" alt="member photo" class="team" />
                     <!-- End .member-overlay -->
                   </figure>
                   <!-- End .member-media -->
