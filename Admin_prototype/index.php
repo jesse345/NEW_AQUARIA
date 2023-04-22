@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+	include("db.php");
+	session_start();
+	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
+		header("location: admin_login.php");
+	}
+
+
+?>
 <html>
 
 <head>
