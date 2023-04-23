@@ -94,7 +94,10 @@
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="register-policy" required />
                                             <label class="custom-control-label" for="register-policy">I agree to the
-                                                <a href="#">privacy policy</a> *</label>
+                                                <a href="../Pages/privacy.php" target="_blank">Privacy Policy</a>
+
+
+
                                         </div>
 
                                     </div>

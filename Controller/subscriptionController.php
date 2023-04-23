@@ -27,6 +27,10 @@ if (isset($_POST['subscribe'])) {
         array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number'),
         array($_SESSION['id'], $subsciption_type, $type, $amount, $ref)
     );
+
+
+
+    // header("Location: ../Pages/manageSubscription.php");
 } else if (isset($_POST['subscription_approve'])) {
 
     $subsciption_type = $_POST['subscription_type'];
@@ -39,5 +43,12 @@ if (isset($_POST['subscribe'])) {
         $date_end = date('y-m-d h:i:s', strtotime($date . ' +1year '));
     }
 
+
+    editUser('users', array('id', 'isSubscribe'), array($_SESSION['id'], "Yes"));
     approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id']);
+
+    echo "<script>
+    alert('Approved Subscription');
+    window.location.href = '../Pages/manageSubscription.php';
+</script>";
 }

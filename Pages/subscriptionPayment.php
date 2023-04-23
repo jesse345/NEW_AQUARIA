@@ -17,6 +17,10 @@
 
     if ($_GET['subscription_type'] == 1) {
         $total = 170.00;
+    } else if ($_GET['subscription_type'] == 2) {
+        $total = 300.00;
+    } else if ($_GET['subscription_type'] == 3) {
+        $total = 500.00;
     }
     ?>
     <div class="container mt-5">
@@ -185,7 +189,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Paypal Payment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="" enctype="multipart/form-data">
+                <form method="post" action="../Controller/subscriptionController.php" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="d-block">
                             <div>
@@ -202,10 +206,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Amount</label>
-                                <input type="text" class="form-control" style="width: 100%;" value="" disabled>
-
-                                <input type="text" class="form-control" name="amount" id="amount" style="width: 100%;" value="" hidden>
-                                <input type="hidden" id="payment-gcash" name="payment-gcash" value="Paypal">
+                                <input type="text" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo $total ?>" disabled>
+                                <input type="number" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo $total ?>" hidden>
+                                <input type="hidden" id="payment-paypal" name="payment-paypal" value="Paypal">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Reference No</label>
@@ -232,7 +235,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Grab Pay Payment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="" enctype="multipart/form-data">
+                <form method="post" action="../Controller/subscriptionController.php" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="d-block">
                             <div>
@@ -249,9 +252,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Amount</label>
-                                <input type="text" class="form-control" name="amount" id="amount" style="width: 100%;" value="" disabled>
-                                <input type="number" class="form-control" name="amount" id="amount" style="width: 100%;" value="" hidden>
-                                <input type="hidden" id="payment-gcash" name="payment-gcash" value="GrabPay">
+                                <input type="text" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo $total ?>" disabled>
+                                <input type="number" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo $total ?>" hidden>
+                                <input type="hidden" id="payment-grab" name="payment-grab" value="GrabPay">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Reference No</label>

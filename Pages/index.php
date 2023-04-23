@@ -34,7 +34,25 @@ session_start();
     }
   }
   ?>
+  <style>
+    .header{
+      padding-left:0!important;
+      padding-right:0!important;
+    }
+    .header-5 .header-search .header-search-wrapper {
+      min-width: 200px!important;
+    }
+    .main-nav .menu .megamenu-container a:hover{
+      color:#0081C9!important;
+    }
+    .sf-with-ul:hover{
+      color:#0081C9!important;
+    }
+    .header-search-extended .btn-primary:hover{
+      color:#0081C9!important;
+    }
 
+  </style>
 </head>
 
 <body>
@@ -95,7 +113,7 @@ session_start();
       <!-- End .header-top -->
 
       <div class="header-middle sticky-header">
-        <div class="container">
+        <div class="container-fluid">
           <div class="header-left">
             <button class="mobile-menu-toggler">
               <span class="sr-only">Toggle mobile menu</span>
@@ -170,13 +188,16 @@ session_start();
                 </li>
 
 
-                <li>
+                <li class="megamenu-container">
 
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
-               <li>
+               <li class="megamenu-container">
                   <a href="../Pages/chat.php">CHAT</a>
-                </li> 
+                </li>
+                 <li class="megamenu-container">
+                  <a href="#">FISH MANUAL</a>
+                </li>  
 
 
               </ul>
@@ -254,7 +275,7 @@ session_start();
                     rgba(0, 0, 0, 0.52),
                     rgba(0, 0, 0, 0.73)
                   ),
-                  url(../assets/images/fish1.jpg);
+                  url(../assets/images/fish2.jpg);
               ">
             <div class="container intro-content text-center">
               <h3 class="intro-subtitle text-white">Don’t Miss</h3>
@@ -275,7 +296,7 @@ session_start();
                     rgba(0, 0, 0, 0.52),
                     rgba(0, 0, 0, 0.73)
                   ),
-                  url(../assets/images/fish2.jpg);
+                  url(../assets/images/fish1.jpg);
               ">
             <div class="container intro-content text-center">
               <h3 class="intro-subtitle text-white">Limited time only</h3>

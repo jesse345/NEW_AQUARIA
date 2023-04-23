@@ -57,6 +57,6 @@ function expireSubscription($user_id)
 {
     global $conn;
     connect();
-    $sql = mysqli_query($conn, "UPDATE `users` SET `isSubscribe` = 'No' WHERE `id` == $user_id");
+    $sql = mysqli_query($conn, "UPDATE `users` SET `isSubscribe` = 'No' WHERE `id` = $user_id");
     disconnect();
 }

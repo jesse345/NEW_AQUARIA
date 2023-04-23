@@ -68,7 +68,7 @@
                         </div>
                         <!-- CONTENT BOX-->
                         <div class="pricingTable-sign-up">
-                            <a href="#" class="btn btn-block">Subscribe</a>
+                            <a href="subscriptionPayment.php?subscription_type=2" class="btn btn-block">Subscribe</a>
                         </div>
                         <!-- BUTTON BOX-->
                     </div>
@@ -93,7 +93,7 @@
                         </div>
                         <!-- CONTENT BOX-->
                         <div class="pricingTable-sign-up">
-                            <a href="#" class="btn btn-block">Subscribe</a>
+                            <a href="subscriptionPayment.php?subscription_type=3" class="btn btn-block">Subscribe</a>
                         </div>
                         <!-- BUTTON BOX-->
                     </div>

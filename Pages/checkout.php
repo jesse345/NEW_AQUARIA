@@ -73,7 +73,7 @@
                                             <tbody>
                                                 <?php
                                                 // $carts = getCart('carts', 'user_id', $_SESSION['id'], "No");
-                                                $carts = uCart($_SESSION['id'],$_GET['seller'],"No");
+                                                $carts = uCart($_SESSION['id'], $_GET['seller'], "No");
                                                 $total = 0;
                                                 while ($cart = mysqli_fetch_assoc($carts)) {
                                                     $prod_det = mysqli_fetch_assoc(
@@ -98,18 +98,18 @@
                                         </table>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
                                             <label class="form-check-label pl-2" for="flexRadioDefault1">
                                                 Cash On Delivery
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                            <label class="form-check-label pl-2" for="flexRadioDefault2">
+                                            <label class="form-check-label pl-2" for="flexRadioDefault2" required>
                                                 Online Payment
                                             </label>
                                         </div>
-                                        <input type="hidden" name="seller" value="<?php echo $_GET['seller']?>">
+                                        <input type="hidden" name="seller" value="<?php echo $_GET['seller'] ?>">
                                         <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block mt-2" name="order">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Place Order</span>

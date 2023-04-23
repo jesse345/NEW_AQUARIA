@@ -34,9 +34,13 @@
             <div class="page-content">
                 <div class="checkout">
                     <div class="container w-50 mt-5">
-                        <div class=" my-auto">
-                            <div class=" summary">
+                        <div class="my-auto">
+                            <div class=" summary" id="table-summary">
                                 <h3 class="summary-title">E-AQUARIA Receipt</h3><!-- End .summary-title -->
+                                <?php
+                                $ord = mysqli_fetch_assoc(getUserOrders('orders', 'id', $_GET['order_id']));
+                                ?>
+                                <h4 class="summary-title">Reference No: <?php echo $ord['ref_order'] ?></h4>
 
                                 <table class="table table-summary">
                                     <thead>
@@ -61,14 +65,13 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-
-                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                    <span class="btn-text">Download Receipt</span>
-                                    <span class="btn-hover-text">Download Receipt</span>
-                                </button>
                             </div>
                         </div>
+
+                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block" onclick="downloadImage()">
+                            <span class="btn-text">Download Receipt</span>
+                            <span class="btn-hover-text">Download Receipt</span>
+                        </button>
 
 
                     </div>
@@ -80,6 +83,20 @@
     </div>
 </body>
 
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    function downloadImage() {
+        html2canvas(document.querySelector(".my-auto")).then(function(canvas) {
+            var link = document.createElement("a");
+            document.body.appendChild(link);
+            link.download = "receipt.png";
+            link.href = canvas.toDataURL();
+            link.target = '_blank';
+            link.click();
+        });
+    }
+</script>
 
 <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 
