@@ -238,7 +238,7 @@ function deleteUsers($id){
 function searchManual($search){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `title` LIKE '%$search%' OR `description` LIKE '%$search%'");
+	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `title` LIKE '%$search%' OR `manual_id` LIKE '%$search%' OR `description` LIKE '%$search%'");
 	disconnect();
 	return $query;
 }
