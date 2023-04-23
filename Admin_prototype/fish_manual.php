@@ -5,15 +5,11 @@
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
 		header("location: admin_login.php");
 	}
-	$rec = getAllManual();
 
-	$manual_id;
-	if(isset($_GET["delete"])){
-		$manual_id = $_GET["manual_id"];
-			
-			deletemanual($manual_id);
-			echo '<script>alert("Are you sure you want to delete?")</script>';
-
+	if(isset($_GET['search'])){
+		$rec = searchManual($_GET['search']);
+	}else{
+		$rec = getAllManual();
 	}
 
 ?>
@@ -216,7 +212,7 @@
 		<div class="menu">
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -310,9 +306,10 @@
 						<a href="#addManualModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fish Manual</span></a>
 						<!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 						<div class="search-container">
-							<form action="/action_page.php">
-							<input type="text" placeholder="Search.." name="search">
-							<button type="submit"><i class="fa fa-search"></i></button>
+							<form action="fish_manual.php">
+								<input type="text" placeholder="Search.." name="search">
+								<input type="submit" name=submit value="Search">
+							<!-- <button type="submit"><i class="fa fa-search"></i></button> -->
 							</form>
 						</div>
 					</div>
@@ -330,6 +327,7 @@
                     </tr>
                 </thead>
                 <?php
+					if(mysqli_num_rows($rec)>0){
 			        while($row = mysqli_fetch_assoc($rec)){	
 		        ?>
                 <tbody>
@@ -339,11 +337,73 @@
 						<td><?php echo $row['title'];?></td>
 						<td><?php echo $row['description'];?></td>
 						<td>
-							<a href="#editManualModal" class="edit"  name="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteManualModal" class="delete" name="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#editManualModal<?php echo $row['manual_id']?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal<?php echo $row['manual_id']?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<?php
+
+					<!-- Edit Modal HTML -->
+					<div id="editManualModal<?php echo $row['manual_id']?>" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form method="POST" action="controller.php?manual_id=<?php echo $row['manual_id']?>">
+								<?php $details = mysqli_fetch_assoc(findManual($row['manual_id']));?>
+									<div class="modal-header">						
+										<h4 class="modal-title">Edit Fish Manual</h4>
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<!-- <label>Admin ID</label> -->
+											<input type="hidden" class="form-control" name="admin_id" readonly>
+										</div>
+										<div class="form-group">
+											<!-- <label>Fish Manual ID</label> -->
+											<input type="hidden" class="form-control" name="manual_id" readonly>
+										</div>					
+										<div class="form-group">
+											<label>Title</label>
+											<input type="text" class="form-control" name="title" value="<?php echo $details['title']?>" required>
+										</div>
+										<div class="form-group">
+											<label>Description</label>
+											<textarea class="form-control" name="description"   required><?php echo $details['description']?></textarea>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+										<input type="submit" class="btn btn-info" name="edit" value="Save">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+
+					<div id="deleteEmployeeModal<?php echo $row['manual_id']?>" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form action="controller.php" method="POST">
+								<div class="modal-header">						
+									<h4 class="modal-title">Delete Fish Manual</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">					
+									<p>Are you sure you want to delete these Records?</p>
+									<p class="text-warning"><small>This action cannot be undone.</small></p>
+								</div>
+								<div class="modal-footer">
+									<input type="hidden" name="manual_id" value="<?php echo $row['manual_id']?>">
+									<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+									<input type="submit" name="deleteManual" class="btn btn-danger" value="Delete">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+					<?php }
+						}else{
+							echo "<td colspan=5 >NO RECORD FOUND</td>";
 						}
 					?>
                 </tbody>
@@ -391,7 +451,7 @@
 	</div>
 
 	<!-- Edit Modal HTML -->
-	<div id="editManualModal" class="modal fade">
+	<!-- <div id="editManualModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form method="GET" action="fish_manual.php">
@@ -419,19 +479,20 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save" name="edit">
+						<input type="submit" class="btn btn-info" value="Save">
 					</div>
 				</form>
 			</div>
 		</div>
-	</div>
+	</div> -->
+
+
 
 	<!-- Delete Modal HTML -->
-	<div id="deleteManualModal" class="modal fade">
+	<!-- <div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-
-				<form method="GET" action="fish_manual.php">
+				<form>
 					<div class="modal-header">						
 						<h4 class="modal-title">Delete Employee</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -442,13 +503,14 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete" name="delete" >
+						<input type="submit" class="btn btn-danger" value="Delete">
 					</div>
 				</form>
-
 			</div>
 		</div>
-	</div>
+	</div> -->
+
+	
 	<script src="script.js"></script>
 	<script src="javascript.js"></script>
 </body>

@@ -27,6 +27,9 @@
     <title> E AQUARIA</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		table {
 			border-collapse: collapse;
@@ -65,7 +68,7 @@
 		<div class="menu">
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -146,7 +149,9 @@
 
 	<table>
 	<h1 style="text-align:center;">PAYMENT</h1>
+			
 		<tr>
+			<th></th>
 			<th>PAYMENT ID</th>
 			<th>USER ID</th>
 			<th>TYPE OF PAYMENT</th>
@@ -165,6 +170,8 @@
 		?>
 
 		<tr>
+			<td><button onclick="openViewModal('<?php echo $row['payment_id']?>','<?php echo $row['user_id']?>','<?php echo $row['typeofpayment']?>', '<?php echo $row['receipt_img']?>','<?php echo $row['date_created']?>','<?php echo $row['amount']?>','<?php echo $row['reference_no']?>','<?php echo $row['order_id']?>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" >VIEW</button></td>
+			<!-- <td>  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">VIEW</button></td> -->
 			<td><?php echo $row['payment_id'];?></td>
 			<td><?php echo $row['user_id'];?></td>
 			<td><?php echo $row['typeofpayment'];?></td>
@@ -173,13 +180,64 @@
 			<td><?php echo $row['amount'];?></td>
 			<td><?php echo $row['reference_no'];?></td>
 			<td><?php echo $row['order_id'];?></td>
+			<td>
+
 			<form action="payment.php?payment_id=<?php echo $row['payment_id'] ?>" METHOD="POST">
-				<td><button type="submit" name="delete">DELETE</button></td>
+			
+				<br>
+			
+
+				<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">VIEW</button> -->
+				<button type="submit" name="delete">DELETE</button>
+			</td>
 			</form>
 		</tr>
+		<div class="container">
+		<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">			
+				<div class="modal-dialog">
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body" style="text-align:center;">
+							<img src="https://placehold.co/600x400.png" style="width:100px;" name="receipt_img" id="receipt_img" alt=""> <br> <br>
+
+
+							<label for="payment_id">PaymentID</label>
+							<input type="text" name="payment_id" id="payment_id" readonly> <br>
+
+							<label for="user_id">UserID</label>
+							<input type="text" name="user_id" id="user_id" readonly> <br>
+
+							<label for="payment_type">Type of Payment</label>
+							<input type="text" name="payment_type" id="payment_type" readonly> <br>
+
+							<label for="date_created">Date Created</label>
+							<input type="datetime" name="date_created" id="date_created" readonly> <br>
+
+							<label for="amount">Amount</label>
+							<input type="text" name="amount" id="amount" readonly> <br>
+
+							<label for="reference_no">Reference No</label>
+							<input type="text" name="reference_no" id="reference_no" readonly> <br>
+
+							<label for="order_id">Order ID</label>
+							<input type="text" name="order_id" id="order_id" readonly> <br>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php
 		}
 	?>
+	
 	</table>
 	
 	<!-- <?php
@@ -205,5 +263,20 @@
 		}
 	?> -->
 	<script src="script.js"></script>
+	<script>
+		function openViewModal(paymentID,userID,typeofpayment,receipt_img,date_created,amount,reference_no,orderID){
+
+			document.getElementById('payment_id').value = paymentID;
+			document.getElementById('user_id').value = userID;
+			document.getElementById('payment_type').value = typeofpayment;
+			document.getElementById('date_created').value = date_created;
+			document.getElementById('amount').value = amount;
+			document.getElementById('reference_no').value = reference_no;
+			document.getElementById('order_id').value = orderID;
+			// document.getElementById('receipt_img').src = receipt_img;
+			
+ 
+		}
+	</script>
 </body>
 </html>

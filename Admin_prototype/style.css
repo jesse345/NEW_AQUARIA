@@ -220,16 +220,20 @@ body.dark .switch::before {
   left: 24px;
 }
 
-.book-content {
+/* .book-content {
   display: flex;
   align-items: center;
   text-align: center;
   gap: 2rem;
   margin-top: 5rem;
   padding-left: 400px;
-}
+} */
 
-.box {
+/* .book{
+  width: 250px;
+} */
+/* .box {
+
   padding: 90px;
   background: var(--box-color);
   border-top: 5px solid transparent;
@@ -237,6 +241,7 @@ body.dark .switch::before {
   transition: all 0.4s ease;
   cursor: pointer;
 }
+
 
 .box h3 {
   font-size: 24px;
@@ -259,7 +264,7 @@ body.dark .switch::before {
 
 .box:hover h3 {
   color: var(--hover-color);
-}
+} */
 
 /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
 @media screen and (max-height: 450px) {

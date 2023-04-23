@@ -13,6 +13,10 @@
         <title> E AQUARIA</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<style>
 		table {
 			border-collapse: collapse;
@@ -51,7 +55,7 @@
 		<div class="menu">
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -133,6 +137,7 @@
 	<table>
 	<h1 style="text-align:center;">SUBSCRIPTION</h1>
         <tr>
+			<th></th>
             <th>Payment Id</th>
             <th>Full Name</th>
             <th>Subscription Type</th>
@@ -147,6 +152,8 @@
             while ($row = mysqli_fetch_assoc($subscribe)) {
         ?>
             <tr>
+				<td><button onclick="openViewModal('<?php echo $row['subscription_id']?>','<?php echo $row['user_id']?>','<?php echo $row['subscription_type']?>', 
+				'<?php echo $row['amount']?>','<?php echo $row['reference_number']?>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" >VIEW</button></td>
                 <td>
                     <?php echo $row['subscription_id'] ?>
                 </td>
@@ -178,11 +185,59 @@
                     </form>
                 </td>
             </tr>
+			<div class="container">
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">			
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body" style="text-align:center;">
+							<img src="https://placehold.co/600x400.png" style="width:100px;" name="image" id="image" alt=""> <br> <br>
+
+
+							<label for="subscription_id">SUBSCRIPTION ID</label>
+							<input type="text" name="subscription_id" id="subscription_id" readonly> <br>
+
+							<label for="user_id">USER ID</label>
+							<input type="text" name="user_id" id="user_id" readonly> <br>
+
+							<label for="subscription_type">SUBSCRIPTION TYPE</label>
+							<input type="text" name="subscription_type" id="subscription_type" readonly> <br>
+
+							<label for="amount">AMOUNT</label>
+							<input type="number" name="amount" id="amount" readonly> <br>
+
+							<label for="reference_number">REFERENCE NUMBER</label>
+							<input type="number" name="reference_number" id="reference_number" readonly> <br>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
         <?php 
             } 
         ?>
         </table>
 	    <script src="script.js"></script>
+		<script>
+		function openViewModal(subscription_id,user_id,subscription_type,amount,reference_number){
+
+			document.getElementById('subscription_id').value = subscription_id;
+			document.getElementById('user_id').value = user_id;
+			document.getElementById('subscription_type').value = subscription_type;
+			document.getElementById('amount').value = amount;
+			document.getElementById('reference_number').value = reference_number;
+ 
+		}
+	</script>
     </body>
 
 </html>

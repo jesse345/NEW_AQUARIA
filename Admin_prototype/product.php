@@ -6,18 +6,19 @@
 		header("location: admin_login.php");
 	}
 	$rec = getallproduct();
-	// $record = getAllUser();
 	
-	// $product_id = array();
 	$product_id;
 	if(isset($_GET["delete"])){
 		$product_id = $_GET["product_id"];
-		// for($i = 0; $i < count($product_id) ; $i++){
 			
 			deleterecord($product_id);
 			echo '<script>alert("Are you sure you want to delete?")</script>';
-			//header("location:homepage.php");
-		// }	
+	}
+
+	if(isset($_GET['search'])){
+		$rec = searchProduct($_GET['search']);
+	}else{
+		$rec = getallproduct();
 	}
 		
 
@@ -29,6 +30,9 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	<style>
 		table {
@@ -95,7 +99,7 @@
 		<div class="menu">
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -177,12 +181,14 @@
 	<table>
 	<h1 style="text-align:center;">PRODUCTS</h1>
 	<div class="search-container">
-			<form action="/action_page.php">
-			<input type="text" placeholder="Search.." name="search">
-			<button type="submit"><i class="fa fa-search"></i></button>
+			<form action="product.php">
+				<input type="text" placeholder="Search.." name="search">
+				<input type="submit" name="submit" value="Search">
+			<!-- <button type="submit"><i class="fa fa-search"></i></button> -->
 			</form>
 		</div>
 		<tr>
+			<th></th>
 			<th>PRODUCT ID</th>
 			<th>PRODUCT NAME</th>
 			<th>QUANTITY</th>
@@ -206,12 +212,19 @@
 		</tr>
 		
 		<?php
-			while($row = mysqli_fetch_assoc($rec)){
-				$gp = mysqli_fetch_assoc(getproducts($row['product_id']));
+			if(mysqli_num_rows($rec)>0){
+				while($row = mysqli_fetch_assoc($rec)){	
+				// $gp = mysqli_fetch_assoc(getproducts($row['product_id']));
 				
 		?>
 
 		<tr>
+		<td><button onclick="openViewModal('<?php echo $row['product_id']?>','<?php echo $row['product_name']?>','<?php echo $row['quantity']?>', 
+		'<?php echo $row['description']?>','<?php echo $row['price']?>','<?php echo $row['category']?>','<?php echo $row['tank_type']?>',
+		'<?php echo $row['dimension']?>','<?php echo $row['thickness']?>','<?php echo $row['fish_type']?>','<?php echo $row['fish_class']?>',
+		'<?php echo $row['size']?>','<?php echo $row['gender']?>','<?php echo $row['age']?>','<?php echo $row['specification']?>','<?php echo $row['expiration_date']?>',
+		'<?php echo $row['benefits']?>','<?php echo $row['shipping_type']?>',)
+		" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" >VIEW</button></td>
 			<td><?php echo $row['product_id'];?></td>
 			<td><?php echo $row['product_name'];?></td>
 			<td><?php echo $row['quantity'];?></td>
@@ -232,10 +245,91 @@
 			<td><?php echo $row['benefits'];?></td>
 			<td><?php echo $row['shipping_type'];?></td>
 			<form action="product.php?product_id=<?php echo $row['product_id'] ?>" METHOD="POST">
-				<td><button type="submit" name="delete">DELETE</button></td>
+				<td><button type="submit" name="delete">DELETE</button><br>
+				</td>
 			</form>
 		</tr>
-		<?php
+		
+		<div class="container">
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">			
+				<div class="modal-dialog">
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+
+						<div class="modal-body" style="text-align:center;">
+							<img src="<?php echo $row['product_img'];?>" style="width:100px;" name="product_img" id="product_img" alt=""> <br> <br>
+
+							<label for="product_id">ProductID</label>
+							<input type="text" name="product_id" id="product_id" readonly> <br>
+
+							<label for="product_name">ProductName</label>
+							<input type="text" name="product_name" id="product_name" readonly> <br>
+
+							<label for="quantity">Quantity</label>
+							<input type="text" name="quantity" id="quantity" readonly> <br>
+
+							<label for="description">Description</label>
+							<input type="datetime" name="description" id="description" readonly> <br>
+
+							<label for="price">Price</label>
+							<input type="text" name="price" id="price" readonly> <br>
+
+							<label for="category">Category No</label>
+							<input type="text" name="category" id="category" readonly> <br>
+
+							<label for="tank_type">TANK TYPE</label>
+							<input type="text" name="tank_type" id="tank_type" readonly> <br>
+
+							<label for="dimension">DIMENSION</label>
+							<input type="text" name="dimension" id="dimension" readonly> <br>
+
+							<label for="thickness">THICKNESS</label>
+							<input type="text" name="thickness" id="thickness" readonly> <br>
+
+							<label for="fish_type">FISH TYPE</label>
+							<input type="text" name="fish_type" id="fish_type" readonly> <br>
+
+							<label for="fish_class">FISH CLASS</label>
+							<input type="text" name="fish_class" id="fish_class" readonly> <br>
+
+							<label for="size">SIZE</label>
+							<input type="text" name="size" id="size" readonly> <br>
+
+							<label for="gender">GENDER</label>
+							<input type="text" name="gender" id="gender" readonly> <br>
+
+							<label for="age">AGE</label>
+							<input type="text" name="age" id="age" readonly> <br>
+
+							<label for="specification">SPECIFICATION</label>
+							<input type="text" name="specification" id="specification" readonly> <br>
+
+							<label for="expiration_date">EXPIRATION DATE</label>
+							<input type="text" name="expiration_date" id="expiration_date" readonly> <br>
+
+							<label for="benefits">BENEFITS</label>
+							<input type="text" name="benefits" id="benefits" readonly> <br>
+
+							<label for="shipping_type">SHIPPING TYPE</label>
+							<input type="text" name="shipping_type" id="shipping_type" readonly> <br>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php }
+		} else{
+			echo"<td colspan = 21>NO RECORD FOUND</td>";
 		}
 	?>
 	</table>
@@ -263,5 +357,32 @@
 		}
 	?> -->
 	<script src="script.js"></script>
+	<script>
+		function openViewModal(product_id,product_name,quantity,description,price,category,tank_type,dimension,thickness,fish_type,fish_class,size,gender,age,specification,expiration_date,benefits,shipping_type){
+
+			document.getElementById('product_id').value = product_id;
+			document.getElementById('product_name').value = product_name;
+			document.getElementById('quantity').value = quantity;
+			document.getElementById('description').value = description;
+			document.getElementById('price').value = price;
+			document.getElementById('category').value = category;
+			document.getElementById('tank_type').value = tank_type;
+			document.getElementById('dimension').value = dimension;
+			document.getElementById('thickness').value = thickness;
+			document.getElementById('fish_type').value = fish_type;
+			document.getElementById('fish_class').value = fish_class;
+			document.getElementById('size').value = size;
+			document.getElementById('gender').value = gender;
+			document.getElementById('age').value = age;
+			document.getElementById('specification').value = specification;
+			document.getElementById('expiration_date').value = expiration_date;
+			document.getElementById('benefits').value = benefits;
+			document.getElementById('shipping_type').value = shipping_type;
+
+			// document.getElementById('receipt_img').src = receipt_img;
+			
+ 
+		}
+	</script>
 </body>
 </html>

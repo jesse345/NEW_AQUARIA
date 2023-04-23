@@ -35,13 +35,9 @@
 
 		<div class="menu-bar">
 			<div class="menu">
-				<!--<li class="search-box">
-					<i class='bx bx-search icon'></i>
-					<input type="seach" placeholder="search...">
-				</li>-->
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -127,55 +123,59 @@
 		</div>
 	</nav>
 
+	
 	<section class="book" id="book">
 		<div class="book-content">
 			<div class="box">
 				<!-- <img src="user.png"> -->
 				<i class='bx bx-user icon'></i>
-				<h3>ACTIVE USERS</h3>
-				<a href="" class="btn">More Info</a>
-				<br /><br /><br />
+				<h3>TOTAL NUMBER OF USERS</h3>
+				<?php
+					$num = countUser();
+					echo $num;
+				?><br>
+				<!-- <a href="users.php" class="btn">More Info</a> -->
+
 			</div>
 
 			<div class="box">
 				<!-- <img src="user.png"> -->
 				<i class='bx bx-user icon'></i>
-				<h3>NEW USER/S</h3>
-				<a href="" class="btn">More Info</a>
-				<br /><br /><br />
+				<h3>TOTAL NUMBER OF<br>SUBSCRIBERS</h3>
+				<?php
+					$subscribers = countSubscribers();
+					echo $subscribers;
+				?>
+				<!-- <a href="subscription.php" class="btn">More Info</a> -->
 			</div>
 
-			<div class="box">
-				<!-- <img src="user.png"> -->
-				<i class='bx bx-user icon'></i>
-				<h3>TOTAL USERS</h3>
-				<a href="" class="btn">More Info</a>
-				<br /><br /><br />
-			</div>
-
-
+			
 		</div>
 	</section>
-	<!-- <section class="book" id="book">
+	<section class="book" id="book">
 		<div class="book-content">
 			<div class="box">
-
 				<i class='bx bx-user icon'></i>
-				<h3>Successful<br>Transaction</h3>
-				<a href="" class="btn">More Info</a>
-				<br /><br /><br />
+				<h3>TOTAL NUMBER OF <br>PRODUCTS SOLD</h3>
+				<?php
+					$received = countReceived();
+					echo $received;
+				?><br>
 			</div>
-
+<!-- 
 			<div class="box">
 
 				<i class='bx bx-user icon'></i>
-				<h3>REVENUES</h3>
+				<h3>BEST SELLER</h3>
+				<?php
+					$best = countBest();
+					echo $best;
+				?><br>
 				<a href="" class="btn">More Info</a>
 				<br /><br /><br />
-			</div>
+			</div> -->
 
-		</div>
-	</section> -->
+	</section>
 
 	<script src="script.js"></script>
 </body>

@@ -12,6 +12,10 @@
 	<title> E AQUARIA</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		table {
 			border-collapse: collapse;
@@ -52,7 +56,7 @@
 		<div class="menu">
 				<ul class="menu-links">
 					<li class="nav-link">
-						<a href="#">
+						<a href="index.php">
 							<i class='bx bx-home-alt icon'></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
@@ -134,6 +138,7 @@
 	<table>
 	<h1 style="text-align:center;">SHIPPING INFO</h1>
 		<tr>
+			<th></th>
 			<th>SHIPPING ID</th>
             <th>USER ID</th>
 			<th>SHIPPING NAME</th>
@@ -148,16 +153,65 @@
 		?>
 
 		<tr>
+			<td><button onclick="openViewModal('<?php echo $row['shipping_id']?>','<?php echo $row['user_id']?>','<?php echo $row['shipping_name']?>', 
+			'<?php echo $row['shipping_address']?>','<?php echo $row['shipping_contact']?>')" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" >VIEW</button></td>
             <td><?php echo $row['shipping_id'];?></td>
 			<td><?php echo $row['user_id'];?></td>
             <td><?php echo $row['shipping_name'];?></td>
             <td><?php echo $row['shipping_address'];?></td>
             <td><?php echo $row['shipping_contact'];?></td>
 		</tr>
+		<div class="container">
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">			
+				<div class="modal-dialog">
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body" style="text-align:center">
+							<img src="https://placehold.co/600x400.png" style="width:100px;" name="image" id="image" alt=""> <br> <br>
+
+							<label for="shipping_id">SHIPPING ID</label>
+							<input type="text" name="shipping_id" id="shipping_id"> <br>
+
+							<label for="user_id">USER ID</label>
+							<input type="text" name="user_id" id="user_id"> <br>
+
+							<label for="shipping_name">SHIPPING NAME</label>
+							<input type="text" name="shipping_name" id="shipping_name"> <br>
+
+							<label for="shipping_address">SHIPPING ADDRESS</label>
+							<input type="datetime" name="shipping_address" id="shipping_address"> <br>
+
+							<label for="shipping_contact">SHIPPING CONTACT</label>
+							<input type="datetime" name="shipping_contact" id="shipping_contact"> <br>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
 		<?php
 		}
 	?>
 	</table>
 	<script src="script.js"></script>
+	<script>
+		function openViewModal(shipping_id,user_id,shipping_name,shipping_address,shipping_contact){
+
+			document.getElementById('shipping_id').value = shipping_id;
+			document.getElementById('user_id').value = user_id;
+			document.getElementById('shipping_name').value = shipping_name;
+			document.getElementById('shipping_address').value = shipping_address;
+			document.getElementById('shipping_contact').value = shipping_contact;
+ 
+		}
+	</script>
 </body>
 </html>

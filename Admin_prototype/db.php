@@ -44,6 +44,45 @@ function getAllUser()
 	return $query;
 }
 
+function countUser()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(id) FROM `users`");
+	disconnect();
+	$row = mysqli_fetch_array($query);
+	return $row[0];
+}
+
+function countSubscribers()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(user_id) FROM `subscription`");
+	disconnect();
+	$row = mysqli_fetch_array($query);
+	return $row[0];
+}
+
+function countReceived()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(id) FROM `orders` WHERE status = 'received' ");
+	disconnect();
+	$row = mysqli_fetch_array($query);
+	return $row[0];
+}
+
+function countBest()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(id) FROM `orders` WHERE `product_id` = product_id AND status = 'received'");
+	disconnect();
+	$row = mysqli_fetch_array($query);
+	return $row[0];
+}
 function getUserShippingInfo()
 {
 	global $conn;
@@ -62,14 +101,23 @@ function getproducts($product_id)
 	return $query;
 }
 
-function searchProduct($field, $option)
-{
+// function searchProduct($field, $option)
+// {
+// 	global $conn;
+// 	connect();
+// 	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `$option` LIKE '%$field%'");
+// 	disconnect();
+// 	return $query;
+// }
+
+function searchProduct($search){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `$option` LIKE '%$field%'");
+	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `product_id` LIKE '%$search%' OR `description` LIKE '%$search%'");
 	disconnect();
 	return $query;
 }
+
 
 function getAllManual(){
 	global $conn;
@@ -115,6 +163,14 @@ function getAllPost()
 	return $query;
 }
 
+function searchPost($search){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `breedersblog` WHERE `description` LIKE '%$search%'");
+	disconnect();
+	return $query;
+}
+
 function getallpayment()
 {
 	global $conn;
@@ -131,11 +187,60 @@ function deleterecord($product_id){
 	disconnect();
 }
 
-function deletemanual($manual_id){
+
+
+function editRecord($id,$title,$description){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "DELETE FROM `fish_manual` WHERE `manual_id` = '$manual_id'");
+	$query = mysqli_query($conn, "UPDATE `fish_manual` SET `title` = '$title', `description` = '$description' WHERE `manual_id` = $id");
 	disconnect();
+
+}
+
+
+function findUser($id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `user_details` WHERE `user_id` = $id");
+	disconnect();
+	return $query;
+}
+
+function findManual($id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `manual_id` = $id");
+	disconnect();
+	return $query;
+}
+
+function deleteManual($id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn,"DELETE FROM `fish_manual` WHERE `manual_id` = $id");
+	disconnect();
+}
+
+function deletePayment($id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn,"DELETE FROM `payment` WHERE `payment_id` = $id");
+	disconnect();
+}
+
+function deleteUsers($id){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn,"DELETE FROM `user_details` WHERE `user_id` = $id");
+	disconnect();
+}
+
+function searchManual($search){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `title` LIKE '%$search%' OR `description` LIKE '%$search%'");
+	disconnect();
+	return $query;
 }
 // function isApproved(){
 // 	global $conn;
