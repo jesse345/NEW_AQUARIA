@@ -152,6 +152,9 @@ if (isset($_SESSION['id'])) {
                         <li>
                             <a href="blog.html">Breeders Blog</a>
                         </li>
+                         <li>
+                            <a href="chat.php">Chat</a>
+                        </li>
                     </ul>
                     <!-- End .menu -->
                 </nav>
