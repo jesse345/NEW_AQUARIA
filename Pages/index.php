@@ -174,9 +174,9 @@ session_start();
 
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
-                <!-- <li>
+               <li>
                   <a href="../Pages/chat.php">CHAT</a>
-                </li> -->
+                </li> 
 
 
               </ul>
