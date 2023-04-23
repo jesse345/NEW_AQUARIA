@@ -37,6 +37,10 @@
                         <div class="my-auto">
                             <div class=" summary" id="table-summary">
                                 <h3 class="summary-title">E-AQUARIA Receipt</h3><!-- End .summary-title -->
+                                <?php
+                                $ord = mysqli_fetch_assoc(getUserOrders('orders', 'id', $_GET['order_id']));
+                                ?>
+                                <h4 class="summary-title">Reference No: <?php echo $ord['ref_order'] ?></h4>
 
                                 <table class="table table-summary">
                                     <thead>
@@ -86,7 +90,7 @@
         html2canvas(document.querySelector(".my-auto")).then(function(canvas) {
             var link = document.createElement("a");
             document.body.appendChild(link);
-            link.download = "myDiv.png";
+            link.download = "receipt.png";
             link.href = canvas.toDataURL();
             link.target = '_blank';
             link.click();
