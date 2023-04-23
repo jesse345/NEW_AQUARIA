@@ -42,6 +42,15 @@ session_start();
     .header-5 .header-search .header-search-wrapper {
       min-width: 200px!important;
     }
+    .main-nav .menu .megamenu-container a:hover{
+      color:#0081C9!important;
+    }
+    .sf-with-ul:hover{
+      color:#0081C9!important;
+    }
+    .header-search-extended .btn-primary:hover{
+      color:#0081C9!important;
+    }
 
   </style>
 </head>
@@ -179,14 +188,14 @@ session_start();
                 </li>
 
 
-                <li>
+                <li class="megamenu-container">
 
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
-               <li>
+               <li class="megamenu-container">
                   <a href="../Pages/chat.php">CHAT</a>
                 </li>
-                 <li>
+                 <li class="megamenu-container">
                   <a href="#">FISH MANUAL</a>
                 </li>  
 
