@@ -36,10 +36,22 @@
 
                 <div class="container px-3 my-5 clearfix">
                     <!-- Shopping cart table -->
-                    <div class="card border-0">
+
+                    <?php $sellers = getAllSeller();
+                    
+                    while($seller = mysqli_fetch_assoc($sellers)){
+                        $sel = mysqli_fetch_assoc(getUser('user_details','user_id',$seller['seller']));
+
+                        
+                        ?>
+                    <div class="">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table  m-0 table-hover">
+                                    <tr>
+                                            <?php echo $sel['first_name'] . " " . $sel['last_name'];?>
+                                       
+                                    </tr>
                                     <thead>
                                         <tr>
                                             <!-- Set columns width -->
@@ -59,20 +71,21 @@
                                         <?php
 
 
-                                        $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
-                                        $count = 0;
-                                        while ($cart = mysqli_fetch_assoc($carts)) {
-                                            $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
-                                            if ($products['isDelete'] == "No") {
-                                                $count++;
-                                            }
-                                        }
+                                        // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
+                                        // $count = 0;
+                                        // while ($cart = mysqli_fetch_assoc($carts)) {
+                                        //     $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
+                                        //     if ($products['isDelete'] == "No") {
+                                        //         $count++;
+                                        //     }
+                                        // }
 
 
 
                                         $total = 0;
-                                        $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
-                                        if ($count > 0) {
+                                        // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
+                                        $carts = uCart($_SESSION['id'],$seller['seller'],"No");
+                                        if (mysqli_num_rows($carts) > 0) {
                                             while ($cart = mysqli_fetch_assoc($carts)) {
                                                 $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
                                                 if ($products['isDelete'] == "No") {
@@ -152,7 +165,7 @@
                                 </table>
                             </div>
                             <!-- / Shopping cart table -->
-                            <div class="float-right">
+                            <div class="float-right" style="margin-bottom: 60px;">
                                 <div class="text-right mt-4 mr-5">
 
                                     <div class="text-large">
@@ -172,7 +185,7 @@
                                 <?php
                                 if ($total > 0) {
                                 ?>
-                                    <a href="../Pages/checkout.php?id=<?php echo $_SESSION['id'] ?>">
+                                    <a href="../Pages/checkout.php?id=<?php echo $_SESSION['id']; ?>&seller=<?php echo $seller['seller']; ?>">
                                         <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
 
                                     <?php } else { ?>
@@ -185,6 +198,9 @@
                             </div>
                         </div>
                     </div>
+                    <?php }?>
+                
+                
                 </div>
 
 

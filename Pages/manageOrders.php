@@ -152,10 +152,10 @@
                                                                                 <?php echo ucfirst($buyer['first_name']) . " " .  ucfirst($buyer['last_name']); ?>
                                                                             </td>
                                                                             <td class="align-middle text-center">
-                                                                                <?php echo number_format($cart['quantity']) ?>
+                                                                                <?php //echo number_format($cart['quantity']) ?>
                                                                             </td>
                                                                             <td class="text-center font-weight-semibold align-middle">
-                                                                                ₱ <?php echo number_format($cart['total']) ?>
+                                                                                ₱ <?php //echo number_format($cart['total']) ?>
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php

@@ -43,6 +43,8 @@ if (isset($_SESSION['id'])) {
         $contact = $_POST['shipping_contact'];
         $address = $_POST['shipping_address'];
 
+        $seller = $_POST['seller'];
+
         $n = 10;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
@@ -50,7 +52,8 @@ if (isset($_SESSION['id'])) {
         $ref_order = "";
         // $order_product = viewOrderedProduct('carts', 'user_id', $user_id);
 
-        $order_product  = getCart('carts', 'user_id', $_SESSION['id'], "No");
+        // $order_product  = getCart('carts', 'user_id', $_SESSION['id'], "No");
+        $order_product = uCart($_SESSION['id'],$seller,"No");
 
         do {
 
