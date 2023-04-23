@@ -34,7 +34,13 @@ session_start();
     }
   }
   ?>
+  <style>
+    .header{
+      padding-left:0!important;
+      padding-right:0!important;
 
+    }
+  </style>
 </head>
 
 <body>
@@ -95,7 +101,7 @@ session_start();
       <!-- End .header-top -->
 
       <div class="header-middle sticky-header">
-        <div class="container">
+        <div class="container-fluid">
           <div class="header-left">
             <button class="mobile-menu-toggler">
               <span class="sr-only">Toggle mobile menu</span>
@@ -176,7 +182,10 @@ session_start();
                 </li>
                <li>
                   <a href="../Pages/chat.php">CHAT</a>
-                </li> 
+                </li>
+                 <li>
+                  <a href="../Pages/chat.php">FISH MANUAL</a>
+                </li>  
 
 
               </ul>
