@@ -13,6 +13,8 @@ if (empty($_SESSION['id'])) {
 
     if (isset($_POST['addToCart'])) {
         $product_id = $_POST['product_id'];
+
+        $seller = mysqli_fetch_assoc(getProduct('products','id',$product_id));
         $quantity = $_POST['quantity'];
         $user_id = $_SESSION['id'];
         $price = $_POST['price'];
@@ -20,12 +22,13 @@ if (empty($_SESSION['id'])) {
         $cart = insertCart('carts', array(
             'product_id',
             'user_id',
+            'seller',
             'quantity',
             'price',
             'total',
             'isOrdered',
             'date_created'
-        ), array($product_id, $user_id, $quantity, $price, $total, "No", $date));
+        ), array($product_id, $user_id, $seller['user_id'], $quantity, $price, $total, "No", $date));
 
         if ($cart) {
             header("Location: " . $_SERVER['HTTP_REFERER']);

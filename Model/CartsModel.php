@@ -40,6 +40,16 @@ function usersCarts($user_id, $product_id, $isOrdered)
 }
 
 
+function uCart($user_id, $seller, $isOrdered)
+{
+    global $conn;
+    connect();
+    $query = "SELECT * FROM `carts` WHERE `user_id` = '$user_id' AND `seller` = '$seller' AND `isOrdered` = '$isOrdered'";
+    $data = mysqli_query($conn, $query);
+    disconnect();
+    return $data;
+}
+
 
 function getCart($table_name, $field, $value, $isOrdered)
 {
@@ -79,4 +89,13 @@ function updateCart($table_name, $field, $value)
         );
     }
     disconnect();
+}
+
+
+function getAllSeller(){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn,"SELECT DISTINCT `seller` FROM `carts` WHERE `isOrdered` = 'No' ");
+    disconnect();
+    return $query;
 }

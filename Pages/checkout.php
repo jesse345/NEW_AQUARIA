@@ -72,7 +72,8 @@
 
                                             <tbody>
                                                 <?php
-                                                $carts = getCart('carts', 'user_id', $_SESSION['id'], "No");
+                                                // $carts = getCart('carts', 'user_id', $_SESSION['id'], "No");
+                                                $carts = uCart($_SESSION['id'],$_GET['seller'],"No");
                                                 $total = 0;
                                                 while ($cart = mysqli_fetch_assoc($carts)) {
                                                     $prod_det = mysqli_fetch_assoc(
@@ -108,6 +109,7 @@
                                                 Online Payment
                                             </label>
                                         </div>
+                                        <input type="hidden" name="seller" value="<?php echo $_GET['seller']?>">
                                         <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block mt-2" name="order">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Place Order</span>
