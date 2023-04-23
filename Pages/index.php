@@ -38,8 +38,11 @@ session_start();
     .header{
       padding-left:0!important;
       padding-right:0!important;
-
     }
+    .header-5 .header-search .header-search-wrapper {
+      min-width: 200px!important;
+    }
+
   </style>
 </head>
 
@@ -184,7 +187,7 @@ session_start();
                   <a href="../Pages/chat.php">CHAT</a>
                 </li>
                  <li>
-                  <a href="../Pages/chat.php">FISH MANUAL</a>
+                  <a href="#">FISH MANUAL</a>
                 </li>  
 
 
