@@ -141,6 +141,10 @@ if (isset($_SESSION['id'])) {
 
                             <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                         </li>
+                         <li>
+
+                            <a href="../Pages/chat.php">Chat</a>
+                        </li>
 
 
                     </ul>

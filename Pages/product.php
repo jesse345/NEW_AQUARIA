@@ -7,6 +7,14 @@
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <link rel="stylesheet" href="../assets/css/plugins/nouislider/nouislider.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        .btn-primary:hover{
+             background-color:#0069d9!important;
+             border-color:#0069d9!important;
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -241,16 +249,12 @@
 
                                 <div class="product-details-footer">
                                     <div class="product-cat">
-                                        <span>Category:</span>
-                                        <?php echo $prod_det['category'] ?>
-                                    </div><!-- End .product-cat -->
+                                         <a href="../pages/chat.php?user=<?php echo $prod['user_id']?>" class="btn btn-primary text-white"><i class='fas fa-comment-dots'></i>Chat Now</a>
+                                    </div>
 
                                     <div class="social-icons social-icons-sm">
-                                        <span class="social-label">Share:</span>
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                         <span>Category:</span>
+                                        <?php echo $prod_det['category'] ?>
                                     </div>
                                 </div><!-- End .product-details-footer -->
                             </div><!-- End .product-details -->
