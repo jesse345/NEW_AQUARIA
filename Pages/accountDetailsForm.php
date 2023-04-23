@@ -12,6 +12,13 @@
     <script src="../assets/js/jquery.min.js"></script>
     <title>Document</title>
 </head>
+<style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
 
 <?php
 
@@ -65,7 +72,9 @@ if (isset($_SESSION['id'])) {
                                 </div>
 
                                 <label class="fieldlabels">Contact No.: *</label>
-                                <input type="text" name="contact_number" placeholder="Contact No." maxlength="11" required />
+                                <!-- <input type="number" name="contact_number" placeholder="Contact No." maxlength="11" required /> -->
+                                <input type="number" name="contact_number" id="contact" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11">
+
                                 <label class="fieldlabels">Address: *</label>
                                 <select name="address">
                                     <?php while ($row = mysqli_fetch_assoc($address)) { ?>
@@ -86,7 +95,9 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                 </div>
                                 <label class="fieldlabels">Gcash Number.: *</label>
-                                <input type="text" name="gcash_number" placeholder="Gcash Number" maxlength="11" required />
+                                <!-- <input type="number" name="gcash_number" placeholder="Gcash Number" maxlength="11" required /> -->
+                                <input type="number" name="gcash_number" id="myNumber" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11">
+
                                 <label class="fieldlabels">Gcash Name: *</label>
                                 <input type="text" name="gcash_name" placeholder="Gcash Name" onkeypress="return isNotNumber(event)" required />
                             </div> <input type="submit" name="submitAccountForm" class="next action-button" value="Submit" />

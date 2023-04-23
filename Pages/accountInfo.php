@@ -91,16 +91,16 @@
                                     <div class="tab-pane fade show active" id="tab-account-info" role="tabpanel" aria-labelledby="tab-account-info-link">
                                         <form action="#">
                                             <label>Username *</label>
-                                            <input type="email" class="form-control" value="<?php echo ucfirst($user['username']) ?>" required>
+                                            <input type="email" class="form-control" value="<?php echo ucfirst($user['username']) ?>" readonly>
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label>Current Password *</label>
-                                                    <input type="text" class="form-control" required>
+                                                    <input type="password" class="form-control" required>
                                                 </div><!-- End .col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <label>New Password</label>
-                                                    <input type="text" class="form-control" required>
+                                                    <input type="password" class="form-control" required>
                                                 </div><!-- End .col-sm-6 -->
                                             </div><!-- End .row -->
 
