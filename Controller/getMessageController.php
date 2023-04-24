@@ -43,10 +43,11 @@ if (isset($_SESSION['id'])) {
 						<p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
 					</div>
 					<div class="d-flex flex-row justify-content-start mb-4 pt-1">
-						<div>
+						<img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+						<div style="margin-left:16px;">
 							<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
 						</div>
-						<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
+						
 					</div>
 	            <?php
 	    	}
