@@ -12,6 +12,13 @@ if (isset($_POST['subscribe'])) {
     $amount = $_POST['amount'];
     $type = $_POST['typeofpayment'];
     $ref = $_POST['ref'];
+
+    $targetDir = "../img/"; // Set target directory
+    $fileType = pathinfo($_FILES['receipt_img']['name'], PATHINFO_EXTENSION);
+
+    $img = $targetDir . basename($_FILES['receipt_img']['name']);
+    move_uploaded_file($_FILES['receipt_img']['tmp_name'], $img);
+
     // $receipt_img = $_POST["receipt_img"];
 
     // if ($subsciption_type == 1) {
@@ -24,31 +31,33 @@ if (isset($_POST['subscribe'])) {
 
     createSubscription(
         'subscription',
-        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number'),
-        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref)
+        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img'),
+        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img)
     );
 
 
 
-    // header("Location: ../Pages/manageSubscription.php");
+    header("Location: ../Pages/manageSubscription.php");
 } else if (isset($_POST['subscription_approve'])) {
+    $subsciption_type = $_POST['subscription_type'];
+
 
     $subsciption_type = $_POST['subscription_type'];
 
     if ($subsciption_type == 1) {
-        $date_end = date('y-m-d h:i:s', strtotime($date . ' +3months'));
+        $date_end = date('Y-m-d h:i:s', strtotime($date . ' +3months'));
     } else if ($subsciption_type == 2) {
-        $date_end = date('y-m-d h:i:s', strtotime($date . ' +6months'));
+        $date_end = date('Y-m-d h:i:s', strtotime($date . ' +6months'));
     } else if ($subsciption_type == 3) {
-        $date_end = date('y-m-d h:i:s', strtotime($date . ' +1year '));
+        $date_end = date('Y-m-d h:i:s', strtotime($date . ' +1year '));
     }
 
 
-    editUser('users', array('id', 'isSubscribe'), array($_SESSION['id'], "Yes"));
+    editUser('users', array('id', 'isSubscribe'), array($_POST['user_id'], "Yes"));
     approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id']);
 
     echo "<script>
-    alert('Approved Subscription');
-    window.location.href = '../Pages/manageSubscription.php';
-</script>";
+        alert('Approved Subscription');
+        window.location.href = 'subscription.php'
+    </script>";
 }
