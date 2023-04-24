@@ -58,3 +58,9 @@ function getUserProductReview($table, $fields, $values)
     disconnect();
     return $data;
 }
+function updateUser1($table,$id,$fname,$lname,$img){
+    global $conn;
+    connect();
+    mysqli_query($conn,"UPDATE $table SET `first_name` = '$fname',`last_name` = '$lname',`user_img`='$img' where `user_id` = '$id'");
+    disconnect();
+}
