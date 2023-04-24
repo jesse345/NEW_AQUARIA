@@ -37,170 +37,166 @@
                 <div class="container px-3 my-5 clearfix">
                     <!-- Shopping cart table -->
 
-                    <?php $sellers = getAllSeller();
-                    
-                    while($seller = mysqli_fetch_assoc($sellers)){
-                        $sel = mysqli_fetch_assoc(getUser('user_details','user_id',$seller['seller']));
+                    <?php $sellers = getAllSeller($_SESSION['id']);
 
-                        
-                        ?>
-                    <div class="">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table  m-0 table-hover">
-                                    <tr>
-                                            <?php echo $sel['first_name'] . " " . $sel['last_name'];?>
-                                       
-                                    </tr>
-                                    <thead>
+                    while ($seller = mysqli_fetch_assoc($sellers)) {
+                        $sel = mysqli_fetch_assoc(getUser('user_details', 'user_id', $seller['seller']));
+
+
+                    ?>
+                        <div class="">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table  m-0 table-hover">
                                         <tr>
-                                            <!-- Set columns width -->
-                                            <th></th>
-                                            <th class="text-center py-3 px-4" style="min-width: 400px;">
-                                                Product &amp;
-                                                Details</th>
-                                            <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Price
-                                            </th>
-                                            <th class="text-center py-3 px-4" style="min-width: 130px; width:200px;">
-                                                Quantity</th>
-                                            <th class="text-center py-3 px-4" style="min-width: 120px;">Total</th>
-                                            <th class="text-center align-middle py-3 px-0" style="width: 50px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                                            <?php echo $sel['first_name'] . " " . $sel['last_name']; ?>
+
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                                        <thead>
+                                            <tr>
+                                                <!-- Set columns width -->
+
+                                                <th class="text-left py-3 px-4" style="min-width: 400px;">
+                                                    Products Ordered
+                                                </th>
+                                                <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Price
+                                                </th>
+                                                <th class="text-center py-3 px-4" style="min-width: 130px; width:200px;">
+                                                    Quantity</th>
+                                                <th class="text-center py-3 px-4" style="min-width: 120px;">Total</th>
+                                                <th class="text-center align-middle py-3 px-0" style="width: 50px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
 
-                                        // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
-                                        // $count = 0;
-                                        // while ($cart = mysqli_fetch_assoc($carts)) {
-                                        //     $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
-                                        //     if ($products['isDelete'] == "No") {
-                                        //         $count++;
-                                        //     }
-                                        // }
+                                            // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
+                                            // $count = 0;
+                                            // while ($cart = mysqli_fetch_assoc($carts)) {
+                                            //     $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
+                                            //     if ($products['isDelete'] == "No") {
+                                            //         $count++;
+                                            //     }
+                                            // }
 
 
 
-                                        $total = 0;
-                                        // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
-                                        $carts = uCart($_SESSION['id'],$seller['seller'],"No");
-                                        if (mysqli_num_rows($carts) > 0) {
-                                            while ($cart = mysqli_fetch_assoc($carts)) {
-                                                $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
-                                                if ($products['isDelete'] == "No") {
-                                                    $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $cart['product_id']));
-                                                    // to get the total price inside the cart
-                                                    $total += $cart['total'];
-                                        ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <input type="checkbox" name="" id="">
-                                                        </td>
-                                                        <td class="p-4">
-                                                            <div class="media align-items-center">
-                                                                <img src="<?php echo $product['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                                                <div class="media-body">
-                                                                    <a href="#" class="d-block text-dark">
-                                                                        <?php echo $product['product_name'] ?>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
+                                            $total = 0;
+                                            // $carts = usersCart('carts', array('user_id', 'isOrdered'), array($_SESSION['id'], "No"));
+                                            $carts = uCart($_SESSION['id'], $seller['seller'], "No");
+                                            if (mysqli_num_rows($carts) > 0) {
+                                                while ($cart = mysqli_fetch_assoc($carts)) {
+                                                    $products = mysqli_fetch_assoc(getProduct('products', 'id', $cart['product_id']));
+                                                    if ($products['isDelete'] == "No") {
+                                                        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $cart['product_id']));
+                                                        // to get the total price inside the cart
+                                                        $total += $cart['total'];
+                                            ?>
+                                                        <tr>
 
-                                                        <td class="text-center font-weight-semibold align-middle p-4">₱
-                                                            <?php echo number_format($product['price']) ?>
-                                                        </td>
-
-                                                        <td class="align-middle">
-                                                            <form action="../Controller/CartsController.php?product_id=<?php echo $cart['product_id'] ?>" method="POST">
-
-                                                                <div class="input-group quantity mx-auto" style="width: 100%; ">
-
-                                                                    <input type="text" class="form-control text-center" value="<?php echo $cart['quantity'] ?>" name="quantity" required hidden>
-
-
-                                                                    <div class="input-group-btn">
-                                                                        <button class="btn btn-sm  btn-minus" type="submit" name="submit">
-                                                                            <i class="fa fa-minus button"></i>
-                                                                        </button>
-                                                                    </div>
-
-
-                                                                    <input type="text" class="form-control text-center bg-transparent" value="<?php echo $cart['quantity'] ?>" name="quantity" disabled>
-
-                                                                    <div class="input-group-btn">
-                                                                        <button class="btn btn-sm btn-plus" name="submit" type="submit">
-                                                                            <i class="fa fa-plus button"></i>
-                                                                        </button>
+                                                            <td class="p-4">
+                                                                <div class="media align-items-center">
+                                                                    <img src="<?php echo $product['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                                                    <div class="media-body">
+                                                                        <a href="#" class="d-block text-dark">
+                                                                            <?php echo $product['product_name'] ?>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
+                                                            </td>
 
-                                                            </form>
-                                                        </td>
+                                                            <td class="text-center font-weight-semibold align-middle p-4">₱
+                                                                <?php echo number_format($product['price']) ?>
+                                                            </td>
+
+                                                            <td class="align-middle">
+                                                                <form action="../Controller/CartsController.php?product_id=<?php echo $cart['product_id'] ?>" method="POST">
+
+                                                                    <div class="input-group quantity mx-auto" style="width: 100%; ">
+
+                                                                        <input type="text" class="form-control text-center" value="<?php echo $cart['quantity'] ?>" name="quantity" required hidden>
 
 
-                                                        <td class="text-center font-weight-semibold align-middle p-4">₱
-                                                            <?php echo number_format($cart['total']) ?>
-                                                        </td>
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-sm  btn-minus" type="submit" name="submit">
+                                                                                <i class="fa fa-minus button"></i>
+                                                                            </button>
+                                                                        </div>
 
-                                                        <td class="text-center align-middle px-0">
 
-                                                            <form action="../Controller/CartsController.php" method="POST">
-                                                                <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>">
-                                                                <button class="border-0 bg-transparent" type="submit" name="removeCart" id="removeCart">
-                                                                    <i class="fa fa-trash-o" style="font-size:23px;color:red"></i>
+                                                                        <input type="text" class="form-control text-center bg-transparent" value="<?php echo $cart['quantity'] ?>" name="quantity" disabled>
 
-                                                                </button>
-                                                            </form>
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-sm btn-plus" name="submit" type="submit">
+                                                                                <i class="fa fa-plus button"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                        <?php }
-                                            }
-                                        } else {
-                                            echo "<td colspan = 4> Empty Record<td>";
-                                        } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- / Shopping cart table -->
-                            <div class="float-right" style="margin-bottom: 60px;">
-                                <div class="text-right mt-4 mr-5">
+                                                                </form>
+                                                            </td>
 
-                                    <div class="text-large">
-                                        <label style="margin-right: 66px;">Total price</label>
-                                        <strong>
-                                            ₱
-                                            <?php echo number_format($total) ?>
-                                        </strong>
-                                    </div>
+
+                                                            <td class="text-center font-weight-semibold align-middle p-4">₱
+                                                                <?php echo number_format($cart['total']) ?>
+                                                            </td>
+
+                                                            <td class="text-center align-middle px-0">
+
+                                                                <form action="../Controller/CartsController.php" method="POST">
+                                                                    <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>">
+                                                                    <button class="border-0 bg-transparent" type="submit" name="removeCart" id="removeCart">
+                                                                        <i class="fa fa-trash-o" style="font-size:23px;color:red"></i>
+
+                                                                    </button>
+                                                                </form>
+
+                                                            </td>
+                                                        </tr>
+                                            <?php }
+                                                }
+                                            } else {
+                                                echo "<td colspan = 4> Empty Record<td>";
+                                            } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <a href="../">
-                                    <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to
-                                        shopping</button>
-                                </a>
+                                <!-- / Shopping cart table -->
+                                <div class="float-right" style="margin-bottom: 60px;">
+                                    <div class="text-right mt-4 mr-5">
+
+                                        <div class="text-large">
+                                            <label style="margin-right: 66px;">Total price</label>
+                                            <strong>
+                                                ₱
+                                                <?php echo number_format($total) ?>
+                                            </strong>
+                                        </div>
+                                    </div>
 
 
-                                <?php
-                                if ($total > 0) {
-                                ?>
-                                    <a href="../Pages/checkout.php?id=<?php echo $_SESSION['id']; ?>&seller=<?php echo $seller['seller']; ?>">
-                                        <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
 
-                                    <?php } else { ?>
-                                        <input type="button" value="Check out" disabled />
                                     <?php
-                                }
+                                    if ($total > 0) {
                                     ?>
+                                        <a href="../Pages/checkout.php?id=<?php echo $_SESSION['id']; ?>&seller=<?php echo $seller['seller']; ?>">
+                                            <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
 
-                                    </a>
+                                        <?php } else { ?>
+                                            <input type="button" value="Check out" disabled />
+                                        <?php
+                                    }
+                                        ?>
+
+                                        </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php }?>
-                
-                
+                    <?php } ?>
+
+
+
                 </div>
 
 

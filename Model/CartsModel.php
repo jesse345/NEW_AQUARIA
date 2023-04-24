@@ -15,7 +15,6 @@ function insertCart($table_name, $fields, $values)
     } else {
         return false;
     }
-
 }
 
 function usersCart($table_name, $field, $value)
@@ -92,10 +91,11 @@ function updateCart($table_name, $field, $value)
 }
 
 
-function getAllSeller(){
+function getAllSeller($id)
+{
     global $conn;
     connect();
-    $query = mysqli_query($conn,"SELECT DISTINCT `seller` FROM `carts` WHERE `isOrdered` = 'No' ");
+    $query = mysqli_query($conn, "SELECT DISTINCT `seller` FROM `carts` WHERE `isOrdered` = 'No' AND `user_id` = $id");
     disconnect();
     return $query;
 }
