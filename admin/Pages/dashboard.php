@@ -12,13 +12,13 @@
     <title></title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -58,43 +58,43 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/fishmanual.php">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Fish Manual</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/managePayment.php">
                     <i class='bx bx-money icon'></i>
                     <span>Manage Payment</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/managePost.php">
                     <i class='bx bx-repost icon'></i>
                     <span>Manage Post</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/manageProduct.php">
                     <i class='bx bxl-product-hunt icon'></i>
                     <span>Manage Products</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/manageReport.php">
                     <i class='bx bxs-report icon'></i>
                     <span>Manage Reports</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/manageSI.php">
                     <i class='bx bx-info-square icon'></i>
                     <span>Manage Shipping Info</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/manageUsers.php">
                     <i class='bx bx-user icon'></i>
                     <span>Manage Users</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/subscription.php">
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
             </li>
@@ -445,21 +445,21 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

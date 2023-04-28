@@ -151,7 +151,6 @@
 	<h1 style="text-align:center;">PAYMENT</h1>
 			
 		<tr>
-			<th></th>
 			<th>PAYMENT ID</th>
 			<th>USER ID</th>
 			<th>TYPE OF PAYMENT</th>
