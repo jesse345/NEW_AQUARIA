@@ -34,6 +34,15 @@ function getallreport()
 	disconnect();
 	return $query;
 }
+function deletereport($id)
+{
+	global $conn;
+	connect();
+	mysqli_query($conn, "DELETE FROM `reports` WHERE `report_id` = '$id'");
+	disconnect();
+	
+}
+
 
 function getAllUser()
 {
@@ -166,7 +175,10 @@ function getAllPost()
 function searchPost($search){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "SELECT * FROM `breedersblog` WHERE `description` LIKE '%$search%'");
+	$query = mysqli_query($conn, "SELECT * FROM `breedersblog` WHERE `description` LIKE '%$search%' OR
+																	 `id` LIKE '%$search%' OR
+																	 `user_id` LIKE '%$search%'
+																	 ");
 	disconnect();
 	return $query;
 }

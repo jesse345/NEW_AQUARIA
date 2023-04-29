@@ -2,7 +2,7 @@
 	include("../Model/db.php");
 	session_start();
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
-		header("location: admin_login.php");
+		header("location: ../Pages/login.php");
 	}
 
 	$rec = getAllPost();
@@ -157,43 +157,39 @@
                                             <th>USER ID</th>
                                             <th>DESCRIPTION</th>
                                             <th>PURPOSE</th>
-                                            <th>IMAGE/th>
-                                            <th>AMOUNT</th>
+                                            <th>IMAGE</th>
                                             <th>DATE CREATED</th>
                                             <th>ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <?php
-                                    // $rec=getAllPost();
                                     if(mysqli_num_rows($rec) > 0){
                                         while($row = mysqli_fetch_assoc($rec)){	
                                         ?>
                                             <tbody>
                                                 <tr>
-                                                    <td class="col-sm-1"><?php echo $row['payment_id'];?></td>
-                                                    <td class="col-sm-1"><?php echo $row['user_id'];?></td>
-                                                    <td><?php echo $row['typeofpayment'];?></td>
-                                                    <td><img src="../img/<?php echo $row['receipt_img'];?>" class="img-thumbnail" width="460" style="height:100px"></td>
+                                                    <td><?php echo $row['id'];?></td>
+                                                    <td><?php echo $row['user_id'];?></td>
+                                                    <td><?php echo $row['description'];?></td>
+                                                    <td><?php echo $row['purpose'];?></td>
+                                                    <td><img src ="../img/<?php echo $row['image'];?>" style="width: 190px;" ></td>
                                                     <td><?php echo $row['date_created'];?></td>
-                                                    <td><?php echo $row['amount'];?></td>
-                                                    <td><?php echo $row['reference_no'];?></td>
-                                                    <td><?php echo $row['order_id'];?></td>
                                                     <td>
-                                                        <a href="#deleteEmployeeModal<?php echo $row['payment_id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                        <a href="#myModal<?php echo $row['payment_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
+                                                        <a href="#deleteEmployeeModal<?php echo $row['id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        <a href="#myModal<?php echo $row['id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            <div id="deleteEmployeeModal<?php echo $row['payment_id']?>" class="modal fade">
+                                            <div id="deleteEmployeeModal<?php echo $row['id']?>" class="modal fade">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <form action="../Controller/controller.php" method="POST">
                                                             <div class="modal-body">					
-                                                                <p>Are you sure you want to delete these Records?</p>
+                                                                <p>Are you sure you want to delete this Record?</p>
                                                                 <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <input type="hidden" name="product_id" value="<?php echo $row['payment_id']?>">
+                                                                <input type="hidden" name="product_id" value="<?php echo $row['id']?>">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
                                                                 <input type="submit" name="deleteproduct" class="btn btn-danger" value="Yes">
                                                             </div>
@@ -201,7 +197,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="myModal<?php echo $row['payment_id']?>" class="modal fade" role="dialog">			
+                                            <div id="myModal<?php echo $row['id']?>" class="modal fade" role="dialog">			
                                                 <div class="modal-dialog">
                                                 <!-- Modal content-->
                                                     <div class="modal-content">
@@ -256,7 +252,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    <?php }  } ?>
+                                    <?php }
+                                        }else{
+                                            echo"<td colspan = 7>NO RECORD FOUND</td>";
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>
