@@ -1,20 +1,15 @@
 <?php
 
-function sendNotif($table_name, $fields, $values, $table_name1, $fields1, $values1)
+function sendNotif($table_name, $fields, $values)
 {
     global $conn;
     connect();
     //for notification table
     $flds = implode("`,`", $fields);
     $vals = implode("','", $values);
-    //for notification_details table
-    $flds1 = implode("`,`", $fields1);
-    $vals1 = implode("','", $values1);
 
     $query = mysqli_query($conn, "INSERT INTO `$table_name` (`$flds`) VALUES ('$vals')");
-    $query2 = mysqli_query($conn, "INSERT INTO `$table_name1` (`$flds1`) VALUES((SELECT LAST_INSERT_ID()),'$vals1')");
-
-    disconnect();
+    return $query;
 }
 
 function viewAllNotif($table_name, $fld, $val)

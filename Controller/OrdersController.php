@@ -53,7 +53,7 @@ if (isset($_SESSION['id'])) {
         // $order_product = viewOrderedProduct('carts', 'user_id', $user_id);
 
         // $order_product  = getCart('carts', 'user_id', $_SESSION['id'], "No");
-        $order_product = uCart($_SESSION['id'],$seller,"No");
+        $order_product = uCart($_SESSION['id'], $seller, "No");
 
         do {
 
@@ -87,7 +87,10 @@ if (isset($_SESSION['id'])) {
         }
 
         // header("Location: ../Pages/choosePayment.php?id=" . $_SESSION['id'] . "");
+        $notif = sendNotif('notification', array('user_id', 'date_send', 'isRead', 'redirect'), array($seller, $date, 'No', 'manageOrders.php'));
+        $last_id  = mysqli_insert_id($conn);
 
+        sendNotif('notification_details', array('notification_id', 'title', 'Description'), array($last_id, 'Product Approval', 'Someone Ordered your product'));
 
         header("Location: ../Pages/myPurchase.php");
     } else {

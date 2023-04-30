@@ -110,6 +110,7 @@
                                             </label>
                                         </div>
                                         <input type="hidden" name="seller" value="<?php echo $_GET['seller'] ?>">
+
                                         <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block mt-2" name="order">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Place Order</span>
