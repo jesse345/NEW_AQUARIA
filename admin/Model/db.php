@@ -252,6 +252,7 @@ function searchManual($search){
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `title` LIKE '%$search%' OR
 																	`manual_id` LIKE '%$search%' OR 
+																	`admin_id` LIKE '%$search%' OR 
 																	`description` LIKE '%$search%'");
 	disconnect();
 	return $query;

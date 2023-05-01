@@ -218,7 +218,7 @@
                                                     <div class="modal-content">
                                                         <form action="../Controller/controller.php" method="POST">
                                                             <div class="modal-body">					
-                                                                <p>Are you sure you want to delete these Records?</p>
+                                                                <p>Are you sure you want to delete this record?</p>
                                                                 <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                             </div>
                                                             <div class="modal-footer">
