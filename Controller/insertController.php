@@ -57,7 +57,7 @@ if (isset($_SESSION['id'])) {
 			<div>
 				<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $message?> </p>
 			</div>
-			<img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+			<img src="../img/batman.png" alt="avatar 1" style="width: 45px; height: 100%;">
 		</div>
     <?php 
      }

@@ -88,31 +88,25 @@
                                 <div class="tab-content">
 
                                     <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                        <form action="../Controller/updateAccountDetails.php" method="POST">
+                                        <form action="#">
                                             <div class="row">
-                                                
                                                 <div class="col-sm-6">
                                                     <label>First Name *</label>
-                                                    <input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
-                                                    <input type="text" class="form-control" name="fname" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)" required>
                                                 </div><!-- End .col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <label>Last Name *</label>
-                                                    <input type="text" class="form-control" name="lname" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)" required>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)" required>
                                                 </div><!-- End .col-sm-6 -->
-                                            </div><!-- End .row -->   
-                                             <div class="form-group">
-                                                <label>Uploaded Profile</label>
-                                                 <input type="text" class="form-control" name="img" value="<?php echo $user['user_img']?>" readonly>
-                                            </div>
+                                            </div><!-- End .row -->
 
-                                           <div class="form-group">
-                                                <label>Change Profile</label>
-                                                <input class="form-control" type="file" name="img1">
-                                            </div>
 
-                                            <button type="submit" name="UPDATE" class="btn btn-outline-primary-2">
+
+                                            <label>Email address *</label>
+                                            <input type="email" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>" required>
+
+                                            <button type="submit" class="btn btn-outline-primary-2">
                                                 <span>SAVE CHANGES</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>

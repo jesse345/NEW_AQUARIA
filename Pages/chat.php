@@ -93,7 +93,7 @@ if(isset($_SESSION['id'])){
                                     <li class="list-group-item">
                                         <a href="chat.php?user=<?php echo $conversation['user_id']?>" class="d-flex justify-content-between align-items-center p-2">
                                             <div class="d-flex align-items-center">
-                                                <img src="../img/<?php echo $conversation['user_img']?>" class="w-10 rounded-circle" style="height:70px;">
+                                                <img src="<?php echo $conversation['user_img']?>" class="w-10 rounded-circle" style="height:70px;">
                                                 <h3 class="fs-xs m-2">
                                                     <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
@@ -129,7 +129,7 @@ if(isset($_SESSION['id'])){
                                 <?php
                                 if(!empty($_GET['user'])){
                                      ?>
-                                    <img src="../img/<?php $chatWith['user_img']?>" class="rounded-circle" style="height:70px;">
+                                    <img src="<?php $chatWith['user_img']?>" class="rounded-circle" style="height:70px;">
                                     <h3 class="display-4 fs-sm m-2" style="font-size:18px;">
                                         <?php echo ucfirst($chatWith['first_name']). '  ' . ucfirst($chatWith['last_name']) ?> <br>
                                         <div class="d-flex
@@ -169,14 +169,14 @@ if(isset($_SESSION['id'])){
                                             <div>
                                                 <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
                                             </div>
-                                            <img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                         </div>
                                     <?php }else{ ?>
                                         <div class="d-flex justify-content-start">
                                             <p class="small mb-1"><?php echo ucfirst($chatWith['first_name']).' '.ucfirst($chatWith['last_name'])?></p>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <img src="../img/<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
                                                 <p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?>
                                             </div>
