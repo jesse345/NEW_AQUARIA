@@ -73,3 +73,8 @@
   border-radius: 5px;
   margin-left: 20px;
 }
+
+.notification-list:hover {
+  background-color: rgb(224, 224, 224);
+  transition: ease-in-out 0.3s;
+}

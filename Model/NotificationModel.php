@@ -24,11 +24,30 @@ function viewAllNotif($table_name, $fld, $val)
 
 
 
-function getTime($id)
+function deleteNotifs($id)
 {
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT CAST(`date_send` AS TIME) AS time FROM `notification` WHERE id = $id");
+    $query = mysqli_query($conn, "DELETE FROM `notification` WHERE `id` = $id");
+    disconnect();
+}
+
+
+function markAsRead($id)
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "UPDATE  `notification` SET `isRead` = 'Yes' WHERE `user_id` = $id");
+    disconnect();
+}
+
+
+function unRead($id)
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM `notification` WHERE `user_id` = $id AND `isRead` = 'No'");
+
     disconnect();
     return $query;
 }

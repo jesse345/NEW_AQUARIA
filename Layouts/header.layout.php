@@ -29,6 +29,13 @@ if (isset($_SESSION['id'])) {
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li>
+                                <?php $unread = mysqli_num_rows(unRead($_SESSION['id'])) ?>
+                                <a href="Notification.php">
+                                    Notifications <?php echo  $unread > 0 ? "($unread)" : '' ?>
+
+                                </a>
+                            </li>
+                            <li>
                                 <?php if (!isset($_SESSION['id'])) { ?>
                                     <a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a>
                                 <?php } ?>
