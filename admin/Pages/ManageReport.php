@@ -4,8 +4,13 @@
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
 		header("location: admin_login.php");
 	}
-	$rec = getallreport();
-
+	
+    if(isset($_GET['search'])){
+        $rec = searchReport($_GET['search']);
+    }else{
+        $rec = getallreport();
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -157,39 +162,44 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                    while($row = mysqli_fetch_assoc($rec)){
-                                        $gp = mysqli_fetch_assoc(getproducts($row['product_id']));
-                                         ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><?php echo $row['report_id'];?></td>
-                                                    <td><?php echo $row['reporter_id'];?></td>
-                                                    <td><?php echo $row['product_id'];?></td>
-                                                    <td><?php echo $row['reason'];?></td>
-                                                    <td><?php echo $row['date_reported'];?></td>
-                                                    <td>
-                                                        <a href="#deleteEmployeeModal<?php echo $row['report_id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <div id="deleteEmployeeModal<?php echo $row['report_id']?>" class="modal fade">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <form action="../Controller/reportController.php" method="POST">
-                                                            <div class="modal-body">					
-                                                                <p>Are you sure you want to delete this Record?</p>
-                                                                <p class="text-warning"><small>This action cannot be undone.</small></p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="hidden" name="reports_id" value="<?php echo $row['report_id']?>">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
-                                                                <input type="submit" name="deletereport" class="btn btn-danger" value="Yes">
-                                                            </div>
-                                                        </form>
+                                    if(mysqli_num_rows($rec)>0){
+                                        while($row = mysqli_fetch_assoc($rec)){
+                                            $gp = mysqli_fetch_assoc(getproducts($row['product_id']));
+                                            ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['report_id'];?></td>
+                                                        <td><?php echo $row['reporter_id'];?></td>
+                                                        <td><?php echo $row['product_id'];?></td>
+                                                        <td><?php echo $row['reason'];?></td>
+                                                        <td><?php echo $row['date_reported'];?></td>
+                                                        <td>
+                                                            <a href="#deleteEmployeeModal<?php echo $row['report_id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <div id="deleteEmployeeModal<?php echo $row['report_id']?>" class="modal fade">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <form action="../Controller/reportController.php" method="POST">
+                                                                <div class="modal-body">					
+                                                                    <p>Are you sure you want to delete this Record?</p>
+                                                                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="hidden" name="reports_id" value="<?php echo $row['report_id']?>">
+                                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                                                                    <input type="submit" name="delete" class="btn btn-danger" value="Yes">
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    <?php }  ?>
+                                    <?php }  
+                                        }else{
+                                            echo"<td colspan = 6>NO RECORD FOUND</td>";
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>

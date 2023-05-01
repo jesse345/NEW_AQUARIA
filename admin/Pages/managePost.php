@@ -5,7 +5,7 @@
 		header("location: ../Pages/login.php");
 	}
 
-	$rec = getAllPost();
+	
 	if(isset($_GET['search'])){
 		$rec = searchPost($_GET['search']);
 	}else{
@@ -176,73 +176,67 @@
                                                     <td><?php echo $row['date_created'];?></td>
                                                     <td>
                                                         <a href="#deleteEmployeeModal<?php echo $row['id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                        <a href="#myModal<?php echo $row['id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
+                                                        <a href="#viewMore<?php echo $row['id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                             <div id="deleteEmployeeModal<?php echo $row['id']?>" class="modal fade">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                        <form action="../Controller/controller.php" method="POST">
+                                                        <form action="../Controller/postController.php" method="POST">
                                                             <div class="modal-body">					
-                                                                <p>Are you sure you want to delete this Record?</p>
+                                                                <p>Are you sure you want to delete this record?</p>
                                                                 <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <input type="hidden" name="product_id" value="<?php echo $row['id']?>">
+                                                                <input type="hidden" name="id" value="<?php echo $row['id']?>">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
-                                                                <input type="submit" name="deleteproduct" class="btn btn-danger" value="Yes">
+                                                                <input type="submit" name="deletepost" class="btn btn-danger" value="Yes">
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="myModal<?php echo $row['id']?>" class="modal fade" role="dialog">			
+                                            <div id="viewMore<?php echo $row['id']?>" class="modal fade" role="dialog">			
                                                 <div class="modal-dialog">
                                                 <!-- Modal content-->
                                                     <div class="modal-content">
                                                         <div class="modal-body" style="text-align:center;">
-                                                            <img src="../img/<?php echo $row['receipt_img'];?>" class="mx-auto d-block">
+                                                            
                                                             <div class="form-group row mt-3">
-                                                                <label class="col-sm-4 col-form-label">PaymentID</label>
+                                                                <label class="col-sm-4 col-form-label">BLOG ID</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_id" value="<?php echo $row['payment_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="payment_id" value="<?php echo $row['id'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">UserID</label>
+                                                                <label class="col-sm-4 col-form-label">USER ID</label>
                                                                 <div class="col-sm-8">
                                                                 <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">Type of Payment</label>
+                                                                <label class="col-sm-4 col-form-label">DESCRIPTION</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_type" value="<?php echo $row['typeofpayment'];?>" readonly>
+                                                                <input type="text" class="form-control" name="payment_type" value="<?php echo $row['description'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">Date Created</label>
+                                                                <label class="col-sm-4 col-form-label">PURPOSE</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="date_created" value="<?php echo $row['date_created'];?>" readonly>
+                                                                <input type="text" class="form-control" name="date_created" value="<?php echo $row['purpose'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">Amount</label>
+                                                                <label class="col-sm-4 col-form-label">IMAGE</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['amount'];?>" readonly>
+                                                                 <img src="../img/<?php echo $row['image'];?>" class="img-responsive">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">Reference No</label>
+                                                                <label class="col-sm-4 col-form-label">DATE CREATED</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="reference_no" value="<?php echo $row['reference_no'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label">Order ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="order_id" value="<?php echo $row['order_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="reference_no" value="<?php echo $row['date_created'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -264,43 +258,6 @@
 
                 </div>
     </div>
-    <div id="addManualModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<form method="POST" action="../Controller/controller.php">
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Fish Manual</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">	
-						<!-- <div class="form-group">
-							<label>Fish Manual ID</label>
-							<input type="text" class="form-control" name="manual_id" placeholder="Enter Manual ID" required>
-						</div>				 -->
-						<div class="form-group">
-							<!-- <label>Admin ID</label> -->
-							<input type="hidden" class="form-control" name="admin_id" placeholder="Enter Admin ID" value="1"  required>
-						</div>
-						<div class="form-group">
-							<label>Title</label>
-							<input type="text" class="form-control" name="title" placeholder="Enter Title" required>
-						</div>
-						<div class="form-group">
-							<label>Description</label>
-							<textarea class="form-control" name="description" placeholder="Enter Description" required></textarea>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-primary" name="add" value="Add">
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

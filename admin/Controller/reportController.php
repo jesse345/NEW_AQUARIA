@@ -1,14 +1,12 @@
 <?php
 include("../Model/db.php");
-session_start();
 
-if(isset($_POST['deletereport'])){
-    $id = $_POST['report_id'];
 
-    deletereport($id);
+if(isset($_POST['delete'])){
+    deleteReport($_POST['reports_id']);
 	echo "
     <script>
-        alert('Deletew Successfully');
+        alert('Delete Successfully');
         window.location.href='../Pages/manageReport.php';
     </script>";
 }

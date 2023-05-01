@@ -4,7 +4,13 @@
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
 		header("location: admin_login.php");
 	}
-	$rec = getUserShippingInfo();
+	
+    if(isset($_GET['search'])){
+        $rec = searchSI($_GET['search']);
+    }else{
+        $rec = getUserShippingInfo();
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -156,64 +162,69 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                    while($row = mysqli_fetch_assoc($rec)){
-                                        $gp = mysqli_fetch_assoc(getproducts($row['user_id']));
-                                        ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><?php echo $row['shipping_id'];?></td>
-                                                    <td><?php echo $row['user_id'];?></td>
-                                                    <td><?php echo $row['shipping_name'];?></td>
-                                                    <td><?php echo $row['shipping_address'];?></td>
-                                                    <td><?php echo $row['shipping_contact'];?></td>
-                                                    <td>
-                                                        <a href="#viewMore<?php echo $row['shipping_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                             <div id="viewMore<?php echo $row['shipping_id'];?>" class="modal fade" role="dialog">			
-                                                <div class="modal-dialog">
-                                                <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-body" style="text-align:center;">
-                                                            <div class="form-group row mt-3">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">SHIPPING ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_id" value="<?php echo $row['shipping_id'];?>" readonly>
+                                    if(mysqli_num_rows($rec)> 0 )
+                                        while($row = mysqli_fetch_assoc($rec)){
+                                            $gp = mysqli_fetch_assoc(getproducts($row['user_id']));
+                                            ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $row['shipping_id'];?></td>
+                                                        <td><?php echo $row['user_id'];?></td>
+                                                        <td><?php echo $row['shipping_name'];?></td>
+                                                        <td><?php echo $row['shipping_address'];?></td>
+                                                        <td><?php echo $row['shipping_contact'];?></td>
+                                                        <td>
+                                                            <a href="#viewMore<?php echo $row['shipping_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <div id="viewMore<?php echo $row['shipping_id'];?>" class="modal fade" role="dialog">			
+                                                    <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body" style="text-align:center;">
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">SHIPPING ID</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="payment_id" value="<?php echo $row['shipping_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING NAME</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="payment_type" value="<?php echo $row['shipping_name'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING ADDRESS</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="date_created" value="<?php echo $row['shipping_address'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING CONTACT</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="amount" value="<?php echo $row['shipping_contact'];?>" readonly>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id'];?>" readonly>
-                                                                </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING NAME</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_type" value="<?php echo $row['shipping_name'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING ADDRESS</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="date_created" value="<?php echo $row['shipping_address'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING CONTACT</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['shipping_contact'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    <?php }  ?>
+                                    <?php }  
+                                    else{
+                                            echo"<td colspan = 6>NO RECORD FOUND</td>";
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>

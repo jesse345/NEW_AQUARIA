@@ -34,13 +34,25 @@ function getallreport()
 	disconnect();
 	return $query;
 }
-function deletereport($id)
+function deleteReport($id)
 {
 	global $conn;
 	connect();
 	mysqli_query($conn, "DELETE FROM `reports` WHERE `report_id` = '$id'");
 	disconnect();
 	
+}
+
+function searchReport($value)
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `reports` WHERE `report_id` LIKE '%$value%' OR
+																`reporter_id` LIKE '%$value%' OR
+																`product_id` LIKE '%$value%' OR
+																`reason` LIKE '%$value%'");
+	disconnect();
+	return $query;
 }
 
 
@@ -100,6 +112,17 @@ function getUserShippingInfo()
 	disconnect();
 	return $query;
 }
+function searchSI($value){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn,"SELECT * FROM `shipping_info` WHERE `shipping_id` LIKE '%$value%' OR
+																	 `user_id` LIKE '%$value%' OR
+																	 `shipping_name` LIKE '%$value%' OR
+																	 `shipping_address` LIKE '%$value%' OR
+																	 `shipping_contact` LIKE '%$value%'");
+	disconnect();
+	return $query;
+}
 
 function getproducts($product_id)
 {
@@ -110,24 +133,28 @@ function getproducts($product_id)
 	return $query;
 }
 
-// function searchProduct($field, $option)
-// {
-// 	global $conn;
-// 	connect();
-// 	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `$option` LIKE '%$field%'");
-// 	disconnect();
-// 	return $query;
-// }
-
 function searchProduct($search){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `product_id` LIKE '%$search%' OR `description` LIKE '%$search%'");
+	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `product_id` LIKE '%$search%' OR
+																		`product_name` LIKE '%$search%' OR
+																		`category` LIKE '%$search%' OR
+																		`description` LIKE '%$search%'");
 	disconnect();
 	return $query;
 }
-
-
+function searchPayment($value){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `payment` WHERE `payment_id` LIKE '%$value%' OR
+																`user_id` LIKE '%$value%' OR
+																`typeofpayment` LIKE '%$value%' OR
+																`amount` LIKE '%$value%' OR
+																`reference_no` LIKE '%$value%' OR
+																`order_id` LIKE '%$value%'");
+	disconnect();
+	return $query;
+}
 function getAllManual(){
 	global $conn;
 	connect();
@@ -177,10 +204,19 @@ function searchPost($search){
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `breedersblog` WHERE `description` LIKE '%$search%' OR
 																	 `id` LIKE '%$search%' OR
-																	 `user_id` LIKE '%$search%'
+																	 `user_id` LIKE '%$search%' OR
+																	  `purpose` LIKE '%$search%'
 																	 ");
 	disconnect();
 	return $query;
+}
+function deletePost($id)
+{
+	global $conn;
+	connect();
+	mysqli_query($conn, "DELETE FROM `breedersblog` WHERE `id` = '$id'");
+	disconnect();
+	
 }
 
 function getallpayment()
@@ -217,6 +253,17 @@ function findUser($id){
 	disconnect();
 	return $query;
 }
+function SearchUser($val){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `user_details` WHERE `user_id` LIKE '%$val%' OR
+																	 `first_name` LIKE '%$val%' OR
+																	 `last_name` LIKE '%$val%' OR
+																	 `address_id` LIKE '%$val%' OR
+																	 `contact_number` LIKE '%$val%'");
+	disconnect();
+	return $query;
+}
 
 function findManual($id){
 	global $conn;
@@ -244,6 +291,20 @@ function deleteUsers($id){
 	global $conn;
 	connect();
 	$query = mysqli_query($conn,"DELETE FROM `user_details` WHERE `user_id` = $id");
+	disconnect();
+}
+function updateUser($id,$a,$b,$c,$d,$e,$f,$g){
+	global $conn;
+	connect();
+	mysqli_query($conn,"UPDATE `user_details` SET `first_name`='$a', 
+												  `last_name`='$b', 
+												  `mi`='$c', 
+												  `address_id`='$d', 
+												  `contact_number`='$e', 
+												  `gcash_number`='$f', 
+												  `gcash_name`='$g'
+												  WHERE `user_id` = '$id'
+	");
 	disconnect();
 }
 

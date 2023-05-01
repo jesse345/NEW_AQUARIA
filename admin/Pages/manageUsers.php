@@ -4,8 +4,11 @@
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
 		header("location: admin_login.php");
 	}
-	$rec = getAllUser();
-
+    if(isset($_GET['search'])){
+        $rec = SearchUser($_GET['search']);
+    }else{
+        $rec = getAllUser();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -160,18 +163,18 @@
                                     <thead>
                                         <tr>
                                             <th>USER ID</th>
-                                            <th>FIRST NAME</th>
+                                            <th>FIRSTNAME</th>
                                             <th>LASTNAME</th>
                                             <th>ADDRESS</th>
                                             <th>CONTACT NUMBER</th>
-                                          
                                             <th>ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <?php
-                                    while($row = mysqli_fetch_assoc($rec)){
-                                        $gp = mysqli_fetch_assoc(getproducts($row['user_id']));
-                                        ?>
+                                    if(mysqli_num_rows($rec) > 0)
+                                        while($row = mysqli_fetch_assoc($rec)){
+                                            $gp = mysqli_fetch_assoc(getproducts($row['user_id']));
+                                            ?>
                                             <tbody>
                                                 <tr>
                                                     <td><?php echo $row['user_id'];?></td>
@@ -180,56 +183,170 @@
                                                     <td><?php echo $row['address_id'];?></td>
                                                     <td><?php echo $row['contact_number'];?></td>
                                                     <td>
-                                                        <a href="#editManualModal<?php echo $row['user_id'];?>" class="edit" data-toggle="modal"><i class="material-icons edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                        <a href="#deleteEmployeeModal<?php echo $row['user_id'];?>" class="delete" data-toggle="modal"><i class="material-icons delete" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                         <a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-primary view-more" style="position:absolute;margin-top:5px;"></i></a>
+                                                        <a href="#editUser<?php echo $row['user_id'];?>" class="edit" data-toggle="modal"><i class="material-icons edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                        <a href="#deleteUser<?php echo $row['user_id'];?>" class="delete" data-toggle="modal"><i class="material-icons delete" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        <a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View More"><i class="fa fa-eye text-primary view-more" style="position:absolute;margin-top:5px;"></i></a>
                                                     </td>
                                                     
                                                 </tr>
                                             </tbody>
-                                             <div id="viewMore<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
+                                                <div id="viewMore<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
                                                 <div class="modal-dialog">
-                                                <!-- Modal content-->
                                                     <div class="modal-content">
+                                                        
                                                         <div class="modal-body" style="text-align:center;">
                                                             <div class="form-group row mt-3">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">SHIPPING ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_id" value="<?php echo $row['user_id'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
                                                                 <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="id" value="<?php echo $row['user_id'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING NAME</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">FIRSTNAME</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_type" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="a" value="<?php echo $row['first_name'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING ADDRESS</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">LASTNAME</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="date_created" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="b" value="<?php echo $row['last_name'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING CONTACT</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">MIDDLENAME</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" name="c" value="<?php echo $row['mi'];?>"  readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">ADDRESS</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="d" value="<?php echo $row['address_id'];?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">CONTACT NUMBER</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="e" value="<?php echo $row['contact_number'];?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">USER_IMAGE</label>
+                                                                <div class="col-sm-8">
+                                                                <img src="../img/<?php echo $row['user_img'];?>" class="img-responsive">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NUMBER</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="f" value="<?php echo $row['gcash_number'];?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NAME</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="g" value="<?php echo $row['gcash_name'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>  
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    <?php }  ?>
+                                            <div id="editUser<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
+                                                <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <form action="../Controller/userController.php" method="POST">
+                                                            <div class="modal-body" style="text-align:center;">
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="id" value="<?php echo $row['user_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">FIRSTNAME</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="a" value="<?php echo $row['first_name'];?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">LASTNAME</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="b" value="<?php echo $row['last_name'];?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">MIDDLENAME</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="c" value="<?php echo $row['mi'];?>" >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">ADDRESS</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="d" value="<?php echo $row['address_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">CONTACT NUMBER</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="e" value="<?php echo $row['contact_number'];?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">USER_IMAGE</label>
+                                                                    <div class="col-sm-8">
+                                                                    <img src="../img/<?php echo $row['user_img'];?>" class="img-responsive">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NUMBER</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="f" value="<?php echo $row['gcash_number'];?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NAME</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="g" value="<?php echo $row['gcash_name'];?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary" name="updateUser">UPDATE</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="deleteUser<?php echo $row['user_id']?>" class="modal fade">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <form action="../Controller/userController.php" method="POST">
+                                                            <div class="modal-body">					
+                                                                <p>Are you sure you want to delete this record?</p>
+                                                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="hidden" name="user_id" value="<?php echo $row['user_id']?>">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                                                                <input type="submit" name="deleteUser" class="btn btn-danger" value="Yes">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                    <?php }  
+                                    else{
+                                            echo"<td colspan = 6>NO RECORD FOUND</td>";
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>

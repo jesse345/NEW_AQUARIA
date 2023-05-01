@@ -160,11 +160,13 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Payment Id</th>
-                                            <th>Full Name</th>
+                                            <th>Subscription Id</th>
+                                            <th>User Id</th>
                                             <th>Subscription Type</th>
-                                            <th>Price</th>
+                                            <th>Type of Payment</th>
+                                            <th>Amount</th>
                                             <th>Reference No.</th>
+                                            <th>Date Paid</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -174,17 +176,19 @@
                                             ?>
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-primary view-more"></i></a></td>
+                                                    <td><a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success view-more"></i></a></td>
                                                     <td><?php echo $row['subscription_id']?></td>
                                                     <td><?php echo $row['user_id']?></td>
                                                     <td><?php echo $row['subscription_type'] ?></td>
+                                                    <td><?php echo $row['typeofpayment'] ?></td>
                                                     <td><?php echo $row['amount'] ?></td>
                                                     <td><?php echo $row['reference_number'] ?></td>
+                                                    <td><?php echo $row['date_started'] ?></td>
                                                     <td>
                                                         <form action="../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
                                                             <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
                                                             <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
-                                                            <button type="submit" name="subscription_approve">
+                                                            <button type="submit" name="subscription_approve" class="btn btn-primary">
                                                                 Approve
                                                             </button>
                                                         </form>
@@ -198,33 +202,45 @@
                                                     <div class="modal-content">
                                                         <div class="modal-body" style="text-align:center;">
                                                             <div class="form-group row mt-3">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">SHIPPING ID</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">SUBSCRIPTION ID</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_id" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" value="<?php echo $row['subscription_id'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control"value="<?php echo $row['user_id'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING NAME</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SUBSCRIPTION TYPE</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="payment_type" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" value="<?php echo $row['subscription_type'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING ADDRESS</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">TYPE OF PAYMENT</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="date_created" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" value="<?php echo $row['typeofpayment'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING CONTACT</label>
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">AMOUNT</label>
                                                                 <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['user_id'];?>" readonly>
+                                                                <input type="text" class="form-control" value="<?php echo $row['amount'];?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">REFERENCE NO.</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number'];?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
+                                                                <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['date_started'];?>" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>

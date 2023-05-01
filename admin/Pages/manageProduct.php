@@ -4,9 +4,8 @@
 	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
 		header("location: admin_login.php");
 	}
-	$rec = getallproduct();
 	
-	$product_id;
+
 	if(isset($_GET["delete"])){
 		$product_id = $_GET["product_id"];
 			
