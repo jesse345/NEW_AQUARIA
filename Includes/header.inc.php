@@ -157,7 +157,6 @@ if (isset($_SESSION['id'])) {
                             <a href="../Pages/chat.php">Chat</a>
                         </li>
                          <li>
-
                             <a href="../Pages/fishManual.php">Fish Manual</a>
                         </li>
 
