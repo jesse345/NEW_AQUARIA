@@ -8,9 +8,6 @@
     <?php include("../Layouts/head.layout.php");
 
     ?>
-
-
-
 </head>
 
 <body>
