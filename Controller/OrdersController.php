@@ -8,8 +8,26 @@ if (isset($_SESSION['id'])) {
     //For seller side
     if (isset($_POST['acceptOrder'])) {
         $order_id = $_GET['order_id'];
-        verifyOrder('orders', array('id', 'status', 'isAccept'), array($order_id, 'Approved', 'Yes'));
 
+        $ord = mysqli_fetch_assoc(viewOrderedProduct('orders', 'id', $order_id));
+        verifyOrder('orders', array('id', 'status', 'isAccept'), array($order_id, 'Approved', 'Yes'));
+        $seller = mysqli_fetch_assoc(getUser('user_details', 'user_id', $ord['seller']));
+        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $ord['product_id']));
+
+        $desc = $seller['first_name'] . " " . $seller['last_name'] . " accepted your order for " . $product['product_name'];
+
+        $notif = sendNotif(
+            'notification',
+            array('user_id', 'date_send', 'isRead', 'redirect'),
+            array($ord['user_id'], $date, 'No', 'myPurchase.php')
+        );
+
+        $last_id  = mysqli_insert_id($conn);
+        sendNotif(
+            'notification_details',
+            array('notification_id', 'title', 'Description'),
+            array($last_id, 'Product Accepted', $desc)
+        );
         header("Location: " . $_SERVER['HTTP_REFERER']);
     } else if (isset($_POST['shipProduct'])) {
         $order_id = $_GET['order_id'];
@@ -24,6 +42,27 @@ if (isset($_SESSION['id'])) {
     } else if (isset($_POST['declineOrder'])) {
         $order_id = $_GET['order_id'];
         verifyOrder('orders', array('id', 'status', 'isAccept'), array($order_id, 'Decline', 'Declined'));
+
+        $ord = mysqli_fetch_assoc(viewOrderedProduct('orders', 'id', $order_id));
+        $seller = mysqli_fetch_assoc(getUser('user_details', 'user_id', $ord['seller']));
+        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $ord['product_id']));
+
+        $desc = $seller['first_name'] . " " . $seller['last_name'] . " decline your order for " . $product['product_name'];
+
+        $notif = sendNotif(
+            'notification',
+            array('user_id', 'date_send', 'isRead', 'redirect'),
+            array($ord['user_id'], $date, 'No', 'myPurchase.php')
+        );
+
+        $last_id  = mysqli_insert_id($conn);
+        sendNotif(
+            'notification_details',
+            array('notification_id', 'title', 'Description'),
+            array($last_id, 'Product Declined', $desc)
+        );
+
+
 
         header("Location: " . $_SERVER['HTTP_REFERER']);
 
@@ -53,7 +92,7 @@ if (isset($_SESSION['id'])) {
         // $order_product = viewOrderedProduct('carts', 'user_id', $user_id);
 
         // $order_product  = getCart('carts', 'user_id', $_SESSION['id'], "No");
-        $order_product = uCart($_SESSION['id'],$seller,"No");
+        $order_product = uCart($_SESSION['id'], $seller, "No");
 
         do {
 
@@ -83,6 +122,17 @@ if (isset($_SESSION['id'])) {
                 'carts',
                 array('user_id', 'product_id', 'isOrdered'),
                 array($_SESSION['id'], $ord['product_id'], "Yes")
+            );
+
+            $getUser = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+            $getProduct = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $ord['product_id']));
+            $desc = $getUser['first_name'] . " " . $getUser['last_name'] . " ordered your product " . $getProduct['product_name'];
+            $notif = sendNotif('notification', array('user_id', 'date_send', 'isRead', 'redirect'), array($seller['user_id'], $date, 'No', 'manageOrders.php'));
+            $last_id  = mysqli_insert_id($conn);
+            sendNotif(
+                'notification_details',
+                array('notification_id', 'title', 'Description'),
+                array($last_id, 'Product Order', $desc)
             );
         }
 

@@ -41,13 +41,13 @@
                                         <h3 class="summary-title">Shipping Info</h3>
 
                                         <label>Full Name *</label>
-                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_name'] ?>" required disabled>
+                                        <input type="text" class="form-control" name="shipping_name" value="<?php echo  $shipping_info['shipping_name'] ?>" required readonly>
 
                                         <label>Contact Number *</label>
-                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_contact'] ?>" required disabled>
+                                        <input type="text" class="form-control" name="shipping_contact" value="<?php echo  $shipping_info['shipping_contact'] ?>" required readonly>
 
                                         <label>Shipping Address *</label>
-                                        <input type="text" class="form-control" value="<?php echo  $shipping_info['shipping_address'] ?>" required disabled>
+                                        <input type="text" class="form-control" name="shipping_address" value="<?php echo  $shipping_info['shipping_address'] ?>" required readonly>
 
                                         <button class="btn btn-outline-primary-2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                             <span>Edit Shipping Info</span>
@@ -110,6 +110,7 @@
                                             </label>
                                         </div>
                                         <input type="hidden" name="seller" value="<?php echo $_GET['seller'] ?>">
+
                                         <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block mt-2" name="order">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Place Order</span>

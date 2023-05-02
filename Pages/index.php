@@ -35,23 +35,26 @@ session_start();
   }
   ?>
   <style>
-    .header{
-      padding-left:0!important;
-      padding-right:0!important;
-    }
-    .header-5 .header-search .header-search-wrapper {
-      min-width: 200px!important;
-    }
-    .main-nav .menu .megamenu-container a:hover{
-      color:#0081C9!important;
-    }
-    .sf-with-ul:hover{
-      color:#0081C9!important;
-    }
-    .header-search-extended .btn-primary:hover{
-      color:#0081C9!important;
+    .header {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
+    .header-5 .header-search .header-search-wrapper {
+      min-width: 200px !important;
+    }
+
+    .main-nav .menu .megamenu-container a:hover {
+      color: #0081C9 !important;
+    }
+
+    .sf-with-ul:hover {
+      color: #0081C9 !important;
+    }
+
+    .header-search-extended .btn-primary:hover {
+      color: #0081C9 !important;
+    }
   </style>
 </head>
 
@@ -79,6 +82,17 @@ session_start();
                 <ul>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
+                  <?php if (isset($_SESSION['id'])) { ?>
+                    <li>
+                      <?php
+
+                      $unread = mysqli_num_rows(unRead($_SESSION['id'])) ?>
+                      <a href="Notification.php">
+                        Notifications <?php echo  $unread > 0 ? "($unread)" : '' ?>
+
+                      </a>
+                    </li>
+                  <?php } ?>
                   <li>
                     <?php if (!isset($_SESSION['id'])) { ?>
                       <a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a>
@@ -192,12 +206,12 @@ session_start();
 
                   <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                 </li>
-               <li class="megamenu-container">
+                <li class="megamenu-container">
                   <a href="../Pages/chat.php">CHAT</a>
                 </li>
-                 <li class="megamenu-container">
+                <li class="megamenu-container">
                   <a href="#">FISH MANUAL</a>
-                </li>  
+                </li>
 
 
               </ul>

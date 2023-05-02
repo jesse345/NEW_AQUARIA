@@ -28,6 +28,17 @@ if (isset($_SESSION['id'])) {
                         <ul>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
+                            <?php if (isset($_SESSION['id'])) { ?>
+                                <li>
+                                    <?php
+
+                                    $unread = mysqli_num_rows(unRead($_SESSION['id'])) ?>
+                                    <a href="Notification.php">
+                                        Notifications <?php echo  $unread > 0 ? "($unread)" : '' ?>
+
+                                    </a>
+                                </li>
+                            <?php } ?>
                             <li>
                                 <?php if (!isset($_SESSION['id'])) { ?>
                                     <a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a>
@@ -193,81 +204,7 @@ if (isset($_SESSION['id'])) {
                         } ?>
                     </a>
 
-                    <?php
-                    if (isset($_SESSION['id'])) {
-                    ?>
-                        <div class="dropdown-menu dropdown-menu-layout dropdown-menu-right dropdown-menu-right-layout">
-                            <div class="dropdown-cart-products-layout">
-                                <?php
-                                $cart = getCart('carts', 'user_id', $_SESSION['id'], "No");
 
-                                $count = 0;
-
-                                while ($carts = mysqli_fetch_assoc($cart)) {
-                                    $products = mysqli_fetch_assoc(getProduct('products', 'id', $carts['product_id']));
-                                    if ($products['isDelete'] == "No") {
-                                        $count++;
-                                    }
-                                }
-
-                                if ($count > 0) {
-                                    $i = 0;
-                                    while ($products = mysqli_fetch_assoc($cart)) {
-
-                                        if ($i == 2) {
-                                            break;
-                                        }
-                                        $product = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products['product_id']))
-                                ?>
-                                        <div class="product-layout">
-                                            <div class="product-cart-details-layout">
-                                                <h4 class="product-title-layout">
-                                                    <a href="product.html">
-                                                        <?php echo $product['product_name'] ?>
-                                                        (
-                                                        <?php echo $product['quantity'] ?>
-                                                        )
-                                                    </a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    Total: ₱
-                                                    <?php echo $products['total'] ?>
-                                                </span>
-                                            </div>
-                                            <!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container-layout">
-                                                <a href="product.html" class="product-image-layout">
-                                                    <img src="<?php echo $product['product_img'] ?>" alt="product" />
-                                                </a>
-                                            </figure>
-                                            <form action="../Controller/CartsController.php" method="POST">
-                                                <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>">
-                                                <button class="btn-remove-layout" title="Remove Product" name="removeCart">
-                                                    <i class="icon-close"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-
-
-                                    <?php $i++;
-                                    } ?>
-                            </div>
-                            <div class="dropdown-cart-action-layout mt-1">
-                                <a href="cart.php" class="btn btn-layout btn-primary-layout">View Cart</a>
-
-                            </div>
-
-
-                        <?php } else { ?>
-                            <div class="dropdown dropdown-layout">
-                                Empty Record...
-                            </div>
-                        <?php } ?>
-                        </div>
-                    <?php } ?>
-                    <!-- End .dropdown-menu -->
                 </div>
                 <!-- End .cart-dropdown -->
             </div>
