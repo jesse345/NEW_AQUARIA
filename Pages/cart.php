@@ -155,7 +155,7 @@
                                                                                 <input type="hidden" name="cart_id" value="<?php echo $cart['id'] ?>">
                                                                                 <div class="modal-body text-left">
                                                                                     <h4>
-                                                                                        Are you sure you want to remove this product from your shopping basket?<?php echo $cart['id'] ?>
+                                                                                        Are you sure you want to remove this product from your shopping basket?
                                                                                     </h4>
                                                                                 </div>
                                                                                 <div class="modal-footer">
