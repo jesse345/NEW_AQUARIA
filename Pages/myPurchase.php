@@ -186,9 +186,29 @@
                                                                         </td>
                                                                         <td class="text-center align-middle px-0">
                                                                             <?php if ($order['status'] == 'Pending') { ?>
-                                                                                <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
-                                                                                    <input type="submit" class=" bg-danger text-white rounded" name="cancelOrder" value="Cancel Order">
-                                                                                </form>
+                                                                                <button class="bg-danger text-white rounded border-danger" type="button" name="removeCart" id="removeCart" data-toggle="modal" data-target="#cancelModal<?php echo $order['id'] ?>">
+                                                                                    Cancel Order
+                                                                                </button>
+
+
+                                                                                <div class="modal fade" id="cancelModal<?php echo $order['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content p-5">
+                                                                                            <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                                <input type="hidden" name="cart_id" value="<?php echo $cart['id'] ?>">
+                                                                                                <div class="modal-body text-left">
+                                                                                                    <h4>
+                                                                                                        Are you sure you want to cancel this order?
+                                                                                                    </h4>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                                    <button type="submit" name="cancelOrder" class="btn btn-primary">Yes</button>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <br>
                                                                             <?php } else if ($order['status'] == 'Approved') { ?>
                                                                                 <a href="../Pages/choosePayment.php?order_id=<?php echo $order['id'] ?>" class="btn btn-success">

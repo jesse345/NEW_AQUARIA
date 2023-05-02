@@ -148,11 +148,6 @@
                                                                     <i class="fa fa-trash-o" style="font-size:23px;color:red"></i>
 
                                                                 </button>
-
-
-
-
-                                                                </form>
                                                                 <div class="modal fade" id="exampleModal<?php echo $cart['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content p-5">
