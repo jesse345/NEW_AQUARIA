@@ -2731,8 +2731,8 @@ p {
 .btn-primary-layout:not(:disabled):not(.disabled).active,
 .show > .btn-primary-layout.dropdown-toggle-layout {
   color: #fff;
-  background-color: #a6c76c;
-  border-color: #a6c76c;
+  background-color: #5bc0f8;
+  border-color: #5bc0f8;
   box-shadow: none;
 }
 

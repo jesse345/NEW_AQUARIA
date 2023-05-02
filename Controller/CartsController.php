@@ -14,7 +14,7 @@ if (empty($_SESSION['id'])) {
     if (isset($_POST['addToCart'])) {
         $product_id = $_POST['product_id'];
 
-        $seller = mysqli_fetch_assoc(getProduct('products','id',$product_id));
+        $seller = mysqli_fetch_assoc(getProduct('products', 'id', $product_id));
         $quantity = $_POST['quantity'];
         $user_id = $_SESSION['id'];
         $price = $_POST['price'];
@@ -36,10 +36,10 @@ if (empty($_SESSION['id'])) {
             echo "error";
         }
     } else if (isset($_POST['removeCart'])) {
-        $product_id = $_POST['product_id'];
+        $cart_id = $_POST['cart_id'];
         $user_id = $_SESSION['id'];
 
-        $cart = deleteCart('carts', array('product_id', 'user_id'), array($product_id, $user_id));
+        $cart = deleteCart($cart_id);
 
         if ($cart) {
             header("Location: " . $_SERVER['HTTP_REFERER']);
