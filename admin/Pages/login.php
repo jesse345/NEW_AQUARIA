@@ -213,7 +213,7 @@
     <br> <br> <br> <br> <br> <br> <br>
     <div class="login-box">
     <h2>Login</h2>
-        <form method="POST" action="../Pages/login.php">
+        <form method="POST" action="login.php">
             <div class="user-box">
                 <input type="text" name="username" required>
                 <label>Username</label>
