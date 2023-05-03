@@ -5832,8 +5832,8 @@ p {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #a6c76c;
-  border-color: #a6c76c;
+  background-color: #5BC0F8;
+  border-color: #5BC0F8;;
   box-shadow: none;
 }
 .btn-primary.disabled,

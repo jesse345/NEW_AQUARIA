@@ -171,18 +171,31 @@
 
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
+                                                                                <button class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove" type="button" name="deleteProduct" data-toggle="modal" data-target="#exampleModal<?php echo $prod_det['product_id'] ?>">
+                                                                                    <i class="fa fa-trash" style="font-size: 20px"></i>
+                                                                                </button>
+                                                                                <a href="../Pages/editProduct.php?product_id=<?php echo $prod_det['product_id'] ?>" type="button" class="shop-tooltip close float-none text-success">
+                                                                                    <i class="fa fa-edit" style="font-size: 20px"></i>
+                                                                                </a>
 
-                                                                                <form action="../Controller/ProductsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
+                                                                                <div class="modal fade" id="exampleModal<?php echo $prod_det['product_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content p-5">
+                                                                                            <form action="../Controller/ProductsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
+                                                                                                <div class="modal-body text-left">
+                                                                                                    <h4>
+                                                                                                        Are you sure you want to remove this product?
+                                                                                                    </h4>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                                    <button type="submit" class="btn btn-primary" name="deleteProduct">Yes</button>
+                                                                                                </div>
 
-                                                                                    <button class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove" type="submit" name="deleteProduct">
-                                                                                        <i class="fa fa-trash" style="font-size: 20px"></i>
-                                                                                    </button>
-                                                                                    <a href="../Pages/editProduct.php?product_id=<?php echo $prod_det['product_id'] ?>" type="button" class="shop-tooltip close float-none text-success">
-                                                                                        <i class="fa fa-edit" style="font-size: 20px"></i>
-                                                                                    </a>
-
-
-                                                                                </form>
+                                                                                            </form>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
 
                                                                             </td>
                                                                         </tr>

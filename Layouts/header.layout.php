@@ -145,11 +145,14 @@ if (isset($_SESSION['id'])) {
                             </div>
                             <!-- End .megamenu megamenu-sm -->
                         </li>
-
-
                         <li>
-
                             <a href="../Pages/breedersBlog.php">Breeders Blog</a>
+                        </li>
+                         <li>
+                            <a href="../Pages/chat.php">Chat</a>
+                        </li>
+                         <li>
+                            <a href="../Pages/fishManual.php">Fish Manual</a>
                         </li>
 
 

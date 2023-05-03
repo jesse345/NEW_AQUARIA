@@ -8,9 +8,6 @@
     <?php include("../Layouts/head.layout.php");
 
     ?>
-
-
-
 </head>
 
 <body>
@@ -144,13 +141,29 @@
 
                                                             <td class="text-center align-middle px-0">
 
-                                                                <form action="../Controller/CartsController.php" method="POST">
-                                                                    <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>">
-                                                                    <button class="border-0 bg-transparent" type="submit" name="removeCart" id="removeCart">
-                                                                        <i class="fa fa-trash-o" style="font-size:23px;color:red"></i>
+                                                                <button class="border-0 bg-transparent" type="button" name="removeCart" id="removeCart" data-toggle="modal" data-target="#exampleModal<?php echo $cart['id'] ?>">
+                                                                    <i class="fa fa-trash-o" style="font-size:23px;color:red"></i>
 
-                                                                    </button>
-                                                                </form>
+                                                                </button>
+                                                                <div class="modal fade" id="exampleModal<?php echo $cart['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content p-5">
+                                                                            <form action="../Controller/CartsController.php" method="POST">
+                                                                                <input type="hidden" name="cart_id" value="<?php echo $cart['id'] ?>">
+                                                                                <div class="modal-body text-left">
+                                                                                    <h4>
+                                                                                        Are you sure you want to remove this product from your shopping basket?
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn-layout btn-danger" data-dismiss="modal">Close</button>
+                                                                                    <button type="submit" name="removeCart" class="btn-layout btn-primary-layout">Yes</button>
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
                                                             </td>
                                                         </tr>
@@ -181,7 +194,7 @@
                                     if ($total > 0) {
                                     ?>
                                         <a href="../Pages/checkout.php?id=<?php echo $_SESSION['id']; ?>&seller=<?php echo $seller['seller']; ?>">
-                                            <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+                                            <button type="button" class="btn-layout btn-lg-layout btn-primary-layout mt-2">Checkout</button>
 
                                         <?php } else { ?>
                                             <input type="button" value="Check out" disabled />

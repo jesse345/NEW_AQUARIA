@@ -61,11 +61,11 @@ function getCart($table_name, $field, $value, $isOrdered)
 }
 
 
-function deleteCart($table_name, $fields, $values)
+function deleteCart($id)
 {
     global $conn;
     connect();
-    $query = "DELETE FROM `$table_name` WHERE `$fields[0]` = '$values[0]' AND `$fields[1]` = '$values[1]' LIMIT 1";
+    $query = "DELETE FROM `carts` WHERE `id` = $id";
     $data = mysqli_query($conn, $query);
     disconnect();
 
