@@ -1,5 +1,2 @@
 <?php
-
-
-
-header("Location: ../admin/Pages/login.php");
+header("Location: Pages/login.php");

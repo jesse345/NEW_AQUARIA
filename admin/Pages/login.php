@@ -3,7 +3,7 @@
 	include("../Model/db.php");
 	session_start();
 	
-	if(isset($_SESSION['username']) && isset($_SESSION['admin_id'])){
+	if(isset($_SESSION['admin_id'])){
 		header("location: ../Pages/dashboard.php");
 	}
 	
@@ -20,7 +20,7 @@
 			
 			$_SESSION['admin_id'] = $data['admin_id'];
 			$_SESSION['username'] = $data['username'];
-			header("location: index.php");
+			header("location: dashboard.php");
 		}else{
 			echo "INVALID USERNAME OR PASSWORD";
 		}

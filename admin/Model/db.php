@@ -163,10 +163,10 @@ function getAllManual(){
 	return $query;
 }
 
-function addFishManual($admin_id, $title, $description){
+function addFishManual($admin_id, $title, $description,$img){
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`) VALUES($admin_id, '$title', '$description')");
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`) VALUES($admin_id, '$title', '$description','$img')");
 	disconnect();
 }
 
@@ -237,7 +237,14 @@ function deleterecord($product_id){
 
 
 
-function editRecord($id,$title,$description){
+function editRecord($id,$title,$description,$img){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "UPDATE `fish_manual` SET `title` = '$title', `description` = '$description',`manual_img` = '$img' WHERE `manual_id` = $id");
+	disconnect();
+
+}
+function editRecord2($id,$title,$description){
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "UPDATE `fish_manual` SET `title` = '$title', `description` = '$description' WHERE `manual_id` = $id");
