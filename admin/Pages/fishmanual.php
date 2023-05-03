@@ -1,9 +1,10 @@
 <?php
 	include("../Model/db.php");
 	session_start();
-	if(!isset($_SESSION['username']) && !isset($_SESSION['admin_id'])){
-		header("location: ../Admin_prototype/admin_login.php");
-	}
+
+    if(!isset($_SESSION['admin_id'])){
+        header("location:../Pages/login.php");
+    }
 
 	if(isset($_GET['search'])){
 		$rec = searchManual($_GET['search']);
@@ -156,9 +157,10 @@
                                         <tr>
                                             <th class="col-sm-1">Manual ID</th>
                                             <th class="col-sm-1">Admin ID</th>
-                                            <th class="col-sm-4">Title</th>
-                                            <th class="col-sm-4">Decription</th>
-                                            <th class="col-sm-1">Action</th>
+                                            <th class="col-sm-2">Title</th>
+                                            <th class="col-sm-3">Decription</th>
+                                            <th class="col-sm-3">Image</th>
+                                            <th class="col-sm-2">Action</th>
                                             
                                         </tr>
                                     </thead>
@@ -172,37 +174,43 @@
                                                     <td><?php echo $row['admin_id'];?></td>
                                                     <td><?php echo $row['title'];?></td>
                                                     <td><?php echo $row['description'];?></td>
+                                                    <td> 
+                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                    </td>
                                                     <td>
                                                         <a href="#editManualModal<?php echo $row['manual_id']?>" class="edit" data-toggle="modal"><i class="material-icons text-warning" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                                         <a href="#deleteEmployeeModal<?php echo $row['manual_id']?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        <a href="#viewMore<?php echo $row['manual_id']?>" data-toggle="modal" title="View More"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;margin-left:6px;"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                             <div id="editManualModal<?php echo $row['manual_id']?>" class="modal fade">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <form method="POST" action="../Controller/controller.php?manual_id=<?php echo $row['manual_id']?>">
-                                                        <?php $details = mysqli_fetch_assoc(findManual($row['manual_id']));?>
+                                                        <form method="POST" action="../Controller/fishmanualController.php" enctype="multipart/form-data">
                                                             <div class="modal-header">						
                                                                 <h4 class="modal-title">Edit Fish Manual</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <!-- <label>Admin ID</label> -->
-                                                                    <input type="hidden" class="form-control" name="admin_id" readonly>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <!-- <label>Fish Manual ID</label> -->
-                                                                    <input type="hidden" class="form-control" name="manual_id" readonly>
-                                                                </div>					
+                                                            <div class="modal-body">	        	
                                                                 <div class="form-group">
                                                                     <label>Title</label>
-                                                                    <input type="text" class="form-control" name="title" value="<?php echo $details['title']?>" required>
+                                                                    <input type="hidden" class="form-control" name="manual_id" value="<?php echo $row['manual_id'];?>">
+                                                                    <input type="text" class="form-control" name="title" value="<?php echo $row['title'];?>">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Description</label>
-                                                                    <textarea class="form-control" name="description"   required><?php echo $details['description']?></textarea>
+                                                                    <textarea class="form-control" name="description"><?php echo $row['description'];?></textarea>
+                                                                </div>
+                                                                <div class="form-group row mt-3">
+                                                                        <label class="col-sm-4 col-form-label">Image Uploaded</label>
+                                                                        <div class="col-sm-8">
+                                                                            <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <label>Change Image (Optional)</label>
+                                                                    <input class="form-control" type="file" name="image">
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -216,7 +224,7 @@
                                             <div id="deleteEmployeeModal<?php echo $row['manual_id']?>" class="modal fade">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                        <form action="../Controller/controller.php" method="POST">
+                                                        <form action="../Controller/fishmanualController.php" method="POST">
                                                             <div class="modal-body">					
                                                                 <p>Are you sure you want to delete this record?</p>
                                                                 <p class="text-warning"><small>This action cannot be undone.</small></p>
@@ -230,6 +238,54 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div id="viewMore<?php echo $row['manual_id']?>" class="modal fade">			
+                                                    <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body" style="text-align:center;">
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label">Manual ID</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="manual_id" value="<?php echo $row['manual_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Admin ID</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="admin_id" value="<?php echo $row['admin_id'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Title</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="title" value="<?php echo $row['title'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label">Decription</label>
+                                                                    <div class="col-sm-8">
+                                                                        <textarea class="form-control" rows="3" readonly><?php echo $row['description'];?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Image</label>
+                                                                    <div class="col-sm-8">
+                                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Date Created</label>
+                                                                    <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" name="amount" value="<?php echo $row['date_created'];?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                     <?php }
                                         }else{
@@ -246,8 +302,7 @@
     <div id="addManualModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-
-				<form method="POST" action="../Controller/controller.php">
+				<form method="POST" action="../Controller/fishmanualController.php" enctype="multipart/form-data">
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Fish Manual</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -269,6 +324,10 @@
 							<label>Description</label>
 							<textarea class="form-control" name="description" placeholder="Enter Description" required></textarea>
 						</div>
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                            <input class="form-control" type="file" name="image">
+                        </div>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

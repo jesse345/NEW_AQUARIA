@@ -1,6 +1,13 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['admin_id'])){
+    header("location:../Pages/login.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -99,7 +106,7 @@
                     <span>Subcription</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
             </li>
