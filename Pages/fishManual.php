@@ -51,20 +51,13 @@
             <div class="page-content">
                 <div class="container">
                     <?php
-                    //DISPLAY CONTENTS FOR FISH MANUAL
-                    $allpost = getAllPost('breedersblog');
-                    while($post = mysqli_fetch_assoc($allpost)):
-                        $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $post['user_id']));
-                        $user1 = mysqli_fetch_assoc(getBreeders('breedersblog', $post['id']));
-                        $user3 = mysqli_fetch_assoc(getCommentCount('comment', $post['id']));
-
                          ?>
                         <article class="entry entry-list">
                             <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <figure class="entry-media">
                                         <a href="single.html">
-                                            <img src="../img/<?php echo $post['image']?>" alt="image desc">
+                                            <img src="../assets/images/fishmanual/bettafish.jpg" alt="image desc">
                                         </a>
                                     </figure><!-- End .entry-media -->
                                 </div><!-- End .col-md-4 -->
@@ -72,24 +65,68 @@
                                 <div class="col-md-8">
                                     <div class="entry-body">
                                         
-
                                         <h2 class="entry-title mb-2">
-                                            <a href="single.html"><?php echo $post['purpose']?></a>
+                                            <a href="">BENEFITS OF BEING AN ORNAMENTAL FISH HOBBYIST</a>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
-                                            <p class="mb-3"><?php echo $user1['description']?> ... </p>
-                                            <a href="../Pages/comment.php?breedersblog_id=<?php echo $post['id']?>" class="read-more">View more details</a>
-                                        <?php
-                                        if($id != $user["user_id"]):
-                                            ?>
-                                
-                                        <?php endif; ?>
+                                            <p class="mb-3">Benefits of Keeping Ornamental Fishes at Home</p>
+                                            <a href="" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
                             </div><!-- End .row -->
                         </article><!-- End .entry -->
-                    <?php endwhile;?>
+
+                        <article class="entry entry-list">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <figure class="entry-media">
+                                        <a href="single.html">
+                                            <img src="../assets/images/fishmanual/angelfish.jpg" alt="image desc">
+                                        </a>
+                                    </figure><!-- End .entry-media -->
+                                </div><!-- End .col-md-4 -->
+
+                                <div class="col-md-8">
+                                    <div class="entry-body">
+                                        
+                                        <h2 class="entry-title mb-2">
+                                            <a href="">TIPS AND TRICKS IN CHOOSING YOUR FIRST ORNAMENTAL FISH</a>
+                                        </h2><!-- End .entry-title -->
+                                        <div class="entry-content">
+                                            <p class="mb-3">Newbie Ornamental Fish Hobbyists - Compatability Chart Ultimate Guide</p>
+                                            <a href="" class="read-more">View more details</a>
+                                        </div><!-- End .entry-content -->
+                                    </div><!-- End .entry-body -->
+                                </div><!-- End .col-md-8 -->
+                            </div><!-- End .row -->
+                        </article><!-- End .entry -->
+
+                        <article class="entry entry-list">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <figure class="entry-media">
+                                        <a href="single.html">
+                                            <img src="../assets/images/fishmanual/colorenhancer.jpg" alt="image desc">
+                                        </a>
+                                    </figure><!-- End .entry-media -->
+                                </div><!-- End .col-md-4 -->
+
+                                <div class="col-md-8">
+                                    <div class="entry-body">
+                                        
+                                        <h2 class="entry-title mb-2">
+                                            <a href="">SIMPLE GUIDE ON HOW TO GROOM YOUR FLOWERHORN</a>
+                                        </h2><!-- End .entry-title -->
+                                        <div class="entry-content">
+                                            <p class="mb-3"> Flowerhorn Grooming - The Ultimate Guide </p>
+                                            <a href="" class="read-more">View more details</a>
+                                        </div><!-- End .entry-content -->
+                                    </div><!-- End .entry-body -->
+                                </div><!-- End .col-md-8 -->
+                            </div><!-- End .row -->
+                        </article><!-- End .entry -->
+    
                 	<hr class="mb-5">
                 </div><!-- End .container -->
             </div><!-- End .page-content -->

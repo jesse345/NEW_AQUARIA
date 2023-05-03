@@ -58,6 +58,6 @@ if (isset($_POST['subscribe'])) {
 
     echo "<script>
         alert('Approved Subscription');
-        window.location.href = 'subscription.php'
+        window.location.href = '../admin_prototype/subscription.php'
     </script>";
 }
