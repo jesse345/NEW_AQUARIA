@@ -39,9 +39,19 @@
                                 <h3 class="summary-title">E-AQUARIA Receipt</h3><!-- End .summary-title -->
                                 <?php
                                 $ord = mysqli_fetch_assoc(getUserOrders('orders', 'id', $_GET['order_id']));
+                                $order = mysqli_fetch_assoc(getUserOrders('order_details', 'order_id', $ord['id']));
+                                $buyer = mysqli_fetch_assoc(getUser('user_details', 'user_id', $ord['user_id']))
                                 ?>
                                 <h4 class="summary-title">Reference No: <?php echo $ord['ref_order'] ?></h4>
+                                <h4 class="summary-title">Transaction Details:</h4>
+                                <p>
+                                    Full Name: <?php echo ucfirst($buyer['first_name']) . " " .   ucfirst($buyer['last_name']); ?>
+                                </p>
+                                <p>Address: <?php echo ucfirst($order['shipping_address']) ?></p>
+                                <p>Contact Number: <?php echo $order['contact_number'] ?></p>
 
+
+                                <hr>
                                 <table class="table table-summary">
                                     <thead>
                                         <tr>

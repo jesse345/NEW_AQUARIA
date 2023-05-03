@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="../assets/css/plugins/nouislider/nouislider.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
-        .btn-primary:hover{
-             background-color:#0069d9!important;
-             border-color:#0069d9!important;
-            
+        .btn-primary:hover {
+            background-color: #0069d9 !important;
+            border-color: #0069d9 !important;
+
         }
     </style>
 </head>
@@ -31,6 +31,8 @@
         include("../Includes/header.inc.php");
         $prod = mysqli_fetch_assoc(getProduct('products', 'id', $_GET['product_id']));
         $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $_GET['product_id']));
+
+        $seller = mysqli_fetch_assoc(getUser('user_details', 'user_id', $prod['user_id']));
         ?>
         <main class="main">
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
@@ -89,6 +91,11 @@
 
                             ?>
                             <div class="col-md-6">
+                                <div class="product-details">
+
+                                    <strong> <?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></strong>
+
+                                </div>
                                 <div class="product-details product-details-centered">
                                     <h1 class="product-title">
                                         <?php echo ucfirst($prod_det['product_name']) ?>
@@ -139,7 +146,7 @@
                                                     ?>
                                                         <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" name="quantity" required>
                                                     <?php } else { ?>
-                                                        <p>Qty: <?php echo $prod_det['quantity'] ?></p>
+                                                        <p>Stock: <?php echo $prod_det['quantity'] ?></p>
                                                     <?php } ?>
                                                 </div>
 
@@ -249,13 +256,16 @@
 
                                 <div class="product-details-footer">
                                     <div class="product-cat">
-                                         <a href="../pages/chat.php?user=<?php echo $prod['user_id']?>" class="btn btn-primary text-white"><i class='fas fa-comment-dots'></i>Chat Now</a>
+                                        <a href="../pages/chat.php?user=<?php echo $prod['user_id'] ?>" class="btn btn-primary text-white"><i class='fas fa-comment-dots'></i>Chat Now</a>
                                     </div>
 
                                     <div class="social-icons social-icons-sm">
-                                         <span>Category:</span>
+                                        <span>Category:</span>
                                         <?php echo $prod_det['category'] ?>
+
+
                                     </div>
+
                                 </div><!-- End .product-details-footer -->
                             </div><!-- End .product-details -->
                         </div><!-- End .col-md-6 -->

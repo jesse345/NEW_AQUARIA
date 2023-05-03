@@ -12,11 +12,11 @@ function sendNotif($table_name, $fields, $values)
     return $query;
 }
 
-function viewAllNotif($table_name, $fld, $val)
+function viewAllNotif($table_name, $fld, $val, $id)
 {
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT * FROM `$table_name` WHERE $fld = $val");
+    $query = mysqli_query($conn, "SELECT * FROM `$table_name` WHERE $fld = $val ORDER BY `$id` DESC");
 
     disconnect();
     return $query;

@@ -116,7 +116,7 @@
 
 
                                                                         <div class="input-group-btn">
-                                                                            <button class="btn btn-sm  btn-minus" type="submit" name="submit">
+                                                                            <button class="btn btn-sm  btn-minus" type="submit" name="submit" <?php if ($cart['quantity'] <= 1) { ?> disabled <?php } ?>>
                                                                                 <i class="fa fa-minus button"></i>
                                                                             </button>
                                                                         </div>
@@ -125,7 +125,7 @@
                                                                         <input type="text" class="form-control text-center bg-transparent" value="<?php echo $cart['quantity'] ?>" name="quantity" disabled>
 
                                                                         <div class="input-group-btn">
-                                                                            <button class="btn btn-sm btn-plus" name="submit" type="submit">
+                                                                            <button class="btn btn-sm btn-plus" name="submit" type="submit" <?php if ($cart['quantity'] >= $product['quantity']) { ?> disabled <?php } ?>>
                                                                                 <i class="fa fa-plus button"></i>
                                                                             </button>
                                                                         </div>
