@@ -210,7 +210,7 @@ session_start();
                   <a href="../Pages/chat.php">CHAT</a>
                 </li>
                 <li class="megamenu-container">
-                  <a href="#">FISH MANUAL</a>
+                  <a href="fishManual.php">FISH MANUAL</a>
                 </li>
 
 
