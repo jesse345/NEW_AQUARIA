@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- molla/elements-blog-posts.html  22 Nov 2019 10:05:18 GMT -->
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -70,7 +68,7 @@
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
                                             <p class="mb-3">Benefits of Keeping Ornamental Fishes at Home</p>
-                                            <a href="" class="read-more">View more details</a>
+                                            <a href="fishManualContent.php" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
@@ -95,7 +93,7 @@
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
                                             <p class="mb-3">Newbie Ornamental Fish Hobbyists - Compatability Chart Ultimate Guide</p>
-                                            <a href="" class="read-more">View more details</a>
+                                            <a href="fishManualContent.php" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
@@ -120,7 +118,7 @@
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
                                             <p class="mb-3"> Flowerhorn Grooming - The Ultimate Guide </p>
-                                            <a href="" class="read-more">View more details</a>
+                                            <a href="fishManualContent.php" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
