@@ -88,6 +88,15 @@
                                             <div class="card border-0">
                                                 <div class="card-body border-0">
                                                     <div class="table-responsive">
+                                                        <div class="mb-1">
+                                                            <a href="manageOrders.php" class="btn btn-primary mb-1" style="border-radius: 20px">All</a>
+                                                            <a href="manageOrders.php?type=Pending" class="btn btn-primary mb-1" style="border-radius: 20px">Pending</a>
+                                                            <a href="manageOrders.php?type=Decline" class="btn btn-primary mb-1" style="border-radius: 20px">Decline</a>
+                                                            <a href="manageOrders.php?type=Cancelled" class="btn btn-primary mb-1" style="border-radius: 20px">Cancelled</a>
+                                                            <a href="manageOrders.php?type=paid" class="btn btn-primary mb-1" style="border-radius: 20px">To Pay</a>
+                                                            <a href="manageOrders.php?type=deliver" class="btn btn-primary mb-1" style="border-radius: 20px">To Ship</a>
+                                                            <a href="manageOrders.php?type=received" class="btn btn-primary mb-1" style="border-radius: 20px">Success</a>
+                                                        </div>
                                                         <table class="table  m-0">
                                                             <thead>
                                                                 <tr>
@@ -119,7 +128,13 @@
                                                             <tbody>
 
                                                                 <?php
-                                                                $orders = viewOrderedProduct('orders', 'seller', $_SESSION['id']);
+                                                                if (isset($_GET['type'])) {
+                                                                    $orders = getTypes('seller', $_SESSION['id'], $_GET['type']);
+                                                                } else {
+
+
+                                                                    $orders = viewOrderedProduct('orders', 'seller', $_SESSION['id']);
+                                                                }
                                                                 if (mysqli_num_rows($orders) > 0) {
                                                                     while ($order = mysqli_fetch_assoc($orders)) {
 
@@ -152,10 +167,10 @@
                                                                                 <?php echo ucfirst($buyer['first_name']) . " " .  ucfirst($buyer['last_name']); ?>
                                                                             </td>
                                                                             <td class="align-middle text-center">
-                                                                                <?php //echo number_format($cart['quantity']) ?>
+                                                                                <?php echo number_format($cart['quantity']) ?>
                                                                             </td>
                                                                             <td class="text-center font-weight-semibold align-middle">
-                                                                                ₱ <?php //echo number_format($cart['total']) ?>
+                                                                                ₱ <?php echo number_format($cart['total'], 2) ?>
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php
@@ -213,7 +228,7 @@
                                                                         </tr>
                                                                 <?php }
                                                                 } else {
-                                                                    echo "<td colspan=6>No Ordered Products... </td>";
+                                                                    echo "<td colspan=6>Empty Record... </td>";
                                                                 } ?>
 
                                                             </tbody>

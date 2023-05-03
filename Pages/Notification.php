@@ -36,9 +36,9 @@
 
                 <div class="notification-ui_dd-content container">
 
-                    <?php $notifications = viewAllNotif('notification', 'user_id', $_SESSION['id']);
+                    <?php $notifications = viewAllNotif('notification', 'user_id', $_SESSION['id'], 'id');
                     while ($notification = mysqli_fetch_assoc($notifications)) {
-                        $notif = mysqli_fetch_assoc(viewAllNotif('notification_details', 'notification_id', $notification['id']));
+                        $notif = mysqli_fetch_assoc(viewAllNotif('notification_details', 'notification_id', $notification['id'], 'notification_id'));
                     ?>
                         <a href="<?php echo $notification['redirect'] ?>">
                             <div class="notification-list">
@@ -68,7 +68,8 @@
                                                         days ago
                                                     <?php }
                                                 } else {
-                                                    echo $minutes_ago; ?>
+
+                                                    echo $minutes_ago < 0 ? $minutes_ago + 360 : $minutes_ago; ?>
                                                     minutes ago
                                                 <?php } ?>
                                             </small>

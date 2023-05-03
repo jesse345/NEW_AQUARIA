@@ -3,7 +3,7 @@
 session_start();
 include '../Model/db.php';
 date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d h:i:s');
+$date = date('Y-m-d H:i:s');
 if (isset($_SESSION['id'])) {
     //For seller side
     if (isset($_POST['acceptOrder'])) {

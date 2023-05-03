@@ -97,6 +97,15 @@
                                         <div class="card border-0">
                                             <div class="card-body border-0">
                                                 <div class="table-responsive">
+                                                    <div class="mb-1">
+                                                        <a href="myPurchase.php" class="btn btn-primary mb-1" style="border-radius: 20px">All</a>
+                                                        <a href="myPurchase.php?type=Pending" class="btn btn-primary mb-1" style="border-radius: 20px">Pending</a>
+                                                        <a href="myPurchase.php?type=Decline" class="btn btn-primary mb-1" style="border-radius: 20px">Decline</a>
+                                                        <a href="myPurchase.php?type=Cancelled" class="btn btn-primary mb-1" style="border-radius: 20px">Cancelled</a>
+                                                        <a href="myPurchase.php?type=paid" class="btn btn-primary mb-1" style="border-radius: 20px">To Pay</a>
+                                                        <a href="myPurchase.php?type=deliver" class="btn btn-primary mb-1" style="border-radius: 20px">To Ship</a>
+                                                        <a href="myPurchase.php?type=received" class="btn btn-primary mb-1" style="border-radius: 20px">Success</a>
+                                                    </div>
                                                     <table class="table  m-0">
                                                         <thead>
                                                             <tr>
@@ -125,7 +134,13 @@
                                                         <tbody>
 
                                                             <?php
-                                                            $orders = getUserOrders('orders', 'user_id', $_SESSION['id']);
+                                                            if (isset($_GET['type'])) {
+                                                                $orders = getTypes('user_id', $_SESSION['id'], $_GET['type']);
+                                                            } else {
+
+
+                                                                $orders = viewOrderedProduct('orders', 'user_id', $_SESSION['id']);
+                                                            }
                                                             if (mysqli_num_rows($orders) > 0) {
                                                                 while ($order = mysqli_fetch_assoc($orders)) {
 
@@ -327,7 +342,7 @@
 
                                                             <?php }
                                                             } else {
-                                                                echo "<td colspan=6>No purchase..</td>";
+                                                                echo "<td colspan=6>No Records..</td>";
                                                             } ?>
                                                         </tbody>
                                                     </table>
@@ -336,20 +351,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
-                                    <!-- <div class="tab-pane fade show active" id="tab-purchase" role="tabpanel"
-                                        aria-labelledby="tab-purchase-link">
-                                        <p>No downloads available yet.</p>
-                                        <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
-                                                class="icon-long-arrow-right"></i></a>
-                                    </div> -->
-                                    <!-- .End .tab-pane -->
-
-
                                 </div>
                             </div>
                         </div>

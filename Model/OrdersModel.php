@@ -28,6 +28,19 @@ function insertOrders($table_name, $fields, $values, $table_name1, $fields1, $va
     disconnect();
 }
 
+function insertOrderDetails($table_name, $fields, $values)
+{
+    global $conn;
+    connect();
+
+    $flds = implode("`,`", $fields);
+    $vals = implode("','", $values);
+
+
+    $query = mysqli_query($conn, "INSERT INTO `$table_name` (`$flds`) VALUES ('$vals')");
+    disconnect();
+}
+
 function viewOrderedProduct($table_name, $fld, $val)
 {
 
@@ -87,4 +100,15 @@ function updateOrderPayment($order_id)
     connect();
     $query = mysqli_query($conn, "UPDATE `orders` SET `isPayed` = 'Yes', `status` = 'paid' WHERE `id` = $order_id");
     disconnect();
+}
+
+
+
+function getTypes($user, $id, $status)
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM `orders` WHERE `$user` = $id AND `status` = '$status' ");
+    disconnect();
+    return $query;
 }
