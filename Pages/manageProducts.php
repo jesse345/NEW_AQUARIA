@@ -25,6 +25,8 @@
 
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
         $sub = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
+
+        $sub_type = mysqli_fetch_assoc(getUser('subscription', 'user_id', $_SESSION['id']));
         ?>
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -97,23 +99,43 @@
                                             <div class="card border-0">
                                                 <div class="card-body">
 
-
                                                     <?php
+                                                    $total;
                                                     if ($sub['isSubscribe'] == "Yes") {
-                                                    ?>
-                                                        <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
-                                                        <p class="text-success"> Subscribed User!</p>
+                                                        if ($sub_type['subscription_type'] == 1) {
+                                                            $total = 28 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
+                                                        } else if ($sub_type['subscription_type'] == 2) {
+                                                            $total = 58 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
+                                                        } else if ($sub_type['subscription_type'] == 2) {
+                                                            echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                        }
+                                                        echo " <p class='text-success'> Subscribed User!</p>";
 
-                                                        <?php } else {
+                                                        if ($total <= 0) {
+                                                            echo "<a  class='btn btn-primary mb-2' disabled>Add Product</a>";
+
+                                                            echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subscribe!</a></p>";
+                                                        } else {
+                                                            echo "<a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                            echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
+                                                        }
+                                                    ?>
+                                                    <?php }
+                                                    if ($sub['isSubscribe'] == "No") {
                                                         $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
-                                                        if ($total == 0) {
-                                                        ?>
-                                                            <a href="subscription.php" class="btn btn-primary mb-2" disabled>Subscribe</a>
-                                                        <?php } else { ?>
-                                                            <a href="addProduct.php" class="btn btn-primary mb-2" disabled>Add Product</a>
-                                                        <?php } ?>
-                                                        <p> You have (<?php echo $total; ?>) of remaining products left to post. <a href="subscription.php">Subcribe to unli post!</a></p>
-                                                    <?php } ?>
+                                                        if ($total <= 0) {
+                                                            echo "<a  class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                            echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
+                                                        } else {
+                                                            echo "<a href='addProduct.php' class='btn btn-primary mb-2'>Add Product</a>";
+                                                            echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
+                                                        }
+                                                    }
+
+
+
+                                                    ?>
+
 
                                                     <div class="table-responsive">
 
