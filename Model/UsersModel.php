@@ -47,7 +47,20 @@ function editUser($table_name, $fields, $values)
     }
     disconnect();
 }
-
+function changePass($table,$id,$pass){
+    global $conn;
+    connect();
+    mysqli_query($conn, "UPDATE `$table` SET `password` = '$pass' WHERE `id` ='$id'");
+    disconnect();
+}
+function userPass($id){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT `password` from `users` WHERE `id` = '$id'");
+    disconnect();
+    
+    return $query;
+}
 
 function getUserProductReview($table, $fields, $values)
 {
