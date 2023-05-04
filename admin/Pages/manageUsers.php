@@ -36,19 +36,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        .edit:hover{
-            color:green!important;
-        }
-        .delete:hover{
-            color:red!important;
-        }
-        .view-more:hover{
-            color:green!important;
-        }
-    </style>
-   
-
 </head>
 
 <body id="page-top">
@@ -184,9 +171,9 @@
                                                     <td><?php echo $row['address_id'];?></td>
                                                     <td><?php echo $row['contact_number'];?></td>
                                                     <td>
-                                                        <a href="#editUser<?php echo $row['user_id'];?>" class="edit" data-toggle="modal"><i class="material-icons edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                        <a href="#deleteUser<?php echo $row['user_id'];?>" class="delete" data-toggle="modal"><i class="material-icons delete" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                        <a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View More"><i class="fa fa-eye text-primary view-more" style="position:absolute;margin-top:5px;"></i></a>
+                                                        <a href="#editUser<?php echo $row['user_id'];?>" class="edit text-warning" data-toggle="modal"><i class="material-icons edit" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                        <a href="#deleteUser<?php echo $row['user_id'];?>" class="delete text-danger" data-toggle="modal"><i class="material-icons delete" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        <a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View More"><i class="fa fa-eye text-success view-more" style="position:absolute;margin-top:5px;"></i></a>
                                                     </td>
                                                     
                                                 </tr>
