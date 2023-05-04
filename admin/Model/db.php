@@ -74,6 +74,16 @@ function countUser()
 	$row = mysqli_fetch_array($query);
 	return $row[0];
 }
+function sumAmount()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT SUM(amount) from subscription");
+	disconnect();
+	$row = mysqli_fetch_array($query);
+	return $row[0];
+}
+
 
 function countSubscribers()
 {

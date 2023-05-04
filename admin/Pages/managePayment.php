@@ -174,7 +174,7 @@
                                                         <td class="col-sm-1"><?php echo $row['payment_id'];?></td>
                                                         <td class="col-sm-1"><?php echo $row['user_id'];?></td>
                                                         <td><?php echo $row['typeofpayment'];?></td>
-                                                        <td><img src="../img/<?php echo $row['receipt_img'];?>" class="img-thumbnail" width="250" style="height:100px"></td>
+                                                        <td><img src="img/<?php echo $row['receipt_img'];?>" class="img-thumbnail" width="250" style="height:100px"></td>
                                                         <td><?php echo $row['date_created'];?></td>
                                                         <td><?php echo $row['amount'];?></td>
                                                         <td><?php echo $row['reference_no'];?></td>
