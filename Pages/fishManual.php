@@ -1,8 +1,12 @@
+<?php
+include("../Model/db.php");
+
+$Record = getAllManual('fish_manual');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- molla/elements-blog-posts.html  22 Nov 2019 10:05:18 GMT -->
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -31,7 +35,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <?php 
         include("../Includes/header.inc.php"); 
-        $id = $_SESSION['id'];
+        if(!isset($_SESSION['id'])){
+            header("location:index.php");
+        }
         ?>
 
         <main class="main">
@@ -51,13 +57,14 @@
             <div class="page-content">
                 <div class="container">
                     <?php
+                    while($r = mysqli_fetch_assoc($Record)):
                          ?>
                         <article class="entry entry-list">
                             <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <figure class="entry-media">
                                         <a href="single.html">
-                                            <img src="../assets/images/fishmanual/bettafish.jpg" alt="image desc">
+                                            <img src="../admin/img/<?php echo $r['manual_img']?>" alt="image desc">
                                         </a>
                                     </figure><!-- End .entry-media -->
                                 </div><!-- End .col-md-4 -->
@@ -66,67 +73,17 @@
                                     <div class="entry-body">
                                         
                                         <h2 class="entry-title mb-2">
-                                            <a href="">BENEFITS OF BEING AN ORNAMENTAL FISH HOBBYIST</a>
+                                            <a href="#"><?php echo $r['title']?></a>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
-                                            <p class="mb-3">Benefits of Keeping Ornamental Fishes at Home</p>
-                                            <a href="" class="read-more">View more details</a>
+                                            <p class="mb-3"><?php echo $r['description']?></p>
+                                            <a href="fishManualContent.php?manual_id=<?php echo $r['manual_id']?>" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
                                 </div><!-- End .col-md-8 -->
                             </div><!-- End .row -->
                         </article><!-- End .entry -->
-
-                        <article class="entry entry-list">
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <figure class="entry-media">
-                                        <a href="single.html">
-                                            <img src="../assets/images/fishmanual/angelfish.jpg" alt="image desc">
-                                        </a>
-                                    </figure><!-- End .entry-media -->
-                                </div><!-- End .col-md-4 -->
-
-                                <div class="col-md-8">
-                                    <div class="entry-body">
-                                        
-                                        <h2 class="entry-title mb-2">
-                                            <a href="">TIPS AND TRICKS IN CHOOSING YOUR FIRST ORNAMENTAL FISH</a>
-                                        </h2><!-- End .entry-title -->
-                                        <div class="entry-content">
-                                            <p class="mb-3">Newbie Ornamental Fish Hobbyists - Compatability Chart Ultimate Guide</p>
-                                            <a href="" class="read-more">View more details</a>
-                                        </div><!-- End .entry-content -->
-                                    </div><!-- End .entry-body -->
-                                </div><!-- End .col-md-8 -->
-                            </div><!-- End .row -->
-                        </article><!-- End .entry -->
-
-                        <article class="entry entry-list">
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <figure class="entry-media">
-                                        <a href="single.html">
-                                            <img src="../assets/images/fishmanual/colorenhancer.jpg" alt="image desc">
-                                        </a>
-                                    </figure><!-- End .entry-media -->
-                                </div><!-- End .col-md-4 -->
-
-                                <div class="col-md-8">
-                                    <div class="entry-body">
-                                        
-                                        <h2 class="entry-title mb-2">
-                                            <a href="">SIMPLE GUIDE ON HOW TO GROOM YOUR FLOWERHORN</a>
-                                        </h2><!-- End .entry-title -->
-                                        <div class="entry-content">
-                                            <p class="mb-3"> Flowerhorn Grooming - The Ultimate Guide </p>
-                                            <a href="" class="read-more">View more details</a>
-                                        </div><!-- End .entry-content -->
-                                    </div><!-- End .entry-body -->
-                                </div><!-- End .col-md-8 -->
-                            </div><!-- End .row -->
-                        </article><!-- End .entry -->
-    
+                        <?php endwhile; ?>
                 	<hr class="mb-5">
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
