@@ -1,4 +1,5 @@
 <?php
+include "../Model/dbPDO.php";
 $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
 session_start();
 $session_id = $_SESSION['id'];

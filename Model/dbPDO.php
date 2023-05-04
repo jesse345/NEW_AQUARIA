@@ -14,6 +14,8 @@ try {
 }
 
 
+
+
 function getUser($id, $connection)
 {
     $sql = "SELECT * FROM user_details WHERE user_id=?";
@@ -139,4 +141,20 @@ function opened($id_1, $connection, $chats)
             $stmt->execute([$opened, $id_1, $chat_id]);
         }
     }
+}
+
+
+function connect()
+{
+    global $conn;
+    $conn = mysqli_connect('localhost', 'root', '', 'eaquaria') or die("Connection Failed");
+    return $conn;
+}
+
+include("NotificationModel.php");
+
+function disconnect()
+{
+    global $conn;
+    mysqli_close($conn);
 }
