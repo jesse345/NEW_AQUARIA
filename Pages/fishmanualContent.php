@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,47 +52,25 @@
             <div class="page-content">
                 <div class="container">
                 	<div class="row">
+                    <?php
+                    $get = getManual('fish_manual',$_GET['manual_id']);
+                    while($manual = mysqli_fetch_assoc($get)):
+                        ?>
                 		<div class="col-lg-12">
                             <article class="entry single-entry">
                                 <figure class="entry-media">
-                                    <img src="../assets/images/fishmanual/aquariumbanner.png">
+                                    <img src="../admin/img/<?php echo $manual['manual_img']?>">
                                 </figure><!-- End .entry-media -->
 
                                 <div class="entry-body">
 
-                                    <h2 class="entry-title">
-                                        Cras ornare tristique elit.
+                                    <h2 class="entry-title mb-5">
+                                        <?php echo $manual['title']?>
                                     </h2><!-- End .entry-title -->
-
-                                    <div class="entry-cats">
-                                        in <a href="#">Lifestyle</a>,
-                                        <a href="#">Shopping</a>
-                                    </div><!-- End .entry-cats -->
-
+                                    
                                     <div class="entry-content editor-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
-
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a <a href="#">ultrices sagittis</a>, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-
-                                        <div class="pb-1"></div><!-- End .mb-1 -->
-
-                                        <div class="pb-1 clearfix"></div><!-- End .clearfix -->
-
-                                        <p>Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula <a href="#">sollicitudin laoreet</a> viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. </p>
-
-
-                                        <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. </p>
-
-                                        <div class="pb-1"></div><!-- End .pb-1 -->
-
-                                        <h3>Morbi interdum mollis sapien.</h3>
-
-                                        <img src="assets/images/blog/single/3.jpg" alt="image">
-
-                                        <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent <a href="#">elementum hendrerit</a> tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-
-                                        <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl. Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Integer adipiscing risus a sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu. </p>
-                                    </div><!-- End .entry-content -->
+                                        <?php echo $manual['description']?>
+                                    </div>
 
                                     <div class="entry-footer row no-gutters flex-column flex-md-row">
                                     </div><!-- End .entry-footer row no-gutters -->
@@ -110,6 +89,7 @@
                                 </a>
                             </nav><!-- End .pager-nav -->
                 		</div><!-- End .col-lg-9 -->
+                    <?php endwhile; ?>
                 			</div><!-- End .sidebar sidebar-shop -->
                 		</aside><!-- End .col-lg-3 -->
                 	</div><!-- End .row -->

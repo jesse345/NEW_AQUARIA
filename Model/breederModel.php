@@ -8,6 +8,21 @@ function insertPost($table, $fields, $values){
 	$query = mysqli_query($conn, "INSERT INTO `$table` (`$flds`) VALUES ('$vals')");
 	disconnect();
 }
+function getAllManual($table){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM $table");
+    disconnect();
+    return $query;
+}
+function getManual($table,$id){
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM $table WHERE `manual_id` = '$id'");
+    disconnect();
+    return $query;
+}
+
 
 function getAllPost($table){
     global $conn;
