@@ -33,9 +33,9 @@
         include("../Includes/header.inc.php"); 
         $id = $_SESSION['id'];
         ?>
-
+        
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
+        	<div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
         		<div class="container">
         			<h1 class="page-title" style="color:#fff;font-weight:700">Breeders Blog<span style="color:#fff;">Find Co Breeders</span></h1>
         		</div><!-- End .container -->

@@ -11,7 +11,7 @@ function insertPost($table, $fields, $values){
 function getAllManual($table){
     global $conn;
     connect();
-    $query = mysqli_query($conn, "SELECT * FROM $table");
+    $query = mysqli_query($conn, "SELECT manual_id,admin_id,title,SUBSTRING(description,1,100) as description,manual_img FROM $table");
     disconnect();
     return $query;
 }

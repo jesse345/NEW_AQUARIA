@@ -36,7 +36,7 @@ $comment_count = count($rowsComment);
         <?php include("../Includes/header1.inc.php"); ?>
 
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
+            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                 <div class="container">
                     <h1 class="page-title" style="color:#fff;font-weight:700">View More Details<span style="color:#fff;">Single Post</span></h1>
                 </div><!-- End .container -->
