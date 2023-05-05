@@ -207,8 +207,6 @@ if (isset($_GET['search'])) {
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                                 <div class="modal-body" style="text-align:center;">
-
-
                                                     <div class="form-group row mt-3">
                                                         <label class="col-sm-4 col-form-label">Payment_ID</label>
                                                         <div class="col-sm-8">
