@@ -106,7 +106,7 @@
                                                             $total = 28 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
                                                         } else if ($sub_type['subscription_type'] == 2) {
                                                             $total = 58 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
-                                                        } else if ($sub_type['subscription_type'] == 2) {
+                                                        } else if ($sub_type['subscription_type'] == 3) {
                                                             echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
                                                         }
                                                         echo " <p class='text-success'> Subscribed User!</p>";
