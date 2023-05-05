@@ -36,6 +36,7 @@ if (isset($_SESSION['id'])) {
         header("Location: " . $_SERVER['HTTP_REFERER']);
     } else if (isset($_POST['productReceived'])) {
         $order_id = $_GET['order_id'];
+        $order = mysqli_fetch_assoc(getUserOrders('orders', 'id', $order_id));
         verifyOrder('orders', array('id', 'status'), array($order_id, 'received'));
 
         header("Location: " . $_SERVER['HTTP_REFERER']);
