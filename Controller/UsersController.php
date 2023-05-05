@@ -233,6 +233,22 @@ if (isset($_POST['submitAccountForm'])) {
     header("Location: ../");
 }
 
+if (isset($_POST['change'])) {
+    $user = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
+    $current = $_POST['current'];
+    $new = $_POST['newPassword'];
+    $confirm = $_POST['confirmPassword'];
+    if ($current != $user['password']) {
+        echo "Incorrect";
+    } else {
+        if ($new != $confirm) {
+            echo "Not Match";
+        } else {
+            echo "change";
+            editUser('users', array('id', 'password'), array($_SESSION['id'], $new));
+        }
+    }
+}
 
 
 //For Logout
