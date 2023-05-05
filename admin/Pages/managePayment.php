@@ -115,7 +115,7 @@ if (isset($_GET['search'])) {
                     <span>Subcription</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
             </li>
@@ -174,7 +174,7 @@ if (isset($_GET['search'])) {
                                             <td class="col-sm-1"><?php echo $row['payment_id']; ?></td>
                                             <td class="col-sm-1"><?php echo $row['user_id']; ?></td>
                                             <td><?php echo $row['typeofpayment']; ?></td>
-                                            <td><img src="../<?php echo $row['receipt_img']; ?>" class="img-thumbnail" width="250" style="height:100px"></td>
+                                            <td><img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" width="250" style="height:100px"></td>
                                             <td><?php echo $row['date_created']; ?></td>
                                             <td><?php echo $row['amount']; ?></td>
                                             <td><?php echo $row['reference_no']; ?></td>
@@ -207,8 +207,6 @@ if (isset($_GET['search'])) {
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                                 <div class="modal-body" style="text-align:center;">
-
-
                                                     <div class="form-group row mt-3">
                                                         <label class="col-sm-4 col-form-label">Payment_ID</label>
                                                         <div class="col-sm-8">
@@ -230,7 +228,7 @@ if (isset($_GET['search'])) {
                                                     <div class="form-group row mt-3">
                                                         <label class="col-sm-4 col-form-label">Receipt Image</label>
                                                         <div class="col-sm-8">
-                                                            <img src="../img/<?php echo $row['receipt_img']; ?>" class="img-responsive">
+                                                            <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" style="height:152px;width:298px;">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">

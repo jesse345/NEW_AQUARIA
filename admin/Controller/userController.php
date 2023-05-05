@@ -1,5 +1,6 @@
 <?php
 include("../Model/db.php");
+
 if(isset($_POST['updateUser'])){
     $id = $_POST['id'];
     $a = $_POST['a'];
@@ -8,8 +9,7 @@ if(isset($_POST['updateUser'])){
     $d = $_POST['d'];
     $e = $_POST['e'];
     $f = $_POST['f'];
-    $g = $_POST['g'];
-    updateUser($id,$a,$b,$c,$d,$e,$f,$g);
+    updateUser($id,$a,$b,$c,$d,$e,$f);
     echo "
     <script>
         alert('Update Successfully');

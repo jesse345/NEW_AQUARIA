@@ -323,17 +323,16 @@ function deleteUsers($id)
 	$query = mysqli_query($conn, "DELETE FROM `user_details` WHERE `user_id` = $id");
 	disconnect();
 }
-function updateUser($id, $a, $b, $c, $d, $e, $f, $g)
+function updateUser($id, $a, $b, $c, $d, $e, $f)
 {
 	global $conn;
 	connect();
 	mysqli_query($conn, "UPDATE `user_details` SET `first_name`='$a', 
 												  `last_name`='$b', 
 												  `mi`='$c', 
-												  `address_id`='$d', 
-												  `contact_number`='$e', 
-												  `gcash_number`='$f', 
-												  `gcash_name`='$g'
+												  `contact_number`='$d', 
+												  `gcash_number`='$e', 
+												  `gcash_name`='$f'
 												  WHERE `user_id` = '$id'
 	");
 	disconnect();

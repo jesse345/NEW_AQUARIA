@@ -114,7 +114,7 @@
                     <span>Subcription</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
             </li>
@@ -131,7 +131,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="d-flex">
-                                <div class="mr-auto"><h6 class="m-0 font-weight-bold text-primary">Manage Shipping Info</h6></div>
+                                <div class="mr-auto"><h6 class="m-0 font-weight-bold text-primary">Manage Users</h6></div>
                                 <div class="ml-auto">
                                     <form action="#">  
                                     <div class="input-group">
@@ -175,13 +175,11 @@
                                                         <a href="#deleteUser<?php echo $row['user_id'];?>" class="delete text-danger" data-toggle="modal"><i class="material-icons delete" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                                         <a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View More"><i class="fa fa-eye text-success view-more" style="position:absolute;margin-top:5px;"></i></a>
                                                     </td>
-                                                    
                                                 </tr>
                                             </tbody>
-                                                <div id="viewMore<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
+                                            <div id="viewMore<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        
                                                         <div class="modal-body" style="text-align:center;">
                                                             <div class="form-group row mt-3">
                                                                 <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
@@ -250,7 +248,7 @@
                                                     <div class="modal-content">
                                                         <form action="../Controller/userController.php" method="POST">
                                                             <div class="modal-body" style="text-align:center;">
-                                                                <div class="form-group row mt-3">
+                                                                <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
                                                                     <div class="col-sm-8">
                                                                     <input type="text" class="form-control" name="id" value="<?php echo $row['user_id'];?>" readonly>
@@ -275,33 +273,21 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">ADDRESS</label>
-                                                                    <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="d" value="<?php echo $row['address_id'];?>" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">CONTACT NUMBER</label>
                                                                     <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="e" value="<?php echo $row['contact_number'];?>">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">USER_IMAGE</label>
-                                                                    <div class="col-sm-8">
-                                                                    <img src="../img/<?php echo $row['user_img'];?>" class="img-responsive">
+                                                                    <input type="text" class="form-control" name="d" value="<?php echo $row['contact_number'];?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NUMBER</label>
                                                                     <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="f" value="<?php echo $row['gcash_number'];?>">
+                                                                    <input type="text" class="form-control" name="e" value="<?php echo $row['gcash_number'];?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">GCASH NAME</label>
                                                                     <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="g" value="<?php echo $row['gcash_name'];?>">
+                                                                    <input type="text" class="form-control" name="f" value="<?php echo $row['gcash_name'];?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
