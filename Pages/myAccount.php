@@ -7,7 +7,6 @@
 <head>
     <?php include("../Includes/head.inc.php") ?>
 </head>
-
 <body>
     <div class="page-wrapper">
         <?php include("../Includes/header.inc.php");
@@ -18,15 +17,13 @@
                 window.location.href = '../'
             </script>";
         }
-
-
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
         $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+            <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
                 <div class="container">
-                    <h1 class="page-title">My Account</h1>
+                    <h1 class="page-title text-white">My Account</h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -82,32 +79,32 @@
                                         <a class="nav-link" href="#">Sign Out</a>
                                     </li>
                                 </ul>
-                            </aside><!-- End .col-lg-3 -->
-
+                            </aside>
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
 
                                     <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                        <form action="#">
+                                        <form action="../Controller/myAccountController.php">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <label>First Name *</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)" required>
-                                                </div><!-- End .col-sm-6 -->
-
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)">
+                                                </div>
                                                 <div class="col-sm-6">
-                                                    <label>Last Name *</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)" required>
-                                                </div><!-- End .col-sm-6 -->
-                                            </div><!-- End .row -->
-
-
-
-                                            <label>Email address *</label>
-                                            <input type="email" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>" required>
-
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SAVE CHANGES</span>
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>">
+                                                </div>
+                                                 <div class="col-sm-6">
+                                                    <label>Upload Profile Image</label>
+                                                    <input type="file" class="form-control" name="image">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-primary-2" name="UPDATE">
+                                                <span>UPDATE</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
                                         </form>
