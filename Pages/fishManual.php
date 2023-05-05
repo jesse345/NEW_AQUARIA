@@ -76,7 +76,7 @@ $Record = getAllManual('fish_manual');
                                             <a href="#"><?php echo $r['title']?></a>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
-                                            <p class="mb-3"><?php echo $r['description']?></p>
+                                            <p class="mb-3"><?php echo $r['description']?>...</p>
                                             <a href="fishManualContent.php?manual_id=<?php echo $r['manual_id']?>" class="read-more">View more details</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
