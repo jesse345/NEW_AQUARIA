@@ -62,7 +62,7 @@ $comment_count = count($rowsComment);
                             $user1 = $users1->fetch(PDO::FETCH_ASSOC);
                             $dates = $connect->query("SELECT DATE_FORMAT(date_created, '%M %e %Y') AS date from breedersblog where id = $breedersblog_id");
                             $date = $dates->fetch(PDO::FETCH_ASSOC);
-                            $users5 = $connect->query("SELECT user_details.first_name as fname, user_details.last_name as lname FROM user_details where user_id = $session_id");
+                            $users5 = $connect->query("SELECT user_details.first_name as fname, user_details.last_name as lname, user_id FROM user_details where user_id = $session_id");
                             $user5 = $users5->fetch(PDO::FETCH_ASSOC);
                         ?>
                             <div class="col-lg-8">
@@ -123,6 +123,7 @@ $comment_count = count($rowsComment);
                                     <label for="reply-message" class="sr-only">Comment</label>
                                     <textarea name="comment_content" id="comment_content" class="form-control" required placeholder="Comment *"></textarea>
                                     <input type="hidden" name="breedersblog_id" id="breedersblog_id" class="form-control" value="<?php echo $breedersblog_id ?>" />
+                                    <input type="hidden" name="user_id"  class="form-control" value="<?php echo $user5['user_id'] ?>" />
                                     <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="<?php echo ucfirst($user5['fname']) . ' ' . ucfirst($user5['lname']) ?>" />
                                     <input type="hidden" name="comment_id" id="comment_id" value="0" />
                                     <button type="submit" class="btn btn-outline-primary-2" name="submit" id="submit">
