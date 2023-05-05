@@ -51,12 +51,12 @@
                                         </a>
 
                                     </li>
-                                    <li class="nav-item active">
+                                    <!-- <li class="nav-item active">
 
                                         <a class="nav-link " href="accountInfo.php">Account Info
 
                                         </a>
-                                    </li>
+                                    </li> -->
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="manageProducts.php">Manage My Products</a>

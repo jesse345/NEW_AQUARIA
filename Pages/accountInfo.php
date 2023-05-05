@@ -47,10 +47,10 @@
                                             Details
                                         </a>
                                     </li>
-                                    <li class="nav-item active">
+                                    <!-- <li class="nav-item active">
                                         <a class="nav-link active" href="accountInfo.php">Account Info
                                         </a>
-                                    </li>
+                                    </li> -->
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="manageProducts.php">Manage My Products</a>
@@ -82,7 +82,7 @@
                                     <div class="tab-pane fade show active" id="tab-account-info" role="tabpanel" aria-labelledby="tab-account-info-link">
                                         <form action="../Controller/accountInfoController.php" method="POST">
                                             <label>Username *</label>
-                                            <input type="hidden" name="id" value="<?php echo $user['id']?>">
+                                            <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
                                             <input type="email" class="form-control" value="<?php echo ucfirst($user['username']) ?>" readonly>
                                             <label>Current Password</label>
                                             <input type="password" name="current_pass" class="form-control" required>
@@ -111,7 +111,7 @@
             </div>
         </main><!-- End .main -->
         <?php
-            include("../Includes/footer.inc.php");
+        include("../Includes/footer.inc.php");
         ?>
     </div>
 
