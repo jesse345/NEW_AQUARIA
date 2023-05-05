@@ -1,11 +1,11 @@
 <?php
-	include("../Model/db.php");
-	session_start();
+include("../Model/db.php");
+session_start();
 
-    if(!isset($_SESSION['admin_id'])){
-        header("location:../Pages/login.php");
-    }
-	$rec = getAllUser();
+if (!isset($_SESSION['admin_id'])) {
+    header("location:../Pages/login.php");
+}
+$rec = getAllUser();
 
 ?>
 
@@ -24,9 +24,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -34,17 +32,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-        .edit:hover{
-            color:green!important;
+        .edit:hover {
+            color: green !important;
         }
-        .delete:hover{
-            color:red!important;
+
+        .delete:hover {
+            color: red !important;
         }
-        .view-more:hover{
-            color:green!important;
+
+        .view-more:hover {
+            color: green !important;
         }
     </style>
-   
+
 
 </head>
 
@@ -93,37 +93,37 @@
                     <i class='bx bx-money icon'></i>
                     <span>Manage Payment</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/managePost.php">
                     <i class='bx bx-repost icon'></i>
                     <span>Manage Post</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageProduct.php">
                     <i class='bx bxl-product-hunt icon'></i>
                     <span>Manage Products</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageReport.php">
                     <i class='bx bxs-report icon'></i>
                     <span>Manage Reports</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageSI.php">
                     <i class='bx bx-info-square icon'></i>
                     <span>Manage Shipping Info</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageUsers.php">
                     <i class='bx bx-user icon'></i>
                     <span>Manage Users</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/subscription.php">
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
@@ -137,127 +137,129 @@
         <!-- End of Sidebar -->
 
         <!-- table here -->
-       <div class="container-fluid mt-5">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <div class="d-flex">
-                                <div class="mr-auto"><h6 class="m-0 font-weight-bold text-primary">Subscription</h6></div>
-                                <div class="ml-auto">
-                                    <form action="#">  
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="search" placeholder="Search...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div> 
+        <div class="container-fluid mt-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="d-flex">
+                        <div class="mr-auto">
+                            <h6 class="m-0 font-weight-bold text-primary">Subscription</h6>
                         </div>
-                        
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Subscription Id</th>
-                                            <th>User Id</th>
-                                            <th>Subscription Type</th>
-                                            <th>Type of Payment</th>
-                                            <th>Amount</th>
-                                            <th>Reference No.</th>
-                                            <th>Date Paid</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    $subscribe = getAllSubscription('subscription');
-                                    while ($row = mysqli_fetch_assoc($subscribe)) {
-                                            ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="#viewMore<?php echo $row['user_id'];?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success view-more"></i></a></td>
-                                                    <td><?php echo $row['subscription_id']?></td>
-                                                    <td><?php echo $row['user_id']?></td>
-                                                    <td><?php echo $row['subscription_type'] ?></td>
-                                                    <td><?php echo $row['typeofpayment'] ?></td>
-                                                    <td><?php echo $row['amount'] ?></td>
-                                                    <td><?php echo $row['reference_number'] ?></td>
-                                                    <td><?php echo $row['date_started'] ?></td>
-                                                    <td>
-                                                        <form action="../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
-                                                            <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
-                                                            <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
-                                                            <button type="submit" name="subscription_approve" class="btn btn-primary">
-                                                                Approve
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                             <div id="viewMore<?php echo $row['user_id'];?>" class="modal fade" role="dialog">			
-                                                <div class="modal-dialog">
-                                                <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-body" style="text-align:center;">
-                                                            <div class="form-group row mt-3">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">SUBSCRIPTION ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" value="<?php echo $row['subscription_id'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control"value="<?php echo $row['user_id'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">SUBSCRIPTION TYPE</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" value="<?php echo $row['subscription_type'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">TYPE OF PAYMENT</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" value="<?php echo $row['typeofpayment'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">AMOUNT</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" value="<?php echo $row['amount'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">REFERENCE NO.</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
-                                                                <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="amount" value="<?php echo $row['date_started'];?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        </div>
+                        <div class="ml-auto">
+                            <form action="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="Search...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Subscription Id</th>
+                                    <th>User Id</th>
+                                    <th>Subscription Type</th>
+                                    <th>Type of Payment</th>
+                                    <th>Amount</th>
+                                    <th>Reference No.</th>
+                                    <th>Date Paid</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $subscribe = getAllSubscription('subscription');
+                            while ($row = mysqli_fetch_assoc($subscribe)) {
+                            ?>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="#viewMore<?php echo $row['user_id']; ?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success view-more"></i></a></td>
+                                        <td><?php echo $row['subscription_id'] ?></td>
+                                        <td><?php echo $row['user_id'] ?></td>
+                                        <td><?php echo $row['subscription_type'] ?></td>
+                                        <td><?php echo $row['typeofpayment'] ?></td>
+                                        <td><?php echo $row['amount'] ?></td>
+                                        <td><?php echo $row['reference_number'] ?></td>
+                                        <td><?php echo $row['date_started'] ?></td>
+                                        <td>
+                                            <form action="../../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
+                                                <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
+                                                <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
+                                                <button type="submit" name="subscription_approve" class="btn btn-primary">
+                                                    Approve
+                                                </button>
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                                <div id="viewMore<?php echo $row['user_id']; ?>" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-body" style="text-align:center;">
+                                                <div class="form-group row mt-3">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">SUBSCRIPTION ID</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="<?php echo $row['subscription_id']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="<?php echo $row['user_id']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SUBSCRIPTION TYPE</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="<?php echo $row['subscription_type']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">TYPE OF PAYMENT</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="<?php echo $row['typeofpayment']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">AMOUNT</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="<?php echo $row['amount']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">REFERENCE NO.</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" name="amount" value="<?php echo $row['date_started']; ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>
-                                    <?php }  ?>
-                                </table>
-                            </div>
-                        </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php }  ?>
+                        </table>
                     </div>
-
                 </div>
+            </div>
+
+        </div>
     </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
