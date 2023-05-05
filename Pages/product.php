@@ -144,7 +144,7 @@
                                                     <?php
                                                     if (isset($_SESSION['id']) && $prod['user_id'] != $_SESSION['id']) {
                                                     ?>
-                                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" name="quantity" required>
+                                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="<?php echo $prod_det['quantity'] ?>" step="1" data-decimals="0" name="quantity" required>
                                                     <?php } else { ?>
                                                         <p>Stock: <?php echo $prod_det['quantity'] ?></p>
                                                     <?php } ?>
