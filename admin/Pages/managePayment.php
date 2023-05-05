@@ -174,7 +174,7 @@ if (isset($_GET['search'])) {
                                             <td class="col-sm-1"><?php echo $row['payment_id']; ?></td>
                                             <td class="col-sm-1"><?php echo $row['user_id']; ?></td>
                                             <td><?php echo $row['typeofpayment']; ?></td>
-                                            <td><img src="../<?php echo $row['receipt_img']; ?>" class="img-thumbnail" width="250" style="height:100px"></td>
+                                            <td><img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" width="250" style="height:100px"></td>
                                             <td><?php echo $row['date_created']; ?></td>
                                             <td><?php echo $row['amount']; ?></td>
                                             <td><?php echo $row['reference_no']; ?></td>
@@ -230,7 +230,7 @@ if (isset($_GET['search'])) {
                                                     <div class="form-group row mt-3">
                                                         <label class="col-sm-4 col-form-label">Receipt Image</label>
                                                         <div class="col-sm-8">
-                                                            <img src="../img/<?php echo $row['receipt_img']; ?>" class="img-responsive">
+                                                            <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" style="height:152px;width:298px;">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
