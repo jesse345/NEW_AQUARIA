@@ -36,8 +36,8 @@
                         <div class="pricingContent">
                             <ul>
                                 <li><b>3 months</b> Duration</li>
-                                <li><b>Unlimited</b> Product Posts</li>
-                                <li><b>Browse</b> Fish Manual</li>
+                                <li><b>25 Entries to </b> Product Posts</li>
+                                <li><b>Access</b> Fish Manual</li>
 
                             </ul>
                         </div>
@@ -62,8 +62,9 @@
                         <div class="pricingContent">
                             <ul>
                                 <li><b>6 months</b> Duration</li>
-                                <li><b>Unlimited</b> Product Posts</li>
-                                <li><b>Browse</b> Fish Manual</li>
+                                <li><b>55 Entries to </b> Product Posts</li>
+                                <li><b>Access</b> Fish Manual</li>
+
                             </ul>
                         </div>
                         <!-- CONTENT BOX-->

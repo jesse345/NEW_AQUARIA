@@ -1,6 +1,14 @@
 <?php
 
 
+function getAllOrders()
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM `orders` ");
+    disconnect();
+    return $query;
+}
 
 function getUserOrders($table_name, $fld, $val)
 {

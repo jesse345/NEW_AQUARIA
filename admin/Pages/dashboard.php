@@ -2,13 +2,14 @@
 include("../Model/db.php");
 session_start();
 
-if(!isset($_SESSION['admin_id'])){
+if (!isset($_SESSION['admin_id'])) {
     header("location:../Pages/login.php");
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -21,9 +22,7 @@ if(!isset($_SESSION['admin_id'])){
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -76,37 +75,37 @@ if(!isset($_SESSION['admin_id'])){
                     <i class='bx bx-money icon'></i>
                     <span>Manage Payment</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/managePost.php">
                     <i class='bx bx-repost icon'></i>
                     <span>Manage Post</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageProduct.php">
                     <i class='bx bxl-product-hunt icon'></i>
                     <span>Manage Products</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageReport.php">
                     <i class='bx bxs-report icon'></i>
                     <span>Manage Reports</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageSI.php">
                     <i class='bx bx-info-square icon'></i>
                     <span>Manage Shipping Info</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageUsers.php">
                     <i class='bx bx-user icon'></i>
                     <span>Manage Users</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/subscription.php">
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
@@ -144,8 +143,8 @@ if(!isset($_SESSION['admin_id'])){
                                                 Total Users</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $num = countUser();
-                                                    echo $num;
+                                                $num = countUser();
+                                                echo $num;
                                                 ?>
                                             </div>
                                         </div>
@@ -167,8 +166,8 @@ if(!isset($_SESSION['admin_id'])){
                                                 Total Product Sold</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $received = countReceived();
-                                                    echo $received;
+                                                $received = countReceived();
+                                                echo $received;
                                                 ?>
                                             </div>
                                         </div>
@@ -190,8 +189,8 @@ if(!isset($_SESSION['admin_id'])){
                                                 Total Revenue from Subscription</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                   $tAmount = sumAmount();
-                                                   echo $tAmount;
+                                                $tAmount = sumAmount();
+                                                echo $tAmount;
                                                 ?>
                                             </div>
                                         </div>
@@ -212,10 +211,10 @@ if(!isset($_SESSION['admin_id'])){
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Subscribed</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
+                                                <?php
                                                 $subscribers = countSubscribers();
                                                 echo $subscribers;
-                                            ?>
+                                                ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -240,47 +239,65 @@ if(!isset($_SESSION['admin_id'])){
                                     <h6 class="m-0 font-weight-bold text-primary">Most Sale Products base on Category</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Aquarium <span
-                                            class="float-right">20%</span></h4>
+                                    <?php
+
+                                    $total_number_of_products = mysqli_num_rows(getAllProducts());
+                                    $product_order = getAllOrders();
+                                    $aquarium = 0;
+                                    $fishes = 0;
+                                    $equipment = 0;
+                                    $probiotics = 0;
+                                    $color = 0;
+                                    $medication = 0;
+                                    $vitamin = 0;
+
+                                    while ($prod = mysqli_fetch_assoc($product_order)) {
+                                        $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $prod['product_id']));
+                                        if ($prod_det['category'] == "Aquarium") {
+                                            $aquarium++;
+                                        } else if ($prod_det['category'] == "Fishes") {
+                                            $fishes++;
+                                        } else if ($prod_det['category'] == "Equipment & Accessories") {
+                                            $equipment++;
+                                        } else if ($prod_det['category'] == "Probiotics") {
+                                            $probiotics++;
+                                        } else if ($prod_det['category'] == "Vitamins") {
+                                            $vitamin++;
+                                        } else if ($prod_det['category'] == "Color Enhancer") {
+                                            $color++;
+                                        } else if ($prod_det['category'] == "Medications") {
+                                            $medication++;
+                                        }
+                                    }
+
+                                    ?>
+                                    <h4 class="small font-weight-bold">Aquarium <span class="float-right"><?php echo floor(($aquarium / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: <?php echo floor(($aquarium / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($aquarium / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Fishes<span
-                                            class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">Fishes<span class="float-right"><?php echo floor(($fishes / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo floor(($fishes / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($fishes / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Equipment & Accessories <span
-                                            class="float-right">60%</span></h4>
+                                    <h4 class="small font-weight-bold">Equipment & Accessories <span class="float-right"><?php echo floor(($equipment / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo floor(($equipment / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($equipment / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Probiotics<span
-                                            class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">Probiotics<span class="float-right"><?php echo floor(($probiotics / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo floor(($probiotics / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($probiotics / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Color Enhancer<span
-                                            class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">Color Enhancer<span class="float-right"><?php echo floor(($color / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo floor(($color / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($color / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Medication<span
-                                            class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">Medication<span class="float-right"><?php echo floor(($medication / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo floor(($medication / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($medication / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Vitamin<span
-                                            class="float-right">Complete!</span></h4>
+                                    <h4 class="small font-weight-bold">Vitamin<span class="float-right"><?php echo floor(($vitamin / $total_number_of_products) * 100) ?>%</span></h4>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo floor(($vitamin / $total_number_of_products) * 100) ?>%" aria-valuenow="<?php echo floor(($vitamin / $total_number_of_products) * 100) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -290,8 +307,7 @@ if(!isset($_SESSION['admin_id'])){
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Revenue Subscription Sources</h6>
                                 </div>
                                 <!-- Card Body -->

@@ -1,14 +1,13 @@
-
 <?php
 
 $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
 $breedersblog_id = $_GET['breedersblog_id'];
 
 
-$users =$connect->query("SELECT user_details.first_name, user_details.last_name,id description,image,date_created FROM user_details INNER JOIN breedersblog ON user_details.user_id = breedersblog.user_id WHERE breedersblog.id = $breedersblog_id");
+$users = $connect->query("SELECT user_details.first_name, user_details.last_name,id description,image,date_created FROM user_details INNER JOIN breedersblog ON user_details.user_id = breedersblog.user_id WHERE breedersblog.id = $breedersblog_id");
 $user = $users->fetch(PDO::FETCH_ASSOC);
 
-$comment =$connect->query("SELECT * FROM `comment` WHERE breedersblog_id = $breedersblog_id");
+$comment = $connect->query("SELECT * FROM `comment` WHERE breedersblog_id = $breedersblog_id");
 $rowsComment = $comment->fetchAll();
 $comment_count = count($rowsComment);
 
@@ -16,15 +15,17 @@ $comment_count = count($rowsComment);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include("../Includes/head.inc.php") ?>
     <style>
-        .page-content{
-            padding-bottom:3rem!important;
+        .page-content {
+            padding-bottom: 3rem !important;
         }
+
         @media screen and (max-width: 992px) {
-            .page-content{
-                margin-left:0!important;
+            .page-content {
+                margin-left: 0 !important;
             }
         }
     </style>
@@ -32,14 +33,14 @@ $comment_count = count($rowsComment);
 
 <body>
     <div class="page-wrapper">
-        <?php include("../Includes/header1.inc.php");?>
-        
+        <?php include("../Includes/header1.inc.php"); ?>
+
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
-        		<div class="container">
-        			<h1 class="page-title" style="color:#fff;font-weight:700">View More Details<span style="color:#fff;">Single Post</span></h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
+            <div class="page-header text-center" style="background-image: url('../img/Aquarium.jpg')">
+                <div class="container">
+                    <h1 class="page-title" style="color:#fff;font-weight:700">View More Details<span style="color:#fff;">Single Post</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -52,59 +53,59 @@ $comment_count = count($rowsComment);
 
             <div class="page-content" style="margin-left:20%;">
                 <div class="container">
-                	<div class="row">
-                    <?php
-                    
-                    $allpost=$connect->query("SELECT * FROM `breedersblog` WHERE id = $breedersblog_id");
-                    while($posts = $allpost->fetch(PDO::FETCH_ASSOC)):   
-                        $users1 =$connect->query("SELECT * FROM user_details WHERE user_id = $session_id");
-                        $user1 = $users1->fetch(PDO::FETCH_ASSOC);     
-                        $dates = $connect->query("SELECT DATE_FORMAT(date_created, '%M %e %Y') AS date from breedersblog where id = $breedersblog_id");
-                        $date = $dates->fetch(PDO::FETCH_ASSOC);  
-                        $users5 =$connect->query("SELECT user_details.first_name as fname, user_details.last_name as lname FROM user_details where user_id = $session_id");
-                        $user5 = $users5->fetch(PDO::FETCH_ASSOC);    
-                        ?>
-                		<div class="col-lg-8">
-                            <article class="entry single-entry">
-                                <figure class="entry-media">
-                                    <img src="../img/<?php echo $posts['image']?>" alt="image desc" style="height:250px!important;">
-                                </figure><!-- End .entry-media -->
+                    <div class="row">
+                        <?php
 
-                                <div class="entry-body">
-                                    <div class="entry-meta">
-                                        <span class="entry-author">
-                                            <a href="#"><?php echo ucfirst($user['first_name']) .' '. ucfirst($user['last_name'])?></a>
-                                        </span>
-                                        <span class="meta-separator">|</span>
-                                        <a href="#"><?php echo $date['date']?></a>
-                                        <span class="meta-separator">|</span>
-                                <?php
-                                if($comment_count <= 1):
-                                    ?>
-                                    <a href="#"><?php echo $comment_count ?> Comment</a>
-                                     <?php else: ?>
-                                    <a href="#"><?php echo $comment_count ?> Comments</a>
-                                <?php endif; ?>
-                                        
-                                    </div>
-                                    <h2 class="entry-title"><?php echo $posts['purpose']?></h2>
-                                    <div class="entry-content editor-content">
-                                        <p><?php echo $posts['description']?></p>
-                                    </div>
-                                </div><!-- End .entry-body -->
-                            </article><!-- End .entry -->
-                    <?php endwhile; ?>
-                            
+                        $allpost = $connect->query("SELECT * FROM `breedersblog` WHERE id = $breedersblog_id");
+                        while ($posts = $allpost->fetch(PDO::FETCH_ASSOC)) :
+                            $users1 = $connect->query("SELECT * FROM user_details WHERE user_id = $session_id");
+                            $user1 = $users1->fetch(PDO::FETCH_ASSOC);
+                            $dates = $connect->query("SELECT DATE_FORMAT(date_created, '%M %e %Y') AS date from breedersblog where id = $breedersblog_id");
+                            $date = $dates->fetch(PDO::FETCH_ASSOC);
+                            $users5 = $connect->query("SELECT user_details.first_name as fname, user_details.last_name as lname FROM user_details where user_id = $session_id");
+                            $user5 = $users5->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                            <div class="col-lg-8">
+                                <article class="entry single-entry">
+                                    <figure class="entry-media">
+                                        <img src="../img/<?php echo $posts['image'] ?>" alt="image desc" style="height:250px!important;">
+                                    </figure><!-- End .entry-media -->
+
+                                    <div class="entry-body">
+                                        <div class="entry-meta">
+                                            <span class="entry-author">
+                                                <a href="#"><?php echo ucfirst($user['first_name']) . ' ' . ucfirst($user['last_name']) ?></a>
+                                            </span>
+                                            <span class="meta-separator">|</span>
+                                            <a href="#"><?php echo $date['date'] ?></a>
+                                            <span class="meta-separator">|</span>
+                                            <?php
+                                            if ($comment_count <= 1) :
+                                            ?>
+                                                <a href="#"><?php echo $comment_count ?> Comment</a>
+                                            <?php else : ?>
+                                                <a href="#"><?php echo $comment_count ?> Comments</a>
+                                            <?php endif; ?>
+
+                                        </div>
+                                        <h2 class="entry-title"><?php echo $posts['purpose'] ?></h2>
+                                        <div class="entry-content editor-content">
+                                            <p><?php echo $posts['description'] ?></p>
+                                        </div>
+                                    </div><!-- End .entry-body -->
+                                </article><!-- End .entry -->
+                            <?php endwhile; ?>
+
                             <div class="comments">
                                 <?php
-                                if($comment_count <= 1):
-                                    ?>
+                                if ($comment_count <= 1) :
+                                ?>
                                     <h3 class="title"><?php echo $comment_count; ?> Comment</h3>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <h3 class="title"><?php echo $comment_count; ?> Comments</h3>
                                 <?php endif; ?>
-                                
-                                       
+
+
                                 <ul>
                                     <span id="display_comment"></span>
                                 </ul>
@@ -121,8 +122,8 @@ $comment_count = count($rowsComment);
                                 <form method="POST" id="comment_form">
                                     <label for="reply-message" class="sr-only">Comment</label>
                                     <textarea name="comment_content" id="comment_content" class="form-control" required placeholder="Comment *"></textarea>
-                                    <input type="hidden" name="breedersblog_id" id="breedersblog_id" class="form-control" value="<?php echo $breedersblog_id ?>"/>
-                                    <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="<?php echo ucfirst($user5['fname']) .' '. ucfirst($user5['lname'])?>"/>
+                                    <input type="hidden" name="breedersblog_id" id="breedersblog_id" class="form-control" value="<?php echo $breedersblog_id ?>" />
+                                    <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="<?php echo ucfirst($user5['fname']) . ' ' . ucfirst($user5['lname']) ?>" />
                                     <input type="hidden" name="comment_id" id="comment_id" value="0" />
                                     <button type="submit" class="btn btn-outline-primary-2" name="submit" id="submit">
                                         <span>POST COMMENT</span>
@@ -131,8 +132,8 @@ $comment_count = count($rowsComment);
                                 </form>
                                 <span id="comment_message"></span>
                             </div><!-- End .reply -->
-                		</div><!-- End .col-lg-9 -->
-                	</div><!-- End .row -->
+                            </div><!-- End .col-lg-9 -->
+                    </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
@@ -264,51 +265,52 @@ $comment_count = count($rowsComment);
     <script src="../assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
-         
-<script>
-    $(document).ready(function(){
-        
-        var breedersblog_id = '<?php echo $_GET['breedersblog_id'] ?>';
+
+    <script>
+        $(document).ready(function() {
+
+            var breedersblog_id = '<?php echo $_GET['breedersblog_id'] ?>';
 
 
-        $('#comment_form').on('submit', function(event){
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            $.ajax({
-                url:"../Controller/addCommentController.php",
-                method:"POST",
-                data:form_data,
-                dataType:"JSON",
-                success:function(data){
-                    if(data.error != ''){
-                        $('#comment_form')[0].reset();
-                        $('#comment_message').html(data.error);
-                        $('#comment_id').val('0');
-                        load_comment()
+            $('#comment_form').on('submit', function(event) {
+                event.preventDefault();
+                var form_data = $(this).serialize();
+                $.ajax({
+                    url: "../Controller/addCommentController.php",
+                    method: "POST",
+                    data: form_data,
+                    dataType: "JSON",
+                    success: function(data) {
+                        if (data.error != '') {
+                            $('#comment_form')[0].reset();
+                            $('#comment_message').html(data.error);
+                            $('#comment_id').val('0');
+                            load_comment()
+                        }
                     }
-                }
-            })
-        });
-        load_comment()
-        
-        function load_comment(){
-        $.ajax({
-            url:"../Controller/fetchCommentController.php?id="+breedersblog_id,
-            method:"POST",
-            success:function(data){
-                 $('#display_comment').html(data);
+                })
+            });
+            load_comment()
+
+            function load_comment() {
+                $.ajax({
+                    url: "../Controller/fetchCommentController.php?id=" + breedersblog_id,
+                    method: "POST",
+                    success: function(data) {
+                        $('#display_comment').html(data);
+                    }
+                })
             }
-        })
-        }
 
-        $(document).on('click', '.comment-reply', function(){
-        var comment_id = $(this).attr("id");
-        $('#comment_id').val(comment_id);
-        $('#comment_content').focus();
+            $(document).on('click', '.comment-reply', function() {
+                var comment_id = $(this).attr("id");
+                $('#comment_id').val(comment_id);
+                $('#comment_content').focus();
+            });
+
+            setInterval(load_comment, 1000);
         });
-
-        setInterval(load_comment, 1000);
-    });
-</script>
+    </script>
 </body>
+
 </html>

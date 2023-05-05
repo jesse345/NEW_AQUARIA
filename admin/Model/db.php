@@ -40,7 +40,6 @@ function deleteReport($id)
 	connect();
 	mysqli_query($conn, "DELETE FROM `reports` WHERE `report_id` = '$id'");
 	disconnect();
-	
 }
 
 function searchReport($value)
@@ -122,10 +121,11 @@ function getUserShippingInfo()
 	disconnect();
 	return $query;
 }
-function searchSI($value){
+function searchSI($value)
+{
 	global $conn;
 	connect();
-	$query = mysqli_query($conn,"SELECT * FROM `shipping_info` WHERE `shipping_id` LIKE '%$value%' OR
+	$query = mysqli_query($conn, "SELECT * FROM `shipping_info` WHERE `shipping_id` LIKE '%$value%' OR
 																	 `user_id` LIKE '%$value%' OR
 																	 `shipping_name` LIKE '%$value%' OR
 																	 `shipping_address` LIKE '%$value%' OR
@@ -143,7 +143,8 @@ function getproducts($product_id)
 	return $query;
 }
 
-function searchProduct($search){
+function searchProduct($search)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `product_details` WHERE `product_id` LIKE '%$search%' OR
@@ -153,7 +154,8 @@ function searchProduct($search){
 	disconnect();
 	return $query;
 }
-function searchPayment($value){
+function searchPayment($value)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `payment` WHERE `payment_id` LIKE '%$value%' OR
@@ -165,7 +167,8 @@ function searchPayment($value){
 	disconnect();
 	return $query;
 }
-function getAllManual(){
+function getAllManual()
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `fish_manual`");
@@ -173,14 +176,16 @@ function getAllManual(){
 	return $query;
 }
 
-function addFishManual($admin_id, $title, $description,$img){
+function addFishManual($admin_id, $title, $description, $img)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`) VALUES($admin_id, '$title', '$description','$img')");
 	disconnect();
 }
 
-function userlogin($username, $password){
+function userlogin($username, $password)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, " SELECT * FROM `admin` WHERE `username` = '$username' AND `password` = '$password'");
@@ -188,7 +193,8 @@ function userlogin($username, $password){
 	return $query;
 }
 
-function getrec($admin_id){
+function getrec($admin_id)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `admin` WHERE `admin_id` = $admin_id");
@@ -196,7 +202,7 @@ function getrec($admin_id){
 	disconnect();
 	if (mysqli_num_rows($query) > 0)
 		return $query;
-	else 
+	else
 		return false;
 }
 
@@ -209,7 +215,8 @@ function getAllPost()
 	return $query;
 }
 
-function searchPost($search){
+function searchPost($search)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `breedersblog` WHERE `description` LIKE '%$search%' OR
@@ -226,7 +233,6 @@ function deletePost($id)
 	connect();
 	mysqli_query($conn, "DELETE FROM `breedersblog` WHERE `id` = '$id'");
 	disconnect();
-	
 }
 
 function getallpayment()
@@ -238,7 +244,8 @@ function getallpayment()
 	return $query;
 }
 
-function deleterecord($product_id){
+function deleterecord($product_id)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "DELETE FROM `product_details` WHERE `product_id` = '$product_id'");
@@ -247,30 +254,32 @@ function deleterecord($product_id){
 
 
 
-function editRecord($id,$title,$description,$img){
+function editRecord($id, $title, $description, $img)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "UPDATE `fish_manual` SET `title` = '$title', `description` = '$description',`manual_img` = '$img' WHERE `manual_id` = $id");
 	disconnect();
-
 }
-function editRecord2($id,$title,$description){
+function editRecord2($id, $title, $description)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "UPDATE `fish_manual` SET `title` = '$title', `description` = '$description' WHERE `manual_id` = $id");
 	disconnect();
-
 }
 
 
-function findUser($id){
+function findUser($id)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `user_details` WHERE `user_id` = $id");
 	disconnect();
 	return $query;
 }
-function SearchUser($val){
+function SearchUser($val)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `user_details` WHERE `user_id` LIKE '%$val%' OR
@@ -282,7 +291,8 @@ function SearchUser($val){
 	return $query;
 }
 
-function findManual($id){
+function findManual($id)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `manual_id` = $id");
@@ -290,30 +300,34 @@ function findManual($id){
 	return $query;
 }
 
-function deleteManual($id){
+function deleteManual($id)
+{
 	global $conn;
 	connect();
-	$query = mysqli_query($conn,"DELETE FROM `fish_manual` WHERE `manual_id` = $id");
+	$query = mysqli_query($conn, "DELETE FROM `fish_manual` WHERE `manual_id` = $id");
 	disconnect();
 }
 
-function deletePayment($id){
+function deletePayment($id)
+{
 	global $conn;
 	connect();
-	$query = mysqli_query($conn,"DELETE FROM `payment` WHERE `payment_id` = $id");
+	$query = mysqli_query($conn, "DELETE FROM `payment` WHERE `payment_id` = $id");
 	disconnect();
 }
 
-function deleteUsers($id){
+function deleteUsers($id)
+{
 	global $conn;
 	connect();
-	$query = mysqli_query($conn,"DELETE FROM `user_details` WHERE `user_id` = $id");
+	$query = mysqli_query($conn, "DELETE FROM `user_details` WHERE `user_id` = $id");
 	disconnect();
 }
-function updateUser($id,$a,$b,$c,$d,$e,$f,$g){
+function updateUser($id, $a, $b, $c, $d, $e, $f, $g)
+{
 	global $conn;
 	connect();
-	mysqli_query($conn,"UPDATE `user_details` SET `first_name`='$a', 
+	mysqli_query($conn, "UPDATE `user_details` SET `first_name`='$a', 
 												  `last_name`='$b', 
 												  `mi`='$c', 
 												  `address_id`='$d', 
@@ -325,7 +339,8 @@ function updateUser($id,$a,$b,$c,$d,$e,$f,$g){
 	disconnect();
 }
 
-function searchManual($search){
+function searchManual($search)
+{
 	global $conn;
 	connect();
 	$query = mysqli_query($conn, "SELECT * FROM `fish_manual` WHERE `title` LIKE '%$search%' OR
@@ -397,4 +412,33 @@ function approveSubscription($subsciption_id, $date_started, $date_end, $user_id
 
 
 	disconnect();
+}
+
+
+function getAllOrders()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `orders` WHERE `status` = 'received'");
+	disconnect();
+	return $query;
+}
+
+function getAllProducts()
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `products` WHERE `isDelete` = 'No'");
+	disconnect();
+	return $query;
+}
+
+function getProduct($table_name, $fields, $values)
+{
+	global $conn;
+	connect();
+	$query = "SELECT * FROM `$table_name` WHERE `$fields` = $values ";
+	$data = mysqli_query($conn, $query);
+	disconnect();
+	return $data;
 }
