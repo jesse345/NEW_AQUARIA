@@ -9,6 +9,7 @@
     <?php
     $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
     session_start();
+    
     $userid = $_SESSION['id'];
     $breedersblog_id = $_GET['id'];
 

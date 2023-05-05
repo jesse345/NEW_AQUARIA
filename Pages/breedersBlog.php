@@ -24,6 +24,9 @@
             top:0;
             
         }
+        .purpose:hover{
+            color:#0081c9;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +73,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <figure class="entry-media">
-                                        <a href="single.html">
+                                        <a>
                                             <img src="../img/<?php echo $post['image']?>" alt="image desc">
                                         </a>
                                     </figure><!-- End .entry-media -->
@@ -112,7 +115,7 @@
                                         </div><!-- End .entry-meta -->
 
                                         <h2 class="entry-title mb-2">
-                                            <a href="single.html"><?php echo $post['purpose']?></a>
+                                            <h3 class="purpose"><?php echo $post['purpose']?></h3>
                                         </h2><!-- End .entry-title -->
                                         <div class="entry-content">
                                             <p class="mb-3"><?php echo $user1['description']?> ... </p>
