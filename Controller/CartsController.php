@@ -36,10 +36,10 @@ if (empty($_SESSION['id'])) {
             echo "error";
         }
     } else if (isset($_POST['removeCart'])) {
-        $cart_id = $_POST['cart_id'];
+        $product_id = $_POST['product_id'];
         $user_id = $_SESSION['id'];
 
-        $cart = deleteCart($cart_id);
+        $cart = deleteCart($user_id,$product_id);
 
         if ($cart) {
             header("Location: " . $_SERVER['HTTP_REFERER']);
