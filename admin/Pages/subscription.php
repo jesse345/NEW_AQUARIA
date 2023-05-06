@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin_id'])) {
 }
 $rec = getAllUser();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -149,7 +150,7 @@ $rec = getAllUser();
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Search...">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-search"></i></button>
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
