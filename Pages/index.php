@@ -80,8 +80,8 @@ session_start();
               <li>
                 <a href="#">Links</a>
                 <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="../Pages/about.php">About Us</a></li>
+                  <li><a href="../Pages/contact.php">Contact Us</a></li>
                   <?php if (isset($_SESSION['id'])) { ?>
                     <li>
                       <?php

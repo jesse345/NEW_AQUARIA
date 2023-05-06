@@ -31,8 +31,8 @@ if (isset($_SESSION['id'])) {
                             <li>
                                 <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
                             </li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="../Pages/about.php">About Us</a></li>
+                            <li><a href="../Pages/contact.php">Contact Us</a></li>
                             <?php if (isset($_SESSION['id'])) { ?>
                                 <li>
                                     <?php
