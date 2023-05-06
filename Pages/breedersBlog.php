@@ -67,7 +67,6 @@
                         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $post['user_id']));
                         $user1 = mysqli_fetch_assoc(getBreeders('breedersblog', $post['id']));
                         $user3 = mysqli_fetch_assoc(getCommentCount('comment', $post['id']));
-
                          ?>
                         <article class="entry entry-list">
                             <div class="row align-items-center">
@@ -106,7 +105,7 @@
                                                 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a href="#modal-editpost<?php echo $post['id']?>" class="dropdown-item" data-toggle="modal">Edit</a>
-                                                        <a type="submit" name="deleteBlog" class="dropdown-item" href="../Pages/deleteBlog.php?id=<?php echo $post['id']?>">DELETE</a>
+                                                        <a href="#deleteModal<?php echo $post['id']?>"  class="dropdown-item" data-toggle="modal">DELETE</a>
                                                     </div>
                                                 </div>
                                             <?php endif; ?>
@@ -167,6 +166,22 @@
                             </div>
                         </div>
                         <!-- END OF EDIT POST -->
+                        <div id="deleteModal<?php echo $post['id']?>" class="modal fade">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="../Pages/deleteBlog.php?id=<?php echo $post['id']?>" method="POST">
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this record?</p>
+                                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                                            <input type="submit" name="DELETE" class="btn btn-danger" value="Yes">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     <?php endwhile;?>
                 	<hr class="mb-5">
                 </div><!-- End .container -->
@@ -262,6 +277,7 @@
             </div>
         </div>
     </div>
+    
 
     
     <!-- Plugins JS File -->

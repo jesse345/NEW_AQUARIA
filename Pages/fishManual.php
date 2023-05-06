@@ -1,5 +1,12 @@
 <?php
 include("../Model/db.php");
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("location:../Pages/index.php");
+}
+
+
 
 $Record = getAllManual('fish_manual');
 

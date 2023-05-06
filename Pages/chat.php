@@ -1,24 +1,26 @@
 <?php
+include '../Model/dbPDO.php';
 session_start();
 
-if(isset($_SESSION['id'])){
-    include '../Model/dbPDO.php';
 
+if (!isset($_SESSION['id'])) {
+    header("location:../Pages/index.php");
+}else{
     if(!empty($_GET['user'])){
         $chatWith = getUser($_GET['user'], $connection);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
-  	    }
+        }
         $chats = getChats($_SESSION['id'], $chatWith['user_id'], $connection);
         opened($chatWith['user_id'], $connection, $chats);
         $last = last_seen($chatWith['last_seen']);
 
     }
     # Getting User data data
-  	$user = getUser($_SESSION['id'], $connection);
-  	# Getting User conversations
-  	$conversations = getConversation($user['user_id'], $connection);
+    $user = getUser($_SESSION['id'], $connection);
+    # Getting User conversations
+    $conversations = getConversation($user['user_id'], $connection);
     // echo json_encode($conversations);
 
     
