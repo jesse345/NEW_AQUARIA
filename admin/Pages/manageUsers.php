@@ -220,7 +220,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-sm-4 col-form-label" style="font-size:14px;">USER_IMAGE</label>
                                                                 <div class="col-sm-8">
-                                                                <img src="../img/<?php echo $row['user_img'];?>" class="img-responsive">
+                                                                <img src="../../img/<?php echo $row['user_img'];?>" class="img-thumbnail">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">

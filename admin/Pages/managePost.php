@@ -173,7 +173,7 @@
                                                     <td><?php echo $row['user_id'];?></td>
                                                     <td><?php echo $row['description'];?></td>
                                                     <td><?php echo $row['purpose'];?></td>
-                                                    <td><img src ="../img/<?php echo $row['image'];?>" style="width: 190px;" ></td>
+                                                    <td><img src ="../../img/<?php echo $row['image'];?>" style="width: 190px;" ></td>
                                                     <td><?php echo $row['date_created'];?></td>
                                                     <td>
                                                         <a href="#deleteEmployeeModal<?php echo $row['id'];?>" class="delete" data-toggle="modal"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -231,7 +231,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-sm-4 col-form-label">IMAGE</label>
                                                                 <div class="col-sm-8">
-                                                                 <img src="../img/<?php echo $row['image'];?>" class="img-responsive">
+                                                                 <img src="../../img/<?php echo $row['image'];?>" style="width: 190px;" class="img-responsive">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
