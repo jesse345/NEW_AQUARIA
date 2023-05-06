@@ -20,7 +20,11 @@ if(isset($_POST['editblog'])){
             if ($check) {
                 move_uploaded_file($_FILES['img1']['tmp_name'], $targetPath);
                 updatePost('breedersblog', $blog_id, $description, $purpose, $img);
-                header("Location: ../Pages/BreedersBlog.php");
+                echo "<script>
+                    alert('Edit Successfully');
+                    window.location.href='../Pages/breedersblog.php';
+                </script>";
+                
             }else{
                 echo "File is not an image.";
                 $uploadOk = 0;
@@ -28,7 +32,11 @@ if(isset($_POST['editblog'])){
             }
     }else{
                 updatePost('breedersblog', $blog_id, $description, $purpose, $img1);
-                header("Location: ../Pages/BreedersBlog.php");
+                echo "<script>
+                    alert('Edit Successfully');
+                    window.location.href='../Pages/breedersblog.php';
+                </script>";
+                
     }
     
 }

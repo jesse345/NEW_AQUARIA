@@ -1,24 +1,26 @@
 <?php
+include '../Model/dbPDO.php';
 session_start();
 
-if(isset($_SESSION['id'])){
-    include '../Model/dbPDO.php';
 
+if (!isset($_SESSION['id'])) {
+    header("location:../Pages/index.php");
+}else{
     if(!empty($_GET['user'])){
         $chatWith = getUser($_GET['user'], $connection);
         if (empty($chatWith)) {
             header("Location: index.php");
             exit;
-  	    }
+        }
         $chats = getChats($_SESSION['id'], $chatWith['user_id'], $connection);
         opened($chatWith['user_id'], $connection, $chats);
         $last = last_seen($chatWith['last_seen']);
 
     }
     # Getting User data data
-  	$user = getUser($_SESSION['id'], $connection);
-  	# Getting User conversations
-  	$conversations = getConversation($user['user_id'], $connection);
+    $user = getUser($_SESSION['id'], $connection);
+    # Getting User conversations
+    $conversations = getConversation($user['user_id'], $connection);
     // echo json_encode($conversations);
 
     
@@ -27,6 +29,7 @@ if(isset($_SESSION['id'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +96,7 @@ if(isset($_SESSION['id'])){
                                     <li class="list-group-item">
                                         <a href="chat.php?user=<?php echo $conversation['user_id']?>" class="d-flex justify-content-between align-items-center p-2">
                                             <div class="d-flex align-items-center">
-                                                <img src="<?php echo $conversation['user_img']?>" class="w-10 rounded-circle" style="height:70px;">
+                                                <img src="../img/<?php echo $conversation['user_img']?>" class="w-10 rounded-circle" style="height:70px;">
                                                 <h3 class="fs-xs m-2">
                                                     <?php echo $conversation['first_name'].''.$conversation['last_name']?><br>
                                     <small>
@@ -154,7 +157,7 @@ if(isset($_SESSION['id'])){
                             </div>
                         </div>
                         <!--END END END-->
-                        
+                        <div class="scrollmsg">
                         <div class="card-body" data-mdb-perfect-scrollbar="true" id="chatBox">
                             <?php 
 
@@ -169,14 +172,14 @@ if(isset($_SESSION['id'])){
                                             <div>
                                                 <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
                                             </div>
-                                            <img src="<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                         </div>
                                     <?php }else{ ?>
                                         <div class="d-flex justify-content-start">
                                             <p class="small mb-1"><?php echo ucfirst($chatWith['first_name']).' '.ucfirst($chatWith['last_name'])?></p>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <img src="<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="../img/<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
                                                 <p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?>
                                             </div>
@@ -190,6 +193,7 @@ if(isset($_SESSION['id'])){
                             </div>
                         <?php } ?>
                         </div>
+                        </div>
                         <!--END END END-->
                         <?php
                         if(isset($_SESSION['id'])){  
@@ -199,7 +203,7 @@ if(isset($_SESSION['id'])){
                                     <div class="input-group mb-0">
                                         <input type="hidden" id="to_id" value="<?php echo $chatWith['user_id']?>">
                                         <input type="text" class="form-control" id="message" placeholder="Type message" style="width:638px;"/>
-                                        <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Button</button>
+                                        <button type="submit" class="btn btn-primary" id="sendBtn" style="padding-top: .55rem;">Send</button>
                                     </div>
                             </div>
                         <?php  } } ?>
@@ -321,3 +325,13 @@ if(isset($_SESSION['id'])){
 </script>
 </body>
 </html>
+
+<style>
+
+.scrollmsg{
+    overflow:hidden;
+    overflow-y:scroll;
+    height:65vh;
+    
+}
+</style>

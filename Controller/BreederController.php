@@ -21,7 +21,11 @@ if(isset($_POST['postblog'])){
         insertPost('breedersblog',
             array('user_id','description','purpose','image'),
             array($_SESSION['id'],$description,$purpose, $img));
-        header("Location: ../Pages/BreedersBlog.php");
+            echo "<script>
+                    alert('Post Successfully');
+                    window.location.href='../Pages/breedersblog.php';
+                </script>";
+        
     }else{
         echo "File is not an image.";
         $uploadOk = 0;
