@@ -96,10 +96,10 @@
                                                 <a href="#"><?php echo $user3['commentCount']?> Comments</a>
                                             <?php endif; ?>
                                             <?php
-                                            if($id == $user["user_id"]):
+                                            if($id == $user["user_id"]){
                                                 ?>
                                                 <div class="dropdown">
-                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:360px;">
+                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:465px;">
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                 
@@ -108,8 +108,19 @@
                                                         <a href="#deleteModal<?php echo $post['id']?>"  class="dropdown-item" data-toggle="modal">DELETE</a>
                                                     </div>
                                                 </div>
-                                            <?php endif; ?>
-                                            
+                                            <?php }else{ ?>
+                                                <div class="dropdown">
+                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:360px;">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </button>
+                                                
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a href="../Pages/chat.php?user=<?php echo $post['id']?>" class="dropdown-item">Chat Author</a>
+                                                    </div>
+                                                </div>
+
+
+                                            <?php } ?>
                                             
                                         </div><!-- End .entry-meta -->
 
