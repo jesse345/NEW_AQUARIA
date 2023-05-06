@@ -175,7 +175,7 @@
                                                     <td><?php echo $row['title'];?></td>
                                                     <td><?php echo $row['description'];?></td>
                                                     <td> 
-                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                     </td>
                                                     <td>
                                                         <a href="#editManualModal<?php echo $row['manual_id']?>" class="edit" data-toggle="modal"><i class="material-icons text-warning" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -270,7 +270,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label">Image</label>
                                                                     <div class="col-sm-8">
-                                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -289,7 +289,7 @@
 
                                     <?php }
                                         }else{
-                                            echo "<td colspan = 5>NO RECORD FOUND</td>";
+                                            echo "<td colspan = 6>NO RECORD FOUND</td>";
                                         }
                                     ?>
                                 </table>

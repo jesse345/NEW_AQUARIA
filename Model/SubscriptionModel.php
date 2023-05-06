@@ -34,14 +34,14 @@ function getUserSubscription($user_id)
 }
 
 
-function approveSubscription($subsciption_id, $date_started, $date_end, $user_id,$number)
+function approveSubscription($subsciption_id, $date_started, $date_end, $user_id,$number,$status)
 {
     global $conn;
     connect();
 
     $query = mysqli_query(
         $conn,
-        "UPDATE `subscription` SET `date_started` = '$date_started', `date_end` = '$date_end', `number_of_products` = '$number' WHERE `subscription_id` = $subsciption_id"
+        "UPDATE `subscription` SET `date_started` = '$date_started', `date_end` = '$date_end', `number_of_products` = '$number', `status` = '$status' WHERE `subscription_id` = $subsciption_id"
     );
 
     $query1 = mysqli_query(

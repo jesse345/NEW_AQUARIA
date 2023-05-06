@@ -73,6 +73,30 @@ function countUser()
 	$row = mysqli_fetch_array($query);
 	return $row[0];
 }
+
+function countSubscriptionType($type){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM `subscription` WHERE `subscription_type` = $type AND `status` = 'Approved'");
+	disconnect();
+	return $query;
+}
+
+function countAdvanced(){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(subscription_id) FROM `subscription` WHERE `subscription_type` = 2");
+	disconnect();
+}
+
+function countPremium(){
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT COUNT(subscription_id) FROM `subscription` WHERE `subscription_type` = 3");
+	disconnect();
+}
+
+
 function sumAmount()
 {
 	global $conn;
@@ -88,7 +112,7 @@ function countSubscribers()
 {
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "SELECT COUNT(user_id) FROM `subscription`");
+	$query = mysqli_query($conn, "SELECT COUNT(id) FROM `users` WHERE isSubscribe = 'Yes' ");
 	disconnect();
 	$row = mysqli_fetch_array($query);
 	return $row[0];
