@@ -50,7 +50,7 @@ if (!isset($_SESSION['admin_id'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -304,6 +304,12 @@ if (!isset($_SESSION['admin_id'])) {
                         </div>
 
                         <!-- Pie Chart -->
+                        <input type="hidden" name="standard" value="<?php echo mysqli_num_rows(countSubscriptionType(1))?>">
+                        <input type="hidden" name="advanced" value="<?php echo mysqli_num_rows(countSubscriptionType(2))?>">
+                        <input type="hidden" name="premium" value="<?php echo mysqli_num_rows(countSubscriptionType(3))?>">
+
+
+
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->

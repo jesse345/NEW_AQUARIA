@@ -289,7 +289,7 @@
 
                                     <?php }
                                         }else{
-                                            echo "<td colspan = 5>NO RECORD FOUND</td>";
+                                            echo "<td colspan = 6>NO RECORD FOUND</td>";
                                         }
                                     ?>
                                 </table>

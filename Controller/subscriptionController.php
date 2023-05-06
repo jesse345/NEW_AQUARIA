@@ -32,8 +32,8 @@ if (isset($_POST['subscribe'])) {
 
     createSubscription(
         'subscription',
-        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img'),
-        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img)
+        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img','status'),
+        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img,"Pending")
     );
 
 
@@ -58,7 +58,7 @@ if (isset($_POST['subscribe'])) {
 
 
     editUser('users', array('id', 'isSubscribe'), array($_POST['user_id'], "Yes"));
-    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id'],$number);
+    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id'],$number,'Approved');
 
     echo "<script>
         alert('Approved Subscription');
