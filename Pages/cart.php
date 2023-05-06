@@ -149,7 +149,7 @@
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content p-5">
                                                                             <form action="../Controller/CartsController.php" method="POST">
-                                                                                <input type="hidden" name="cart_id" value="<?php echo $cart['id'] ?>">
+                                                                                <input type="hidden" name="product_id" value="<?php echo $cart['product_id'] ?>">
                                                                                 <div class="modal-body text-left">
                                                                                     <h4>
                                                                                         Are you sure you want to remove this product from your shopping basket?
