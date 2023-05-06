@@ -2,10 +2,18 @@
 include '../Model/db.php';
 session_start();
 date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d h:i:s');
+$date = date('Y-m-d H:i:s');
 if (!empty($_SESSION['id'])) {
     if (isset($_POST['addProduct'])) {
 
+        $isSubscribe = getUserSubscription($_SESSION['id']);
+        if(mysqli_num_rows($isSubscribe) > 0){
+            $sub = mysqli_fetch_assoc($isSubscribe);
+            if($sub['subscription_type'] != 3){
+                decrement($sub['subscription_id'],$sub['number_of_products'] - 1);
+            }
+
+        }
         // Temporary only
         $targetDir = "../img/"; // Set target directory
         $fileType = pathinfo($_FILES['image']['name'][0], PATHINFO_EXTENSION);
@@ -204,6 +212,35 @@ if (!empty($_SESSION['id'])) {
             array_push($user_det_fld, 'tank_type', 'dimension', 'thickness');
             array_push($user_det_val, $tank, $dimension, $thick);
             editProduct('product_details', $user_det_fld, $user_det_val);
+        }
+        else if ($category == "Fishes") {
+            $fish = $_POST['fish_type'];
+            $class = $_POST['fish_class'];
+            $gender = $_POST['gender'];
+            $age = $_POST['age'];
+            $size = $_POST['size'];
+            array_push($user_det_fld, 'fish_type', 'fish_class', 'gender','age','size');
+            array_push($user_det_val, $fish, $class, $gender,$age,$size);
+            editProduct('product_details', $user_det_fld, $user_det_val);
+        } else if ($category == "Equipment & Accessories") {
+            $spec = $_POST['specification'];
+
+            array_push($user_det_fld, 'specification');
+            array_push($user_det_val, $spec);
+            editProduct('product_details', $user_det_fld, $user_det_val);
+
+           
+        } else if (
+            $category == "Probiotics" || $category == "Vitamins" || $category == "Color Enhancer" || $category == "Medications"
+        ) {
+            $exp = $_POST['expire'];
+            $benefits = $_POST['benefits'];
+
+            array_push($user_det_fld, 'expiration_date', 'benefits');
+            array_push($user_det_val, $exp, $benefits);
+
+            editProduct('product_details', $user_det_fld, $user_det_val);
+
         }
         $targetDir = "../img/"; // Set target directory
         $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];

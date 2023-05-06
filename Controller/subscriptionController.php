@@ -15,6 +15,7 @@ if (isset($_POST['subscribe'])) {
 
     $targetDir = "../img/"; // Set target directory
     $fileType = pathinfo($_FILES['receipt_img']['name'], PATHINFO_EXTENSION);
+    
 
     $img = $targetDir . basename($_FILES['receipt_img']['name']);
     move_uploaded_file($_FILES['receipt_img']['tmp_name'], $img);
@@ -46,15 +47,18 @@ if (isset($_POST['subscribe'])) {
 
     if ($subsciption_type == 1) {
         $date_end = date('Y-m-d h:i:s', strtotime($date . ' +3months'));
+        $number = 28;
     } else if ($subsciption_type == 2) {
         $date_end = date('Y-m-d h:i:s', strtotime($date . ' +6months'));
+        $number = 58;
     } else if ($subsciption_type == 3) {
         $date_end = date('Y-m-d h:i:s', strtotime($date . ' +1year '));
+        $number = "unlimited";
     }
 
 
     editUser('users', array('id', 'isSubscribe'), array($_POST['user_id'], "Yes"));
-    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id']);
+    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id'],$number);
 
     echo "<script>
         alert('Approved Subscription');

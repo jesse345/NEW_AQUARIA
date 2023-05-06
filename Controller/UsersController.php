@@ -142,8 +142,8 @@ if (isset($_POST['register'])) {
 
                 $register = registerUser(
                     'users',
-                    array('username', 'password', 'email_address', 'isVerified'),
-                    array($reg_username, $reg_password, $reg_email, "No")
+                    array('username', 'password', 'email_address', 'isVerified','isSubscribe'),
+                    array($reg_username, $reg_password, $reg_email, "No","No")
                 );
                 $id = mysqli_insert_id($conn);
 

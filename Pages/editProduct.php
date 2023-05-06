@@ -486,7 +486,7 @@
                                                 <label class="form-control-label px-3">Expiration Date<span class="text-danger">
                                                         *</span>
                                                 </label>
-                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expire'] ?>" required>
+                                                <input type="date" id="expire" name="expire" value="<?php echo $prod_det['expiration_date'] ?>" required>
                                             </div>
 
 
@@ -578,7 +578,7 @@
                                                 <label class="form-control-label px-3">Description<span class="text-danger">
                                                         *</span></label>
 
-                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['price'] ?></textarea>
+                                                <textarea name="description" id="description" placeholder="Enter Description" required><?php echo $prod_det['description'] ?></textarea>
 
                                             </div>
                                         </div>
