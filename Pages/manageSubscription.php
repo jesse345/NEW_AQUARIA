@@ -34,7 +34,7 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        <li class="breadcrumb-item active" aria-current="page">Manage Sybscription</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -54,10 +54,7 @@
                                         </a>
                                     </li>
 
-                                    <!-- <li class="nav-item">
-                                        <a class="nav-link " href="accountInfo.php">Account Info
-                                        </a>
-                                    </li> -->
+
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="manageProducts.php">Manage My Products</a>
@@ -120,60 +117,122 @@
                                                         if ($subscription['subscription_type'] == 1) {
                                                         ?>
                                                             <p>
-                                                                <strong> Subscritption Type</strong>: Standard
+                                                                <strong> Subscription Type</strong>: Standard
                                                             </p>
 
                                                             <p>
                                                                 <strong>Benefits</strong>:
                                                                 <i>3 months duration</i>,
-                                                                <i>Unlimited Product Post</i>,
+                                                                <i>25 Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } else  if ($subscription['subscription_type'] == 2) { ?>
 
                                                             <p>
-                                                                <strong> Subscritption Type</strong>: Advanced
+                                                                <strong> Subscription Type</strong>: Advanced
                                                             </p>
 
                                                             <p>
                                                                 <strong>Benefits</strong>:
-                                                                <i>3 months duration</i>,
-                                                                <i>Unlimited Product Post</i>,
+                                                                <i>6 months duration</i>,
+                                                                <i>55 Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } else  if ($subscription['subscription_type'] == 3) { ?>
 
                                                             <p>
-                                                                <strong> Subscritption Type</strong>: Premium
+                                                                <strong> Subscription Type</strong>: Premium
                                                             </p>
 
                                                             <p>
                                                                 <strong>Benefits</strong>:
-                                                                <i>3 months duration</i>,
+                                                                <i>1 year duration</i>,
                                                                 <i>Unlimited Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } ?>
 
-
+                                                        <p><strong>Number of products left to post</strong>: <?php echo $subscription['number_of_products'] ?></p>
+                                                        <?php if ($subscription['subscription_type'] != 3) { ?>
+                                                            <button class="btn btn-outline-primary-2" data-toggle="modal" data-target="#extend">
+                                                                <span>Extend</span>
+                                                                <i class="icon-long-arrow-right"></i>
+                                                            </button>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                        <?php } else {
+                                            <?php } else {
                                             // expireSubscription($_SESSION['id']);
-                                        ?>
+                                            $pending = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
+                                            if ($pending['status'] == 'Pending') {
 
-                                            <p class="text-danger">
-                                                You are not a subscribed user.
-                                            </p>
-                                            <a href="subscription.php" class="btn btn-outline-primary-2">
-                                                <span>Subscribe Now</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </a>
+                                                echo "<p class='text-danger'>
+                                                Pending Subscription. Wait for the admin to approve your subscription
+                                            </p>";
+                                            } else {
+                                            ?>
+
+                                                <p class="text-danger">
+                                                    You are not a subscribed user.
+                                                </p>
+                                                <a href="subscription.php" class="btn btn-outline-primary-2">
+                                                    <span>Subscribe Now</span>
+                                                    <i class="icon-long-arrow-right"></i>
+                                                </a>
 
 
-                                        <?php } ?>
+                                        <?php }
+                                        } ?>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="extend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form action="../Controller/subscriptionController.php" method="POST">
+                                                    <input type="hidden" name="subscription_id" value="<?php echo $subscription['subscription_id'] ?>">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Extend Subscription</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body p-5">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Number of Products <i>(5 PHP each quantity)</i> </label>
+                                                                    <input type="number" id="quantity" name="number_of_products" class="form-control" oninput="validateInput(event)">
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Total Price</label>
+                                                                    <input type="text" id="total" name="amount" class="form-control" value="0" readonly>
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Reference No.</label>
+                                                                    <input type="number" class="form-control" name="reference_number" required>
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Receipt</label>
+                                                                    <input type="file" class="form-control" name="receipt_img" required>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary" name="extend" id="extend">Extend</button>
+                                                        </div>
+                                                    </div>
+
+
+                                                </form>
+                                            </div>
+                                        </div>
 
                                     </div><!-- .End .tab-pane -->
 
@@ -293,7 +352,41 @@
             minWord: " mins",
             secWord: " secs",
         });
+
+
+        var quantityInput = document.getElementById("quantity");
+        var totalInput = document.getElementById("total");
+
+        quantityInput.addEventListener("input", function() {
+            var quantity = Number(quantityInput.value);
+            var total = quantity * 5;
+            totalInput.value = total;
+
+
+
+        });
+
+
+
+
+        console.log(totalInput.value)
+
+        function validateInput(event) {
+            var input = event.target;
+            if (input.value < 0) {
+                input.value = 0;
+            }
+
+        }
     </script>
+    <style>
+        /* Remove up and down arrows */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 
 
 

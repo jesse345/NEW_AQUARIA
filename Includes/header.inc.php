@@ -95,7 +95,7 @@ if (isset($_SESSION['id'])) {
                         </li>
 
                         <li>
-                            <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="sf-with-ul">Categories</a>
+                            <a href="product-lists.php" class="sf-with-ul">Categories</a>
 
                             <div class="megamenu megamenu-sm">
                                 <div class="row no-gutters">
@@ -156,7 +156,7 @@ if (isset($_SESSION['id'])) {
 
                             <a href="../Pages/chat.php">Chat</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="../Pages/fishManual.php">Fish Manual</a>
                         </li>
 
