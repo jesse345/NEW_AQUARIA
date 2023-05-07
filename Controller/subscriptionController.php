@@ -20,15 +20,6 @@ if (isset($_POST['subscribe'])) {
     $img = $targetDir . basename($_FILES['receipt_img']['name']);
     move_uploaded_file($_FILES['receipt_img']['tmp_name'], $img);
 
-    // $receipt_img = $_POST["receipt_img"];
-
-    // if ($subsciption_type == 1) {
-    //     $date_end = date('y-m-d h:i:s', strtotime($date . ' +3months'));
-    // } else if ($subsciption_type == 2) {
-    //     $date_end = date('y-m-d h:i:s', strtotime($date . ' +6months'));
-    // } else if ($subsciption_type == 3) {
-    //     $date_end = date('y-m-d h:i:s', strtotime($date . ' +1year '));
-    // }
 
     createSubscription(
         'subscription',
@@ -77,4 +68,42 @@ if (isset($_POST['subscribe'])) {
         alert('Approved Subscription');
         window.location.href = '../admin/pages/subscription.php'
     </script>";
+} else if (isset($_POST['extend'])) {
+    $subscription_id = $_POST['subscription_id'];
+
+    $quantity = $_POST['number_of_products'];
+    $total = $_POST['amount'];
+
+    $ref = $_POST['reference_number'];
+    $receipt = $_POST['receipt_img'];
+
+    createSubscription(
+        'subscription_extensions',
+        array('subscription_id', 'number_of_products', 'amount', 'receipt', 'reference_number', 'status', 'date'),
+        array($subscription_id, $quantity, $total, $receipt, $ref, 'Pending', $date)
+    );
+
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+} else if (isset($_POST['extend_approve'])) {
+    $id = $_GET['id'];
+
+    $extension = mysqli_fetch_assoc(getUser('subscription_extensions', 'id', $id));
+    $subscription = mysqli_fetch_assoc(getUser('subscription', 'subscription_id', $extension['subscription_id']));
+
+    $total = $extension['number_of_products'] + $subscription['number_of_products'];
+
+
+    editUser(
+        'subscription',
+        array('subscription_id', 'number_of_products', 'status'),
+        array($subscription['subscription_id'], $total, 'Approved')
+
+    );
+
+    editUser('subscription_extensions', array('id', 'status'), array($id, 'Approved'));
+    echo "<script>
+        alert('Approved Subscription');
+        window.location.href = '../admin/pages/extensions.php'
+    </script>";
+    // header("Location: " . $_SERVER['HTTP_REFERER']);
 }

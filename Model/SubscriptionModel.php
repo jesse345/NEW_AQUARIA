@@ -34,7 +34,7 @@ function getUserSubscription($user_id)
 }
 
 
-function approveSubscription($subsciption_id, $date_started, $date_end, $user_id,$number,$status)
+function approveSubscription($subsciption_id, $date_started, $date_end, $user_id, $number, $status)
 {
     global $conn;
     connect();
@@ -63,10 +63,10 @@ function expireSubscription($user_id)
 }
 
 
-function decrement($id,$number){
+function decrement($id, $number)
+{
     global $conn;
     connect();
     $sql = mysqli_query($conn, "UPDATE `subscription` SET `number_of_products` = '$number' WHERE `subscription_id` = $id ");
     disconnect();
-
 }

@@ -143,7 +143,7 @@ $rec = getAllUser();
                 <div class="card-header py-3">
                     <div class="d-flex">
                         <div class="mr-auto">
-                            <h6 class="m-0 font-weight-bold text-primary">Subscription</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Subscription Extensions</h6>
                         </div>
                         <div class="ml-auto">
                             <form action="#">
@@ -167,7 +167,7 @@ $rec = getAllUser();
                                     <th></th>
                                     <th>Subscription Id</th>
                                     <th>User</th>
-                                    <th>Subscription Type</th>
+                                    <th>Number of Products</th>
                                     <!-- <th>Type of Payment</th> -->
                                     <!-- <th>Amount</th> -->
                                     <!-- <th>Reference No.</th> -->
@@ -176,41 +176,28 @@ $rec = getAllUser();
                                 </tr>
                             </thead>
                             <?php
-                            $subscribe = getAllSubscription('subscription');
-                            while ($row = mysqli_fetch_assoc($subscribe)) {
-                                $users = mysqli_fetch_assoc(getSubscribeUser('user_details', 'user_id', $row['user_id']));
+                            $subscribes = getAllSubscription('subscription_extensions');
+                            while ($row = mysqli_fetch_assoc($subscribes)) {
+                                $subscribe = mysqli_fetch_assoc(getSubscribeUser('subscription', 'subscription_id', $row['subscription_id']));
+                                $users = mysqli_fetch_assoc(getSubscribeUser('user_details', 'user_id', $subscribe['user_id']));
                             ?>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#viewMore<?php echo $row['user_id']; ?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success view-more"></i></a></td>
-                                        <td><?php echo $row['subscription_id'] ?></td>
+                                        <td><a href="#viewMore<?php echo $row['id']; ?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success view-more"></i></a></td>
+                                        <td><?php echo $row['id'] ?></td>
                                         <td><?php echo $users['first_name'] . " " . $users['last_name']  ?></td>
-                                        <td>
+                                        <td> <?php echo $row['number_of_products'] ?> </td>
 
-                                            <?php if ($row['subscription_type'] == 1) {
-                                                echo "Standard";
-                                            } else if ($row['subscription_type'] == 2) {
-                                                echo "Advanced";
-                                            }
-                                            if ($row['subscription_type'] == 3) {
-                                                echo "Premium";
-                                            } ?>
-
-                                        </td>
-                                        <!-- <td><?php echo $row['typeofpayment'] ?></td>
-                                        <td><?php echo $row['amount'] ?></td>
-                                        <td><?php echo $row['reference_number'] ?></td> -->
-                                        <td><?php echo date('M d Y', strtotime($row['date_started'])) ?></td>
+                                        <td><?php echo date('M d Y', strtotime($row['date'])) ?></td>
                                         <td>
-                                            <form action="../../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
-                                                <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
-                                                <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
-                                                <?php if ($row['status'] != "Pending") { ?>
-                                                    <button type="submit" name="subscription_approve" class="btn btn-primary">
+                                            <form action="../../Controller/subscriptionController.php?id=<?php echo $row['id'] ?>" method="POST">
+
+                                                <?php if ($row['status'] == "Pending") { ?>
+                                                    <button type="submit" name="extend_approve" class="btn btn-primary">
                                                         Approve
                                                     </button>
 
-                                                    <button type="submit" name="subscription_disapprove" class="btn btn-danger">
+                                                    <button type="submit" name="extend_disapprove" class="btn btn-danger">
                                                         Disapprove
                                                     </button>
                                                 <?php } else { ?>
@@ -221,7 +208,7 @@ $rec = getAllUser();
 
                                     </tr>
                                 </tbody>
-                                <div id="viewMore<?php echo $row['user_id']; ?>" class="modal fade" role="dialog">
+                                <div id="viewMore<?php echo $row['id']; ?>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <!-- Modal content-->
                                         <div class="modal-content">
@@ -229,7 +216,7 @@ $rec = getAllUser();
                                                 <div class="form-group row mt-3">
                                                     <label class="col-sm-4 col-form-label" style="font-size:16px;">SUBSCRIPTION ID</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" value="<?php echo $row['subscription_id']; ?>" readonly>
+                                                        <input type="text" class="form-control" value="<?php echo $row['id']; ?>" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
