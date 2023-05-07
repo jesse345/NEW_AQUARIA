@@ -94,7 +94,7 @@ if (isset($_SESSION['id'])) {
                         </li>
 
                         <li>
-                            <a href="#" class="sf-with-ul">Categories</a>
+                            <a href="product-lists.php" class="sf-with-ul">Categories</a>
 
                             <div class="megamenu megamenu-sm">
                                 <div class="row no-gutters">
@@ -148,10 +148,10 @@ if (isset($_SESSION['id'])) {
                         <li>
                             <a href="../Pages/breedersBlog.php">Breeders Blog</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="../Pages/chat.php">Chat</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="../Pages/fishManual.php">Fish Manual</a>
                         </li>
 

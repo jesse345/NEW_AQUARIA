@@ -225,18 +225,9 @@ $rec = getAllUser();
                                                         <input type="text" class="form-control" value="<?php echo $users['first_name'] . " " . $users['last_name']  ?>" readonly>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SUBSCRIPTION TYPE</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" value="<?php echo $row['subscription_type']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">TYPE OF PAYMENT</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" value="<?php echo $row['typeofpayment']; ?>" readonly>
-                                                    </div>
-                                                </div>
+
+
+
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">AMOUNT</label>
                                                     <div class="col-sm-8">
@@ -252,7 +243,7 @@ $rec = getAllUser();
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="amount" value="<?php echo date('M d Y', strtotime($row['date_started'])) ?>" readonly>
+                                                        <input type="text" class="form-control" name="amount" value="<?php echo date('M d Y', strtotime($row['date'])) ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>
