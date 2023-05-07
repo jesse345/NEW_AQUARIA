@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:../Pages/index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- molla/category-list.html  22 Nov 2019 10:02:52 GMT -->
