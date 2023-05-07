@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set("Asia/Manila");
-$date = date('y-m-d h:i:s');
+$date = date('y-m-d H:i:s');
 session_start();
 
 include("../Model/db.php");
@@ -125,18 +125,26 @@ if (isset($_POST['subscribe'])) {
 
     $subscription = mysqli_fetch_assoc(getUser('subscription', 'subscription_id', $_GET['subscription_id']));
 
-    editUser('subscription', array('subscription_id', 'status'), array($_GET['subscription_id'], 'Disapproved'));
+    editUser(
+        'subscription',
+        array('subscription_id', 'status'),
+        array($_GET['subscription_id'], 'Disapproved')
+    );
+
     sendNotif(
         'notification',
         array('user_id', 'isRead', 'date_send', 'redirect'),
         array($subscription['user_id'], 'No', $date, 'manageSubscription.php')
     );
 
+
     $last_id  = mysqli_insert_id($conn);
+
     sendNotif(
         'notification_details',
         array('notification_id', 'title', 'Description'),
         array($last_id, 'Disapproved Subscription', 'E-Aquaria Administrator Disapproved Your Subscription')
     );
+
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
