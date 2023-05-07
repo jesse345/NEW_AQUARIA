@@ -200,12 +200,12 @@ $rec = getAllUser();
                                         <!-- <td><?php echo $row['typeofpayment'] ?></td>
                                         <td><?php echo $row['amount'] ?></td>
                                         <td><?php echo $row['reference_number'] ?></td> -->
-                                        <td><?php echo date('M d Y', strtotime($row['date_started'])) ?></td>
+                                        <td><?php echo date('M d Y', strtotime($row['date_created'])) ?></td>
                                         <td>
                                             <form action="../../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
                                                 <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
                                                 <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
-                                                <?php if ($row['status'] != "Pending") { ?>
+                                                <?php if ($row['status'] == "Pending") { ?>
                                                     <button type="submit" name="subscription_approve" class="btn btn-primary">
                                                         Approve
                                                     </button>
@@ -213,8 +213,10 @@ $rec = getAllUser();
                                                     <button type="submit" name="subscription_disapprove" class="btn btn-danger">
                                                         Disapprove
                                                     </button>
-                                                <?php } else { ?>
+                                                <?php } else if ($row['status'] == 'Approved') { ?>
                                                     <p class="text-primary">Approved</p>
+                                                <?php } else { ?>
+                                                    <p class="text-danger">Disapproved</p>
                                                 <?php } ?>
                                             </form>
                                         </td>
@@ -262,10 +264,11 @@ $rec = getAllUser();
                                                         <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number']; ?>" readonly>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="amount" value="<?php echo date('M d Y', strtotime($row['date_started'])) ?>" readonly>
+                                                        <input type="text" class="form-control" name="amount" value="<?php echo date('M d Y', strtotime($row['date_created'])) ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>

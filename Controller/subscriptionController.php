@@ -83,6 +83,8 @@ if (isset($_POST['subscribe'])) {
         array($subscription_id, $quantity, $total, $receipt, $ref, 'Pending', $date)
     );
 
+
+
     header("Location: " . $_SERVER['HTTP_REFERER']);
 } else if (isset($_POST['extend_approve'])) {
     $id = $_GET['id'];
@@ -101,9 +103,40 @@ if (isset($_POST['subscribe'])) {
     );
 
     editUser('subscription_extensions', array('id', 'status'), array($id, 'Approved'));
+    sendNotif(
+        'notification',
+        array('user_id', 'isRead', 'date_send', 'redirect'),
+        array($subscription['user_id'], 'No', $date, 'manageSubscription.php')
+    );
+
+    $last_id  = mysqli_insert_id($conn);
+    sendNotif(
+        'notification_details',
+        array('notification_id', 'title', 'Description'),
+        array($last_id, 'Approved Subscription', 'E-Aquaria Administrator Approved Your Subscription Extension')
+    );
     echo "<script>
         alert('Approved Subscription');
         window.location.href = '../admin/pages/extensions.php'
     </script>";
     // header("Location: " . $_SERVER['HTTP_REFERER']);
+} else if (isset($_POST['subscription_disapprove'])) {
+
+
+    $subscription = mysqli_fetch_assoc(getUser('subscription', 'subscription_id', $_GET['subscription_id']));
+
+    editUser('subscription', array('subscription_id', 'status'), array($_GET['subscription_id'], 'Disapproved'));
+    sendNotif(
+        'notification',
+        array('user_id', 'isRead', 'date_send', 'redirect'),
+        array($subscription['user_id'], 'No', $date, 'manageSubscription.php')
+    );
+
+    $last_id  = mysqli_insert_id($conn);
+    sendNotif(
+        'notification_details',
+        array('notification_id', 'title', 'Description'),
+        array($last_id, 'Disapproved Subscription', 'E-Aquaria Administrator Disapproved Your Subscription')
+    );
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
