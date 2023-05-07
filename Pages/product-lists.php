@@ -1,9 +1,3 @@
-<?php
-session_start();
-if(!isset($_SESSION['id'])){
-    header("location:../Pages/index.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- molla/category-list.html  22 Nov 2019 10:02:52 GMT -->
@@ -14,7 +8,12 @@ if(!isset($_SESSION['id'])){
 
 <body>
   <div class="page-wrapper">
-    <?php include("../Includes/header.inc.php") ?>
+    <?php 
+      include("../Includes/header.inc.php");
+      if(!isset($_SESSION['id'])){
+          header("location:../Pages/index.php");
+      }
+    ?>
     <main class="main">
       <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2 mt-2">
         <div class="container">

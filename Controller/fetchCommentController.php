@@ -11,6 +11,7 @@
     session_start();
     
     $userid = $_SESSION['id'];
+    
     $breedersblog_id = $_GET['id'];
 
     $query = "SELECT * FROM comment WHERE breedersblog_id = $breedersblog_id && parent_comment_id = '0'";
@@ -32,7 +33,7 @@
                         <div class="comment">
                             <figure class="comment-media">
                                 <a href="#">
-                                    <img src="../img/'.$row1['user_img'].'" alt="User name">
+                                    <img src="../img/'.$row1['user_img'].'">
                                 </a>
                             </figure>
 
@@ -80,7 +81,7 @@
                             <div class="comment">
                                 <figure class="comment-media">
                                     <a href="#">
-                                        <img src="'.$row1['user_img'].'" alt="User name">
+                                        <img src="../img/'.$row1['user_img'].'">
                                     </a>
                                 </figure>
 

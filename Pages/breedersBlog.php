@@ -1,9 +1,3 @@
-<?php
-session_start();
-if(!isset($_SESSION['id'])){
-    header("location:../Pages/index.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +34,10 @@ if(!isset($_SESSION['id'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <?php 
         include("../Includes/header.inc.php"); 
+        if(!isset($_SESSION['id'])){
+            header("location:../Pages/index.php");
+        }
+       
         $id = $_SESSION['id'];
         ?>
         

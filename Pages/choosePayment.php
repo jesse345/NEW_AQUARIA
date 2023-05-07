@@ -81,58 +81,9 @@
                             <label class="fw-bold" for="">0955 6346 3151</label>
                         </div>
                         <small><span class="fw-bold">Name:</span><span>Dragon Knight</span></small>
-
                     </div>
                 </a>
             </div>
-
-            <!--ATM'S-->
-            <div class="col-lg-4 mb-lg-0 mb-3">
-                <div class="card p-3">
-                    <div class="img-box">
-                        <img src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt="">
-                    </div>
-                    <div class="number">
-                        <label class="fw-bold" for="">**** **** **** 1060</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
-                        <small><span class="fw-bold">Name:</span><span>Clockwerk</span></small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-lg-0 mb-3">
-                <div class="card p-3">
-                    <div class="img-box">
-                        <img src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png"
-                            alt="">
-                    </div>
-                    <div class="number">
-                        <label class="fw-bold">**** **** **** 1060</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
-                        <small><span class="fw-bold">Name:</span><span>Dazzle</span></small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-lg-0 mb-3">
-                <div class="card p-3">
-                    <div class="img-box">
-                        <img src="https://www.freepnglogos.com/uploads/discover-png-logo/credit-cards-discover-png-logo-4.png"
-                            alt="">
-                    </div>
-                    <div class="number">
-                        <label class="fw-bold">**** **** **** 1060</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
-                        <small><span class="fw-bold">Name:</span><span>Disruptor</span></small>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
 
@@ -176,7 +127,7 @@
                             <div class="form-group">
                                 <label class="form-label">Reference No</label>
                                 <input type="number" class="form-control" name="reference-no" id="reference-no"
-                                    placeholder="Enter Reference No" style="width: 100%;">
+                                    placeholder="Enter Reference No" style="width: 100%;" maxlength="15">
                             </div>
                             <label class="form-label">Upload Receipt</label>
                             <input class="form-control" type="file" name="receipt-img" id="receipt-img" multiple>
@@ -205,7 +156,7 @@
                     <div class="modal-body">
                         <div class="d-block">
                             <div>
-                                <!--src="..img/gcash-qrcode.png"-->
+                                
                                 <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/03/68/64011ef3ca239.png"
                                     class="mx-auto d-block" style="width:50%;height:150px;" alt="">
                             </div>
@@ -230,8 +181,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Reference No</label>
-                                <input type="number" class="form-control" name="reference-no" id="reference-no"
-                                    placeholder="Enter Reference No" style="width: 100%;">
+                                <input type="number" class="form-control" name="reference-no" id="reference-no" placeholder="Enter Reference No" style="width: 100%;">
                             </div>
                             <label class="form-label">Upload Receipt</label>
                             <input class="form-control" type="file" name="receipt-img" id="receipt-img" multiple>
@@ -284,7 +234,7 @@
                             <div class="form-group">
                                 <label class="form-label">Reference No</label>
                                 <input type="number" class="form-control" name="reference-no" id="reference-no"
-                                    placeholder="Enter Reference No" style="width: 100%;">
+                                    placeholder="Enter Reference No" style="width: 100%;" maxlength="15">
                             </div>
                             <label class="form-label">Upload Receipt</label>
                             <input class="form-control" type="file" name="receipt-img" id="receipt-img" multiple>

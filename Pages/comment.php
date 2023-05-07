@@ -271,8 +271,7 @@ $comment_count = count($rowsComment);
         $(document).ready(function() {
 
             var breedersblog_id = '<?php echo $_GET['breedersblog_id'] ?>';
-
-
+    
             $('#comment_form').on('submit', function(event) {
                 event.preventDefault();
                 var form_data = $(this).serialize();
