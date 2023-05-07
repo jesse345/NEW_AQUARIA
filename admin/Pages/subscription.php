@@ -187,14 +187,18 @@ $rec = getAllUser();
                                         <td><?php echo $row['typeofpayment'] ?></td>
                                         <td><?php echo $row['amount'] ?></td>
                                         <td><?php echo $row['reference_number'] ?></td>
-                                        <td><?php echo $row['date_started'] ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($row['date_started'])) ?></td>
                                         <td>
                                             <form action="../../Controller/subscriptionController.php?subscription_id=<?php echo $row['subscription_id'] ?>" method="POST">
                                                 <input type="text" name="subscription_type" value=" <?php echo $row['subscription_type'] ?>" hidden>
                                                 <input type="text" name="user_id" value=" <?php echo $row['user_id'] ?>" hidden>
-                                                <button type="submit" name="subscription_approve" class="btn btn-primary">
-                                                    Approve
-                                                </button>
+                                                <?php if ($row['status'] == "Pending") { ?>
+                                                    <button type="submit" name="subscription_approve" class="btn btn-primary">
+                                                        Approve
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <p class="text-primary">Approved</p>
+                                                <?php } ?>
                                             </form>
                                         </td>
 

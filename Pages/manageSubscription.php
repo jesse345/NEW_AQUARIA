@@ -34,7 +34,7 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        <li class="breadcrumb-item active" aria-current="page">Manage Sybscription</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -54,10 +54,7 @@
                                         </a>
                                     </li>
 
-                                    <!-- <li class="nav-item">
-                                        <a class="nav-link " href="accountInfo.php">Account Info
-                                        </a>
-                                    </li> -->
+
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="manageProducts.php">Manage My Products</a>
@@ -160,20 +157,28 @@
                                                 </div>
 
                                             </div>
-                                        <?php } else {
+                                            <?php } else {
                                             // expireSubscription($_SESSION['id']);
-                                        ?>
+                                            $pending = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
+                                            if ($pending['status'] == 'Pending') {
 
-                                            <p class="text-danger">
-                                                You are not a subscribed user.
-                                            </p>
-                                            <a href="subscription.php" class="btn btn-outline-primary-2">
-                                                <span>Subscribe Now</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </a>
+                                                echo "<p class='text-danger'>
+                                                Pending Subscription. Wait for the admin to approve your subscription
+                                            </p>";
+                                            } else {
+                                            ?>
+
+                                                <p class="text-danger">
+                                                    You are not a subscribed user.
+                                                </p>
+                                                <a href="subscription.php" class="btn btn-outline-primary-2">
+                                                    <span>Subscribe Now</span>
+                                                    <i class="icon-long-arrow-right"></i>
+                                                </a>
 
 
-                                        <?php } ?>
+                                        <?php }
+                                        } ?>
 
                                     </div><!-- .End .tab-pane -->
 

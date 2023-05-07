@@ -15,7 +15,7 @@ if (isset($_POST['subscribe'])) {
 
     $targetDir = "../img/"; // Set target directory
     $fileType = pathinfo($_FILES['receipt_img']['name'], PATHINFO_EXTENSION);
-    
+
 
     $img = $targetDir . basename($_FILES['receipt_img']['name']);
     move_uploaded_file($_FILES['receipt_img']['tmp_name'], $img);
@@ -32,8 +32,8 @@ if (isset($_POST['subscribe'])) {
 
     createSubscription(
         'subscription',
-        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img','status'),
-        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img,"Pending")
+        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img', 'status'),
+        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img, "Pending")
     );
 
 
@@ -58,7 +58,20 @@ if (isset($_POST['subscribe'])) {
 
 
     editUser('users', array('id', 'isSubscribe'), array($_POST['user_id'], "Yes"));
-    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id'],$number,'Approved');
+    approveSubscription($_GET['subscription_id'], $date, $date_end, $_POST['user_id'], $number, 'Approved');
+    sendNotif(
+        'notification',
+        array('user_id', 'isRead', 'date_send', 'redirect'),
+        array($_POST['user_id'], 'No', $date, 'manageSubscription.php')
+    );
+
+    $last_id  = mysqli_insert_id($conn);
+    sendNotif(
+        'notification_details',
+        array('notification_id', 'title', 'Description'),
+        array($last_id, 'Approved Subscription', 'E-Aquaria Administrator Approved Your Subscription')
+    );
+
 
     echo "<script>
         alert('Approved Subscription');
