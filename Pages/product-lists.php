@@ -8,7 +8,12 @@
 
 <body>
   <div class="page-wrapper">
-    <?php include("../Includes/header.inc.php") ?>
+    <?php 
+      include("../Includes/header.inc.php");
+      if(!isset($_SESSION['id'])){
+          header("location:../Pages/index.php");
+      }
+    ?>
     <main class="main">
       <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2 mt-2">
         <div class="container">
