@@ -37,6 +37,12 @@ if (isset($_SESSION['id'])) {
     } else if (isset($_POST['productReceived'])) {
         $order_id = $_GET['order_id'];
         $order = mysqli_fetch_assoc(getUserOrders('orders', 'id', $order_id));
+        $cart = mysqli_fetch_assoc(getUser('carts','id',$order['cart_id']));
+        $product = mysqli_fetch_assoc(getProduct('product_details','product_id',$cart['product_id']));
+
+        $quantity = $product['quantity'] - $cart['quantity'];
+
+        editProduct('product_details',array('product_id','quantity'),array($cart['product_id'], $quantity));
         verifyOrder('orders', array('id', 'status'), array($order_id, 'received'));
 
         header("Location: " . $_SERVER['HTTP_REFERER']);
