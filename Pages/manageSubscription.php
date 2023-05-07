@@ -123,7 +123,7 @@
                                                             <p>
                                                                 <strong>Benefits</strong>:
                                                                 <i>3 months duration</i>,
-                                                                <i>Unlimited Product Post</i>,
+                                                                <i>25 Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } else  if ($subscription['subscription_type'] == 2) { ?>
@@ -134,8 +134,8 @@
 
                                                             <p>
                                                                 <strong>Benefits</strong>:
-                                                                <i>3 months duration</i>,
-                                                                <i>Unlimited Product Post</i>,
+                                                                <i>6 months duration</i>,
+                                                                <i>55 Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } else  if ($subscription['subscription_type'] == 3) { ?>
@@ -146,13 +146,18 @@
 
                                                             <p>
                                                                 <strong>Benefits</strong>:
-                                                                <i>3 months duration</i>,
+                                                                <i>1 year duration</i>,
                                                                 <i>Unlimited Product Post</i>,
                                                                 <i>Browse Fish Manual</i>
                                                             </p>
                                                         <?php } ?>
 
+                                                        <p><strong>Number of products left to post</strong>: <?php echo $subscription['number_of_products'] ?></p>
 
+                                                        <a href="subscription.php" class="btn btn-outline-primary-2">
+                                                            <span>Extend</span>
+                                                            <i class="icon-long-arrow-right"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
 
