@@ -38,8 +38,8 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Category</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="product-lists.php">Category</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
                             <?php echo $prod_det['product_name'] ?>
                         </li>
@@ -91,11 +91,16 @@
 
                             ?>
                             <div class="col-md-6">
-                                <div class="product-details">
+                                <!-- <form action="products-extra.php?user_id=<?php echo $seller['user_id']?>" method="POST"> -->
+                                    <div class="product-details">
+                                        <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>" name="submit"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong>
+                                        <!-- <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong> -->
+                                        <!-- <strong> <?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></strong> -->
 
-                                    <strong> <?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></strong>
+                                    </div>
+                                <!-- </form> -->
 
-                                </div>
+                           
                                 <div class="product-details product-details-centered">
                                     <h1 class="product-title">
                                         <?php echo ucfirst($prod_det['product_name']) ?>

@@ -19,6 +19,16 @@ function insertProduct($table_name, $fields, $values, $table_name1, $fields1, $v
 }
 
 
+function getAllProds($table_name, $user_id)
+{
+    global $conn;
+    connect();
+    $query = "SELECT * FROM `$table_name` WHERE `isDelete` = 'No' AND user_id= $user_id";
+    $data = mysqli_query($conn, $query);
+
+    disconnect();
+    return $data;
+}
 
 //To get all the product
 //Not deleted
