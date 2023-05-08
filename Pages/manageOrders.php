@@ -156,7 +156,9 @@
                                                                                 <div class="media align-items-center">
                                                                                     <img src="<?php echo $prod_det['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                                     <div class="media-body">
-                                                                                        <a href="#" class="d-block text-dark"><?php echo $prod_det['product_name'] ?></a>
+                                                                                        <a href="#" class="d-block text-dark">
+                                                                                            <?php echo $prod_det['product_name'] ?>
+                                                                                        </a>
                                                                                         <small>
 
                                                                                         </small>
@@ -164,13 +166,14 @@
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-center font-weight-semibold align-middle">
-                                                                                <?php echo ucfirst($buyer['first_name']) . " " .  ucfirst($buyer['last_name']); ?>
+                                                                                <?php echo ucfirst($buyer['first_name']) . " " . ucfirst($buyer['last_name']); ?>
                                                                             </td>
                                                                             <td class="align-middle text-center">
                                                                                 <?php echo number_format($cart['quantity']) ?>
                                                                             </td>
                                                                             <td class="text-center font-weight-semibold align-middle">
-                                                                                ₱ <?php echo number_format($cart['total'], 2) ?>
+                                                                                ₱
+                                                                                <?php echo number_format($cart['total'], 2) ?>
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php
@@ -202,8 +205,22 @@
                                                                                         <input type="submit" name="acceptOrder" value="Accept Order" class="btn-success">
                                                                                         <input type="submit" name="declineOrder" value="Decline Order" class="btn-danger mt-1">
                                                                                     </form>
-                                                                                <?php } else if ($order['status'] == 'Approved') {
-                                                                                    echo "<p class='bg-gray rounded text-dark'>Waiting for Payment</p>"; ?>
+                                                                                    <?php } else if ($order['status'] == 'Approved') {
+                                                                                    if ($order['payment_option'] == 1) { ?>
+
+                                                                                        <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                            <a href="../Pages/chat.php?user=<?php echo $order['user_id']; ?>" class="btn btn-success">
+                                                                                                Chat</a>
+                                                                                                <br><br>
+                                                                                            <input type="submit" name="shipProduct" value="Ship Product" class="btn btn-secondary">
+
+                                                                                        </form>
+
+                                                                                    <?php } else {
+                                                                                        echo "<p class='bg-gray rounded text-dark'>Waiting for Payment</p>";
+                                                                                    }
+                                                                                    ?>
+
                                                                                 <?php } else if ($order['status'] == 'Cancelled') {
                                                                                     echo "<p class='bg-danger rounded text-white'>Cancelled</p>";
                                                                                 } else if ($order['status'] == 'Decline') {
@@ -219,10 +236,13 @@
                                                                                         </button>
                                                                                     </form>
                                                                                 <?php } else if ($order['status'] == 'deliver' || $order['status'] == 'received') { ?>
+                                                                                    <?php   if ($order['payment_option'] != 1) { ?>
                                                                                     <button class="btn-success">
                                                                                         <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
                                                                                             View Receipt</a>
                                                                                     </button>
+                                                                                    <?php }?>
+
                                                                                 <?php } ?>
                                                                             </td>
                                                                         </tr>

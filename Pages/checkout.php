@@ -98,13 +98,13 @@
                                         </table>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
+                                            <input class="form-check-input" type="radio" name="payment_option" id="flexRadioDefault1"  value="1" required>
                                             <label class="form-check-label pl-2" for="flexRadioDefault1">
-                                                Cash On Delivery
+                                                Pay On Delivery
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="payment_option" id="flexRadioDefault2" value="2">
                                             <label class="form-check-label pl-2" for="flexRadioDefault2" required>
                                                 Online Payment
                                             </label>

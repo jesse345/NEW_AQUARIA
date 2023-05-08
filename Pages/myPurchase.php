@@ -226,21 +226,31 @@
                                                                                 </div>
                                                                                 <br>
                                                                             <?php } else if ($order['status'] == 'Approved') { ?>
-                                                                                <a href="../Pages/choosePayment.php?order_id=<?php echo $order['id'] ?>" class="btn btn-success">
+                                                                                
+                                                                                    <?php 
+                                                                                     if ($order['payment_option'] == 1) { ?>
+                                                                                     <a href="../Pages/chat.php?user=<?php echo $order['seller'] ?>" class="btn btn-success">
+                                                                                    Chat</a>
+                                                                                        
+                                                                                  <?php  } else { ?>
+                                                                                    <a href="../Pages/choosePayment.php?order_id=<?php echo $order['id'] ?>" class="btn btn-success">
                                                                                     Send Payment</a>
+                                                                                   <?php }
+                                                                                    ?>
                                                                             <?php } else if ($order['status'] == 'Decline') {
                                                                                 echo "<p class='bg-danger rounded text-white'>Disapproved</p>";
                                                                             } else if ($order['status'] == 'deliver') { ?>
+
                                                                                 <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
                                                                                     <input type="submit" name="productReceived" value="Receive Product" class=" btn-success">
                                                                                     <br> <br>
 
+                                                                                    <?php   if ($order['payment_option'] != 1) {  ?>
                                                                                     <button class="btn-success">
                                                                                         <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
                                                                                             View Receipt</a>
-
-
                                                                                     </button>
+                                                                                    <?php }?>
 
                                                                                 </form>
                                                                             <?php } else if ($order['status'] == 'received') { ?>
