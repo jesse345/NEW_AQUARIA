@@ -102,8 +102,8 @@
                                                                 <div class="media align-items-center">
                                                                     <img src="<?php echo $product['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                     <div class="media-body">
-                                                                    <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
-                                                                                            <?php echo $prod_det['product_name'] ?>
+                                                                    <a href="product.php?product_id=<?php echo $product['product_id'] ?>" class="d-block text-dark">
+                                                                                            <?php echo $product['product_name'] ?>
                                                                                         </a>
                                                                     </div>
                                                                 </div>
