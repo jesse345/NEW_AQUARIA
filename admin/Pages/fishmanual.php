@@ -201,20 +201,60 @@
                                                                     <input type="text" class="form-control" name="title" value="<?php echo $row['title'];?>">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Description</label>
-                                                                    <textarea class="form-control" name="description"><?php echo $row['description'];?></textarea>
+                                                                    <label>Section 1 Description</label>
+                                                                    <textarea class="form-control" name="description1"><?php echo $row['description'];?></textarea>
                                                                 </div>
                                                                 <div class="form-group row mt-3">
-                                                                        <label class="col-sm-4 col-form-label">Image Uploaded</label>
+                                                                        <label class="col-sm-4 col-form-label">Section 1 Image Uploaded</label>
                                                                         <div class="col-sm-8">
                                                                             <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                                         </div>
                                                                     </div>
                                                                 <div class="form-group">
-                                                                    <label>Change Image (Optional)</label>
-                                                                    <input class="form-control" type="file" name="image">
+                                                                    <label>Change Section 1 Image (Optional)</label>
+                                                                    <input class="form-control" type="file" name="image1">
                                                                 </div>
+
+
+                                                                <div class="form-group">
+                                                                    <label>Section 2 Description</label>
+                                                                    <textarea class="form-control" name="description2"><?php echo $row['description1'];?></textarea>
+                                                                </div>
+                                                                <div class="form-group row mt-3">
+                                                                        <label class="col-sm-4 col-form-label">Section 2 Image Uploaded</label>
+                                                                        <div class="col-sm-8">
+                                                                            <img src="../img/<?php echo $row['manual_img1'];?>" class="img-thumbnail">
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <label>Change Section 2 Image (Optional)</label>
+                                                                    <input class="form-control" type="file" name="image2">
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <label>Section 3 Description</label>
+                                                                    <textarea class="form-control" name="description3"><?php echo $row['description2'];?></textarea>
+                                                                </div>
+                                                                <div class="form-group row mt-3">
+                                                                        <label class="col-sm-4 col-form-label">Section 3 Image Uploaded</label>
+                                                                        <div class="col-sm-8">
+                                                                            <img src="../img/<?php echo $row['manual_img2'];?>" class="img-thumbnail">
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <label>Change Section 3 Image (Optional)</label>
+                                                                    <input class="form-control" type="file" name="image3">
+                                                                </div>
+
+
+
+
+
                                                             </div>
+
+
+
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                 <input type="submit" class="btn btn-info" name="edit" value="Save">

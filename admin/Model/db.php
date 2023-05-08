@@ -207,9 +207,10 @@ function addFishManual($admin_id, $title, $description, $img, $description2,$img
 {
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`,`description1`,`manual_img1`,`description2`,`manual_img2`) VALUES($admin_id, '$title', '$description','$img','$description2','$img2','$description3','$img3')");
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`,`description1`,`manual_img1`,`description2`,`manual_img2`) VALUES('$admin_id', '$title', '$description','$img','$description2','$img2','$description3','$img3')");
 	disconnect();
 }
+
 
 function userlogin($username, $password)
 {
@@ -278,6 +279,16 @@ function deleterecord($product_id)
 	$query = mysqli_query($conn, "DELETE FROM `product_details` WHERE `product_id` = '$product_id'");
 	disconnect();
 }
+
+function edit_Record($table,$fields,$values){
+	global $conn;
+	connect();
+	for($i=1 ; $i < count($fields); $i++){
+		mysqli_query($conn, "UPDATE `$table` SET `$fields[$i]` = '$values[$i]'  WHERE `$fields[0]` = '$values[0]'");
+	}
+	disconnect();
+}
+
 
 
 
