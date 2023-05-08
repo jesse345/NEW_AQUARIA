@@ -39,14 +39,15 @@ if (isset($_SESSION['id'])) {
 	            $stmt2->execute([$opened, $chat_id]); 
 
 	            ?>
+				
 					<div class="d-flex justify-content-start">
-						<p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
+						<p class="small mb-1"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
 					</div>
-					<div class="d-flex flex-row justify-content-start mb-4 pt-1">
-						<div>
-							<p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
-						</div>
+					<div class="d-flex flex-row justify-content-start">
 						<img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+						<div>
+							<p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> 
+						</div>
 					</div>
 	            <?php
 	    	}

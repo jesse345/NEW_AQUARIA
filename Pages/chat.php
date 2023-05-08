@@ -132,7 +132,7 @@ if (!isset($_SESSION['id'])) {
                                 <?php
                                 if(!empty($_GET['user'])){
                                      ?>
-                                    <img src="<?php $chatWith['user_img']?>" class="rounded-circle" style="height:70px;">
+                                    <img src="../img/<?php echo $chatWith['user_img']?>" class="rounded-circle1" style="height:70px;">
                                     <h3 class="display-4 fs-sm m-2" style="font-size:18px;">
                                         <?php echo ucfirst($chatWith['first_name']). '  ' . ucfirst($chatWith['last_name']) ?> <br>
                                         <div class="d-flex
