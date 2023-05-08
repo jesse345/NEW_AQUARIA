@@ -58,8 +58,11 @@ if (isset($_POST['editAccount'])) {
             array('user_id', 'first_name', 'last_name', 'mi','user_img'),
             array($_SESSION['id'], $first_name, $last_name, $mi,$target_file)
         );
-
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        echo "<script>
+            alert('Edit Successfully');
+            window.location.href='../Pages/myAccount.php';
+        </script>";
+        // header("Location: " . $_SERVER['HTTP_REFERER']);
     } else {
         echo "File is not an image.";
         $uploadOk = 0;
