@@ -203,11 +203,11 @@ function getAllManual()
 	return $query;
 }
 
-function addFishManual($admin_id, $title, $description, $img)
+function addFishManual($admin_id, $title, $description, $img, $description2,$img2,$description3,$img3)
 {
 	global $conn;
 	connect();
-	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`) VALUES($admin_id, '$title', '$description','$img')");
+	$query = mysqli_query($conn, "INSERT INTO `fish_manual` (`admin_id`,`title`,`description`,`manual_img`,`description1`,`manual_img1`,`description2`,`manual_img2`) VALUES($admin_id, '$title', '$description','$img','$description2','$img2','$description3','$img3')");
 	disconnect();
 }
 
