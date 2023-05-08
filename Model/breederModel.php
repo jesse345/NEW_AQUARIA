@@ -59,12 +59,24 @@ function forDelete($table,$value){
     disconnect();
     return $query;
 }
-function updatePost($table,$value1,$value2,$value3,$value4){
-	global $conn;
-	connect();
-	$query = mysqli_query($conn, "UPDATE `$table` SET `description`='$value2',`purpose`='$value3',`image`='$value4' WHERE `id` = $value1");
-	disconnect();
+function updatePost($table, $id, $description, $purpose, $image) {
+    global $conn;
+    connect();
+
+    // prepare the statement
+    $stmt = $conn->prepare("UPDATE `$table` SET `description`=?, `purpose`=?, `image`=? WHERE `id`=?");
+
+    // bind parameters to the statement
+    $stmt->bind_param("sssi", $description, $purpose, $image, $id);
+
+    // execute the statement
+    $stmt->execute();
+
+    // close the statement and disconnect from the database
+    $stmt->close();
+    disconnect();
 }
+
 
 
 ?>
