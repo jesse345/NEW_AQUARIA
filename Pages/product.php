@@ -92,10 +92,10 @@
                             ?>
                             <div class="col-md-6">
                                 <div class="product-details">
-                                    <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id'] ?>" name="submit"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong>
+                                    <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>" name="submit"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong>
                                 </div>
 
-
+                           
                                 <div class="product-details product-details-centered">
                                     <h1 class="product-title">
                                         <?php echo ucfirst($prod_det['product_name']) ?>
@@ -279,15 +279,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">
-                                Reviews (
-                                <?php
-                                $review = getProductReviews('feedbacks', 'product_id', $_GET['product_id']);
-                                echo mysqli_num_rows($review); ?>
-                                )
-
-
-                            </a>
+                            <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -370,23 +362,11 @@
                                                         </a></h4>
                                                     <div class="ratings-container">
                                                         <div class="ratings">
-                                                            <?php if ($rev['rate'] == 1) { ?>
-                                                                <div class="ratings-val" style="width: 20%;"></div>
-                                                            <?php } else if ($rev['rate'] == 2) { ?>
-                                                                <div class="ratings-val" style="width: 40%;"></div>
-                                                            <?php  } else if ($rev['rate'] == 3) { ?>
-                                                                <div class="ratings-val" style="width: 60%;"></div>
-                                                            <?php  } else if ($rev['rate'] == 4) { ?>
-                                                                <div class="ratings-val" style="width: 80%;"></div>
-                                                            <?php  } else if ($rev['rate'] == 5) { ?>
-                                                                <div class="ratings-val" style="width: 100%;"></div>
-                                                            <?php  } ?>
-
-
-
-                                                        </div>
-                                                    </div>
-
+                                                            <div class="ratings-val" style="width: 100%;"></div>
+                                                            <!-- End .ratings-val -->
+                                                        </div><!-- End .ratings -->
+                                                    </div><!-- End .rating-container -->
+                                                    <span class="review-date">5 days ago</span>
                                                 </div><!-- End .col -->
                                                 <div class="col">
 

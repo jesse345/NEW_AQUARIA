@@ -49,26 +49,29 @@
                                         <p class="text-muted"><?php echo $notif['Description'] ?></p>
                                         <?php
                                         $time = strtotime($notification['date_send']);
-                                        $minutes_ago = floor((time() - $time) / 60) + 360;
-                                        $hours_ago = floor($minutes_ago / 60);
-                                        $days_ago = floor($hours_ago / 24);
+                                        $minutes_ago = floor((time() - $time) / 60);
 
                                         ?>
                                         <p class="text-muted">
                                             <small>
-                                                <?php
-                                                if ($minutes_ago < 60) {
-                                                    echo $minutes_ago . " minutes ago";
-                                                } else {
+                                                <?php if ($minutes_ago >= 60) {
+
+                                                    $hours_ago = floor($minutes_ago / 60);
                                                     if ($hours_ago < 24) {
-                                                        echo $hours_ago . " hours ago";
-                                                    } else {
-                                                        echo $days_ago . " days ago";
-                                                    }
-                                                }
+                                                        echo $hours_ago;
                                                 ?>
+                                                        hours ago
+                                                    <?php } else {
+                                                        $days_ago = floor($hours_ago / 24);
+                                                        echo $days_ago;
+                                                    ?>
+                                                        days ago
+                                                    <?php }
+                                                } else {
 
-
+                                                    echo $minutes_ago < 0 ? $minutes_ago + 360 : $minutes_ago; ?>
+                                                    minutes ago
+                                                <?php } ?>
                                             </small>
                                         </p>
 

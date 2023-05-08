@@ -9,22 +9,21 @@ if (!empty($_SESSION['id'])) {
         $user_id = $_SESSION['id'];
         $gname = $_POST['gname'];
         $num = $_POST['gnumber'];
-
+        
         echo $user_id . $gname . $num;
 
         $isSubscribe = getUserSubscription($_SESSION['id']);
-        if (mysqli_num_rows($isSubscribe) > 0) {
+        if(mysqli_num_rows($isSubscribe) > 0){
             $sub = mysqli_fetch_assoc($isSubscribe);
-            if ($sub['subscription_type'] != 3) {
-                decrement($sub['subscription_id'], $sub['number_of_products'] - 1);
+            if($sub['subscription_type'] != 3){
+                decrement($sub['subscription_id'],$sub['number_of_products'] - 1);
             }
+
         }
 
-        editUser(
-            'user_details',
-            array('user_id', 'gcash_number', 'gcash_name'),
-            array($user_id, $num, $gname)
-        );
+         editUser('user_details',
+                array('user_id','gcash_number','gcash_name'),
+                array($user_id,$num,$gname));
 
         // Temporary only
         $targetDir = "../img/"; // Set target directory
@@ -38,7 +37,7 @@ if (!empty($_SESSION['id'])) {
         $price = $_POST['price'];
         $description = $_POST['description'];
         $category = $_POST['category'];
-        $ship = $_POST['shipping_type'];
+        // $ship = $_POST['shipping_type'];
 
 
 
@@ -54,7 +53,7 @@ if (!empty($_SESSION['id'])) {
             "price",
             "product_img",
             "category",
-            "shipping_type"
+            // "shipping_type"
         );
 
         $user_det_val = array($product_name, $quantity, $description, $price, $img, $category);
@@ -167,7 +166,7 @@ if (!empty($_SESSION['id'])) {
 
 
         deleteProduct($product_id);
-        echo "<script>
+            echo "<script>
             alert('Deleted Successfully');
             window.location.href='../Pages/breedersblog.php';
         </script>";
@@ -229,14 +228,15 @@ if (!empty($_SESSION['id'])) {
             array_push($user_det_fld, 'tank_type', 'dimension', 'thickness');
             array_push($user_det_val, $tank, $dimension, $thick);
             editProduct('product_details', $user_det_fld, $user_det_val);
-        } else if ($category == "Fishes") {
+        }
+        else if ($category == "Fishes") {
             $fish = $_POST['fish_type'];
             $class = $_POST['fish_class'];
             $gender = $_POST['gender'];
             $age = $_POST['age'];
             $size = $_POST['size'];
-            array_push($user_det_fld, 'fish_type', 'fish_class', 'gender', 'age', 'size');
-            array_push($user_det_val, $fish, $class, $gender, $age, $size);
+            array_push($user_det_fld, 'fish_type', 'fish_class', 'gender','age','size');
+            array_push($user_det_val, $fish, $class, $gender,$age,$size);
             editProduct('product_details', $user_det_fld, $user_det_val);
         } else if ($category == "Equipment & Accessories") {
             $spec = $_POST['specification'];
@@ -244,6 +244,8 @@ if (!empty($_SESSION['id'])) {
             array_push($user_det_fld, 'specification');
             array_push($user_det_val, $spec);
             editProduct('product_details', $user_det_fld, $user_det_val);
+
+           
         } else if (
             $category == "Probiotics" || $category == "Vitamins" || $category == "Color Enhancer" || $category == "Medications"
         ) {
@@ -254,6 +256,7 @@ if (!empty($_SESSION['id'])) {
             array_push($user_det_val, $exp, $benefits);
 
             editProduct('product_details', $user_det_fld, $user_det_val);
+
         }
         $targetDir = "../img/"; // Set target directory
         $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
@@ -286,6 +289,8 @@ if (!empty($_SESSION['id'])) {
                 alert('$product_name Added successfully!');
                 window.location.href = '../Pages/manageProducts.php';
             </script>";
+
+       
     } else {
         header("Location: ../");
     }

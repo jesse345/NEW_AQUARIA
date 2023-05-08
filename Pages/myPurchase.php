@@ -160,15 +160,11 @@
                                                                             <div class="media align-items-center">
                                                                                 <img src="<?php echo $prod_det['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                                 <div class="media-body">
-                                                                                    <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
-                                                                                        <?php echo $prod_det['product_name'] ?>
-                                                                                    </a>
+                                                                                <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
+                                                                                            <?php echo $prod_det['product_name'] ?>
+                                                                                        </a>
                                                                                     <small>
-                                                                                        Payment Option: <?php echo $order['payment_option'] == 1 ? 'Pay On Delivery' : 'Online Payment' ?>
-                                                                                    </small>
-                                                                                    <br>
-                                                                                    <small>
-                                                                                        Delivery Type: <?php echo $prod_det['shipping_type'] ?>
+
                                                                                     </small>
                                                                                 </div>
                                                                             </div>
@@ -301,7 +297,7 @@
                                                                     <!-- Modal -->
                                                                     <div class="modal fade" id="received<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
-                                                                            <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                        <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title" id="exampleModalLabel">Receive Product?</h5>
@@ -466,7 +462,62 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </main><!-- End .main -->
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content p-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../Controller/FeedbackController.php" method="POST">
+                            <style>
+                                .disabled {
+                                    pointer-events: none;
+                                }
+                            </style>
+                            <div class="form-group">
+                                <label for="rating">Rate the product *</label>
+                                <div class="d-flex">
+                                    <div class="text-primary rating">
+
+                                        <input type="radio" name="rating" value="5" id="5" required>
+                                        <label for="5">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4" required>
+                                        <label for="4">☆</label>
+                                        <input type="radio" name="rating" value="3" id="3" required>
+                                        <label for="3">☆</label>
+                                        <input type="radio" name="rating" value="2" id="2" required>
+                                        <label for="2">☆</label>
+                                        <input type="radio" name="rating" value="1" id="1" required>
+                                        <label for="1">☆</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="message">Your Review *</label>
+                                <textarea id="message" cols="30" rows="5" class="form-control" name="feedback" required></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="submit" name="review" value="Leave Your Review" class="btn btn-primary px-3">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
 
 
 

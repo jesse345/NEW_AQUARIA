@@ -39,7 +39,7 @@ function sendemail($username, $email, $code)
         $mail->isHTML(true); //Set email format to HTML
 
         $rand = rand();
-        $mail->Subject = 'E-Aquaria Verification Code';
+        $mail->Subject = 'Here is the subject';
         $mail->Body = "This is your verification code <b>$code</b> <br>This will expire in 2 minutes";
         $mail->send();
     } catch (Exception $e) {
