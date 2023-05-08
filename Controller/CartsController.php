@@ -4,11 +4,12 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 $date = date('y-m-d h:i:s');
 if (empty($_SESSION['id'])) {
-    echo "<script>
+    // echo "<script>
     
-        alert('bogo kag mama login sa uy tanga');
-        window.location.href = '../Pages/';
-    </script>";
+    //     alert('bogo kag mama login sa uy tanga');
+    //     window.location.href = '../Pages/';
+    // </script>";
+    header("location: ../pages/login.php");
 } else {
 
     if (isset($_POST['addToCart'])) {

@@ -13,7 +13,13 @@
 <body>
 
     <div class="page-wrapper-layout">
-        <?php include("../Layouts/header.layout.php") ?>
+        <?php include("../Layouts/header.layout.php"); 
+          if (!isset($_SESSION['id'])) {
+            echo "<script>
+                alert('Invalid Request. You need to login first');
+                window.location.href = '../'
+            </script>";
+        }?>
 
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">

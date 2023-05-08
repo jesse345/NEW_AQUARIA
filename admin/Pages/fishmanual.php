@@ -155,10 +155,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                     <thead>
                                         <tr>
+                                            
                                             <th class="col-sm-1">Manual ID</th>
                                             <th class="col-sm-1">Admin ID</th>
                                             <th class="col-sm-2">Title</th>
-                                            <th class="col-sm-3">Decription</th>
+                                            <th class="col-sm-1" >Decription</th>
                                             <th class="col-sm-3">Image</th>
                                             <th class="col-sm-2">Action</th>
                                             
@@ -170,12 +171,13 @@
                                             ?>
                                             <tbody>
                                                 <tr>
+                                                    
                                                     <td><?php echo $row['manual_id'];?></td>
                                                     <td><?php echo $row['admin_id'];?></td>
                                                     <td><?php echo $row['title'];?></td>
-                                                    <td><?php echo $row['description'];?></td>
+                                                    <td style="max-width: 750px;"><?php echo $row['description'];?></td>
                                                     <td> 
-                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                     </td>
                                                     <td>
                                                         <a href="#editManualModal<?php echo $row['manual_id']?>" class="edit" data-toggle="modal"><i class="material-icons text-warning" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -262,17 +264,45 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row mt-3">
-                                                                    <label class="col-sm-4 col-form-label">Decription</label>
+                                                                    <label class="col-sm-4 col-form-label">Section 1 Decription</label>
                                                                     <div class="col-sm-8">
                                                                         <textarea class="form-control" rows="3" readonly><?php echo $row['description'];?></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-4 col-form-label">Image</label>
+                                                                    <label class="col-sm-4 col-form-label">Section 1 Image</label>
                                                                     <div class="col-sm-8">
-                                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label">Section 2 Decription</label>
+                                                                    <div class="col-sm-8">
+                                                                        <textarea class="form-control" rows="3" readonly><?php echo $row['description1'];?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Section 2 Image</label>
+                                                                    <div class="col-sm-8">
+                                                                        <img src="../img/<?php echo $row['manual_img1'];?>" class="img-thumbnail">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row mt-3">
+                                                                    <label class="col-sm-4 col-form-label">Section 3 Decription</label>
+                                                                    <div class="col-sm-8">
+                                                                        <textarea class="form-control" rows="3" readonly><?php echo $row['description2'];?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Section 3 Image</label>
+                                                                    <div class="col-sm-8">
+                                                                        <img src="../img/<?php echo $row['manual_img2'];?>" class="img-thumbnail">
+                                                                    </div>
+                                                                </div>
+
+
+
+
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label">Date Created</label>
                                                                     <div class="col-sm-8">
@@ -308,10 +338,6 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">	
-						<!-- <div class="form-group">
-							<label>Fish Manual ID</label>
-							<input type="text" class="form-control" name="manual_id" placeholder="Enter Manual ID" required>
-						</div>				 -->
 						<div class="form-group">
 							<!-- <label>Admin ID</label> -->
 							<input type="hidden" class="form-control" name="admin_id" placeholder="Enter Admin ID" value="1"  required>
@@ -321,13 +347,37 @@
 							<input type="text" class="form-control" name="title" placeholder="Enter Title" required>
 						</div>
 						<div class="form-group">
-							<label>Description</label>
+							<label>Section 1 Description</label>
 							<textarea class="form-control" name="description" placeholder="Enter Description" required></textarea>
 						</div>
                         <div class="form-group">
-                            <label>Upload Image</label>
+                            <label>Section 1 Upload Image</label>
                             <input class="form-control" type="file" name="image">
                         </div>
+
+                        <div class="form-group">
+							<label>Section 2 Description</label>
+							<textarea class="form-control" name="description2" placeholder="Enter Description" required></textarea>
+						</div>
+                        <div class="form-group">
+                            <label>Section 2 Upload Image</label>
+                            <input class="form-control" type="file" name="image2">
+                        </div>
+
+                        <div class="form-group">
+							<label>Section 3 Description</label>
+							<textarea class="form-control" name="description3" placeholder="Enter Description" required></textarea>
+						</div>
+                        <div class="form-group">
+                            <label>Section 3 Upload Image</label>
+                            <input class="form-control" type="file" name="image3">
+                        </div>
+
+
+
+
+
+
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

@@ -19,7 +19,7 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
                         <li class="breadcrumb-item active" aria-current="page">Contact us</li>
                     </ol>
                 </div><!-- End .container -->
@@ -42,7 +42,7 @@
                 						<ul class="contact-list">
                 							<li>
                 								<i class="icon-phone"></i>
-                								<a href="tel:#">+63 965 655 321</a>
+                								<a href="tel:#">+63 956 500 9978</a>
                 							</li>
                 							<li>
                 								<i class="icon-envelope"></i>
