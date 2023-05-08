@@ -264,6 +264,13 @@ $rec = getAllUser();
                                                         <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number']; ?>" readonly>
                                                     </div>
                                                 </div>
+                                
+                                                <div class="form-group row">
+                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">IMAGE</label>
+                                                    <div class="col-sm-8">
+                                                    <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" style="height:152px;width:298px;">
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">DATE PAID</label>
