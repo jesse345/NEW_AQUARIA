@@ -49,14 +49,14 @@
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
 
-            <div class="page-content">
+            <div class="page-content" style="margin-left:20%;">
                 <div class="container">
                 	<div class="row">
                         <?php
                         $get = getManual('fish_manual',$_GET['manual_id']);
                         while($manual = mysqli_fetch_assoc($get)):
                             ?>
-                                <div class="col-lg-12">
+                                <div class="col-lg-8">
                                     <article class="entry single-entry">
                                         <figure class="entry-media">
                                             <img src="../img/<?php echo $manual['manual_img']?>" class="img-responsive">
@@ -91,17 +91,38 @@
                                         </div><!-- End .entry-body -->
                                     </article><!-- End .entry -->
 
-                                    <nav class="pager-nav" aria-label="Page navigation">
-                                        <a class="pager-link pager-link-prev" href="#" aria-label="Previous" tabindex="-1">
-                                            Previous Post
-                                            
-                                        </a>
 
-                                        <a class="pager-link pager-link-next" href="#" aria-label="Next" tabindex="-1">
-                                            Next Post
-                                            
-                                        </a>
-                                    </nav><!-- End .pager-nav -->
+                                    <?php 
+                                    $manual_id = $_GET['manual_id'];
+                                    if($manual_id == '1'){
+                                        ?>
+                                        <nav class="pager-nav" aria-label="Page navigation">
+                                            <a class="pager-link pager-link-prev " href="#" aria-label="Previous" tabindex="-1" style="visibility: hidden;">
+                                                Previous Post
+                                            </a>
+
+                                            <a class="pager-link pager-link-next" href="#" aria-label="Next" tabindex="-1">
+                                                Next Post
+                                                
+                                            </a>
+                                        </nav>
+                                    <?php }else{ 
+                                         $previous = $manual_id - 1;
+                                         $next = $manual_id + 1;
+                                        
+                                    ?>
+                                            <nav class="pager-nav" aria-label="Page navigation">
+                                                <a class="pager-link pager-link-prev " href="fishManualContent.php?manual_id=<?php echo $previous ?>" aria-label="Previous" tabindex="-1">
+                                                    Previous Post
+                                                </a>
+
+                                                <a class="pager-link pager-link-next" href="fishManualContent.php?manual_id=<?php echo $next ?>" aria-label="Next" tabindex="-1">
+                                                    Next Post
+                                                    
+                                                </a>
+                                        </nav>
+
+                                    <?php } ?>
                                 </div><!-- End .col-lg-9 -->
                             <?php endwhile; ?>
                 			</div><!-- End .sidebar sidebar-shop -->
