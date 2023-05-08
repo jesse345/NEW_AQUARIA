@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST['add'])) {
 	$admin_id = $_SESSION["admin_id"];
 	$title = $_POST['title'];
-	$description = $_POST['description'];
+	$description = $_POST['description1'];
 	$description2 = $_POST['description2'];
 	$description3 = $_POST['description3'];
 	$img = $_FILES['image']['name'];
@@ -87,7 +87,7 @@ if (isset($_POST['add'])) {
 
 				edit_Record('fish_manual',
 				array('manual_id','title','description','manual_img','description1','manual_img1','description2','manual_img2'),
-				array($id,$title,$description,$img1,$description2,$img2,$description3,$img3));
+				array($id,$title,$description1,$img1,$description2,$img2,$description3,$img3));
 				echo "<script>
 					alert('Edited successfully.');
 					window.location.href='../Pages/fishmanual.php';
@@ -107,7 +107,7 @@ if (isset($_POST['add'])) {
 	} else { 
 		edit_Record('fish_manual',
 				array('manual_id','title','description','description1','description2'),
-				array($id,$title,$description,$description2,$description3));
+				array($id,$title,$description1,$description2,$description3));
 		
 		echo "<script>
 			alert('Edited successfully.');

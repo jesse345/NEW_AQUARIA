@@ -30,10 +30,10 @@
 
 <body>
 <?php 
-        include("../Includes/header.inc.php"); 
-        $id = $_SESSION['id'];
-        ?>
-        <div class="page-wrapper">
+    include("../Includes/header.inc.php"); 
+    $id = $_SESSION['id'];
+?>
+ <div class="page-wrapper">
         <main class="main">
             <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
                     <div class="container">
@@ -44,7 +44,7 @@
                     <div class="container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Fish Manual</li>
+                            <li class="breadcrumb-item active" aria-current="page">Fish Manual Content</li>
                         </ol>
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
@@ -52,44 +52,58 @@
             <div class="page-content">
                 <div class="container">
                 	<div class="row">
-                    <?php
-                    $get = getManual('fish_manual',$_GET['manual_id']);
-                    while($manual = mysqli_fetch_assoc($get)):
-                        ?>
-                		<div class="col-lg-12">
-                            <article class="entry single-entry">
-                                <figure class="entry-media">
-                                    <img src="../admin/img/<?php echo $manual['manual_img']?>">
-                                </figure><!-- End .entry-media -->
+                        <?php
+                        $get = getManual('fish_manual',$_GET['manual_id']);
+                        while($manual = mysqli_fetch_assoc($get)):
+                            ?>
+                                <div class="col-lg-12">
+                                    <article class="entry single-entry">
+                                        <figure class="entry-media">
+                                            <img src="../img/<?php echo $manual['manual_img']?>" class="img-responsive">
+                                        </figure><!-- End .entry-media -->
 
-                                <div class="entry-body">
+                                        <div class="entry-body">
 
-                                    <h2 class="entry-title mb-5">
-                                        <?php echo $manual['title']?>
-                                    </h2><!-- End .entry-title -->
-                                    
-                                    <div class="entry-content editor-content">
-                                        <?php echo $manual['description']?>
-                                    </div>
+                                            <h1><?php echo $manual['title']?></h1><br />
+                                            
+                                            <div class="entry-content editor-content">
+                                                
+                                            <p><?php echo $manual['description']?>.</p><br />
 
-                                    <div class="entry-footer row no-gutters flex-column flex-md-row">
-                                    </div><!-- End .entry-footer row no-gutters -->
-                                </div><!-- End .entry-body -->
-                            </article><!-- End .entry -->
+                                            
 
-                            <nav class="pager-nav" aria-label="Page navigation">
-                                <a class="pager-link pager-link-prev" href="#" aria-label="Previous" tabindex="-1">
-                                    Previous Post
-                                    <span class="pager-link-title">Cras iaculis ultricies nulla</span>
-                                </a>
+                                            
+                                            <img src="../img/<?php echo $manual['manual_img1']?>" style="width: 100%;">
 
-                                <a class="pager-link pager-link-next" href="#" aria-label="Next" tabindex="-1">
-                                    Next Post
-                                    <span class="pager-link-title">Praesent placerat risus</span>
-                                </a>
-                            </nav><!-- End .pager-nav -->
-                		</div><!-- End .col-lg-9 -->
-                    <?php endwhile; ?>
+                                            <p><b><?php echo $manual['description1']?>.</p><br />
+
+                                           
+                                            <img src="../img/<?php echo $manual['manual_img2']?>" style="width: 100%;"><br />
+
+                                            
+                                            <p><?php echo $manual['description2']?>.<br />
+
+                                            
+                                            
+
+                                            <div class="entry-footer row no-gutters flex-column flex-md-row">
+                                            </div><!-- End .entry-footer row no-gutters -->
+                                        </div><!-- End .entry-body -->
+                                    </article><!-- End .entry -->
+
+                                    <nav class="pager-nav" aria-label="Page navigation">
+                                        <a class="pager-link pager-link-prev" href="#" aria-label="Previous" tabindex="-1">
+                                            Previous Post
+                                            
+                                        </a>
+
+                                        <a class="pager-link pager-link-next" href="#" aria-label="Next" tabindex="-1">
+                                            Next Post
+                                            
+                                        </a>
+                                    </nav><!-- End .pager-nav -->
+                                </div><!-- End .col-lg-9 -->
+                            <?php endwhile; ?>
                 			</div><!-- End .sidebar sidebar-shop -->
                 		</aside><!-- End .col-lg-3 -->
                 	</div><!-- End .row -->
@@ -123,13 +137,13 @@
     </div><!-- End .mobile-menu-container -->
 
     <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/superfish.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/superfish.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
