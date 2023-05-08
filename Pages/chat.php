@@ -164,6 +164,7 @@ if (!isset($_SESSION['id'])) {
                             if(!empty($chats)){
                                 foreach($chats as $chat){  
                                     if($chat['from_id'] == $_SESSION['id']){ 
+                                        
                                         ?>  
                                         <div class="d-flex justify-content-end">
                                             <p class="small float-right"><?php echo ucfirst($user['first_name']).' '.ucfirst($user['last_name'])?></p>
@@ -172,14 +173,15 @@ if (!isset($_SESSION['id'])) {
                                             <div>
                                                 <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?> </p>
                                             </div>
-                                            <img src="../img/<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="<?php echo $user['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                         </div>
                                     <?php }else{ ?>
+
                                         <div class="d-flex justify-content-start">
                                             <p class="small mb-1"><?php echo ucfirst($chatWith['first_name']).' '.ucfirst($chatWith['last_name'])?></p>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <img src="../img/<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <img src="<?php echo $chatWith['user_img']?>" alt="avatar 1" style="width: 45px; height: 100%;">
                                             <div>
                                                 <p class="small p-2 ms-3 mb-3 text-white rounded-3 bg-primary"><?php echo $chat['message']?>
                                             </div>
@@ -333,5 +335,7 @@ if (!isset($_SESSION['id'])) {
     overflow-y:scroll;
     height:65vh;
     
+    display: flex;
+    flex-direction: column-reverse;
 }
 </style>

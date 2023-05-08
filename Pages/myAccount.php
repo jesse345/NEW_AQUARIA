@@ -6,6 +6,8 @@
 
 <head>
     <?php include("../Includes/head.inc.php") ?>
+    <link rel="stylesheet" href="../css/acc.css">
+   
 </head>
 
 <body>
@@ -85,31 +87,41 @@
                                 <div class="tab-content">
 
                                     <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                        <form action="../Controller/myAccountController.php">
+                                        <form action="../Controller/UsersController.php" method="POST" enctype="multipart/form-data">
+                                        <div class="form-element">
+                                                        <input type="file" id="file-3" name="image" accept="image/*" required>
+                                                        <label for="file-3" id="file-3-preview">
+                                                            <img src="<?php echo $user['user_img']?>" >
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label>First Name</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)">
+                                                    <input type="text" name="first_name" class="form-control" value="<?php echo ucfirst($user['first_name']) ?>" onkeypress="return isNotNumber(event)">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label>Last Name</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)">
+                                                    <input type="text" name="last_name" class="form-control" value="<?php echo ucfirst($user['last_name']) ?>" onkeypress="return isNotNumber(event)">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Middle Initial</label>
+                                                    <input type="text" name="mi" class="form-control" value="<?php echo ucfirst($user['mi']) ?>" onkeypress="return isNotNumber(event)">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label>Email</label>
-                                                    <input type="text" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>">
+                                                    <input type="text" name="email" class="form-control" value="<?php echo ucfirst($users['email_address']) ?>" disabled>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label>Upload Profile Image</label>
-                                                    <input type="file" class="form-control" name="image">
-                                                </div>
+                                               
                                                 <?php
 
 
                                                 ?>
                                                 <div class="col-sm-6">
                                                     <label>Username</label>
-                                                    <input type="text" class="form-control" value="<?php echo $users['username'] ?>">
+                                                    <input type="text" class="form-control" value="<?php echo $users['username'] ?>" disabled>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label>Password</label>
@@ -121,7 +133,7 @@
                                                 </div>
 
                                             </div>
-                                            <button type="submit" class="btn btn-outline-primary-2" name="UPDATE">
+                                            <button type="submit" class="btn btn-outline-primary-2" name="editAccount">
                                                 <span>UPDATE</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
@@ -206,6 +218,7 @@
         }
     </script>
     <script src="../JS/changePassword.js"></script>
+    <script src="../js/acc.js"></script>
 </body>
 
 
