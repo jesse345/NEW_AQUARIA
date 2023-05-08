@@ -123,7 +123,7 @@ if (isset($_SESSION['id'])) {
                                                     <a href="product-lists.php?category=Color Enhancer">Color Enhancer</a>
                                                 </li>
                                                 <li>
-                                                    <a href="pproduct-lists.php?category=Medications">Medications</a>
+                                                    <a href="product-lists.php?category=Medications">Medications</a>
                                                 </li>
                                             </ul>
                                         </div>
