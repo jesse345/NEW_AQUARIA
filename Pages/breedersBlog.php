@@ -42,6 +42,7 @@
                 </script>
             ";
         }
+        $id = $_SESSION['id'];
        
        
         ?>
