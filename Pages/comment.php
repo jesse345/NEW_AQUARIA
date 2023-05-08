@@ -116,7 +116,7 @@ $comment_count = count($rowsComment);
 
                             <div class="reply">
                                 <div class="heading">
-                                    <h3 class="title">Leave A Comment</h3><!-- End .title -->
+                                    <h3 class="title">Leave A Comment</h3><!-- End .title -->   
                                 </div>
 
                                 <form method="POST" id="comment_form">
@@ -271,6 +271,7 @@ $comment_count = count($rowsComment);
         $(document).ready(function() {
 
             var breedersblog_id = '<?php echo $_GET['breedersblog_id'] ?>';
+            var user_id = $('input[name="user_id"]').val();
     
             $('#comment_form').on('submit', function(event) {
                 event.preventDefault();
@@ -294,8 +295,8 @@ $comment_count = count($rowsComment);
 
             function load_comment() {
                 $.ajax({
-                    url: "../Controller/fetchCommentController.php?id=" + breedersblog_id,
-                    method: "POST",
+                    url: "../Controller/fetchCommentController.php?id=" + breedersblog_id + "&user_id=" + user_id,
+                    
                     success: function(data) {
                         $('#display_comment').html(data);
                     }

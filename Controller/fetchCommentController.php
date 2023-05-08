@@ -8,25 +8,19 @@
 
     <?php
     $connect = new PDO('mysql:host=localhost;dbname=eaquaria', 'root', '');
-    session_start();
-    
-    $userid = $_SESSION['id'];
-    
     $breedersblog_id = $_GET['id'];
-
     $query = "SELECT * FROM comment WHERE breedersblog_id = $breedersblog_id && parent_comment_id = '0'";
-    $query1 = "SELECT * FROM user_details WHERE user_id = $userid";
-
-    $statement1 = $connect->prepare($query1);
-    $statement1->execute();
-    $result1 = $statement1->fetchAll();
-
+    
     $statement = $connect->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
     $output = '';
 
     foreach($result as $row){
+        $query1 = "SELECT * FROM user_details WHERE user_id = '" . $row['user_id'] . "'";
+        $statement1 = $connect->prepare($query1);
+        $statement1->execute();
+        $result1 = $statement1->fetchAll();
         foreach($result1 as $row1){
             $output .= '
                     <li>
@@ -57,7 +51,7 @@
     echo $output;
 
     function get_reply_comment($connect, $parent_id = 0, $marginleft = 0){
-        $userid = $_SESSION['id'];
+        $userid = $_GET['user_id'];
         $query1 = "SELECT * FROM user_details WHERE user_id = $userid";
         $statement1 = $connect->prepare($query1);
         $statement1->execute();
