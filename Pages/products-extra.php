@@ -47,6 +47,11 @@
                       <div class="row">
                         <div class="col-6 col-lg-3">
                           <figure class="product-media">
+                          <?php
+                      if (isset($_SESSION['id']) && $product["user_id"] == $_SESSION['id']) {
+                      ?>
+                        <span class="product-label label-new">Owned</span>
+                      <?php } ?>
                             <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                               <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
                             </a>
@@ -112,11 +117,18 @@
                                   <button type="submit" class="btn-product btn-cart w-100" name="removeCart" id="removeCart">
                                     <span>Remove From Cart</span>
                                   </button>
+                                <?php } else {
+                                if ($product["user_id"] == $_SESSION['id']) {
+                                ?>
+                                  <a href="manageProducts.php" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                    <span>Manage Product</span>
+                                  </a>
                                 <?php } else { ?>
-                                  <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
-                                    <span class="">Add To Cart</span>
+                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                    <span>Add to Cart</span>
                                   </button>
-                                <?php } ?>
+                              <?php  }
+                              } ?> 
                               <?php } else { ?>
                                 <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
                                   <span>Add To Cart</span>
