@@ -87,6 +87,22 @@
                                             <!-- Shopping cart table -->
                                             <div class="card border-0">
                                                 <div class="card-body border-0">
+                                                    <div>
+
+                                                        <?php $tp = countOrders($_SESSION['id']);
+
+                                                        ?>
+                                                        <p style="font-size: 1.5rem"> <b>Total Products Sold: </b> <span><?php echo mysqli_num_rows($tp) ?></span></p>
+                                                        <?php
+                                                        $ti = 0;
+                                                        while ($total = mysqli_fetch_assoc($tp)) {
+                                                            $cart = mysqli_fetch_assoc(getUser('carts', 'id', $total['cart_id']));
+                                                            $ti += $cart['total'];
+                                                        } ?>
+                                                        <p style="font-size: 1.5rem"> <b>Total Income: </b> <span>₱ <?php echo number_format($ti, 2) ?></span></p>
+
+
+                                                    </div>
                                                     <div class="table-responsive">
                                                         <!-- <div class="mb-1">
                                                             <a href="manageOrders.php" class="btn btn-primary mb-1" style="border-radius: 20px">All</a>
@@ -156,7 +172,7 @@
                                                                                 <div class="media align-items-center">
                                                                                     <img src="<?php echo $prod_det['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                                     <div class="media-body">
-                                                                                    <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
+                                                                                        <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
                                                                                             <?php echo $prod_det['product_name'] ?>
                                                                                         </a>
                                                                                         <small>
@@ -223,9 +239,9 @@
                                                                                             <br><br>
                                                                                             <!-- <input type="submit" name="shipProduct" value="Ship Product" class="btn btn-secondary"> -->
                                                                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ship<?php echo $order['id'] ?>">
-                                                                                        <span>Ship Product</span>
+                                                                                                <span>Ship Product</span>
 
-                                                                                    </button>
+                                                                                            </button>
                                                                                         </form>
 
                                                                                     <?php } else {
@@ -280,8 +296,8 @@
                                                                             </div>
                                                                         </div>
 
-                                                                         <!-- Modal -->
-                                                                         <div class="modal fade" id="declineOrder<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="declineOrder<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
                                                                                 <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
                                                                                     <div class="modal-content">
