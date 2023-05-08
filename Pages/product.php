@@ -91,14 +91,9 @@
 
                             ?>
                             <div class="col-md-6">
-                                <!-- <form action="products-extra.php?user_id=<?php echo $seller['user_id']?>" method="POST"> -->
-                                    <div class="product-details">
-                                        <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>" name="submit"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong>
-                                        <!-- <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong> -->
-                                        <!-- <strong> <?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></strong> -->
-
-                                    </div>
-                                <!-- </form> -->
+                                <div class="product-details">
+                                    <strong><a href="products-extra.php?user_id=<?php echo $seller['user_id']?>" name="submit"><?php echo ucfirst($seller['first_name']) . " " . ucfirst($seller['last_name'])   ?></a></strong>
+                                </div>
 
                            
                                 <div class="product-details product-details-centered">

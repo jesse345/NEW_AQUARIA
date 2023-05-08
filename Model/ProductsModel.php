@@ -56,8 +56,6 @@ function getAllUsersProduct($table_name, $fld, $val)
     return $data;
 }
 
-
-
 function getProductByCategory($category)
 {
     global $conn;
