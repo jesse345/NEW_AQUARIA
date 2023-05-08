@@ -13,13 +13,13 @@
 <body>
 
     <div class="page-wrapper-layout">
-        <?php include("../Layouts/header.layout.php"); 
-          if (!isset($_SESSION['id'])) {
+        <?php include("../Layouts/header.layout.php");
+        if (!isset($_SESSION['id'])) {
             echo "<script>
                 alert('Invalid Request. You need to login first');
                 window.location.href = '../'
             </script>";
-        }?>
+        } ?>
 
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -102,9 +102,9 @@
                                                                 <div class="media align-items-center">
                                                                     <img src="<?php echo $product['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                     <div class="media-body">
-                                                                    <a href="product.php?product_id=<?php echo $product['product_id'] ?>" class="d-block text-dark">
-                                                                                            <?php echo $product['product_name'] ?>
-                                                                                        </a>
+                                                                        <a href="product.php?product_id=<?php echo $product['product_id'] ?>" class="d-block text-dark">
+                                                                            <?php echo $product['product_name'] ?>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </td>

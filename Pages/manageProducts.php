@@ -109,7 +109,7 @@
                                                             echo "<p> Unli product post </p>";
                                                         }else if($sub_type['subscription_type'] == 1){
                                                             echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            echo "<p> You have ". $sub_type['number_of_products'] ." of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
+                                                            echo "<p> You have ". $sub_type['number_of_products'] ." of remaining products left to post. <a href='manageSubscription.php'>Manage Subscription!</a></p>";
 
                                                         }else if($sub_type['subscription_type'] == 2){
                                                             echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
