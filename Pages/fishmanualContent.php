@@ -33,7 +33,7 @@
         include("../Includes/header.inc.php"); 
         $id = $_SESSION['id'];
         ?>
- <div class="page-wrapper">
+        <div class="page-wrapper">
         <main class="main">
             <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
                     <div class="container">

@@ -63,6 +63,33 @@ $Record = getAllManual('fish_manual');
             </nav><!-- End .breadcrumb-nav -->
             <div class="page-content">
                 <div class="container">
+                        <article class="entry entry-list">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <figure class="entry-media">
+                                        <a href="single.html">
+                                            <img src="../assets/images/fishmanual/guppies.png" alt="image desc">
+                                        </a>
+                                    </figure><!-- End .entry-media -->
+                                </div><!-- End .col-md-4 -->
+
+                                <div class="col-md-8">
+                                    <div class="entry-body">
+                                        
+                                        <h2 class="entry-title mb-2">
+                                            <a href="staticmanual.php">Benefits of Keeping a Fish Aquarium At Home</a>
+                                        </h2><!-- End .entry-title -->
+                                        <div class="entry-content">
+                                            <p class="mb-3">In this guide, we explain how a fish hobby can help to keep you and your family healthy, as well as to improve your mental health.</p>
+                                            <a href="staticmanual.php" class="read-more">View more details</a>
+                                        </div><!-- End .entry-content -->
+                                    </div><!-- End .entry-body -->
+                                </div><!-- End .col-md-8 -->
+                            </div><!-- End .row -->
+                        </article><!-- End .entry -->
+                	<hr class="mb-5">
+                </div><!-- End .container -->
+                <div class="container">
                     <?php
                     while($r = mysqli_fetch_assoc($Record)):
                          ?>

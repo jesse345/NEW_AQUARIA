@@ -97,17 +97,13 @@
                                         <form action="#">
 
                                             <label>Full Name *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" onkeypress="return isNotNumber(event)" required>
+                                            <input type="text" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" onkeypress="return isNotNumber(event)" required>
 
                                             <label>Contact Number *</label>
-
-
-                                            <input type="text" class="form-control" placeholder="Contact Number" aria-label="contact" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" maxlength="11" required>
-
-
+                                            <input type="number" class="form-control" placeholder="Contact Number" aria-label="contact" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" maxlength="11" required>
 
                                             <label>Address *</label>
-                                            <input type="email" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
+                                            <input type="text" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
 
                                             <button type="submit" class="btn btn-outline-primary-2">
                                                 <span>SAVE CHANGES</span>
