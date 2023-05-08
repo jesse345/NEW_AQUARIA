@@ -1,3 +1,6 @@
+<?php
+include("../Model/db.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,10 @@
 
     <div class="page-wrapper-layout">
 
-        <?php include("../Layouts/header.layout.php") ?>
+        <?php 
+        include("../Layouts/header.layout.php");
+        $user = getUser('user_details', 'user_id', $_SESSION['id']);
+        ?>
 
         <main class="main">
 
@@ -182,12 +188,42 @@
 
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addAqua" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                            <?php
+                            while($u = mysqli_fetch_assoc($user)):
+                                ?>
+                                        <div class="modal fade" id="modal-addAqua" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
+                                    
 
 
 
@@ -275,7 +311,6 @@
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
                                                     *</span></label>
-
                                             <div class="form">
                                                 <div class="grid">
                                                     <div class="form-element">
@@ -307,12 +342,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
-
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
@@ -338,11 +369,38 @@
 
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addFish" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addFish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
                                 </form>
 
                                 <form id="form3" class="hidden form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
@@ -419,9 +477,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                     <div class="row justify-content-between text-left">
@@ -448,11 +503,37 @@
                                     </div>
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addEC" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addEC" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
 
                                 <form id="form4" class="hidden form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
@@ -570,11 +651,37 @@
                                     </div>
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addPro" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addPro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
 
                                 <form id="form5" class="hidden form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
@@ -693,11 +800,37 @@
                                     </div>
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addVit" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addVit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
 
                                 <form id="form6" class="hidden form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
@@ -815,11 +948,37 @@
                                     </div>
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addCol" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addCol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
 
                                 <form id="form7" class="hidden form-card" action="../Controller/ProductsController.php" method="POST" enctype="multipart/form-data">
@@ -937,12 +1096,39 @@
                                     </div>
                                     <div class="row justify-content-end">
                                         <div class="form-group col-sm-4">
-                                            <button type="submit" name="addProduct" class="btn-block btn-primary">
+                                            <a href="#modal-addMed" class="btn-block btn-primary"  data-toggle="modal">
                                                 Add Product
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-addMed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Confirm your Gcash</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" style="padding:50px;">
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Name:</label>
+                                                            <input type="hidden" name="user_id" value="<?php echo $u['user_id']?>" >
+                                                            <input type="text" class="form-control" name="gname" value="<?php echo $u['gcash_name']?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label style="float:left">Gcash Number:</label>
+                                                            <input class="form-control" name="gnumber" value="<?php echo $u['gcash_number']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" name="addProduct">Save and Add Product</button>
+                                                    </div>                          
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
+                            <?php endwhile; ?>
 
                                 <div class="row justify-content-end">
                                     <div class="form-group col-sm-2">
@@ -975,7 +1161,8 @@
     <script src="../JS/addProduct.js">
 
     </script>
-
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
