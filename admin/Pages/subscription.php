@@ -268,7 +268,7 @@ $rec = getAllUser();
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">IMAGE</label>
                                                     <div class="col-sm-8">
-                                                    <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail" style="height:152px;width:298px;">
+                                                    <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail">
                                                     </div>
                                                 </div>
 
