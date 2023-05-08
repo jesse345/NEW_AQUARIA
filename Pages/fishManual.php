@@ -1,14 +1,7 @@
 <?php
 include("../Model/db.php");
-session_start();
-
-if (!isset($_SESSION['id'])) {
-    header("location:../Pages/index.php");
-}
 
 
-
-$Record = getAllManual('fish_manual');
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +38,8 @@ $Record = getAllManual('fish_manual');
         if(!isset($_SESSION['id'])){
             header("location:index.php");
         }
+        
+        $Record = getAllManual('fish_manual');
         ?>
 
         <main class="main">
