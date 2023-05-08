@@ -67,12 +67,30 @@ if (isset($_POST['editAccount'])) {
         echo "File is not an image.";
         $uploadOk = 0;
         echo '<script>alert("Failed!!!")</script>';
-    }
+    } 
+}
 
+if (isset($_POST['editGcash'])) {
+    $gcash_name = $_POST['gcash_name'];
+    $gcash_number = $_POST['gcash_number'];
 
-
-
-    
+    editUser(
+        'user_details',
+        array(
+            'user_id',
+            'gcash_number',
+            'gcash_name'
+        ),
+        array(
+            $_GET['user_id'],
+            $gcash_number,
+            $gcash_name,
+        )
+    );
+    echo "<script>
+            alert('Edit Successfully');
+            window.location.href='../Pages/gcash_info.php';
+        </script>";
 }
 
 //For Edit Account Info

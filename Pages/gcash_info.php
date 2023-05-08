@@ -20,19 +20,19 @@
         }
 
         $user = mysqli_fetch_assoc(getUser('user_details', 'user_id', $_SESSION['id']));
+        $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
+            <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
                 <div class="container">
-                    <h1 class="page-title text-white">Shipping Info</h1>
+                    <h1 class="page-title text-white">My Account</h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item"><a href="index.php">My Account</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shipping Info</li>
+                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -43,17 +43,14 @@
                         <div class="row">
                             <aside class="col-md-4 col-lg-2">
                                 <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-
                                     <li class="nav-item ">
-
                                         <a class="nav-link " href="myAccount.php">Account
                                             Details
                                         </a>
-
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link " href="gcash_info.php">Gcash Info
+                                        <a class="nav-link active " href="gcash_info.php">Gcash Info
                                         </a>
                                     </li>
 
@@ -69,8 +66,8 @@
                                         <a class="nav-link" href="myPurchase.php">My Purchase</a>
                                     </li>
 
-                                    <li class="nav-item active">
-                                        <a class="nav-link active" href="shippingAddress.php">Shipping Info</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="shippingAddress.php">Shipping Info</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -81,36 +78,23 @@
                                         <a class="nav-link" href="../includes/logout.php">Sign Out</a>
                                     </li>
                                 </ul>
-                            </aside><!-- End .col-lg-3 -->
-
+                            </aside>
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tab-account-info" role="tabpanel" aria-labelledby="tab-account-info-link">
+                                        <form action="../Controller/UsersController.php?user_id=<?php echo $user['user_id']?>" method="POST">
+                                            <label>Gcash Name</label>
+                                            <input type="text" name="gcash_name" class="form-control" value="<?php echo ucfirst($user['gcash_name']) ?>" required>
 
-                                    <div class="tab-pane fade show active" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
-                                        <p>The following info will be used on the checkout page by default.</p>
-
-                                        <?php
-                                        $shipping = mysqli_fetch_assoc(getUserShippingInfo($_SESSION['id']));
-                                        ?>
-                                        <form action="#">
-
-                                            <label>Full Name *</label>
-                                            <input type="text" class="form-control" value="<?php echo $shipping['shipping_name'] ?>" onkeypress="return isNotNumber(event)" required>
-
-                                            <label>Contact Number *</label>
-                                            <input type="number" class="form-control" placeholder="Contact Number" aria-label="contact" name="shipping_contact" value="<?php echo $shipping['shipping_contact'] ?>" maxlength="11" required>
-
-                                            <label>Address *</label>
-                                            <input type="text" class="form-control" value="<?php echo $shipping['shipping_address'] ?>" required>
-
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SAVE CHANGES</span>
+                                            <label>Gcash Number </label>
+                                            <input type="number" name="gcash_number" class="form-control" value="<?php echo ucfirst($user['gcash_number']) ?>" required>
+                                            
+                                            <button type="submit" name="editGcash" class="btn btn-outline-primary-2">
+                                                <span>EDIT GCASH INFO</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
                                         </form>
-
-
-                                    </div><!-- .End .tab-pane -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,8 +103,6 @@
             </div>
         </main><!-- End .main -->
         <?php
-
-
         include("../Includes/footer.inc.php");
         ?>
     </div>
@@ -130,19 +112,6 @@
     include("../Includes/mobileMenu.inc.php");
     include("../Includes/scripts.inc.php");
     ?>
-
-    <script>
-        function isNotNumber(event) {
-            // get the code of the pressed key
-            var charCode = (event.which) ? event.which : event.keyCode;
-            // if the pressed key is a number, prevent it from being entered
-            if (charCode >= 48 && charCode <= 57) {
-                event.preventDefault();
-                return false;
-            }
-            return true;
-        }
-    </script>
 </body>
 
 

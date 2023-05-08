@@ -37,6 +37,28 @@ function getUser($table_name, $field, $value)
     return $data;
 }
 
+function getGcash($table_name, $field, $value)
+{
+    global $conn;
+    connect();
+    $query = "SELECT * FROM `$table_name` WHERE `$field` = '$value'";
+    $data = mysqli_query($conn, $query);
+
+    disconnect();
+    return $data;
+}
+
+function editGcash($table_name, $field, $value, $user_id)
+{
+    global $conn;
+    connect();
+    $query = "UPDATE `$table_name` SET `$field` = '$value' WHERE user_id = $user_id";
+    $data = mysqli_query($conn, $query);
+
+    disconnect();
+    return $data;
+}
+
 function editUser($table_name, $fields, $values)
 {
     global $conn;
@@ -46,6 +68,7 @@ function editUser($table_name, $fields, $values)
         $data = mysqli_query($conn, $query);
     }
     disconnect();
+    return $data;
 }
 function changePass($new_pass,$id){
     global $conn;
