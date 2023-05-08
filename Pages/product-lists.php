@@ -107,7 +107,12 @@
               <?php if (!isset($_GET['search'])) { ?>
                 <div class="products mb-3">
                   <?php
+
+                  if(isset($_GET['category'])){
+                    $products = getProductByCategory($_GET['category']);
+                  }else{
                   $products = getAllProduct('products');
+                  }
                   while ($product = mysqli_fetch_assoc($products)) {
                     $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $product['id']));
                     $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);

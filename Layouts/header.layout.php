@@ -104,26 +104,26 @@ if (isset($_SESSION['id'])) {
                                             <ul>
 
                                                 <li>
-                                                    <a href="product-centered.html">Aquarium</a>
+                                                    <a href="product-lists.php?category=Aquarium">Aquarium</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="product-gallery.html">Fishes</a>
+                                                    <a href="product-lists.php?category=Fishes">Fishes</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-sticky.html">Equipment & Accessories</a>
+                                                    <a href="product-lists.php?category=Equipment & Accessories">Equipment & Accessories</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-sidebar.html">Probiotics</a>
+                                                    <a href="product-lists.php?category=Probiotics">Probiotics</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-fullwidth.html">Vitamins</a>
+                                                    <a href="product-lists.php?category=Vitamins">Vitamins</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-masonry.html">Color Enhancer</a>
+                                                    <a href="product-lists.php?category=Color Enhancer">Color Enhancer</a>
                                                 </li>
                                                 <li>
-                                                    <a href="product-masonry.html">Medications</a>
+                                                    <a href="pproduct-lists.php?category=Medications">Medications</a>
                                                 </li>
                                             </ul>
                                         </div>
