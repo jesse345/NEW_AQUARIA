@@ -35,10 +35,15 @@
         <?php 
         include("../Includes/header.inc.php"); 
         if(!isset($_SESSION['id'])){
-            header("location:../Pages/index.php");
+            echo"
+                <script>
+                    alert('Invalid Request! Login First');
+                    window.location.href = 'index.php';
+                </script>
+            ";
         }
        
-        $id = $_SESSION['id'];
+       
         ?>
         
         <main class="main">

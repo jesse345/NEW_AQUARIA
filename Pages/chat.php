@@ -3,8 +3,14 @@ include '../Model/dbPDO.php';
 session_start();
 
 
-if (!isset($_SESSION['id'])) {
-    header("location:../Pages/index.php");
+    if(!isset($_SESSION['id'])){
+        echo"
+            <script>
+                alert('Invalid Request! Login First');
+                window.location.href = 'index.php';
+            </script>
+        ";
+    
 }else{
     if(!empty($_GET['user'])){
         $chatWith = getUser($_GET['user'], $connection);

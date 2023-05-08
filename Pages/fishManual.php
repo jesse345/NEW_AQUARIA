@@ -37,8 +37,14 @@ include("../Model/db.php");
         <?php 
         include("../Includes/header.inc.php"); 
         if(!isset($_SESSION['id'])){
-            header("location:index.php");
-        }
+            echo"
+                <script>
+                    alert('Invalid Request! Login First');
+                    window.location.href = 'index.php';
+                </script>
+            ";
+        
+    }
         
         $Record = getAllManual('fish_manual');
         ?>

@@ -179,7 +179,7 @@
                                                                                         class="d-block ui-w-40 ui-bordered mr-4"
                                                                                         alt="">
                                                                                     <div class="media-body">
-                                                                                        <a href="#" class="d-block text-dark">
+                                                                                        <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
                                                                                             <?php echo $prod_det['product_name'] ?>
                                                                                         </a>
                                                                                         <small>
