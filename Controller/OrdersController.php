@@ -90,6 +90,7 @@ if (isset($_SESSION['id'])) {
         $address = $_POST['shipping_address'];
 
         $seller = $_POST['seller'];
+        $option = $_POST['payment_option'];
 
         $n = 10;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -111,7 +112,7 @@ if (isset($_SESSION['id'])) {
             $check = getUserOrders('orders', 'ref_order', $randomString);
         } while (mysqli_num_rows($check) > 0);
 
-        $order_flds = array('ref_order','cart_id' ,'user_id', 'product_id', 'date_created', 'status', 'seller', 'isPayed');
+        $order_flds = array('ref_order','cart_id' ,'user_id', 'product_id', 'date_created', 'status', 'seller', 'isPayed','payment_option');
         $order_details_flds = array('order_id', 'name', 'contact_number', 'shipping_address');
         $order_details_val = array($name, $contact, $address);
         while ($ord = mysqli_fetch_assoc($order_product)) {
@@ -119,7 +120,7 @@ if (isset($_SESSION['id'])) {
             insertOrders(
                 'orders',
                 $order_flds,
-                array($randomString, $ord['id'], $user_id, $ord['product_id'], $date, 'Pending', $seller['user_id'], "No"),
+                array($randomString, $ord['id'], $user_id, $ord['product_id'], $date, 'Pending', $seller['user_id'], "No",$option),
                 'order_details',
                 $order_details_flds,
                 $order_details_val

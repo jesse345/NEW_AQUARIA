@@ -15,7 +15,7 @@ if (empty($_SESSION['id'])) {
         $product_id = $_POST['product_id'];
 
         $seller = mysqli_fetch_assoc(getProduct('products', 'id', $product_id));
-        $quantity = $_POST['quantity'];
+        $quantity = $_POST['quantity'] > 0 ? $_POST['quantity'] : 1;
         $user_id = $_SESSION['id'];
         $price = $_POST['price'];
         $total = $quantity * $price;
