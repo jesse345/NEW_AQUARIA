@@ -166,7 +166,11 @@ if (!empty($_SESSION['id'])) {
 
 
         deleteProduct($product_id);
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo "<script>
+            alert('Deleted Successfully');
+            window.location.href='../Pages/breedersblog.php';
+        </script>";
+        // header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
     // For Search Product
