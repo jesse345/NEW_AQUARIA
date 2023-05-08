@@ -176,8 +176,13 @@
                                                                                             <?php echo $prod_det['product_name'] ?>
                                                                                         </a>
                                                                                         <small>
-
+                                                                                            Payment Option: <?php echo $order['payment_option'] == 1 ? 'Pay On Delivery' : 'Online Payment' ?>
                                                                                         </small>
+                                                                                        <br>
+                                                                                        <small>
+                                                                                            Delivery Type: <?php echo $prod_det['shipping_type'] ?>
+                                                                                        </small>
+
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
