@@ -25,9 +25,9 @@
         $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                 <div class="container">
-                    <h1 class="page-title">Manage Subscription</h1>
+                    <h1 class="page-title text-white">Manage Subscription</h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">

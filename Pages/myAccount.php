@@ -24,7 +24,7 @@
         $users = mysqli_fetch_assoc(getUser('users', 'id', $_SESSION['id']));
         ?>
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
+            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                 <div class="container">
                     <h1 class="page-title text-white">My Account</h1>
                 </div><!-- End .container -->

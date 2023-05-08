@@ -35,7 +35,7 @@
 ?>
  <div class="page-wrapper">
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('../img/aq1.jpg')">
+            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                     <div class="container">
                         <h1 class="page-title" style="color:#fff;font-weight:700">E-Aquaria Fish Manual<span style="color:#fff;">Your Ultimate Bible for Fish Keeping</span></h1>
                     </div><!-- End .container -->
