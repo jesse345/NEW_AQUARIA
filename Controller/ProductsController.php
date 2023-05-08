@@ -4,7 +4,13 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 $date = date('Y-m-d H:i:s');
 if (!empty($_SESSION['id'])) {
+
     if (isset($_POST['addProduct'])) {
+        $user_id = $_SESSION['id'];
+        $gname = $_POST['gname'];
+        $num = $_POST['gnumber'];
+        
+        echo $user_id . $gname . $num;
 
         $isSubscribe = getUserSubscription($_SESSION['id']);
         if(mysqli_num_rows($isSubscribe) > 0){
@@ -14,6 +20,11 @@ if (!empty($_SESSION['id'])) {
             }
 
         }
+
+         editUser('user_details',
+                array('user_id','gcash_number','gcash_name'),
+                array($user_id,$num,$gname));
+
         // Temporary only
         $targetDir = "../img/"; // Set target directory
         $fileType = pathinfo($_FILES['image']['name'][0], PATHINFO_EXTENSION);
@@ -63,6 +74,7 @@ if (!empty($_SESSION['id'])) {
                 $user_det_fld,
                 $user_det_val
             );
+
 
             echo "<script>
             alert('$product_name Added successfully!');
@@ -269,11 +281,12 @@ if (!empty($_SESSION['id'])) {
             }
             $i++;
         }
-
         echo "<script>
                 alert('$product_name Added successfully!');
                 window.location.href = '../Pages/manageProducts.php';
             </script>";
+
+       
     } else {
         header("Location: ../");
     }
