@@ -2,9 +2,9 @@
 <html lang="en">
 
 
-<!-- molla/elements-blog-posts.html  22 Nov 2019 10:05:18 GMT -->
 <head>
-    <?php include("../Includes/head.inc.php") ?>
+    <?php include("../Includes/head.inc.php")
+    ?>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
     <style>

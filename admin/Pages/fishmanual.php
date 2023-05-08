@@ -158,7 +158,7 @@
                                             <th class="col-sm-1">Manual ID</th>
                                             <th class="col-sm-1">Admin ID</th>
                                             <th class="col-sm-2">Title</th>
-                                            <th class="col-sm-3">Decription</th>
+                                            <th class="col-sm-1" >Decription</th>
                                             <th class="col-sm-3">Image</th>
                                             <th class="col-sm-2">Action</th>
                                             
@@ -173,9 +173,9 @@
                                                     <td><?php echo $row['manual_id'];?></td>
                                                     <td><?php echo $row['admin_id'];?></td>
                                                     <td><?php echo $row['title'];?></td>
-                                                    <td><?php echo $row['description'];?></td>
+                                                    <td style="max-width: 750px;"><?php echo $row['description'];?></td>
                                                     <td> 
-                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                     </td>
                                                     <td>
                                                         <a href="#editManualModal<?php echo $row['manual_id']?>" class="edit" data-toggle="modal"><i class="material-icons text-warning" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -270,7 +270,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label">Image</label>
                                                                     <div class="col-sm-8">
-                                                                        <img src="../../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
+                                                                        <img src="../img/<?php echo $row['manual_img'];?>" class="img-thumbnail">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">

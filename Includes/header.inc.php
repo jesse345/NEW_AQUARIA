@@ -12,11 +12,11 @@ if (isset($_SESSION['id'])) {
         <div class="container">
             <div class="header-left">
                 <div class="mr-5">
-                    <a href="#">FAQ</a>
+                    <a href="../pages/faq.php">FAQ</a>
                 </div>
 
                 <div>
-                    <a href="#">PRIVACY POLICY</a>
+                    <a href="../pages/privacy.php">PRIVACY POLICY</a>
                 </div>
             </div>
             <!-- End .header-left -->

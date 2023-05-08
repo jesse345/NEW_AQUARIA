@@ -14,11 +14,11 @@ if (isset($_SESSION['id'])) {
         <div class="container">
             <div class="header-left">
                 <div class="mr-5">
-                    <a href="#">FAQ</a>
+                    <a href="../pages/faq.php">FAQ</a>
                 </div>
 
                 <div>
-                    <a href="#">PRIVACY POLICY</a>
+                    <a href="../pages/privacy.php">PRIVACY POLICY</a>
                 </div>
             </div>
             <!-- End .header-left -->
@@ -29,7 +29,7 @@ if (isset($_SESSION['id'])) {
                         <a href="#">Links</a>
                         <ul>
                             <li>
-                                <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
+                                <a href="tel:#"><i class="icon-phone"></i>Call: +63 956 500 9978</a>
                             </li>
                             <li><a href="../Pages/about.php">About Us</a></li>
                             <li><a href="../Pages/contact.php">Contact Us</a></li>
