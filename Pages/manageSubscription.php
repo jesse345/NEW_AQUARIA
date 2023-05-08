@@ -166,15 +166,24 @@
                                             <?php } else {
                                             // expireSubscription($_SESSION['id']);
                                             $p = getUserSubscription($_SESSION['id']);
-                                            if(mysqli_num_rows($p) > 0){
+                                            if (mysqli_num_rows($p) > 0) {
                                                 $pending = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
-                                            if ($pending['status'] == 'Pending') {
+                                                if ($pending['status'] == 'Pending') {
 
-                                                echo "<p class='text-danger'>
+                                                    echo "<p class='text-danger'>
                                                 Pending Subscription. Wait for the admin to approve your subscription
                                             </p>";
-                                            }} else {
-                                            ?>
+                                                } else { ?>
+                                                    <p class="text-danger">
+                                                        You are not a subscribed user.
+                                                    </p>
+                                                    <a href="subscription.php" class="btn btn-outline-primary-2">
+                                                        <span>Subscribe Now</span>
+                                                        <i class="icon-long-arrow-right"></i>
+                                                    </a>
+                                                <?php   }
+                                            } else {
+                                                ?>
 
                                                 <p class="text-danger">
                                                     You are not a subscribed user.

@@ -171,10 +171,10 @@
 
                             <form action="../Controller/CartsController.php" method="POST">
                               <?php if (isset($_SESSION['id'])) {
-                                $check = usersCart(
-                                  'carts',
-                                  array('user_id', 'product_id'),
-                                  array($_SESSION['id'], $prod_det['product_id'])
+                                $check =usersCarts(
+                                  $_SESSION['id'],
+                                  $prod_det['product_id'],
+                                  "No"
                                 ); ?>
                                 <input type="hidden" name="product_id" value="<?php echo $prod_det['product_id'] ?>">
 

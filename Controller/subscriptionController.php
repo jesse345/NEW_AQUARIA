@@ -19,13 +19,23 @@ if (isset($_POST['subscribe'])) {
 
     $img = $targetDir . basename($_FILES['receipt_img']['name']);
     move_uploaded_file($_FILES['receipt_img']['tmp_name'], $img);
+    $p = getUserSubscription($_SESSION['id']);
+    if(mysqli_num_rows($p) > 0){
 
+        $approve = mysqli_fetch_assoc($p);
 
-    createSubscription(
-        'subscription',
-        array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img', 'status'),
-        array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img, "Pending")
-    );
+        editUser('subscription',array('subscription_id','subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img', 'status'),
+        array($approve['subscription_id'],$subsciption_type, $type, $amount, $ref, $img, "Pending"));
+
+    }else{
+        createSubscription(
+            'subscription',
+            array('user_id', 'subscription_type', 'typeofpayment', 'amount', 'reference_number', 'receipt_img', 'status'),
+            array($_SESSION['id'], $subsciption_type, $type, $amount, $ref, $img, "Pending")
+        );
+    }
+
+    
 
 
 

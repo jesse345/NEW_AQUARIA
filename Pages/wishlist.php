@@ -85,10 +85,11 @@
                                         </td>
                                         <td class="action-col">
                                             <?php if ($product['quantity'] > 0) {
-                                                $check = usersCarts(
-                                                    $_SESSION['id'], $product['product_id'],
-                                                    "No"
-                                                );
+                                               $check =usersCarts(
+                                                $_SESSION['id'],
+                                                $product['product_id'],
+                                                "No"
+                                              );
                                                 ?>
                                                 <form action="../Controller/CartsController.php" method="POST">
                                                     <input type="hidden" name="product_id"
