@@ -189,7 +189,7 @@
                                         <!-- Modal -->
                                         <div class="modal fade" id="extend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
-                                                <form action="../Controller/subscriptionController.php" method="POST">
+                                                <form action="../Controller/subscriptionController.php" method="POST" enctype="multipart/form-data">
                                                     <input type="hidden" name="subscription_id" value="<?php echo $subscription['subscription_id'] ?>">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -201,6 +201,16 @@
 
                                                         <div class="modal-body p-5">
                                                             <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Gcash Name</label>
+                                                                    <input type="text" value="Essej Oredarap" class="form-control" readonly>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <label for="">Gcash Number</i> </label>
+                                                                    <input type="number" value="09922323212" class="form-control" readonly>
+                                                                </div>
+
+
                                                                 <div class="col-sm-12">
                                                                     <label for="">Number of Products <i>(5 PHP each quantity)</i> </label>
                                                                     <input type="number" id="quantity" name="number_of_products" class="form-control" oninput="validateInput(event)">

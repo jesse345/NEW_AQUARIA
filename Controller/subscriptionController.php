@@ -71,21 +71,55 @@ if (isset($_POST['subscribe'])) {
 } else if (isset($_POST['extend'])) {
     $subscription_id = $_POST['subscription_id'];
 
+    $check = getUser('subscription_extensions','subscription_id',$subscription_id);
+    if(mysqli_num_rows($check) > 0) {
+        $sub = mysqli_fetch_assoc($check);
+        if($sub['status'] == 'Pending'){
+            echo "<script>
+            alert('You have a pending subscription cannot be');
+            window.location.href = '../Pages/manageSubscription.php';
+             </script>";
+        }
+    }
     $quantity = $_POST['number_of_products'];
     $total = $_POST['amount'];
 
+    $targetDir = "../img/";
+    $target_file = $targetDir . basename($_FILES["receipt_img"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
     $ref = $_POST['reference_number'];
-    $receipt = $_POST['receipt_img'];
 
-    createSubscription(
-        'subscription_extensions',
-        array('subscription_id', 'number_of_products', 'amount', 'receipt', 'reference_number', 'status', 'date'),
-        array($subscription_id, $quantity, $total, $receipt, $ref, 'Pending', $date)
-    );
+    $check = getimagesize($_FILES["receipt_img"]["tmp_name"]);
+    if ($check !== false) {
+        $uploadOk = 1;
+        createSubscription(
+            'subscription_extensions',
+            array('subscription_id', 'number_of_products', 'amount', 'receipt', 'reference_number', 'status', 'date'),
+            array($subscription_id, $quantity, $total, $target_file, $ref, 'Pending', $date)
+        );
+        move_uploaded_file($_FILES['receipt_img']['tmp_name'], $target_file);
+       
+        echo "<script>
+        alert('Please wait for the admin to approve your extension.');
+        window.location.href = '../Pages/manageSubscription.php';
+         </script>";
+        
+    } else {
+      
+        $uploadOk = 0;
+        echo "<script>
+        alert('File is not an image!');
+        window.location.href = '../Pages/manageSubscription.php';
+         </script>";
+    }
+
+    
 
 
 
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+  
 } else if (isset($_POST['extend_approve'])) {
     $id = $_GET['id'];
 

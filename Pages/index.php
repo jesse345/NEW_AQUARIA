@@ -294,9 +294,9 @@ session_start();
             <div class="container intro-content text-center">
               <h3 class="intro-subtitle text-white">Don’t Miss</h3>
               <!-- End .h3 intro-subtitle -->
-              <h1 class="intro-title text-white">Mystery Deals</h1>
+              <h1 class="intro-title text-white">Fish Deals</h1>
               <!-- End .intro-title -->
-              <div class="intro-text text-white">Online Only</div>
+              <div class="intro-text text-white">Shop Online</div>
               <!-- End .intro-text -->
               <a href="product-lists.php" class="btn btn-primary">Discover NOW</a>
             </div>
@@ -313,11 +313,13 @@ session_start();
                   url(../assets/images/fish1.jpg);
               ">
             <div class="container intro-content text-center">
-              <h3 class="intro-subtitle text-white">Limited time only</h3>
+              <h3 class="intro-subtitle text-white">Best Quality Fish Needs</h3>
               <!-- End .h3 intro-subtitle -->
-              <h1 class="intro-title text-white">Treat your self</h1>
+              <h1 class="intro-title text-white">Treat your Fish</h1>
               <!-- End .intro-title -->
+
               <div class="intro-text text-white">Because you deserve it</div>
+
               <!-- End .intro-text -->
               <a href="product-lists.php" class="btn btn-primary">Shop NOW</a>
             </div>

@@ -26,8 +26,9 @@ if (isset($_POST['pay'])) {
             array('user_id', 'typeofpayment', 'receipt_img', 'amount', 'reference_no', 'date_created', 'order_id'),
             array($_SESSION['id'], $typeofpayment, $target_file, $amount, $reference_no, $date, $_GET['order_id'])
         );
+        move_uploaded_file($_FILES['receipt-img']['tmp_name'], $target_file);
         updateOrderPayment($_GET['order_id']);
-        echo '<script>alert("Success!!!")</script>';
+        echo '<script>alert s("Success!!!")</script>';
         header("Location: ../Pages/receipt.php?order_id=" . $_GET['order_id']);
     } else {
         echo "File is not an image.";

@@ -254,11 +254,15 @@
 
                                                                                 </form>
                                                                             <?php } else if ($order['status'] == 'received') { ?>
-                                                                                <button class="btn-success">
-                                                                                    <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
-                                                                                        View Receipt</a>
-                                                                                </button>
-                                                                                <br><br>
+                                                                                <?php if ($order['payment_option'] != 1) {  ?>
+                                                                                        <button class="btn-success">
+                                                                                            <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
+                                                                                                View Receipt</a>
+                                                                                        </button>
+                                                                                        <br><br>
+
+                                                                                    <?php } ?>
+                                                                                    
 
 
                                                                                 <a href="#review" data-toggle="modal" data-target="#exampleModal<?php echo $order['id'] ?>">
