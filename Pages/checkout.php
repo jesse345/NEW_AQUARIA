@@ -100,7 +100,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
                                             <label class="form-check-label pl-2" for="flexRadioDefault1">
-                                                Cash On Delivery
+                                                Pay On Delivery
                                             </label>
                                         </div>
                                         <div class="form-check">

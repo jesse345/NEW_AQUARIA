@@ -65,11 +65,11 @@ session_start();
         <div class="container-fluid">
           <div class="header-left text-white">
             <div class="mr-5">
-              <a href="#">FAQ</a>
+              <a href="faq.php">FAQ</a>
             </div>
 
             <div>
-              <a href="#">PRIVACY POLICY</a>
+              <a href="privacy.php">PRIVACY POLICY</a>
             </div>
             <!-- End .header-dropdown -->
           </div>
@@ -141,7 +141,7 @@ session_start();
             <nav class="main-nav">
               <ul class="menu sf-arrows">
                 <li class="megamenu-container active">
-                  <a href="index.html">Home</a>
+                  <a href="index.php">Home</a>
                 </li>
 
                 <li class="megamenu-container">
@@ -298,7 +298,7 @@ session_start();
               <!-- End .intro-title -->
               <div class="intro-text text-white">Online Only</div>
               <!-- End .intro-text -->
-              <a href="category.html" class="btn btn-primary">Discover NOW</a>
+              <a href="product-lists.php" class="btn btn-primary">Discover NOW</a>
             </div>
             <!-- End .intro-content -->
           </div>
@@ -317,9 +317,9 @@ session_start();
               <!-- End .h3 intro-subtitle -->
               <h1 class="intro-title text-white">Treat your self</h1>
               <!-- End .intro-title -->
-              <div class="intro-text text-white">Up to 50% off</div>
+              <div class="intro-text text-white">Because you deserve it</div>
               <!-- End .intro-text -->
-              <a href="category.html" class="btn btn-primary">Shop NOW</a>
+              <a href="product-lists.php" class="btn btn-primary">Shop NOW</a>
             </div>
             <!-- End .intro-content -->
           </div>
@@ -1353,7 +1353,7 @@ session_start();
         <!-- End .tab-content -->
 
         <div class="more-container text-center mt-1 mb-3">
-          <a href="#" class="btn btn-outline-primary-2 btn-round btn-more">Load more</a>
+          <a href="product-lists.php" class="btn btn-outline-primary-2 btn-round btn-more">Load more</a>
         </div>
         <!-- End .more-container -->
       </div>

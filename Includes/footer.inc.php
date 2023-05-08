@@ -37,10 +37,10 @@
                         <!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="about.html">About E-Aquaria</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="login.html">Log in</a></li>
+                            <li><a href="about.php">About E-Aquaria</a></li>
+                            <li><a href="faq.php">FAQ</a></li>
+                            <li><a href="contact.php">Contact us</a></li>
+                            <li><a href="login.php">Log in</a></li>
                         </ul>
                         <!-- End .widget-list -->
                     </div>
@@ -48,42 +48,7 @@
                 </div>
                 <!-- End .col-sm-4 col-lg-3 -->
 
-                <div class="col-sm-4 col-lg-2">
-                    <div class="widget">
-                        <h4 class="widget-title">Customer Service</h4>
-                        <!-- End .widget-title -->
-
-                        <ul class="widget-list">
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Money-back guarantee!</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Terms and conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                        <!-- End .widget-list -->
-                    </div>
-                    <!-- End .widget -->
-                </div>
-                <!-- End .col-sm-4 col-lg-3 -->
-
-                <div class="col-sm-4 col-lg-2">
-                    <div class="widget">
-                        <h4 class="widget-title">My Account</h4>
-                        <!-- End .widget-title -->
-
-                        <ul class="widget-list">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="cart.html">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
-                        </ul>
-                        <!-- End .widget-list -->
-                    </div>
-                    <!-- End .widget -->
-                </div>
-                <!-- End .col-sm-64 col-lg-3 -->
+               
             </div>
             <!-- End .row -->
         </div>
@@ -96,26 +61,19 @@
     <div class="footer-bottom">
         <div class="container">
             <p class="footer-copyright">
-                Copyright © 2019 Molla Store. All Rights Reserved.
+                Copyright © 2023 E- Aquaria. All Rights Reserved.
             </p>
             <!-- End .footer-copyright -->
             <ul class="footer-menu">
-                <li><a href="#">Terms Of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <!-- <li><a href="#">Terms Of Use</a></li> -->
+                <li><a href="../pages/privacy.php">Privacy Policy</a></li>
             </ul>
             <!-- End .footer-menu -->
             <div class="social-icons social-icons-color">
                 <span class="social-label">Social Media</span>
-                <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i
+                <a href="https://www.facebook.com/profile.php?id=100088179104777" class="social-icon social-facebook" title="Facebook" target="_blank"><i
                         class="icon-facebook-f"></i></a>
-                <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i
-                        class="icon-twitter"></i></a>
-                <a href="#" class="social-icon social-instagram" title="Instagram" target="_blank"><i
-                        class="icon-instagram"></i></a>
-                <a href="#" class="social-icon social-youtube" title="Youtube" target="_blank"><i
-                        class="icon-youtube"></i></a>
-                <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i
-                        class="icon-pinterest"></i></a>
+     
             </div>
             <!-- End .soial-icons -->
         </div>
