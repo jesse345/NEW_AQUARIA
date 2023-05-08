@@ -69,14 +69,13 @@
                                     <p>Considering these findings, it raises the question of whether you should consider owning a fish and whether they make good pets. This article delves into the ways in which cultivating a fish hobby can contribute to the overall health of you and your family, while also benefiting your mental well-being.</p>
 
                                     <h2 class="entry-title mb-3">The health benefits of maintaining a home fish aquarium are truly remarkable. If you have never contemplated fishkeeping as a hobby, here are the compelling reasons why you should give it a serious thought:</h2><br />
+                                    <img src="../assets/images/fishmanual/child.jpg">
 
                                     <p><b>1. Stress Reduction: </b>Watching fish swim in an aquarium has a calming effect on the mind and body, reducing stress levels and promoting relaxation. The gentle movements and vibrant colors of the fish can provide a soothing and tranquil environment.</p><br />
-                                    <img src="../assets/images/fishmanual/child.jpg"><br />
 
                                     <p><b>2. Blood Pressure and Heart Rate Regulation: </b>Studies have shown that observing fish in an aquarium can lead to a decrease in blood pressure and heart rate. This can be particularly beneficial for individuals with hypertension or cardiac conditions.</p><br />
                                     
                                     <p><b>3. Mood Enhancement: </b>The presence of an aquarium has been linked to improved mood and increased feelings of happiness. The serene and captivating nature of fish can uplift spirits and alleviate symptoms of anxiety and depression.</p><br />
-                                    <img src="../assets/images/fishmanual/happy.jpeg"><br />
 
                                     <p><b>4. Distraction and Mental Engagement: </b>Having an aquarium at home offers a visually captivating focal point, providing a healthy distraction from daily stressors. Observing the fish can also stimulate mental engagement and promote mindfulness.</p><br />
 
@@ -87,6 +86,7 @@
                                     <p><b>7. Connection and Companionship: </b>Owning a fish aquarium can foster a sense of connection and companionship. Taking care of the fish, observing their behavior, and interacting with them can provide a fulfilling and rewarding experience.</p><br />
 
                                     <p><b>8. Educational Value: </b>Aquariums offer a wonderful opportunity for learning about marine life and ecosystems. Exploring the different species of fish, their habitats, and their behaviors can expand knowledge and curiosity about the natural world.</p><br />
+                                    <img src="../assets/images/fishmanual/happy.jpeg" style="width: 100%;"><br />
 
                                     <h1>Why Keep Fish As Pets?</h1><br />
                                     <p>considering the indisputable advantages for your health that come with owning fish as companions, you might now be contemplating the idea of purchasing an aquarium.<br />
@@ -105,6 +105,24 @@
 
                                     <p><b>6. Decorative Value: </b> Fish tanks can add an aesthetically pleasing element to your home. They come in different sizes, shapes, and colors, and you can customize them with plants, rocks, and other decorations to create a unique and beautiful display.</p><br />
                                     </div>
+
+                                    <h1>Conclusion</h1><br />
+                                    <p><b>Now that you are well-informed about the various benefits of having fish as pets, it's important to know how to get started. <br /><br />
+
+                                    Begin by selecting the specific fish species you desire and familiarize yourself with their specific care requirements.
+
+                                    If you intend to keep multiple species together, conduct thorough research to ensure compatibility among the chosen fish.<br /><br />
+
+                                    - Determine the appropriate size of the tank based on the needs of the selected fish species.<br />
+
+                                    - Carefully consider the placement of the tank, ensuring that it fits in the desired location within your home.<br />
+
+                                    - After acquiring the tank, proceed to set it up and allow the filter to establish and mature for approximately ten days before introducing any fish.<br />
+
+                                    - Lastly, pay a visit to your local fish store and carefully choose the fish that align with your preferences and requirements.<br /><br />
+
+                                    In summary, armed with the knowledge of the numerous benefits associated with fish as pets, it's time to take practical steps such as selecting the desired fish species, understanding their care requirements, determining the tank size, finding an appropriate location, setting up the tank, and finally selecting your fish browse products <a href="product-lists.php">here!</a></p><br />
+                                    <img src="../assets/images/fishmanual/benefits.png">
 
                                     <div class="entry-footer row no-gutters flex-column flex-md-row">
                                     </div><!-- End .entry-footer row no-gutters -->
