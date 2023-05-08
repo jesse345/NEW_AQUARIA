@@ -64,7 +64,7 @@
                       </svg>
                     </a>
 
-                    <a href="product-2cols.php" class="btn-layout">
+                    <!-- <a href="product-2cols.php" class="btn-layout">
                       <svg width="10" height="10">
                         <rect x="0" y="0" width="4" height="4" />
                         <rect x="6" y="0" width="4" height="4" />
@@ -95,7 +95,7 @@
                         <rect x="12" y="6" width="4" height="4" />
                         <rect x="18" y="6" width="4" height="4" />
                       </svg>
-                    </a>
+                    </a> -->
                   </div>
                   <!-- End .toolbox-layout -->
                 </div>
@@ -121,6 +121,11 @@
                       <div class="row">
                         <div class="col-6 col-lg-3">
                           <figure class="product-media">
+                             <?php
+                      if (isset($_SESSION['id']) && $product["user_id"] == $_SESSION['id']) {
+                      ?>
+                        <span class="product-label label-new">Owned</span>
+                      <?php } ?>
                             <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>">
                               <img src="<?php echo $prod_det['product_img'] ?>" alt="Product image" class="product-image" style="height: 184px" />
                             </a>
@@ -183,14 +188,21 @@
                                 <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
 
                                 <?php if (mysqli_num_rows($check) > 0) { ?>
-                                  <button type="submit" class="btn-product btn-cart w-100" name="removeCart" id="removeCart">
+                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="removeCart" id="removeCart">
                                     <span>Remove From Cart</span>
                                   </button>
+                                <?php } else {
+                                if ($product["user_id"] == $_SESSION['id']) {
+                                ?>
+                                  <a href="manageProducts.php" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                    <span>Manage Product</span>
+                                  </a>
                                 <?php } else { ?>
-                                  <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
-                                    <span class="">Add To Cart</span>
+                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                    <span>Add to Cart</span>
                                   </button>
-                                <?php } ?>
+                              <?php  }
+                              } ?> 
                               <?php } else { ?>
                                 <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
                                   <span>Add To Cart</span>
