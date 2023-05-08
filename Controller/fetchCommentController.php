@@ -33,7 +33,7 @@
                         <div class="comment">
                             <figure class="comment-media">
                                 <a href="#">
-                                    <img src="../img/'.$row1['user_img'].'">
+                                    <img src="'.$row1['user_img'].'">
                                 </a>
                             </figure>
 
