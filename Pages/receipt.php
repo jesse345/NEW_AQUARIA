@@ -43,6 +43,8 @@
                                 $buyer = mysqli_fetch_assoc(getUser('user_details', 'user_id', $ord['user_id']))
                                 ?>
                                 <h4 class="summary-title">Reference No: <?php echo $ord['ref_order'] ?></h4>
+                                <h4 class="summary-title"><a href="#modal-addpost" class="btn btn-primary" data-toggle="modal">View proof of payment</a></h4>
+                               
                                 <h4 class="summary-title">Transaction Details:</h4>
                                 <p>
                                     Full Name: <?php echo ucfirst($buyer['first_name']) . " " .   ucfirst($buyer['last_name']); ?>
@@ -89,11 +91,40 @@
             </div>
 
         </main>
+        <?php $s = mysqli_fetch_assoc(getUser('payment','order_id',$ord['id']))?>
+        <div class="modal fade" id="modal-addpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">GCASH PAYMENT</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                        </button>
+                    </div>
+                    
+                        <div class="modal-body p-5">
+                            <div class="d-block">
+                                
+                                <div class="form-group">
+                                    <label class="form-label">PROOF OF PAYMENT</label>
+                                    <img src="<?php echo $s['receipt_img']?>" >
+                                </div>
+                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>
 
-
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
     function downloadImage() {

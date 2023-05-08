@@ -41,12 +41,35 @@ if (isset($_POST['editAccount'])) {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $mi = $_POST['mi'];
-    editUser(
-        'user_details',
-        array('user_id', 'first_name', 'last_name', 'mi'),
-        array($_GET['id'], $first_name, $last_name, $mi)
-    );
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+
+    $targetDir = "../img/";
+    $target_file = $targetDir . basename($_FILES["image"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if ($check !== false) {
+        $uploadOk = 1;
+        move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+
+        editUser(
+            'user_details',
+            array('user_id', 'first_name', 'last_name', 'mi','user_img'),
+            array($_SESSION['id'], $first_name, $last_name, $mi,$target_file)
+        );
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+        echo '<script>alert("Failed!!!")</script>';
+    }
+
+
+
+
+    
 }
 
 //For Edit Account Info

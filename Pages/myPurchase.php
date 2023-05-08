@@ -226,17 +226,17 @@
                                                                                 </div>
                                                                                 <br>
                                                                             <?php } else if ($order['status'] == 'Approved') { ?>
-                                                                                
-                                                                                    <?php 
-                                                                                     if ($order['payment_option'] == 1) { ?>
-                                                                                     <a href="../Pages/chat.php?user=<?php echo $order['seller'] ?>" class="btn btn-success">
-                                                                                    Chat</a>
-                                                                                        
-                                                                                  <?php  } else { ?>
-                                                                                    <a href="../Pages/choosePayment.php?order_id=<?php echo $order['id'] ?>" class="btn btn-success">
-                                                                                    Send Payment</a>
-                                                                                   <?php }
-                                                                                    ?>
+
+                                                                                <?php
+                                                                                if ($order['payment_option'] == 1) { ?>
+                                                                                    <a href="../Pages/chat.php?user=<?php echo $order['seller'] ?>" class="btn btn-success">
+                                                                                        Chat</a>
+
+                                                                                <?php  } else { ?>
+                                                                                    <a href="#modal-addpost<?php echo $order['id'] ?>" class="btn btn-success" data-toggle="modal">
+                                                                                        Send Payment</a>
+                                                                                <?php }
+                                                                                ?>
                                                                             <?php } else if ($order['status'] == 'Decline') {
                                                                                 echo "<p class='bg-danger rounded text-white'>Disapproved</p>";
                                                                             } else if ($order['status'] == 'deliver') { ?>
@@ -245,12 +245,12 @@
                                                                                     <input type="submit" name="productReceived" value="Receive Product" class=" btn-success">
                                                                                     <br> <br>
 
-                                                                                    <?php   if ($order['payment_option'] != 1) {  ?>
-                                                                                    <button class="btn-success">
-                                                                                        <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
-                                                                                            View Receipt</a>
-                                                                                    </button>
-                                                                                    <?php }?>
+                                                                                    <?php if ($order['payment_option'] != 1) {  ?>
+                                                                                        <button class="btn-success">
+                                                                                            <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
+                                                                                                View Receipt</a>
+                                                                                        </button>
+                                                                                    <?php } ?>
 
                                                                                 </form>
                                                                             <?php } else if ($order['status'] == 'received') { ?>
@@ -369,6 +369,53 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="modal fade" id="modal-addpost<?php echo $order['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title">GCASH PAYMENT</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <form method="post" action="../Controller/PaymentController.php?order_id=<?php echo $order['id'] ?>" enctype="multipart/form-data">
+                                                                                    <div class="modal-body p-5">
+                                                                                        <div class="d-block">
+                                                                                            <?php $s = mysqli_fetch_assoc(getUser('user_details','user_id',$order['seller']))?>
+                                                                                            <div class="form-group">
+                                                                                                <label class="form-label">Gcash Name</label>
+                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_name']?>" style="width: 100%;" readonly>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="form-label">Gcash Number</label>
+                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_number']?>" style="width: 100%;" readonly>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="form-label">Amount</label>
+                                                                                                <input type="text" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo '₱ ' . $cart['total'] ?>" disabled>
+                                                                                                <input type="number" class="form-control" name="amount" id="amount" style="width: 100%;" value="<?php echo $cart['total'] ?>" hidden>
+                                                                                                <input type="hidden" id="payment-gcash" name="payment-gcash" value="Gcash">
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="form-label">Reference No</label>
+                                                                                                <input type="number" class="form-control" name="reference-no" id="reference-no" placeholder="Enter Reference No" style="width: 100%;" maxlength="15">
+                                                                                            </div>
+                                                                                            <label class="form-label">Upload Receipt</label>
+                                                                                            <input class="form-control" type="file" name="receipt-img" id="receipt-img" multiple>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                        <button type="submit" class="btn btn-primary" name="pay" id="pay">Pay</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+
 
                                                             <?php }
                                                             } else {
@@ -458,6 +505,8 @@
     include("../Includes/mobileMenu.inc.php");
     include("../Includes/scripts.inc.php");
     ?>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 
