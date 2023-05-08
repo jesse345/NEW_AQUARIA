@@ -152,23 +152,23 @@
                                   <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
 
                                   <?php if (mysqli_num_rows($check) > 0) { ?>
-                                    <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="removeCart" id="removeCart">
+                                    <button type="submit" class="btn-product btn-cart w-100 " name="removeCart" id="removeCart">
                                       <span>Remove From Cart</span>
                                     </button>
                                     <?php } else {
                                     if ($product["user_id"] == $_SESSION['id']) {
                                     ?>
-                                      <a href="manageProducts.php" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                      <a href="manageProducts.php" class="btn-product btn-cart w-100 " name="addToCart">
                                         <span>Manage Product</span>
                                       </a>
                                     <?php } else { ?>
-                                      <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                      <button type="submit" class="btn-product btn-cart w-100 " name="addToCart">
                                         <span>Add to Cart</span>
                                       </button>
                                   <?php  }
                                   } ?>
                                 <?php } else { ?>
-                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
+                                  <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
                                     <span>Add To Cart</span>
                                   </button>
                                 <?php } ?>
@@ -308,23 +308,23 @@
                                     <input type="hidden" name="price" value="<?php echo $prod_det['price'] ?>">
 
                                     <?php if (mysqli_num_rows($check) > 0) { ?>
-                                      <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="removeCart" id="removeCart">
+                                      <button type="submit" class="btn-product btn-cart w-100 " name="removeCart" id="removeCart">
                                         <span>Remove From Cart</span>
                                       </button>
                                       <?php } else {
                                       if ($prod["user_id"] == $_SESSION['id']) {
                                       ?>
-                                        <a href="manageProducts.php" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                        <a href="manageProducts.php" class="btn-product btn-cart w-100 " name="addToCart">
                                           <span>Manage Product</span>
                                         </a>
                                       <?php } else { ?>
-                                        <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart">
+                                        <button type="submit" class="btn-product btn-cart w-100 " name="addToCart">
                                           <span>Add to Cart</span>
                                         </button>
                                     <?php  }
                                     } ?>
                                   <?php } else { ?>
-                                    <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
+                                    <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
                                       <span>Add To Cart</span>
                                     </button>
                                   <?php } ?>
@@ -480,7 +480,7 @@
                                     </button>
                                   <?php } ?>
                                 <?php } else { ?>
-                                  <button type="submit" class="btn-product btn-cart w-100 bg-transparent" name="addToCart" id="addToCart">
+                                  <button type="submit" class="btn-product btn-cart w-100 " name="addToCart" id="addToCart">
                                     <span>Add To Cart</span>
                                   </button>
                                 <?php } ?>
