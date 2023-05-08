@@ -165,13 +165,15 @@
                                             </div>
                                             <?php } else {
                                             // expireSubscription($_SESSION['id']);
-                                            $pending = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
+                                            $p = getUserSubscription($_SESSION['id']);
+                                            if(mysqli_num_rows($p) > 0){
+                                                $pending = mysqli_fetch_assoc(getUserSubscription($_SESSION['id']));
                                             if ($pending['status'] == 'Pending') {
 
                                                 echo "<p class='text-danger'>
                                                 Pending Subscription. Wait for the admin to approve your subscription
                                             </p>";
-                                            } else {
+                                            }} else {
                                             ?>
 
                                                 <p class="text-danger">
