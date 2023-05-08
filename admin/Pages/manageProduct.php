@@ -343,7 +343,7 @@ if (isset($_GET['search'])) {
                                     </div>
                             <?php }
                             } else {
-                                echo "<td colspan = 7>NO RECORD FOUND</td>";
+                                echo "<td colspan = 8>NO RECORD FOUND</td>";
                             }
                             ?>
                         </table>

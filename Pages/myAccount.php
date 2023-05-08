@@ -53,10 +53,10 @@
                                         </a>
                                     </li>
 
-                                    <!-- <li class="nav-item">
-                                        <a class="nav-link " href="accountInfo.php">Account Info
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="gcash_info.php">Gcash Info
                                         </a>
-                                    </li> -->
+                                    </li>
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="manageProducts.php">Manage My Products</a>
@@ -79,7 +79,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Sign Out</a>
+                                        <a class="nav-link" href="../includes/logout.php">Sign Out</a>
                                     </li>
                                 </ul>
                             </aside>

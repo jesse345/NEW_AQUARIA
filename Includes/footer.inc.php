@@ -10,22 +10,7 @@
                         E-Aquaria is an e-commerce platform that was created by a team of aspiring developers from the University of Cebu - Main Campus. The platform was designed to serve the needs of those who are interested in ornamental fish and fish care products. With its user-friendly interface and wide selection of products, E-Aquaria has become a popular online destination for fish enthusiasts in the Philippines and beyond.
                         </p>
 
-                        <div class="widget-about-info">
-                            <div class="row">
-                                <!-- End .col-sm-6 -->
-                                <div class="col-sm-6 col-md-8">
-                                    <span class="widget-about-title">Payment Method</span>
-                                    <figure class="footer-payments">
-                                        <img src="../assets/images/payments.png" alt="Payment methods" width="272"
-                                            height="20" />
-                                    </figure>
-                                    <!-- End .footer-payments -->
-                                </div>
-                                <!-- End .col-sm-6 -->
-                            </div>
-                            <!-- End .row -->
-                        </div>
-                        <!-- End .widget-about-info -->
+                        
                     </div>
                     <!-- End .widget about-widget -->
                 </div>
