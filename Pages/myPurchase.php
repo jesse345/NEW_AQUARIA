@@ -97,7 +97,7 @@
                                         <div class="card border-0">
                                             <div class="card-body border-0">
                                                 <div class="table-responsive">
-                                                    <div class="mb-1">
+                                                    <!-- <div class="mb-1">
                                                         <a href="myPurchase.php" class="btn btn-primary mb-1" style="border-radius: 20px">All</a>
                                                         <a href="myPurchase.php?type=Pending" class="btn btn-primary mb-1" style="border-radius: 20px">Pending</a>
                                                         <a href="myPurchase.php?type=Decline" class="btn btn-primary mb-1" style="border-radius: 20px">Decline</a>
@@ -105,7 +105,7 @@
                                                         <a href="myPurchase.php?type=paid" class="btn btn-primary mb-1" style="border-radius: 20px">To Pay</a>
                                                         <a href="myPurchase.php?type=deliver" class="btn btn-primary mb-1" style="border-radius: 20px">To Ship</a>
                                                         <a href="myPurchase.php?type=received" class="btn btn-primary mb-1" style="border-radius: 20px">Success</a>
-                                                    </div>
+                                                    </div> -->
                                                     <table class="table  m-0">
                                                         <thead>
                                                             <tr>
@@ -242,7 +242,11 @@
                                                                             } else if ($order['status'] == 'deliver') { ?>
 
                                                                                 <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
-                                                                                    <input type="submit" name="productReceived" value="Receive Product" class=" btn-success">
+                                                                                    <!-- <input type="submit" name="productReceived" value="Receive Product" class=" btn-success"> -->
+                                                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#received<?php echo $order['id'] ?>">
+                                                                                        <span>Receive Product</span>
+
+                                                                                    </button>
                                                                                     <br> <br>
 
                                                                                     <?php if ($order['payment_option'] != 1) {  ?>
@@ -255,14 +259,14 @@
                                                                                 </form>
                                                                             <?php } else if ($order['status'] == 'received') { ?>
                                                                                 <?php if ($order['payment_option'] != 1) {  ?>
-                                                                                        <button class="btn-success">
-                                                                                            <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
-                                                                                                View Receipt</a>
-                                                                                        </button>
-                                                                                        <br><br>
+                                                                                    <button class="btn-success">
+                                                                                        <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
+                                                                                            View Receipt</a>
+                                                                                    </button>
+                                                                                    <br><br>
 
-                                                                                    <?php } ?>
-                                                                                    
+                                                                                <?php } ?>
+
 
 
                                                                                 <a href="#review" data-toggle="modal" data-target="#exampleModal<?php echo $order['id'] ?>">
@@ -290,6 +294,26 @@
                                                                             ?>
                                                                         </td>
                                                                     </tr>
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="received<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                        <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Receive Product?</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                        <button type="submit" class="btn btn-primary" name="productReceived">Receive</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
 
                                                                     <div class="modal fade" id="exampleModal<?php echo $order['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -385,14 +409,14 @@
                                                                                 <form method="post" action="../Controller/PaymentController.php?order_id=<?php echo $order['id'] ?>" enctype="multipart/form-data">
                                                                                     <div class="modal-body p-5">
                                                                                         <div class="d-block">
-                                                                                            <?php $s = mysqli_fetch_assoc(getUser('user_details','user_id',$order['seller']))?>
+                                                                                            <?php $s = mysqli_fetch_assoc(getUser('user_details', 'user_id', $order['seller'])) ?>
                                                                                             <div class="form-group">
                                                                                                 <label class="form-label">Gcash Name</label>
-                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_name']?>" style="width: 100%;" readonly>
+                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_name'] ?>" style="width: 100%;" readonly>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <label class="form-label">Gcash Number</label>
-                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_number']?>" style="width: 100%;" readonly>
+                                                                                                <input type="text" class="form-control" value="<?php echo $s['gcash_number'] ?>" style="width: 100%;" readonly>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <label class="form-label">Amount</label>

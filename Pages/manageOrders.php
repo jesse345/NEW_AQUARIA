@@ -88,7 +88,7 @@
                                             <div class="card border-0">
                                                 <div class="card-body border-0">
                                                     <div class="table-responsive">
-                                                        <div class="mb-1">
+                                                        <!-- <div class="mb-1">
                                                             <a href="manageOrders.php" class="btn btn-primary mb-1" style="border-radius: 20px">All</a>
                                                             <a href="manageOrders.php?type=Pending" class="btn btn-primary mb-1" style="border-radius: 20px">Pending</a>
                                                             <a href="manageOrders.php?type=Decline" class="btn btn-primary mb-1" style="border-radius: 20px">Decline</a>
@@ -96,7 +96,7 @@
                                                             <a href="manageOrders.php?type=paid" class="btn btn-primary mb-1" style="border-radius: 20px">To Pay</a>
                                                             <a href="manageOrders.php?type=deliver" class="btn btn-primary mb-1" style="border-radius: 20px">To Ship</a>
                                                             <a href="manageOrders.php?type=received" class="btn btn-primary mb-1" style="border-radius: 20px">Success</a>
-                                                        </div>
+                                                        </div> -->
                                                         <table class="table  m-0">
                                                             <thead>
                                                                 <tr>
@@ -201,19 +201,31 @@
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php if ($order['status'] == 'Pending') { ?>
-                                                                                    <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                    <!-- <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
                                                                                         <input type="submit" name="acceptOrder" value="Accept Order" class="btn-success">
                                                                                         <input type="submit" name="declineOrder" value="Decline Order" class="btn-danger mt-1">
-                                                                                    </form>
+                                                                                    </form> -->
+                                                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptOrder<?php echo $order['id'] ?>">
+                                                                                        <span>Accept Order</span>
+
+                                                                                    </button>
+
+                                                                                    <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target="#declineOrder<?php echo $order['id'] ?>">
+                                                                                        <span>Decline Order</span>
+
+                                                                                    </button>
                                                                                     <?php } else if ($order['status'] == 'Approved') {
                                                                                     if ($order['payment_option'] == 1) { ?>
 
                                                                                         <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
                                                                                             <a href="../Pages/chat.php?user=<?php echo $order['user_id']; ?>" class="btn btn-success">
                                                                                                 Chat</a>
-                                                                                                <br><br>
-                                                                                            <input type="submit" name="shipProduct" value="Ship Product" class="btn btn-secondary">
+                                                                                            <br><br>
+                                                                                            <!-- <input type="submit" name="shipProduct" value="Ship Product" class="btn btn-secondary"> -->
+                                                                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ship<?php echo $order['id'] ?>">
+                                                                                        <span>Ship Product</span>
 
+                                                                                    </button>
                                                                                         </form>
 
                                                                                     <?php } else {
@@ -236,16 +248,81 @@
                                                                                         </button>
                                                                                     </form>
                                                                                 <?php } else if ($order['status'] == 'deliver' || $order['status'] == 'received') { ?>
-                                                                                    <?php   if ($order['payment_option'] != 1) { ?>
-                                                                                    <button class="btn-success">
-                                                                                        <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
-                                                                                            View Receipt</a>
-                                                                                    </button>
-                                                                                    <?php }?>
+                                                                                    <?php if ($order['payment_option'] != 1) { ?>
+                                                                                        <button class="btn-success">
+                                                                                            <a href="../Pages/receipt.php?order_id=<?php echo $order['id'] ?>" class="text-white">
+                                                                                                View Receipt</a>
+                                                                                        </button>
+                                                                                    <?php } ?>
 
                                                                                 <?php } ?>
                                                                             </td>
                                                                         </tr>
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="acceptOrder<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">Confirm Order?</h5>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                            <button type="submit" class="btn btn-primary" name="acceptOrder">Accept</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+
+                                                                         <!-- Modal -->
+                                                                         <div class="modal fade" id="declineOrder<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">Decline Order?</h5>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                            <button type="submit" class="btn btn-primary" name="declineOrder">Accept</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="ship<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <form action="../Controller/OrdersController.php?order_id=<?php echo $order['id'] ?>" method="POST">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">Ship Product?</h5>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                            <button type="submit" class="btn btn-primary" name="shipProduct">Ship</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+
+
                                                                 <?php }
                                                                 } else {
                                                                     echo "<td colspan=6>Empty Record... </td>";
