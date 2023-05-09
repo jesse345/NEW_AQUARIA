@@ -169,7 +169,7 @@ if (!empty($_SESSION['id'])) {
         deleteProduct($product_id);
         echo "<script>
             alert('Deleted Successfully');
-            window.location.href='../Pages/breedersblog.php';
+            window.location.href='../Pages/manageProducts.php';
         </script>";
         // header("Location: " . $_SERVER['HTTP_REFERER']);
     }
