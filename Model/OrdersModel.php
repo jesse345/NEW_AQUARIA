@@ -120,3 +120,13 @@ function getTypes($user, $id, $status)
     disconnect();
     return $query;
 }
+
+
+function countOrders($seller)
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT * FROM `orders` WHERE `seller` = $seller AND `status` = 'received' ");
+    disconnect();
+    return $query;
+}
