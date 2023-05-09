@@ -57,7 +57,7 @@ if (!empty($_SESSION['id'])) {
             "shipping_type"
         );
 
-        $user_det_val = array($product_name, $quantity, $description, $price, $img, $category);
+        $user_det_val = array($product_name, $quantity, $description, $price, $img, $category,$ship);
 
 
         if ($category == "Aquarium") {
