@@ -203,7 +203,7 @@ function getAllManual()
 	return $query;
 }
 
-function addFishManual($admin_id, $title, $description, $img, $description2,$img2,$description3,$img3)
+function addFishManual($admin_id, $title, $description, $img, $description2, $img2, $description3, $img3)
 {
 	global $conn;
 	connect();
@@ -280,10 +280,11 @@ function deleterecord($product_id)
 	disconnect();
 }
 
-function edit_Record($table,$fields,$values){
+function edit_Record($table, $fields, $values)
+{
 	global $conn;
 	connect();
-	for($i=1 ; $i < count($fields); $i++){
+	for ($i = 1; $i < count($fields); $i++) {
 		mysqli_query($conn, "UPDATE $table SET $fields[$i] = '$values[$i]'  WHERE $fields[0] = '$values[0]'");
 	}
 	disconnect();
@@ -431,6 +432,15 @@ function getAllSubscription($table_name)
 	return $query;
 }
 
+function getAllApprovedSubscription($table_name)
+{
+	global $conn;
+	connect();
+	$query = mysqli_query($conn, "SELECT * FROM $table_name WHERE `status` = 'Approved'");
+	disconnect();
+	return $query;
+}
+
 
 function approveSubscription($subsciption_id, $date_started, $date_end, $user_id)
 {
@@ -486,7 +496,7 @@ function getSubscribeUser($table_name, $fields, $values)
 {
 	global $conn;
 	connect();
-	$query = "SELECT * FROM $table_name WHERE $fields = $values ";
+	$query = "SELECT * FROM `$table_name` WHERE `$fields` = '$values' ";
 	$data = mysqli_query($conn, $query);
 	disconnect();
 	return $data;
