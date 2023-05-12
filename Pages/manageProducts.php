@@ -89,8 +89,7 @@
 
                             <div class="col-md-8 col-lg-10">
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="tab-orders" role="tabpanel"
-                                        aria-labelledby="tab-orders-link">
+                                    <div class="tab-pane fade show active" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
 
                                         <div class="px-3 my-5 clearfix">
                                             <!-- Shopping cart table -->
@@ -101,25 +100,23 @@
                                                     <?php
                                                     $total;
                                                     if ($sub['isSubscribe'] == "Yes") {
-                                                    if($sub_type['number_of_products'] > 0){
-                                                        if ($sub_type['subscription_type'] == 3) {
-                                                            echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            echo "<p> Unli product post </p>";
-                                                        }else if($sub_type['subscription_type'] == 1){
-                                                            echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            echo "<p> You have ". $sub_type['number_of_products'] ." of remaining products left to post. <a href='manageSubscription.php'>Manage Subscription!</a></p>";
-
-                                                        }else if($sub_type['subscription_type'] == 2){
-                                                            echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            echo "<p> You have ". $sub_type['number_of_products']." of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
-
+                                                        if ($sub_type['number_of_products'] > 0) {
+                                                            if ($sub_type['subscription_type'] == 3) {
+                                                                echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                                echo "<p> Unli product post </p>";
+                                                            } else if ($sub_type['subscription_type'] == 1) {
+                                                                echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                                echo "<p> You have " . $sub_type['number_of_products'] . " of remaining products left to post. <a href='manageSubscription.php'>Manage Subscription!</a></p>";
+                                                            } else if ($sub_type['subscription_type'] == 2) {
+                                                                echo " <a href='addProduct.php' class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                                echo "<p> You have " . $sub_type['number_of_products'] . " of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
+                                                            }
+                                                        } else {
+                                                            echo " <a  class='btn btn-primary mb-2' disabled>Add Product</a>";
+                                                            echo "<p> You have " . $sub_type['number_of_products'] . " of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
                                                         }
-                                                    }else{
-                                                        echo " <a  class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                        echo "<p> You have ". $sub_type['number_of_products']." of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
-                                                    }
 
-                                                        ?>
+                                                    ?>
                                                     <?php }
                                                     if ($sub['isSubscribe'] == "No") {
                                                         $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
@@ -143,21 +140,15 @@
                                                             <thead>
                                                                 <tr>
                                                                     <!-- Set columns width -->
-                                                                    <th class="text-center py-3 px-4"
-                                                                        style="min-width: 400px;">Product Name &amp;
+                                                                    <th class="text-center py-3 px-4" style="min-width: 380px;">Product Name &amp;
                                                                         Details</th>
-                                                                    <th class="text-center py-3 px-4"
-                                                                        style="min-width: 120px;width:200px">Price</th>
-                                                                    <th class="text-center py-3 px-4"
-                                                                        sstyle="min-width: 120px;width:200px">Quantity
+                                                                    <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Price</th>
+                                                                    <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Quantity
                                                                     </th>
-                                                                    <th class="text-center py-3 px-4"
-                                                                        style="min-width: 120px;width:200px">Status</th>
-                                                                    <th class="text-center align-middle py-3 px-0"
-                                                                        style="width: 80px;">Action<a href="#"
-                                                                            class="shop-tooltip float-none text-light"
-                                                                            title="" data-original-title="Clear cart"><i
-                                                                                class="ino ion-md-trash"></i></a></th>
+                                                                    <th class="text-center py-3 px-4" style="min-width: 140px;width:220px">Quantity Sold
+                                                                    </th>
+                                                                    <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Status</th>
+                                                                    <th class="text-center align-middle py-3 px-0" style="width: 80px;">Action<a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -169,13 +160,11 @@
                                                                         $prod_det = mysqli_fetch_assoc(
                                                                             getProduct('product_details', 'product_id', $product['id'])
                                                                         );
-                                                                        ?>
+                                                                ?>
                                                                         <tr>
                                                                             <td class="p-4 ">
                                                                                 <div class="media align-items-center">
-                                                                                    <img src="<?php echo $prod_det['product_img'] ?>"
-                                                                                        class="d-block ui-w-40 ui-bordered mr-4"
-                                                                                        alt="">
+                                                                                    <img src="<?php echo $prod_det['product_img'] ?>" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                                                                                     <div class="media-body">
                                                                                         <a href="product.php?product_id=<?php echo $prod_det['product_id'] ?>" class="d-block text-dark">
                                                                                             <?php echo $prod_det['product_name'] ?>
@@ -186,16 +175,34 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
-                                                                            <td
-                                                                                class="text-center font-weight-semibold align-middle p-4">
+                                                                            <td class="text-center font-weight-semibold align-middle p-4">
                                                                                 ₱
                                                                                 <?php echo number_format($prod_det['price'], 2); ?>
                                                                             </td>
                                                                             <td class="align-middle p-4 text-center">
                                                                                 <?php echo number_format($prod_det['quantity']); ?>
                                                                             </td>
-                                                                            <td
-                                                                                class="text-center font-weight-semibold align-middle p-4">
+
+                                                                            <td class="align-middle p-4 text-center">
+
+                                                                                <?php
+
+                                                                                $quant = 0;
+
+                                                                                $c = getUser('carts', 'product_id', $prod_det['product_id']);
+                                                                                while ($ca = mysqli_fetch_assoc($c)) {
+                                                                                    $or = mysqli_fetch_assoc(getUser('orders', 'cart_id', $ca['id']));
+
+                                                                                    if ($or['status'] == "received") {
+
+                                                                                        $quant += $ca['quantity'];
+                                                                                    }
+                                                                                }
+                                                                                echo number_format($quant);
+                                                                                ?>
+
+                                                                            </td>
+                                                                            <td class="text-center font-weight-semibold align-middle p-4">
 
                                                                                 <?php if ($prod_det['quantity'] > 0) { ?>
                                                                                     <p class="bg-success text-white rounded">In
@@ -208,46 +215,26 @@
 
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
-                                                                                <button
-                                                                                    class="shop-tooltip close float-none text-danger"
-                                                                                    title="" data-original-title="Remove"
-                                                                                    type="button" name="deleteProduct"
-                                                                                    data-toggle="modal"
-                                                                                    data-target="#exampleModal<?php echo $prod_det['product_id'] ?>">
-                                                                                    <i class="fa fa-trash"
-                                                                                        style="font-size: 20px"></i>
+                                                                                <button class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove" type="button" name="deleteProduct" data-toggle="modal" data-target="#exampleModal<?php echo $prod_det['product_id'] ?>">
+                                                                                    <i class="fa fa-trash" style="font-size: 20px"></i>
                                                                                 </button>
-                                                                                <a href="../Pages/editProduct.php?product_id=<?php echo $prod_det['product_id'] ?>"
-                                                                                    type="button"
-                                                                                    class="shop-tooltip close float-none text-success">
-                                                                                    <i class="fa fa-edit"
-                                                                                        style="font-size: 20px"></i>
+                                                                                <a href="../Pages/editProduct.php?product_id=<?php echo $prod_det['product_id'] ?>" type="button" class="shop-tooltip close float-none text-success">
+                                                                                    <i class="fa fa-edit" style="font-size: 20px"></i>
                                                                                 </a>
 
-                                                                                <div class="modal fade"
-                                                                                    id="exampleModal<?php echo $prod_det['product_id'] ?>"
-                                                                                    tabindex="-1" role="dialog"
-                                                                                    aria-labelledby="exampleModalLabel"
-                                                                                    aria-hidden="true">
+                                                                                <div class="modal fade" id="exampleModal<?php echo $prod_det['product_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                                     <div class="modal-dialog" role="document">
                                                                                         <div class="modal-content p-5">
-                                                                                            <form
-                                                                                                action="../Controller/ProductsController.php?product_id=<?php echo $prod_det['product_id'] ?>"
-                                                                                                method="POST">
-                                                                                                <div
-                                                                                                    class="modal-body text-left">
+                                                                                            <form action="../Controller/ProductsController.php?product_id=<?php echo $prod_det['product_id'] ?>" method="POST">
+                                                                                                <div class="modal-body text-left">
                                                                                                     <h4>
                                                                                                         Are you sure you want to
                                                                                                         remove this product?
                                                                                                     </h4>
                                                                                                 </div>
                                                                                                 <div class="modal-footer">
-                                                                                                    <button type="button"
-                                                                                                        class="btn btn-danger"
-                                                                                                        data-dismiss="modal">Close</button>
-                                                                                                    <button type="submit"
-                                                                                                        class="btn btn-primary"
-                                                                                                        name="deleteProduct">Yes</button>
+                                                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                                    <button type="submit" class="btn btn-primary" name="deleteProduct">Yes</button>
                                                                                                 </div>
 
                                                                                             </form>
@@ -258,7 +245,7 @@
                                                                             </td>
                                                                         </tr>
 
-                                                                    <?php }
+                                                                <?php }
                                                                 } else {
                                                                     echo "<td colspan=6>No Products... </td>";
                                                                 } ?>

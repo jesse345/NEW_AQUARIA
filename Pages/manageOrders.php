@@ -129,6 +129,13 @@
                                                                     <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
                                                                         Status
                                                                     </th>
+                                                                    <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
+                                                                        Date Created
+                                                                    </th>
+
+                                                                    <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
+                                                                        Date End
+                                                                    </th>
                                                                     <th></th>
                                                                     <th class="text-center align-middle py-3 px-0" style="min-width: 150px;width:200px">
                                                                         <a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart">
@@ -212,6 +219,20 @@
                                                                                     echo "<p class='bg-danger rounded text-white'>Cancelled</p>";
                                                                                 }
                                                                                 ?>
+                                                                            </td>
+                                                                            <td class="text-center align-middle px-0">
+                                                                                <?php
+                                                                                echo date("M d Y", strtotime($order['date_created']));
+                                                                                ?>
+                                                                            </td>
+
+                                                                            <td class="text-center align-middle px-0">
+                                                                                <?php
+                                                                                echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y", strtotime($order['date_end']));
+                                                                                ?>
+                                                                            </td>
+                                                                            <td>
+
                                                                             </td>
                                                                             <td>
                                                                                 <!-- Spacing Purposes -->
