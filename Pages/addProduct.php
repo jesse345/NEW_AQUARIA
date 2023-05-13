@@ -8,6 +8,9 @@ include("../Model/db.php");
     <?php include("../Layouts/head.layout.php") ?>
     <link rel="stylesheet" href="../css/addProduct.css">
 </head>
+<style>
+    
+</style>
 
 <body>
 
@@ -21,7 +24,7 @@ include("../Model/db.php");
 
         <main class="main">
 
-            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+            <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                 <div class="container">
                     <h1 class="page-title">Add Product</h1>
                 </div><!-- End .container -->
@@ -98,9 +101,9 @@ include("../Model/db.php");
                                     </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label px-3">Tank Dimension<span class="text-danger">
+                                            <label class="form-control-label px-3">Tank Dimension in Centimeter(cm)<span class="text-danger">
                                                     *</span></label>
-                                            <input type="text" id="dimension" name="dimension" placeholder="Enter Tank dimension W x H" required>
+                                            <input type="text" id="dimension" name="dimension" placeholder="Enter Tank dimension in Centimeter(cm) W x H" required>
                                         </div>
 
                                         <div class="form-group col-sm-6 flex-column d-flex">
@@ -167,12 +170,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -248,12 +259,20 @@ include("../Model/db.php");
                                             <label class="form-control-label px-3">
                                                 Fish Type<span class="text-danger"> *</span>
                                             </label>
-                                            <select name="fish_type" id="" required>
-                                                <option value="" disabled selected hidden>Select Fish Type</option>
-                                                <option value="Live Bearer">Live Bearer</option>
-                                                <option value="Egg Layer">Egg Layer</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio" name="fish_type" value="Live Bearer" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        Live Bearer
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio" name="fish_type" value="Egg Layer" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        Egg Layer
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -271,26 +290,35 @@ include("../Model/db.php");
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label px-3">Size<span class="text-danger">
+                                            <label class="form-control-label px-3">Size in Centimenter(cm)<span class="text-danger">
                                                     *</span></label>
-                                            <input type="text" id="size" name="size" placeholder="Enter Size" required>
+                                            <input type="text" id="size" name="size" placeholder="Enter Size in Centimenter(cm)" required>
                                         </div>
                                     </div>
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label px-3">Gender<span class="text-danger"> *</span>
                                             </label>
-                                            <select name="gender" id="" required>
-                                                <option value="" disabled selected hidden>Select Fish Gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio" name="exampleRadios"  name="gender" value="Male" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio" name="exampleRadios"  name="gender" value="Female" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label px-3">Months or Yrs old
+                                            <label class="form-control-label px-3">Age in Month(s)
                                             </label>
-                                            <input type="text" id="age" name="age" placeholder="Enter Age">
+                                            <input type="number" id="age" name="age" placeholder="Enter Month">
                                         </div>
 
 
@@ -348,12 +376,21 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
 
                                     </div>
@@ -483,12 +520,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -631,12 +676,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -780,12 +833,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -928,12 +989,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -1076,12 +1145,20 @@ include("../Model/db.php");
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Transaction Type<span class="text-danger">
                                                     *</span></label>
-                                            <select name="shipping_type" id="" required>
-                                                <option value="" disabled selected hidden>Shipping Mode</option>
-                                                <option value="Pickup">For Pickup</option>
-                                                <option value="Delivery">For Delivery</option>
-
-                                            </select>
+                                            <div class="form-check">
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Pickup" style="height:25px;width:18px;" checked>
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Pickup
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input" type="radio"  name="shipping_type" value="Delivery" style="height:25px;width:18px;">
+                                                    <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
+                                                        For Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -1161,8 +1238,8 @@ include("../Model/db.php");
     <script src="../JS/addProduct.js">
 
     </script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
