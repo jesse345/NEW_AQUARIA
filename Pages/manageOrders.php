@@ -130,11 +130,11 @@
                                                                         Status
                                                                     </th>
                                                                     <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
-                                                                        Date Created
+                                                                        Order Date
                                                                     </th>
 
                                                                     <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
-                                                                        Date End
+                                                                        Fulfillment date
                                                                     </th>
                                                                     <th></th>
                                                                     <th class="text-center align-middle py-3 px-0" style="min-width: 150px;width:200px">

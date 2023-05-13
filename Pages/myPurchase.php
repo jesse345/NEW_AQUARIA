@@ -117,11 +117,11 @@
                                                                 <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">
                                                                     Total Price</th>
                                                                 <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
-                                                                    Date Created
+                                                                    Purchase Date
                                                                 </th>
 
                                                                 <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
-                                                                    Date End
+                                                                    Fulfillment date
                                                                 </th>
                                                                 <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
                                                                     Status
