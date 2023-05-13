@@ -257,6 +257,11 @@ if (isset($_GET['search'])) {
                                                             <label>Change Section 3 Image (Optional)</label>
                                                             <input class="form-control" type="file" name="image3">
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label>Link</label>
+                                                            
+                                                            <input type="text" class="form-control" name="link" value="<?php echo $row['links']; ?>">
+                                                        </div>
 
 
 
@@ -299,19 +304,19 @@ if (isset($_GET['search'])) {
                                                     <div class="form-group row mt-3">
                                                         <label class="col-sm-4 col-form-label">Manual ID</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="manual_id" value="<?php echo $row['manual_id']; ?>" readonly>
+                                                            <input type="text" class="form-control"  value="<?php echo $row['manual_id']; ?>" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 col-form-label">Admin ID</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="admin_id" value="<?php echo $row['admin_id']; ?>" readonly>
+                                                            <input type="text" class="form-control"  value="<?php echo $row['admin_id']; ?>" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 col-form-label">Title</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="title" value="<?php echo $row['title']; ?>" readonly>
+                                                            <input type="text" class="form-control"  value="<?php echo $row['title']; ?>" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mt-3">
@@ -351,13 +356,18 @@ if (isset($_GET['search'])) {
                                                         </div>
                                                     </div>
 
-
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">LINK</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" value="<?php echo $row['links']; ?>" readonly>
+                                                        </div>
+                                                    </div>
 
 
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 col-form-label">Date Created</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" name="amount" value="<?php echo $row['date_created']; ?>" readonly>
+                                                            <input type="text" class="form-control"  value="<?php echo $row['date_created']; ?>" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -423,12 +433,10 @@ if (isset($_GET['search'])) {
                             <label>Section 3 Upload Image</label>
                             <input class="form-control" type="file" name="image3">
                         </div>
-
-
-
-
-
-
+                        <div class="form-group">
+                            <label>Link</label>
+                            <input type="text" class="form-control" name="links" placeholder="Enter Link" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

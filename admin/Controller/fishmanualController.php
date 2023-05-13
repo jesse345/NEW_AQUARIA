@@ -5,12 +5,13 @@ session_start();
 if (isset($_POST['add'])) {
 	$admin_id = $_SESSION["admin_id"];
 	$title = $_POST['title'];
-	$description = $_POST['description1'];
+	$description = $_POST['description'];
 	$description2 = $_POST['description2'];
 	$description3 = $_POST['description3'];
 	$img = $_FILES['image']['name'];
 	$img2 = $_FILES['image2']['name'];
 	$img3 = $_FILES['image3']['name'];
+	$link = $_POST['links'];
 
 	$targetDir = "../img/"; // Set target directory
 	$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
@@ -38,7 +39,7 @@ if (isset($_POST['add'])) {
 			move_uploaded_file($_FILES['image2']['tmp_name'], $targetPath2);
 			move_uploaded_file($_FILES['image3']['tmp_name'], $targetPath3);
 
-			addFishManual($admin_id, $title, $description, $img, $description2,$img2,$description3,$img3);
+			addFishManual($admin_id, $title, $description, $img, $description2,$img2,$description3,$img3,$link);
 			
 			echo "<script>
 					alert('added successfully');
@@ -62,12 +63,15 @@ if (isset($_POST['add'])) {
     $description1 = $_POST['description1'];
 	$description2 = $_POST['description2'];
 	$description3 = $_POST['description3'];
+	$link = $_POST['link'];
 
     $img1 = $_FILES['image1']['name'];
 	$img2 = $_FILES['image2']['name'];
 	$img3 = $_FILES['image3']['name'];
+	
 
     if(!empty($img1) && !empty($img2) && !empty($img3)){
+		
 		$targetDir = "../img/"; // Set target directory
 		$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 		$name1 = $_FILES['image1']['name'];
@@ -86,8 +90,8 @@ if (isset($_POST['add'])) {
 			if(move_uploaded_file($_FILES['image1']['tmp_name'], $targetPath1) && move_uploaded_file($_FILES['image2']['tmp_name'], $targetPath2) && move_uploaded_file($_FILES['image3']['tmp_name'], $targetPath3)){
 
 				edit_Record('fish_manual',
-				array('manual_id','title','description','manual_img','description1','manual_img1','description2','manual_img2'),
-				array($id,$title,$description1,$img1,$description2,$img2,$description3,$img3));
+				array('manual_id','title','description','manual_img','description1','manual_img1','description2','manual_img2','links'),
+				array($id,$title,$description1,$img1,$description2,$img2,$description3,$img3,$link));
 				echo "<script>
 					alert('Edited successfully.');
 					window.location.href='../Pages/fishmanual.php';
@@ -105,12 +109,13 @@ if (isset($_POST['add'])) {
 			</script>";
 		}
 	} else { 
+		
 		edit_Record('fish_manual',
-				array('manual_id','title','description','description1','description2'),
-				array($id,$title,$description1,$description2,$description3));
+				array('manual_id','title','description','description1','description2','links'),
+				array($id,$title,$description1,$description2,$description3,$link));
 		
 		echo "<script>
-			alert('Edited successfully.');
+			alert('Edited successfully1.');
 			window.location.href='../Pages/fishmanual.php';
 		</script>";
 	}

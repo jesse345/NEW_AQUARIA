@@ -33,7 +33,7 @@
     include("../Includes/header.inc.php"); 
     $id = $_SESSION['id'];
 ?>
- <div class="page-wrapper">
+
         <main class="main">
             <div class="page-header text-center" style="background-image: url('../assets/images/fish2.jpg')">
                     <div class="container">
@@ -44,7 +44,9 @@
                     <div class="container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Fish Manual Content</li>
+                             <li class="breadcrumb-item"><a href="../Pages/fishManual.php">Fish Manual</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">View More Details</li>
                         </ol>
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
@@ -61,31 +63,17 @@
                                         <figure class="entry-media">
                                             <img src="../img/<?php echo $manual['manual_img']?>" class="img-responsive">
                                         </figure><!-- End .entry-media -->
-
                                         <div class="entry-body">
-
-                                            <h1><?php echo $manual['title']?></h1><br />
-                                            
-                                            <div class="entry-content editor-content">
-                                                
+                                            <h1><?php echo $manual['title']?></h1><br />         
+                                            <div class="entry-content editor-content">  
                                             <p><?php echo $manual['description']?>.</p><br />
-
-                                            
-
-                                            
                                             <img src="../img/<?php echo $manual['manual_img1']?>" style="width: 100%;">
-
                                             <p><b><?php echo $manual['description1']?>.</p><br />
-
-                                           
                                             <img src="../img/<?php echo $manual['manual_img2']?>" style="width: 100%;"><br />
-
-                                            
                                             <p><?php echo $manual['description2']?>.<br />
-
-                                            
-                                            
-
+                                            <div class="entry-content">
+                                                <a href="<?php echo $manual['links']?>" class="read-more">More details</a>
+                                            </div>
                                             <div class="entry-footer row no-gutters flex-column flex-md-row">
                                             </div><!-- End .entry-footer row no-gutters -->
                                         </div><!-- End .entry-body -->
@@ -132,7 +120,7 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
         <?php include("../Includes/footer1.inc.php"); ?>
-    </div><!-- End .page-wrapper -->
+    
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
     <!-- Mobile Menu -->
