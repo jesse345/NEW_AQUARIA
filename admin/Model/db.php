@@ -501,3 +501,14 @@ function getSubscribeUser($table_name, $fields, $values)
 	disconnect();
 	return $data;
 }
+
+function getProductByCategory($category)
+{
+	global $conn;
+	connect();
+	$query = "SELECT * FROM `product_details` WHERE `category` = '$category' ";
+	$data = mysqli_query($conn, $query);
+
+	disconnect();
+	return $data;
+}
