@@ -113,11 +113,7 @@ if (isset($_GET['search'])) {
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../Pages/extensions.php">
-                    <i class='bx bx-wallet icon'></i>
-                    <span>Subcription Extensions</span></a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="../Pages/earnings.php">
                     <i class='bx bx-money icon'></i>
