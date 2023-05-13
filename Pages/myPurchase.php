@@ -117,6 +117,13 @@
                                                                 <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">
                                                                     Total Price</th>
                                                                 <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
+                                                                    Purchase Date
+                                                                </th>
+
+                                                                <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
+                                                                    Fulfillment date
+                                                                </th>
+                                                                <th class="text-center py-3 px-4" style="min-width: 150px;width:200px">
                                                                     Status
                                                                 </th>
                                                                 <th></th>
@@ -179,6 +186,18 @@
                                                                         </td>
                                                                         <td class="text-center font-weight-semibold align-middle p-4">
                                                                             ₱ <?php echo number_format($cart['total'], 2) ?></td>
+
+                                                                        <td class="text-center align-middle px-0">
+                                                                            <?php
+                                                                            echo date("M d Y", strtotime($order['date_created']));
+                                                                            ?>
+                                                                        </td>
+
+                                                                        <td class="text-center align-middle px-0">
+                                                                            <?php
+                                                                            echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y", strtotime($order['date_end']));
+                                                                            ?>
+                                                                        </td>
                                                                         <td class="text-center align-middle px-0">
                                                                             <?php
 

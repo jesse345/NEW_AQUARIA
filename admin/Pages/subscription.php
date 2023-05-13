@@ -124,6 +124,12 @@ $rec = getAllUser();
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Pages/earnings.php">
+                    <i class='bx bx-money icon'></i>
+                    <span>Earnings</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
@@ -264,11 +270,11 @@ $rec = getAllUser();
                                                         <input type="text" class="form-control" name="amount" value="<?php echo $row['reference_number']; ?>" readonly>
                                                     </div>
                                                 </div>
-                                
+
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label" style="font-size:14px;">IMAGE</label>
                                                     <div class="col-sm-8">
-                                                    <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail">
+                                                        <img src="../../img/<?php echo $row['receipt_img']; ?>" class="img-thumbnail">
                                                     </div>
                                                 </div>
 
