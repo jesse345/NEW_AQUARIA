@@ -85,6 +85,13 @@ if (!isset($_SESSION['admin_id'])) {
                     <i class='bx bxl-product-hunt icon'></i>
                     <span>Manage Products</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Pages/filterProduct.php">
+                    <i class='bx bxl-product-hunt icon'></i>
+                    <span>Filter Fishes</span></a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageReport.php">
                     <i class='bx bxs-report icon'></i>
