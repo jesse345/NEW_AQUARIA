@@ -105,6 +105,11 @@ if (isset($_GET['search'])) {
                     <span>Manage Products</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../Pages/filterProduct.php">
+                    <i class='bx bxl-product-hunt icon'></i>
+                    <span>Filter Fishes</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/manageReport.php">
                     <i class='bx bxs-report icon'></i>
                     <span>Manage Reports</span></a>
@@ -123,6 +128,12 @@ if (isset($_GET['search'])) {
                 <a class="nav-link" href="../Pages/subscription.php">
                     <i class='bx bx-wallet icon'></i>
                     <span>Subcription</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Pages/earnings.php">
+                    <i class='bx bx-money icon'></i>
+                    <span>Earnings</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../Pages/logout.php">

@@ -140,3 +140,14 @@ function insertProductImage($table_name, $fields, $values)
     $query = mysqli_query($conn, "INSERT INTO `$table_name` (`$flds`) VALUES ('$vals') ");
     disconnect();
 }
+
+
+
+function sortProduct()
+{
+    global $conn;
+    connect();
+    $query = mysqli_query($conn, "SELECT *  FROM `products`  WHERE `isDelete` = 'No' ORDER BY `date_created` DESC");
+    disconnect();
+    return $query;
+}

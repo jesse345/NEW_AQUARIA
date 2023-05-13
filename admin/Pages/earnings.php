@@ -5,12 +5,8 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header("location:../Pages/login.php");
 }
+$rec = getAllUser();
 
-if (isset($_GET['search'])) {
-    $rec = searchSI($_GET['search']);
-} else {
-    $rec = getUserShippingInfo();
-}
 
 ?>
 
@@ -36,6 +32,19 @@ if (isset($_GET['search'])) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .edit:hover {
+            color: green !important;
+        }
+
+        .delete:hover {
+            color: red !important;
+        }
+
+        .view-more:hover {
+            color: green !important;
+        }
+    </style>
 
 
 </head>
@@ -145,17 +154,25 @@ if (isset($_GET['search'])) {
                 <div class="card-header py-3">
                     <div class="d-flex">
                         <div class="mr-auto">
-                            <h6 class="m-0 font-weight-bold text-primary">Manage Shipping Info</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Subscription Earnings Summary</h6>
                         </div>
                         <div class="ml-auto">
-                            <form action="#">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Search...">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
+                            Filter By:
+                            <select name="" id="" onchange="location = this.value;">
+                                <option value="earnings.php" selected>View All</option>
+
+                                <option value="earnings.php?subscription_type=1" <?php if (isset($_GET['subscription_type']) && $_GET['subscription_type'] == 1) { ?> selected <?php } ?>>
+                                    Standard
+                                </option>
+                                <option value="earnings.php?subscription_type=2" <?php if (isset($_GET['subscription_type']) && $_GET['subscription_type'] == 2) { ?> selected <?php } ?>>
+                                    Advanced
+                                </option>
+                                <option value="earnings.php?subscription_type=3" <?php if (isset($_GET['subscription_type']) && $_GET['subscription_type'] == 3) { ?> selected <?php } ?>>
+                                    Premium
+                                </option>
+
+                            </select>
+
                         </div>
                     </div>
                 </div>
@@ -165,79 +182,68 @@ if (isset($_GET['search'])) {
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                             <thead>
                                 <tr>
-                                    <th>SHIPPING ID</th>
-                                    <th>USER ID</th>
-                                    <th>SHIPPING NAME</th>
-                                    <th>SHIPPING ADDRESS</th>
-                                    <th>SHIPPING CONTACT</th>
-                                    <th>ACTIONS</th>
+
+                                    <th>Subscription Id</th>
+                                    <th>User</th>
+                                    <th>Subscription Type</th>
+                                    <th>Date Subscribe</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
-                            <?php
-                            if (mysqli_num_rows($rec) > 0)
-                                while ($row = mysqli_fetch_assoc($rec)) {
-                                    $gp = mysqli_fetch_assoc(getproducts($row['user_id']));
-                            ?>
-                                <tbody>
-                                    <tr>
-                                        <td><?php echo $row['shipping_id']; ?></td>
-                                        <td><?php echo $row['user_id']; ?></td>
-                                        <td><?php echo $row['shipping_name']; ?></td>
-                                        <td><?php echo $row['shipping_address']; ?></td>
-                                        <td><?php echo $row['shipping_contact']; ?></td>
-                                        <td>
-                                            <a href="#viewMore<?php echo $row['shipping_id']; ?>" data-toggle="modal" title="View"><i class="fa fa-eye text-success" style="position:absolute;margin-top:5px;"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <div id="viewMore<?php echo $row['shipping_id']; ?>" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-body" style="text-align:center;">
-                                                <div class="form-group row mt-3">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">SHIPPING ID</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="payment_id" value="<?php echo $row['shipping_id']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:16px;">USER ID</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="user_id" value="<?php echo $row['user_id']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING NAME</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="payment_type" value="<?php echo $row['shipping_name']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING ADDRESS</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="date_created" value="<?php echo $row['shipping_address']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label" style="font-size:14px;">SHIPPING CONTACT</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="amount" value="<?php echo $row['shipping_contact']; ?>" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php }
-                            else {
-                                echo "<td colspan = 6>NO RECORD FOUND</td>";
-                            }
-                            ?>
+
+                            <tbody>
+                                <?php
+
+                                if (isset($_GET['subscription_type'])) {
+                                    $subscribe = getSubscribeUser('subscription', 'subscription_type', $_GET['subscription_type']);
+                                } else {
+                                    $subscribe = getAllSubscription('subscription');
+                                }
+
+
+
+                                $total = 0;
+                                while ($row = mysqli_fetch_assoc($subscribe)) {
+                                    $total +=  $row['amount'];
+                                    $users = mysqli_fetch_assoc(getSubscribeUser('user_details', 'user_id', $row['user_id']));
+                                    if ($row['status'] == "Approved") {
+                                ?>
+                                        <tr>
+
+                                            <td><?php echo $row['subscription_id'] ?></td>
+                                            <td><?php echo $users['first_name'] . " " . $users['last_name']  ?></td>
+                                            <td>
+
+                                                <?php if ($row['subscription_type'] == 1) {
+                                                    echo "Standard";
+                                                } else if ($row['subscription_type'] == 2) {
+                                                    echo "Advanced";
+                                                }
+                                                if ($row['subscription_type'] == 3) {
+                                                    echo "Premium";
+                                                } ?>
+
+                                            </td>
+                                            <td><?php echo date('M d Y', strtotime($row['date_created'])) ?></td>
+                                            <td><?php echo number_format($row['amount'], 2) ?></td>
+
+
+                                        </tr>
+                                <?php }
+                                } ?>
+                                <tr>
+                                    <td colspan="4">
+
+                                    </td>
+                                    <td>
+                                        Total: <?php echo number_format($total, 2) ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+
                         </table>
+                        <!-- <button onclick="downloadTableAsCSV()" class="btn btn-primary">Download as CSV</button> -->
+
                     </div>
                 </div>
             </div>
@@ -249,7 +255,30 @@ if (isset($_GET['search'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <script>
+        function downloadTableAsCSV() {
+            const table = document.querySelector('#dataTable');
+            const rows = Array.from(table.querySelectorAll('tr'));
 
+            const csv = rows.map(row => {
+                const cells = Array.from(row.querySelectorAll('th, td'));
+                return cells.map(cell => cell.textContent).join(',');
+            }).join('\n');
+
+            const blob = new Blob([csv], {
+                type: 'text/csv'
+            });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'myTable.csv';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
