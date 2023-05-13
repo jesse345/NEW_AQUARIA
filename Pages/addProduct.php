@@ -292,7 +292,7 @@ include("../Model/db.php");
                                         <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label px-3">Size in Centimenter(cm)<span class="text-danger">
                                                     *</span></label>
-                                            <input type="text" id="size" name="size" placeholder="Enter Size in Centimenter(cm)" required>
+                                            <input type="number" id="size" name="size" placeholder="Enter Size in Centimenter(cm)" required>
                                         </div>
                                     </div>
                                     <div class="row justify-content-between text-left">
@@ -301,13 +301,13 @@ include("../Model/db.php");
                                             </label>
                                             <div class="form-check">
                                                 <div>
-                                                    <input class="form-check-input" type="radio" name="exampleRadios"  name="gender" value="Male" style="height:25px;width:18px;" checked>
+                                                    <input class="form-check-input" type="radio" name="gender" value="Male" style="height:25px;width:18px;" checked>
                                                     <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
                                                         Male
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <input class="form-check-input" type="radio" name="exampleRadios"  name="gender" value="Female" style="height:25px;width:18px;">
+                                                    <input class="form-check-input" type="radio" name="gender" value="Female" style="height:25px;width:18px;">
                                                     <label class="form-check-label" style="margin-left:10px;margin-top:2px;">
                                                         Female
                                                     </label>
@@ -335,6 +335,28 @@ include("../Model/db.php");
                                             <input type="number" id="price" name="price" placeholder="Enter Price" required>
                                         </div>
                                     </div>
+
+
+                                     <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label px-3">Lifespan (Optional)<span class="text-danger"> *</span>
+                                            </label>
+                                            <input type="text"  name="lifespan" placeholder="Enter Lifespan" >
+                                        </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label px-3">Scientific name (Optional)<span class="text-danger">
+                                                    *</span></label>
+                                            <input type="text" name="sn" placeholder="Enter Scientific name">
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">

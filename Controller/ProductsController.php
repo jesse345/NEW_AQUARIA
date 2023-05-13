@@ -87,8 +87,10 @@ if (!empty($_SESSION['id'])) {
             $gender = $_POST['gender'];
             $age = $_POST['age'];
             $size = $_POST['size'];
-            array_push($user_det_fld, 'fish_type', 'fish_class', 'gender', 'age', 'size');
-            array_push($user_det_val, $fish, $class, $gender, $age, $size);
+            $lifespan = $_POST['lifespan'];
+            $sn = $_POST['sn'];
+            array_push($user_det_fld, 'fish_type', 'fish_class', 'gender', 'age', 'size','lifespan','scientificName');
+            array_push($user_det_val, $fish, $class, $gender, $age, $size,$lifespan,$sn);
 
             $add = insertProduct(
                 'products',
