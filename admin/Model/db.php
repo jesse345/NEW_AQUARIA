@@ -203,13 +203,27 @@ function getAllManual()
 	return $query;
 }
 
-function addFishManual($admin_id, $title, $description, $img, $description2, $img2, $description3, $img3)
+
+
+
+function addFishManual($admin_id, $title, $description, $img, $description2, $img2, $description3, $img3, $link)
 {
-	global $conn;
-	connect();
-	$query = mysqli_query($conn, "INSERT INTO fish_manual (admin_id,`title`,`description`,`manual_img`,`description1`,`manual_img1`,`description2`,`manual_img2`) VALUES('$admin_id', '$title', '$description','$img','$description2','$img2','$description3','$img3')");
-	disconnect();
+    global $conn;
+    connect();
+    
+    // Prepare the SQL statement with parameter placeholders
+    $query = mysqli_prepare($conn, "INSERT INTO fish_manual (admin_id, `title`, `description`, `manual_img`, `description1`, `manual_img1`, `description2`, `manual_img2`, `links`)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    // Bind the parameters to the prepared statement
+    mysqli_stmt_bind_param($query, 'issssssss', $admin_id, $title, $description, $img, $description2, $img2, $description3, $img3, $link);
+    
+    // Execute the prepared statement
+    mysqli_stmt_execute($query);
+    
+    disconnect();
 }
+
 
 
 function userlogin($username, $password)
