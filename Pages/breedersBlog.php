@@ -120,7 +120,7 @@
                                                 </div>
                                             <?php }else{ ?>
                                                 <div class="dropdown">
-                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:486px;">
+                                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0;background-color:#fff;margin-left:726px;">
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </button>
                                                 
