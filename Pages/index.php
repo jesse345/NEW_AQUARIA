@@ -694,7 +694,7 @@ session_start();
                 for ($j = 0; $j < count($products); $j++) {
 
                   $prod_det = mysqli_fetch_assoc(getProduct('product_details', 'product_id', $products[$j]));
-
+                  $prod = mysqli_fetch_assoc(getProduct('products', 'id', $prod_det['product_id']));
                 ?>
                   <div class="col-6 col-md-4 col-lg-3">
                     <div class="product product-7 text-center">
