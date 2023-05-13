@@ -106,6 +106,16 @@ if (!isset($_SESSION['admin_id'])) {
                     <span>Subcription</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../Pages/extensions.php">
+                    <i class='bx bx-wallet icon'></i>
+                    <span>Subcription Extensions</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Pages/earnings.php">
+                    <i class='bx bx-money icon'></i>
+                    <span>Earnings</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../Pages/logout.php">
                     <i class='bx bx-log-out icon'></i>
                     <span>Logout</span></a>
@@ -304,9 +314,9 @@ if (!isset($_SESSION['admin_id'])) {
                         </div>
 
                         <!-- Pie Chart -->
-                        <input type="hidden" name="standard" value="<?php echo mysqli_num_rows(countSubscriptionType(1))?>">
-                        <input type="hidden" name="advanced" value="<?php echo mysqli_num_rows(countSubscriptionType(2))?>">
-                        <input type="hidden" name="premium" value="<?php echo mysqli_num_rows(countSubscriptionType(3))?>">
+                        <input type="hidden" name="standard" value="<?php echo mysqli_num_rows(countSubscriptionType(1)) ?>">
+                        <input type="hidden" name="advanced" value="<?php echo mysqli_num_rows(countSubscriptionType(2)) ?>">
+                        <input type="hidden" name="premium" value="<?php echo mysqli_num_rows(countSubscriptionType(3)) ?>">
 
 
 
