@@ -148,7 +148,8 @@ $rec = getAllUser();
                         <div class="ml-auto">
                             Filter By:
                             <select name="" id="" onchange="location = this.value;">
-                                <option value="" selected disabled hidden>Filter By</option>
+                                <option value="earnings.php" selected>View All</option>
+
                                 <option value="earnings.php?subscription_type=1" <?php if (isset($_GET['subscription_type']) && $_GET['subscription_type'] == 1) { ?> selected <?php } ?>>
                                     Standard
                                 </option>
