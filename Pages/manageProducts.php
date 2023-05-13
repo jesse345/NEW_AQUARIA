@@ -113,11 +113,7 @@
                                                             }
                                                         } else {
                                                             echo " <a  class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            if ($sub_type['number_of_products'] > 0) {
-                                                                echo "<p> You have " . $sub_type['number_of_products'] . " of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
-                                                            } else {
-                                                                echo "<p> You have 0 of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
-                                                            }
+                                                            echo "<p> You have " . $sub_type['number_of_products'] . " of remaining products left to post. <a href='subscription.php'>Extend!</a></p>";
                                                         }
 
                                                     ?>
@@ -126,7 +122,7 @@
                                                         $total = 3 - mysqli_num_rows(getProduct('products', 'user_id', $_SESSION['id']));
                                                         if ($total <= 0) {
                                                             echo "<a  class='btn btn-primary mb-2' disabled>Add Product</a>";
-                                                            echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
+                                                            echo "<p> You have 0 of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
                                                         } else {
                                                             echo "<a href='addProduct.php' class='btn btn-primary mb-2'>Add Product</a>";
                                                             echo "<p> You have $total of remaining products left to post. <a href='subscription.php'>Subcribe!</a></p>";
