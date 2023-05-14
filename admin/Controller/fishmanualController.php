@@ -14,7 +14,7 @@ if (isset($_POST['add'])) {
 	$link = $_POST['links'];
 
 	$targetDir = "../img/"; // Set target directory
-	$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+	$allowedTypes = ['jpg', 'jpeg', 'png', 'gif','jfif','webp'];
 
 	$name = $_FILES['image']['name'];
 	$fileType = pathinfo($name, PATHINFO_EXTENSION);
@@ -42,7 +42,7 @@ if (isset($_POST['add'])) {
 			addFishManual($admin_id, $title, $description, $img, $description2,$img2,$description3,$img3,$link);
 			
 			echo "<script>
-					alert('added successfully');
+					alert('Added successfully');
 					window.location.href='../Pages/fishmanual.php';
 				</script>";
 		} else {
@@ -73,7 +73,7 @@ if (isset($_POST['add'])) {
     if(!empty($img1) && !empty($img2) && !empty($img3)){
 		
 		$targetDir = "../img/"; // Set target directory
-		$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+		$allowedTypes = ['jpg', 'jpeg', 'png', 'gif','jfif','webp'];
 		$name1 = $_FILES['image1']['name'];
 		$fileType1 = pathinfo($name1, PATHINFO_EXTENSION);
 		$targetPath1 = $targetDir . basename($name1);
@@ -115,7 +115,7 @@ if (isset($_POST['add'])) {
 				array($id,$title,$description1,$description2,$description3,$link));
 		
 		echo "<script>
-			alert('Edited successfully1.');
+			alert('Edited successfully.');
 			window.location.href='../Pages/fishmanual.php';
 		</script>";
 	}
