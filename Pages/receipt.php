@@ -38,7 +38,7 @@
                             <div class=" summary" id="table-summary">
                                 <h3 class="summary-title">
                                     <p>
-                                        <?php echo date('M d Y', strtotime($payment['date_created'])) ?>
+                                        <?php echo date('M d Y H:i:s', strtotime($payment['date_created'])) ?>
                                     </p>
                                     <br>
                                     E-AQUARIA Receipt
