@@ -224,7 +224,7 @@ $rec = getAllUser();
                                                 } ?>
 
                                             </td>
-                                            <td><?php echo date('M d Y', strtotime($row['date_created'])) ?></td>
+                                            <td><?php echo date('M d Y h:i:s', strtotime($row['date_created'])) ?></td>
                                             <td><?php echo number_format($row['amount'], 2) ?></td>
 
 

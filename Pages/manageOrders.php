@@ -87,17 +87,7 @@
                                                 <div class="card-body border-0">
                                                     <div>
 
-                                                        <?php $tp = countOrders($_SESSION['id']);
 
-                                                        ?>
-                                                        <p style="font-size: 1.5rem"> <b>Total Products Sold: </b> <span><?php echo mysqli_num_rows($tp) ?></span></p>
-                                                        <?php
-                                                        $ti = 0;
-                                                        while ($total = mysqli_fetch_assoc($tp)) {
-                                                            $cart = mysqli_fetch_assoc(getUser('carts', 'id', $total['cart_id']));
-                                                            $ti += $cart['total'];
-                                                        } ?>
-                                                        <p style="font-size: 1.5rem"> <b>Total Income: </b> <span>₱ <?php echo number_format($ti, 2) ?></span></p>
 
 
                                                     </div>
@@ -222,14 +212,15 @@
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php
-                                                                                echo date("M d Y", strtotime($order['date_created']));
+                                                                                echo date("M d Y h:i:s", strtotime($order['date_created']));
                                                                                 ?>
                                                                             </td>
 
                                                                             <td class="text-center align-middle px-0">
                                                                                 <?php
-                                                                                echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y", strtotime($order['date_end']));
+                                                                                echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y h:i:s", strtotime($order['date_end']));
                                                                                 ?>
+
                                                                             </td>
                                                                             <td>
 
@@ -299,6 +290,7 @@
                                                                             </td>
                                                                         </tr>
 
+
                                                                         <!-- Modal -->
                                                                         <div class="modal fade" id="acceptOrder<?php echo $order['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
@@ -367,6 +359,25 @@
                                                                 } else {
                                                                     echo "<td colspan=6>Empty Record... </td>";
                                                                 } ?>
+                                                                <tr>
+                                                                    <?php $tp = countOrders($_SESSION['id']);
+
+                                                                    ?>
+
+                                                                    <?php
+                                                                    $ti = 0;
+                                                                    while ($total = mysqli_fetch_assoc($tp)) {
+                                                                        $cart = mysqli_fetch_assoc(getUser('carts', 'id', $total['cart_id']));
+                                                                        $ti += $cart['total'];
+                                                                    } ?>
+                                                                    <td colspan="3">
+
+                                                                    </td>
+                                                                    <td colspan="2">
+                                                                        <!-- <p style="font-size: 1.5rem"> <b>Total Products Sold: </b> <span><?php echo mysqli_num_rows($tp) ?></span></p> -->
+                                                                        <p style="font-size: 1.5rem"> <b>Total Income: </b> <span>₱ <?php echo number_format($ti, 2) ?></span></p>
+                                                                    </td>
+                                                                </tr>
 
                                                             </tbody>
                                                         </table>

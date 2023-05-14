@@ -189,14 +189,16 @@
 
                                                                         <td class="text-center align-middle px-0">
                                                                             <?php
-                                                                            echo date("M d Y", strtotime($order['date_created']));
+                                                                            echo date("M d Y h:i:s", strtotime($order['date_created']));
+
                                                                             ?>
                                                                         </td>
 
                                                                         <td class="text-center align-middle px-0">
                                                                             <?php
-                                                                            echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y", strtotime($order['date_end']));
+                                                                            echo $order['date_end'] == "0000-00-00 00:00:00" ? '' : date("M d Y h:i:s", strtotime($order['date_end']));
                                                                             ?>
+
                                                                         </td>
                                                                         <td class="text-center align-middle px-0">
                                                                             <?php

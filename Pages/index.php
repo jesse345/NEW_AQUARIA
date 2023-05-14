@@ -476,6 +476,8 @@ session_start();
                         <?php echo $prod_det['price'] ?>
                       </div><!-- End .product-price -->
 
+
+
                       <?php
                       $review = getProductReviews('feedbacks', 'product_id', $prod_det['product_id']);
                       $rate = 0;
@@ -509,6 +511,29 @@ session_start();
                           <?php echo mysqli_num_rows($review) ?> Reviews )
                         </span>
                       </div><!-- End .rating-container -->
+                      <div class="product-price">
+
+                        <?php
+                        $time = strtotime($product['date_created']);
+                        $minutes_ago = floor((time() - $time) / 60) + 360;
+                        $hours_ago = floor($minutes_ago / 60);
+                        $days_ago = floor($hours_ago / 24);
+
+
+                        if ($minutes_ago < 60) {
+                          echo $minutes_ago . " minutes ago";
+                        } else {
+                          if ($hours_ago < 24) {
+                            echo $hours_ago . " hours ago";
+                          } else {
+                            echo $days_ago . " days ago";
+                          }
+                        }
+                        ?>
+
+
+
+                      </div><!-- End .product-price -->
                     </div><!-- End .product-body -->
                   </div><!-- End .product -->
 

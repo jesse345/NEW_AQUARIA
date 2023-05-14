@@ -148,6 +148,7 @@
                                                                     <th class="text-center py-3 px-4" style="min-width: 140px;width:220px">Quantity Sold
                                                                     </th>
                                                                     <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Status</th>
+                                                                    <th class="text-center py-3 px-4" style="min-width: 120px;width:200px">Date Created</th>
                                                                     <th class="text-center align-middle py-3 px-0" style="width: 80px;">Action<a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                                                                 </tr>
                                                             </thead>
@@ -213,6 +214,12 @@
                                                                                         Stock</p>
                                                                                 <?php } ?>
 
+                                                                            </td>
+
+                                                                            <td class="text-center align-middle px-0">
+                                                                                <?php
+                                                                                echo $product['date_created'] == "0000-00-00 00:00:00" ? '' : date("M d Y h:i:s", strtotime($product['date_created']));
+                                                                                ?>
                                                                             </td>
                                                                             <td class="text-center align-middle px-0">
                                                                                 <button class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove" type="button" name="deleteProduct" data-toggle="modal" data-target="#exampleModal<?php echo $prod_det['product_id'] ?>">
