@@ -25,6 +25,9 @@
             top:0;
             
         }
+        .breadcrumb{
+            background-color:#fff!important;
+        }
     </style>
 </head>
 
@@ -61,18 +64,18 @@
                                 <div class="col-lg-8">
                                     <article class="entry single-entry">
                                         <figure class="entry-media">
-                                            <img src="../img/<?php echo $manual['manual_img']?>" class="img-responsive">
+                                            <img src="../admin/img/<?php echo $manual['manual_img']?>" class="img-responsive">
                                         </figure><!-- End .entry-media -->
                                         <div class="entry-body">
                                             <h1><?php echo $manual['title']?></h1><br />         
                                             <div class="entry-content editor-content">  
                                             <p><?php echo $manual['description']?>.</p><br />
-                                            <img src="../img/<?php echo $manual['manual_img1']?>" style="width: 100%;">
+                                            <img src="../admin/img/<?php echo $manual['manual_img1']?>" style="width: 100%;">
                                             <p><b><?php echo $manual['description1']?>.</p><br />
-                                            <img src="../img/<?php echo $manual['manual_img2']?>" style="width: 100%;"><br />
+                                            <img src="../admin/img/<?php echo $manual['manual_img2']?>" style="width: 100%;"><br />
                                             <p><?php echo $manual['description2']?>.<br />
                                             <div class="entry-content">
-                                                <a href="<?php echo $manual['links']?>" class="read-more">More details</a>
+                                                <a href="<?php echo $manual['links']?>" target="_blank" class="read-more">More details</a>
                                             </div>
                                             <div class="entry-footer row no-gutters flex-column flex-md-row">
                                             </div><!-- End .entry-footer row no-gutters -->
