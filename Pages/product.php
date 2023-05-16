@@ -328,6 +328,12 @@
                                         <li> <strong>Age: </strong>
                                             <?php echo $prod_det['age']; ?>
                                         </li>
+                                        <li> <strong>Scientific Name: </strong>
+                                            <?php echo $prod_det['scientificName']; ?>
+                                        </li>
+                                        <li> <strong>Lifespan: </strong>
+                                            <?php echo $prod_det['lifespan']; ?>
+                                        </li>
                                     <?php } else if ($prod_det['category'] == "Equipment & Accessories") { ?>
                                         <li> <strong>Product Specification: </strong>
                                             <?php echo $prod_det['specification']; ?>

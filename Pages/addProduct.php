@@ -335,28 +335,17 @@ include("../Model/db.php");
                                             <input type="number" id="price" name="price" placeholder="Enter Price" required>
                                         </div>
                                     </div>
-
-
                                      <div class="row justify-content-between text-left">
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label px-3">Lifespan (Optional)<span class="text-danger"> *</span>
+                                            <label class="form-control-label px-3">Lifespan (Optional)
                                             </label>
                                             <input type="text"  name="lifespan" placeholder="Enter Lifespan" >
                                         </div>
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label px-3">Scientific name (Optional)<span class="text-danger">
-                                                    *</span></label>
+                                            <label class="form-control-label px-3">Scientific name (Optional)</label>
                                             <input type="text" name="sn" placeholder="Enter Scientific name">
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
                                     <div class="row justify-content-between text-left">
                                         <div class="form-group col-12 flex-column d-flex">
                                             <label class="form-control-label px-3">Upload Image (3 image needed)<span class="text-danger">
