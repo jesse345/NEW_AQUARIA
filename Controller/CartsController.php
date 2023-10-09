@@ -32,7 +32,6 @@ if (empty($_SESSION['id'])) {
         ), array($product_id, $user_id, $seller['user_id'], $quantity, $price, $total, "No", $date));
 
         if ($cart) {
-            header("Location: " . $_SERVER['HTTP_REFERER']);
         } else {
             echo "error";
         }

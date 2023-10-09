@@ -161,7 +161,7 @@
                                                                         $prod_det = mysqli_fetch_assoc(
                                                                             getProduct('product_details', 'product_id', $product['id'])
                                                                         );
-                                                                ?>
+                                                                 ?>
                                                                         <tr>
                                                                             <td class="p-4 ">
                                                                                 <div class="media align-items-center">
