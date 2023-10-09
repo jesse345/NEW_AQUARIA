@@ -244,6 +244,8 @@ $rec = getAllUser();
                         </table>
                         <!-- <button onclick="downloadTableAsCSV()" class="btn btn-primary">Download as CSV</button> -->
 
+                        <a href="../Controller/csvController.php" class="btn btn-primary" target="_blank">Download</a>
+
                     </div>
                 </div>
             </div>
